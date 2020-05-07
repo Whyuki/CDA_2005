@@ -14,24 +14,25 @@ public class Ex3_2 {
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
+		
 		int occurrence = 0;
-		char c;
-		String str = ".";
+		char character;
+		String sentence = ".";
 
 		System.out.println("Veuillez saisir une chaîne de caractère se terminant par un point (.) :");
-		str = sc.nextLine();
+		sentence = sc.nextLine();
 
-		if (str.endsWith(".")) {
+		if (sentence.endsWith(".")) {
 
 			System.out.println("Veuillez saisir un caractère à rechercher :");
-			c = sc.next().charAt(0);
+			character = sc.next().charAt(0);
 
-			if (str.equals(".")) {
+			if (sentence.equals(".")) {
 				System.out.println("La phrase est vide");
 			}
 
-			for (int i = 0; i < str.length(); i++) {
-				if (str.charAt(i) == c) {
+			for (int i = 0; i < sentence.length(); i++) {
+				if (sentence.charAt(i) == character) {
 					occurrence++;
 				}
 			}
@@ -41,14 +42,12 @@ public class Ex3_2 {
 				System.out.println("La lettre n'est pas présente");
 			}
 
-		} else if (str.contentEquals("") || str.contains(" ")) {
+		} else if (sentence.contentEquals("") || sentence.contains(" ")) {
 
 			System.out.println("La phrase n'est pas présente");
 
 		} else {
-
 			System.out.println("La phrase ne se termine pas par un point");
-
 		}
 
 		sc.close();
