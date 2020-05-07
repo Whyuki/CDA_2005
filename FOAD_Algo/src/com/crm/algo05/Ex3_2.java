@@ -5,6 +5,7 @@ package com.crm.algo05;
 
 import java.util.Scanner;
 
+
 /**
  * @author Joanna
  *
@@ -25,10 +26,10 @@ public class Ex3_2 {
 		System.out.println("Veuillez saisir une chaîne de caractère se terminant par un point (.) :");
 		str = sc.nextLine();
 
-		System.out.println("Veuillez saisir un caractère à rechercher :");
-		c = sc.next().charAt(0);
-
 		if (str.endsWith(".")) {
+
+			System.out.println("Veuillez saisir un caractère à rechercher :");
+			c = sc.next().charAt(0);
 
 			if (str.equals(".")) {
 				System.out.println("La phrase est vide");
@@ -39,13 +40,22 @@ public class Ex3_2 {
 					occurrence++;
 				}
 			}
-			System.out.println("La lettre est présente " + occurrence + " fois");
+			if (occurrence > 0) {
+				System.out.println("La lettre est présente " + occurrence + " fois");
+			} else {
+				System.out.println("La lettre n'est pas présente");
+			}
+
+		} else if (str.contentEquals("") || str.contains(" ")) {
+
+			System.out.println("La phrase n'est pas présente");
 
 		} else {
 
-			System.out.println("La phrase n'est pas présente ou ne se termine pas par un point");
+			System.out.println("La phrase ne se termine pas par un point");
+
 		}
-		
+
 		sc.close();
 	}
 
