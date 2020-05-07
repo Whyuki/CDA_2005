@@ -11,12 +11,8 @@ import java.util.Scanner;
  */
 public class Ex3_2 {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
 		Scanner sc = new Scanner(System.in);
 		int occurrence = 0;
 		char c;
