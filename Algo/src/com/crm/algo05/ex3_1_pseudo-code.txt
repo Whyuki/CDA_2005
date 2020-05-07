@@ -1,0 +1,30 @@
+entier tableau
+entier nombre
+entier i
+
+Début
+tableau <-- 41, 42, 43, 44, 45, 46, 47, 48, 49, 50
+écrire "Saisir un nombre entre 41 et 50
+
+    Si nombre est entier
+    Alors 
+    lire nombre
+    
+        Si nombre > 40 ET nombre <=50
+        Alors
+        
+            Parcours du tableau pour i
+                Si nombre = tableau[i]
+                Alors
+                écrire "l'indice est : " . i
+                
+        Sinon
+        écrire "non trouvé"
+        Fin Si
+    
+    Sinon
+    écrire "Ce n'est pas un nombre"
+    Fin Si
+
+
+Fin
