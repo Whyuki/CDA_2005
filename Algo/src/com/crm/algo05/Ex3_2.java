@@ -5,7 +5,6 @@ package com.crm.algo05;
 
 import java.util.Scanner;
 
-
 /**
  * @author Joanna
  *
