@@ -18,25 +18,32 @@ public class Ex3_5 {
 		String phraseSaisie = "", phraseInverse = "";
 		char c;
 
-		System.out.println("Veuillez saisir une phrase : ");
+		System.out.println("Veuillez saisir une phrase se terminant par un point : ");
 		phraseSaisie = sc.nextLine();
 		phraseSaisie = phraseSaisie.replaceAll(" ", "");
 		// System.out.println(phraseSaisie);
 
-		if (phraseSaisie.equalsIgnoreCase(".") || phraseSaisie.equalsIgnoreCase("") ) {
+		if (phraseSaisie.equalsIgnoreCase(".") || phraseSaisie.equalsIgnoreCase("")) {
 			System.out.println("La phrase est vide");
 		} else {
 
-			for (int i = phraseSaisie.length() - 1; i >= 0; i--) {
-				c = phraseSaisie.charAt(i);
-				phraseInverse = phraseInverse + c;
+			if (phraseSaisie.endsWith(".")) {
+				
+				phraseSaisie = phraseSaisie.replaceAll(".", "");
 
-			}
+				for (int i = phraseSaisie.length() - 1; i >= 0; i--) {
+					c = phraseSaisie.charAt(i);
+					phraseInverse = phraseInverse + c;
 
-			if (phraseSaisie.equals(phraseInverse)) {
-				System.out.println("Cette phrase est un palindrome");
+				}
+
+				if (phraseSaisie.equals(phraseInverse)) {
+					System.out.println("Cette phrase est un palindrome");
+				} else {
+					System.out.println("Cette phrase n'est pas un palindrome");
+				}
 			} else {
-				System.out.println("Cette phrase n'est pas un palindrome");
+				System.out.println("Cette phrase ne se termine pas par un point");
 			}
 		}
 
