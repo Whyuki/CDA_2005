@@ -23,11 +23,11 @@ public class Ex3_5 {
 		phraseSaisie = phraseSaisie.replaceAll(" ", "");
 		// System.out.println(phraseSaisie);
 
-		if (phraseSaisie.equalsIgnoreCase(".")) {
+		if (phraseSaisie.equalsIgnoreCase(".") || phraseSaisie.equalsIgnoreCase("") ) {
 			System.out.println("La phrase est vide");
 		} else {
 
-			for (int i = phraseSaisie.toCharArray().length - 1; i >= 0; i--) {
+			for (int i = phraseSaisie.length() - 1; i >= 0; i--) {
 				c = phraseSaisie.charAt(i);
 				phraseInverse = phraseInverse + c;
 
