@@ -28,12 +28,12 @@ public class Ex3_6 {
 			char[] devine = mot.toCharArray();
 			for (int i = 0; i < devine.length; i++) {
 				devine[i] = '_';
-				System.out.print(devine[i]+" ");
+				System.out.print(devine[i] + " ");
 			}
 			System.out.println();
 			while (tentative > 0 && end == false) {
 
-				System.out.println("Joueur 2 : Saisir une lettre");
+				System.out.println("\n" + "Joueur 2 : Saisir une lettre");
 
 				char lettre = sc.next().charAt(0);
 
@@ -53,10 +53,9 @@ public class Ex3_6 {
 					System.out.println(tentative + " tentative(s) restante(s)");
 				}
 				for (int i = 0; i < devine.length; i++) {
-					System.out.print(devine[i]+" ");
+					System.out.print(devine[i] + " ");
 				}
 				System.out.println();
-				
 
 				for (int i = 0; i < devine.length; i++) {
 					if (devine[i] == '_') {
