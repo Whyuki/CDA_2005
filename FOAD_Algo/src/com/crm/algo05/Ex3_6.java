@@ -17,7 +17,7 @@ public class Ex3_6 {
 		Scanner sc = new Scanner(System.in);
 		String mot = "";
 		String saisie = "";
-		char lettre =' ';
+		char lettre = ' ';
 		boolean present = false;
 		int tentative = 6;
 		boolean end = false;
@@ -30,9 +30,19 @@ public class Ex3_6 {
 			char[] devine = mot.toCharArray();
 			for (int i = 0; i < devine.length; i++) {
 				devine[i] = '_';
+			}
+
+			devine[0] = mot.charAt(0);
+			int last = mot.length() - 1;
+			devine[last] = mot.charAt(last);
+
+			for (int i = 0; i < devine.length; i++) {
+
 				System.out.print(devine[i] + " ");
 			}
+			
 			System.out.println();
+			
 			while (tentative > 0 && end == false) {
 
 				System.out.println("\n" + "Joueur 2 : Saisir une lettre");
