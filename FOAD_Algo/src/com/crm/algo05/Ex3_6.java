@@ -23,7 +23,7 @@ public class Ex3_6 {
 		boolean end = false;
 
 		System.out.println("Joueur 1 : Proposez un mot (min 5 caractères !) :");
-		mot = sc.nextLine();
+		mot = sc.nextLine().toUpperCase();
 
 		if (mot.length() >= 5) {
 
@@ -37,7 +37,7 @@ public class Ex3_6 {
 
 				System.out.println("\n" + "Joueur 2 : Saisir une lettre");
 
-				saisie = sc.next();
+				saisie = sc.next().toUpperCase();
 
 				if (saisie.length() > 1) {
 					System.out.println("UNE lettre, pas plus ;)");
