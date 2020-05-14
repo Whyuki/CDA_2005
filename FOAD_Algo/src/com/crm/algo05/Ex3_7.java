@@ -6,7 +6,7 @@ package com.crm.algo05;
 import java.util.Scanner;
 
 /**
- * Recherche par dichotomie d'un élément dans un tableau classé
+ * Recherche par dichotomie d'un ï¿½lï¿½ment dans un tableau classï¿½
  * 
  * @author Joanna
  *
@@ -16,7 +16,7 @@ public class Ex3_7 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		String[] tableau = { "agathe", "berthe", "chloé", "cunégonde", "olga", "raymonde", "sidonie" };
+		String[] tableau = { "agathe", "berthe", "chloÃ©", "cunÃ©gonde", "olga", "raymonde", "sidonie" };
 
 		String prenom = "";
 
@@ -26,28 +26,28 @@ public class Ex3_7 {
 
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Saisir un prénom");
+		System.out.println("Saisir un prÃ©nom");
 		prenom = sc.nextLine();
 
 		while (present == false && min < max) {
 
-			if (prenom.compareTo(tableau[mid]) == 0) { // si trouvé :
+			if (prenom.compareTo(tableau[mid]) == 0) { // si trouvï¿½ :
 				present = true;
 				break;
 
 			} else if (prenom.compareTo(tableau[mid]) < 0) { // si avant
 				max = mid - 1;
 
-			} else { // si après
+			} else { // si aprï¿½s
 				min = mid + 1;
 			}
 			mid = (min + max) / 2;
 		}
 
 		if (prenom.equals(tableau[mid])) {
-			System.out.println("Prénom trouvé à la case n°" + (mid + 1));
+			System.out.println("PrÃ©nom trouvÃ© Ã  la case nÂ°" + (mid + 1));
 		} else {
-			System.out.println("Prénom non trouvé");
+			System.out.println("PrÃ©nom non trouvÃ©");
 		}
 		sc.close();
 	}
