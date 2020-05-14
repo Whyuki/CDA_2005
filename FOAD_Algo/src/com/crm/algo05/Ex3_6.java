@@ -93,7 +93,7 @@ public class Ex3_6 {
 					System.out.println("DEFAITE");
 					System.out.println("Le mot était : " + mot);
 				}
-				if (tentative > 0 && end == true) {
+				if (end == true) {
 					System.out.println("VICTOIRE");
 				}
 			}
