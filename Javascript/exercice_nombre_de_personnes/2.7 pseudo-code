@@ -1,0 +1,21 @@
+VARIABLES
+
+entier compteur, age
+
+DEBUT
+
+Pour i de 0 à 9 
+faire
+
+écrire "Saisir un age"
+lire age
+
+Si age <20 alors
+compteur +=1
+Fin Si
+
+Fin Pour
+
+écire "Il y a ".compteur." personnes âgées de moins de 20ans 
+
+FIN
