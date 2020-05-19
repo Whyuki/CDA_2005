@@ -23,7 +23,7 @@ const rl = readline.createInterface({
         i += 1;
       } else {
         if (compteur == 0 && compteurJeune == 0) {
-          console.log("Il n'y a que des vieux, pardon, non jeunes *");
+          console.log('Il n y a que des vieux, pardon: "non jeunes" *');
         } else if (compteurNonJeune == 0 && compteurJeune == 0) {
           console.log("Il n'y a que des personnes de 20ans");
         } else if (compteur == 0 && compteurNonJeune == 0) {
