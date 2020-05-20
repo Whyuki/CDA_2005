@@ -7,7 +7,7 @@ class Employee {
       _prenom.toLowerCase().substr(0, 1) + _nom.toLowerCase() + "@email.fr";
     this.role = _role;
     this.salaire = _salaire;
-    this.embauche = _embauche;
+    this.embauche = _embauche.toLocaleDateString();
     this.salaire_Mensuel_Net = this.getMonthlySalary();
     this.anciennete = this.getSeniority();
   }
@@ -18,7 +18,8 @@ class Employee {
 
   getSeniority() {
     let maintenant = new Date();
-    let duree = maintenant.getTime() - this.embauche.getTime();
+    let dateEmbauche = new Date(this.embauche);
+    let duree = maintenant.getTime() - dateEmbauche.getTime();
     let annee;
     let mois;
     let jour;
