@@ -8,8 +8,6 @@ class Employee {
     this.role = _role;
     this.salaire = _salaire;
     this.embauche = _embauche.toLocaleDateString();
-    this.salaire_Mensuel_Net = this.getMonthlySalary();
-    this.anciennete = this.getSeniority();
   }
 
   getMonthlySalary() {
@@ -20,33 +18,40 @@ class Employee {
     let maintenant = new Date();
     let dateEmbauche = new Date(this.embauche);
     let duree = maintenant.getTime() - dateEmbauche.getTime();
-    let annee;
-    let mois;
-    let jour;
+    let annee = 0;
+    let mois = 0;
+    let jour = 0;
 
     if (duree < 0) {
       return "Cet employé vient du futur ¯\\_(ツ)_/¯ ";
-    } else {
-      if (duree >= 86400000) {
-        annee = Math.floor(duree / 31536000000);
-        duree = duree - Math.floor(annee * 31536000000);
-        if (duree >= 2629800000) {
-          mois = Math.floor(duree / 2629800000);
-          duree = duree - Math.floor(mois * 2629800000);
-          if (duree >= 86400000) {
-            jour = Math.floor(duree / 86400000);
-          }
-        } else if (duree >= 86400000) {
-          jour = Math.floor(duree / 86400000);
-        } else {
-          mois = 0;
-          jour = 0;
-        }
-        jour = Math.floor(duree / 86400000);
-      }
-      return annee + " an(s), " + mois + " mois et " + jour + " jour(s)";
     }
+
+    if (duree >= 31536000000) {
+      annee = Math.floor(duree / 31536000000);
+      duree = duree - Math.floor(annee * 31536000000);
+    }
+    if (duree >= 2629800000) {
+      mois = Math.floor(duree / 2629800000);
+      duree = duree - Math.floor(mois * 2629800000);
+    }
+    if (duree >= 86400000) {
+      jour = Math.floor(duree / 86400000);
+    }
+
+    return annee + " an(s), " + mois + " mois et " + jour + " jour(s)";
   }
+  /*
+  getAnciennete() {
+    let maintenant = new Date();
+    let dateEmbauche = new Date(this.embauche);
+    let duree = new Date(maintenant.getTime() - dateEmbauche.getTime());
+    let annee = duree.getUTCFullYear()-1970;
+    let mois = duree.getUTCMonth();
+    let jour = duree.getUTCDate()-1; 
+    
+    return annee + " an(s), " + mois + " mois et " + jour + " jour(s)";
+  }
+  */
 }
 
 /** DÉBUT ZONE NON EDITABLE (Ne pas modifier les lignes suivantes) */
@@ -105,21 +110,22 @@ var employee5 = new Employee(
   "Aurélien",
   "CTO",
   101010,
-  new Date("2015-03-28")
+  new Date("2019-11-12")
 );
 
 employees.push(employee2, employee3, employee4, employee5);
 //console.log(employees);
 
 function afficherCollection(_collection) {
-    console.log("Liste des salariés : \n")
+  console.log("Liste des salariés : \n");
   for (let i = 0; i < _collection.length; i++) {
-    console.log("Nom :" + _collection[i].nom);
-    console.log("Prénom : "+_collection[i].prenom);
-    console.log("@" +_collection[i].email);
-    console.log("Ancienneté : "+_collection[i].getSeniority());
-    console.log("Salaire Mensuel NET : "+_collection[i].getMonthlySalary());
-    console.log("\n")
+    console.log("Nom : " + _collection[i].nom);
+    console.log("Prénom : " + _collection[i].prenom);
+    console.log("Email : " + _collection[i].email);
+    console.log("Ancienneté : " + _collection[i].getSeniority());
+    // console.log("Ancienneté TEST : " + _collection[i].getAnciennete());
+    console.log("Salaire Mensuel NET : " + _collection[i].getMonthlySalary());
+    console.log("\n");
   }
 }
 
