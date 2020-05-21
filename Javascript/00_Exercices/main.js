@@ -23,7 +23,8 @@ class Employee {
     let jour = 0;
 
     if (duree < 0) {
-      return "Cet employé vient du futur ¯\\_(ツ)_/¯ ";
+      return "0 an(s), 0 mois et 0 jour(s)";
+      //Cet employé vient du futur ¯\\_(ツ)_/¯
     }
 
     if (duree >= 31536000000) {
@@ -40,7 +41,7 @@ class Employee {
 
     return annee + " an(s), " + mois + " mois et " + jour + " jour(s)";
   }
-  /*
+  /* TEST autre méthode : moins précise ?
   getAnciennete() {
     let maintenant = new Date();
     let dateEmbauche = new Date(this.embauche);
@@ -82,7 +83,7 @@ var employee2 = new Employee(
   "Schmitt",
   "Joanna",
   "chat",
-  424242,
+  152000,
   new Date("2002-06-28")
 );
 
@@ -91,7 +92,7 @@ var employee3 = new Employee(
   "Torrenti",
   "Sylvain",
   "hackeur",
-  101010,
+  44000,
   new Date("2005-01-28")
 );
 
@@ -100,7 +101,7 @@ var employee4 = new Employee(
   "Crouzet",
   "Gabriel",
   "débugueur",
-  101010,
+  43000,
   new Date("2008-02-28")
 );
 
@@ -109,12 +110,12 @@ var employee5 = new Employee(
   "Boudier",
   "Aurélien",
   "CTO",
-  101010,
+  42000,
   new Date("2019-11-12")
 );
 
 employees.push(employee2, employee3, employee4, employee5);
-//console.log(employees);
+console.log(employees);
 
 function afficherCollection(_collection) {
   console.log("Liste des salariés : \n");
@@ -123,10 +124,73 @@ function afficherCollection(_collection) {
     console.log("Prénom : " + _collection[i].prenom);
     console.log("Email : " + _collection[i].email);
     console.log("Ancienneté : " + _collection[i].getSeniority());
-    // console.log("Ancienneté TEST : " + _collection[i].getAnciennete());
     console.log("Salaire Mensuel NET : " + _collection[i].getMonthlySalary());
     console.log("\n");
   }
 }
 
+function afficherSalaire(_collection) {
+  let diff = 0;
+  // trie le tableau par salaire ordre coissant
+  employees.sort(function (a, b) {
+    return a.salaire - b.salaire;
+  });
+  let hautePaie = _collection[_collection.length - 1];
+  let bassePaie = _collection[0];
+  console.log(
+    "L'employé au plus haut salaire : " +
+      hautePaie.nom +
+      " " +
+      hautePaie.prenom +
+      "\n"
+  );
+  console.log(
+    "L'employé au plus bas salaire : " +
+      bassePaie.nom +
+      " " +
+      bassePaie.prenom +
+      "\n"
+  );
+  diff = hautePaie.salaire - bassePaie.salaire;
+  console.log("Il y un différence de " + diff + " €/BRUT ANNUEL" + "\n");
+}
+
+let dateOk = employees.filter(function(employee) {
+  return new Date(employee.embauche) < new Date();
+});
+
+
+function afficherAnciennete(_collection) {
+  //filtre les employés avec une date d'embauche antérieure à la date actuelle
+  let dateOk = _collection.filter(function(employee) {
+    return new Date(employee.embauche) < new Date();
+  });
+   // trie le tableau par date d'embauche de la plus récente à la plus ancienne
+  dateOk.sort(function (a, b) {
+    return new Date(b.embauche) - new Date(a.embauche);
+  });
+  let junior = dateOk[0];
+  let senior = dateOk[dateOk.length - 1];
+  
+  console.log(
+    "L'employé ayant le plus d'ancienneté est : " +
+      senior.nom +
+      " " +
+      senior.prenom +
+      "\n"
+  );
+  console.log(
+    "L'employé ayant le moins d'ancienneté est : " +
+      junior.nom +
+      " " +
+      junior.prenom +
+      "\n"
+  );
+}
+
 afficherCollection(employees);
+
+afficherAnciennete(employees);
+
+afficherSalaire(employees);
+
