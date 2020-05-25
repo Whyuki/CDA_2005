@@ -82,7 +82,7 @@ var employee2 = new Employee(
   2,
   "Schmitt",
   "Joanna",
-  "chat",
+  "Meowdiateur",
   152000,
   new Date("2002-06-28")
 );
@@ -92,7 +92,7 @@ var employee3 = new Employee(
   "Torrenti",
   "Sylvain",
   "hackeur",
-  44000,
+  84000,
   new Date("2005-01-28")
 );
 
@@ -101,8 +101,8 @@ var employee4 = new Employee(
   "Crouzet",
   "Gabriel",
   "débugueur",
-  43000,
-  new Date("2008-02-28")
+  83000,
+  new Date("2008-02-22")
 );
 
 var employee5 = new Employee(
@@ -110,7 +110,7 @@ var employee5 = new Employee(
   "Boudier",
   "Aurélien",
   "CTO",
-  42000,
+  81000,
   new Date("2019-11-12")
 );
 
@@ -138,46 +138,44 @@ function afficherSalaire(_collection) {
   let hautePaie = _collection[_collection.length - 1];
   let bassePaie = _collection[0];
   console.log(
-    "L'employé au plus haut salaire : " +
-      hautePaie.nom +
-      " " +
-      hautePaie.prenom +
-      "\n"
+    "L'employé au plus haut salaire : " + hautePaie.nom + " " + hautePaie.prenom
   );
   console.log(
-    "L'employé au plus bas salaire : " +
-      bassePaie.nom +
-      " " +
-      bassePaie.prenom +
-      "\n"
+    "L'employé au plus bas salaire : " + bassePaie.nom + " " + bassePaie.prenom
   );
   diff = hautePaie.salaire - bassePaie.salaire;
-  console.log("Il y un différence de " + diff + " €/BRUT ANNUEL" + "\n");
+  console.log(
+    "Il y un différence de " +
+      diff +
+      " €/BRUT ANNUEL" +
+      " (soit : " +
+      Math.round((diff / 12) * 0.75) +
+      "€/NET MENSUEL)" +
+      "\n"
+  );
 }
 
-let dateOk = employees.filter(function(employee) {
+let dateOk = employees.filter(function (employee) {
   return new Date(employee.embauche) < new Date();
 });
 
-
 function afficherAnciennete(_collection) {
   //filtre les employés avec une date d'embauche antérieure à la date actuelle
-  let dateOk = _collection.filter(function(employee) {
+  let dateOk = _collection.filter(function (employee) {
     return new Date(employee.embauche) < new Date();
   });
-   // trie le tableau par date d'embauche de la plus récente à la plus ancienne
+  // trie le tableau par date d'embauche de la plus récente à la plus ancienne
   dateOk.sort(function (a, b) {
     return new Date(b.embauche) - new Date(a.embauche);
   });
   let junior = dateOk[0];
   let senior = dateOk[dateOk.length - 1];
-  
+
   console.log(
     "L'employé ayant le plus d'ancienneté est : " +
       senior.nom +
       " " +
-      senior.prenom +
-      "\n"
+      senior.prenom
   );
   console.log(
     "L'employé ayant le moins d'ancienneté est : " +
@@ -187,6 +185,7 @@ function afficherAnciennete(_collection) {
       "\n"
   );
 }
+console.log("Il y a " + employees.length + " employé(e)s."); // doit afficher "Il y a 5 employé(e)s."
 
 afficherCollection(employees);
 
