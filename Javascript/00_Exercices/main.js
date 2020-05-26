@@ -23,7 +23,7 @@ class Employee {
     let jour = 0;
 
     if (duree < 0) {
-      return "0 an(s), 0 mois et 0 jour(s)";
+      return "0 an, 0 mois et 0 jour";
       //Cet employé vient du futur ¯\\_(ツ)_/¯
     }
 
