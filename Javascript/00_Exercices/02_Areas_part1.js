@@ -90,7 +90,11 @@ class Point {
  * Décrivez ci-dessous en quelques lignes le programme suivant
  * (utilité, finalité)
  *
- * réaffectation, duplication, copie et inversement de coordonnées entre deux points
+ * Création de points
+ * Modifications des coordonnées 
+ * Duplication : création à partir d'un point existant
+ * Copie : modification des coordonnées à partir d'un point existant
+ * Inversement de coordonnées : point a = point b et point b = point a
  * 
  */
 
