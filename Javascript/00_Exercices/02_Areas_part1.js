@@ -42,6 +42,8 @@ class Point {
 
   /**
    * définit de nouvelles coordonnées (x=abscisses, y=ordonnées)
+   * @param _x Coordonnée horizontale du point (abscisse). Valeur négative acceptée
+   * @param _y Coordonnée verticale du point (ordonnée). Valeur négative acceptée
    */
   move(_x, _y) {
     this.x = parseInt(_x);
@@ -50,6 +52,7 @@ class Point {
 
   /**
    * retourne une nouvelle instance de "Point" avec les mêmes coordonnées que l'instance actuelle
+   * @return new Point avec les coordonnées du Point ciblé
    */
   duplicate() {
     return new Point(this.x, this.y);
@@ -57,6 +60,7 @@ class Point {
 
   /**
    * copie les coordonnées du "Point" fourni en argument dans l'instance actuelle
+   * @param Point objet Point
    */
   copy(_point) {
     this.x = _point.x;
@@ -65,6 +69,7 @@ class Point {
 
   /**
    * Les coordonnées de l'instance actuelle et du "Point" fourni en argument sont échangées
+   * @param Point objet Point
    */
   rabbit(_point) {
     
