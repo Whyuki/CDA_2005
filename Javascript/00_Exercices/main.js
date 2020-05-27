@@ -1,21 +1,28 @@
 class Employee {
+  /**
+   * Constructeur
+   */
   constructor(_id, _lastname, _firstname, _role, _salary, _hiredate) {
     this.id = _id;
-    this.lastname = _lastname;
-    this.firstname = _firstname;
+    this.lastname = _lastname || "Un";
+    this.firstname = _firstname || "Know";
     this.email =
-      _firstname.toLowerCase().substr(0, 1) +
-      _lastname.toLowerCase() +
-      "@email.fr";
-    this.role = _role;
-    this.salary = _salary;
+      (this.firstname[0] + this.lastname).toLowerCase() + "@email.fr";
+    this.role = _role || "Boulanger";
+    this.salary = parseInt(_salary);
     this.hiredate = _hiredate;
   }
 
+  /**
+   * récupère salaire mensuel de l'employé
+   */
   getMonthlySalary() {
     return Math.round((this.salary / 12) * 0.75);
   }
 
+  /**
+   * récupère l'ancienneté
+   */
   getSeniority() {
     let maintenant = new Date();
     let dateEmbauche = this.hiredate;
@@ -29,9 +36,9 @@ class Employee {
       //Cet employé vient du futur ¯\\_(ツ)_/¯
     }
 
-    if (duree >= 31536000000) {
-      annee = Math.floor(duree / 31536000000);
-      duree = duree - Math.floor(annee * 31536000000);
+    if (duree >= 31557600000) {
+      annee = Math.floor(duree / 31557600000);
+      duree = duree - Math.floor(annee * 31557600000);
     }
     if (duree >= 2629800000) {
       mois = Math.floor(duree / 2629800000);
@@ -43,16 +50,17 @@ class Employee {
 
     return annee + " an(s), " + mois + " mois et " + jour + " jour(s)";
   }
-  /* TEST autre méthode : moins précise ?
-  getAnciennete() {
-    let maintenant = new Date();
-    let dateEmbauche = new Date(this.embauche);
-    let duree = new Date(maintenant.getTime() - dateEmbauche.getTime());
-    let annee = duree.getUTCFullYear()-1970;
-    let mois = duree.getUTCMonth();
-    let jour = duree.getUTCDate()-1; 
-    
-    return annee + " an(s), " + mois + " mois et " + jour + " jour(s)";
+/**
+ * autre méthode : moins précise ?
+ getAnciennete() {
+   let maintenant = new Date();
+   let dateEmbauche = this.hiredate;
+   let duree = new Date(maintenant.getTime() - dateEmbauche.getTime());
+   let annee = duree.getFullYear() - 1970;
+   let mois = duree.getMonth();
+   let jour = duree.getDate() - 1;
+   
+   return annee + " an(s), " + mois + " mois et " + jour + " jour(s)";
   }
   */
 }
@@ -104,7 +112,7 @@ var employee4 = new Employee(
   "Gabriel",
   "débugueur",
   83000,
-  new Date("2008-02-22")
+  new Date("1520-05-27")
 );
 
 var employee5 = new Employee(
@@ -113,7 +121,7 @@ var employee5 = new Employee(
   "Aurélien",
   "CTO",
   81000,
-  new Date("2019-11-12")
+  new Date("2019-03-18")
 );
 
 employees.push(employee2, employee3, employee4, employee5);
@@ -126,6 +134,7 @@ function afficherCollection(_collection) {
     console.log("Prénom : " + _collection[i].firstname);
     console.log("Email : " + _collection[i].email);
     console.log("Ancienneté : " + _collection[i].getSeniority());
+   // console.log("Ancienneté : " + _collection[i].getAnciennete());
     console.log("Salaire Mensuel NET : " + _collection[i].getMonthlySalary());
     /* date d'embauche au format YYYY-MM-DD
     console.log(
