@@ -1,5 +1,5 @@
 class Employee {
-  constructor(_id, _lastname, _firstname, _role, _salaire, _embauche) {
+  constructor(_id, _lastname, _firstname, _role, _salary, _hiredate) {
     this.id = _id;
     this.lastname = _lastname;
     this.firstname = _firstname;
@@ -8,8 +8,8 @@ class Employee {
       _lastname.toLowerCase() +
       "@email.fr";
     this.role = _role;
-    this.salary = _salaire;
-    this.hiredate = _embauche;
+    this.salary = _salary;
+    this.hiredate = _hiredate;
   }
 
   getMonthlySalary() {
