@@ -53,15 +53,10 @@ nya.create(employee2);
 nya.create(employee3);
 nya.create(employee4);
 nya.create(employee5);
-console.log(nya);
 
 nya.update(employee2, "Myrtille");
 
-console.log(nya);
-
 console.log(nya.read(2));
-
-console.log(nya);
 
 console.log(nya.getSalaryGap(employee1, employee2));
 
@@ -73,7 +68,5 @@ functions.showCollection(nya.employees);
 functions.showSalary(nya.employees);
 functions.showSeniority(nya.employees);
 
-
 nya.delete(3);
 console.log(nya.readAll());
-
