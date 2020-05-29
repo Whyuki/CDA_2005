@@ -349,3 +349,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 Javascript/00_Exercices/package-lock.json
+Javascript/00_Exercices/01_Employees/package.json

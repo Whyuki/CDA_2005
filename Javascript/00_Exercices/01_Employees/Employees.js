@@ -244,6 +244,10 @@ function afficherAnciennete(_collection) {
       "\n"
   );
 }
+
+module.exports = Employee;
+
+/*
 console.log("Il y a " + employees.length + " employé(e)s."); // doit afficher "Il y a 5 employé(e)s."
 
 afficherCollection(employees);
@@ -251,3 +255,4 @@ afficherCollection(employees);
 afficherAnciennete(employees);
 
 afficherSalaire(employees);
+*/
