@@ -17,7 +17,7 @@ let employee2 = new Employee(
   "Grumpy",
   "Cat",
   "Meowdiateur",
-  452000,
+  453000,
   new Date("2002-06-28")
 );
 
@@ -36,7 +36,7 @@ let employee4 = new Employee(
   "Gabriel",
   "débugueur",
   83000,
-  new Date("1520-05-27")
+  new Date("1999-05-27")
 );
 
 let employee5 = new Employee(
@@ -48,29 +48,40 @@ let employee5 = new Employee(
   new Date("2019-03-18")
 );
 
+//tests methode Enterprise***************
+
+//create
 nya.create(employee1);
 nya.create(employee2);
 nya.create(employee3);
 nya.create(employee4);
 nya.create(employee5);
 
-nya.update(employee2, "Myrtille");
+//readAll
+console.log(nya.readAll());
 
+//read
 console.log(nya.read(2));
 
-console.log(nya.getSalaryGap(employee1, employee2));
-
-console.log(nya.readAll());
-
-functions.showCollection(nya.employees);
-functions.showSalary(nya.employees);
-functions.showSeniority(nya.employees);
-
-nya.delete(3);
-console.log(nya.readAll());
-
+//update
 let update = nya.read(2);
 update.role = "Nyagociateur";
 nya.update(update);
-
 console.log(nya.read(2));
+
+//delete
+nya.delete(3);
+console.log(nya.employees);
+
+nya.getHighestSalary();
+nya.getLowestSalary();
+nya.getSalaryGap();
+
+//tests fonctions****************
+
+//affiche la liste des employés
+functions.showCollection(nya.employees);
+//affiche le plus haut et le plus bas salaire
+functions.showSalary(nya.employees);
+//affiche junior/senior (ancienneté)
+functions.showSeniority(nya.employees);
