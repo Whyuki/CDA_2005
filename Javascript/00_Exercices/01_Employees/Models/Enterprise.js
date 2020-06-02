@@ -36,20 +36,22 @@ class Enterprise {
       return employee.id == _id;
     });
     if (idOk.length == 1) {
-      return idOk;
+      return idOk[0];
     } else {
       return "rip";
     }
   }
 
   /**
-   * Met à jour un employé // ? role
+   * Met à jour un employé //
    * @param Employee _employee
-   * @param String _newRole
-   *
    */
-  update(_employee, _newRole) {
-    _employee.role = _newRole;
+  update(_employee) {
+    for (let i = 0; i < this.employees.length; i++) {
+      if (this.employees[i].id == _employee.id) {
+        Object.assign(this.employees[i], _employee);
+      }
+    }
   }
 
   /**

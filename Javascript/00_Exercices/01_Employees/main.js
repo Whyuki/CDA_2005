@@ -62,11 +62,15 @@ console.log(nya.getSalaryGap(employee1, employee2));
 
 console.log(nya.readAll());
 
-console.log(nya.readAll());
-
 functions.showCollection(nya.employees);
 functions.showSalary(nya.employees);
 functions.showSeniority(nya.employees);
 
 nya.delete(3);
 console.log(nya.readAll());
+
+let update = nya.read(2);
+update.role = "Nyagociateur";
+nya.update(update);
+
+console.log(nya.read(2));
