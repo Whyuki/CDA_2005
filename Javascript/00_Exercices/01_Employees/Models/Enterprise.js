@@ -9,68 +9,97 @@ class Enterprise {
   }
 
   /**
-   * Retourne tous les employés
-   * @param  _filter
-   */
-  readAll(_filter) {
-    return this.employees.filter(function (employee) {
-      return employee;
-    });
-  }
-
-  /**
-   * Ajoute un employé à l'entreprise
+   * Valide un objet Employee
    * @param Employee _employee
    */
-  create(_employee) {
-    this.employees.push(_employee);
+  isValid(_employee) {
+    if (!(_employee instanceof Employee)) {
+      return false;
+    }
+    return true;
+
+    /**
+     * methode typeof return object ??
+        if (typeof _employee !== "Employee") {
+        }
+    */
   }
 
   /**
-   * Retourne l'employé à l'id en parametre
+   * Récupère une liste d'employés selon un ou plusieurs filtres
+   * @param  _filter le(s) filtre(s) à appliquer
+   * @returns Employee[] La liste des employés trouvés ou une liste vide si aucune correspondance
+   */
+  readAll(_filter) {
+    return this.employees.filter(_filter);
+  }
+
+  /**
+   * Créer un employé (valide les données de l'employé et l'ajoute à la collection)
+   * @param Employee _employee
+   * @returns Employee L'objet Employee ajouté
+   */
+  create(_employee) {
+    if (this.isValid(_employee)) {
+      // TO DO : gestion automatique des identifiants
+      this.employees.push(_employee);
+    }
+    return _employee;
+  }
+
+  /**
+   * Recherche un employé par son identifiant
    * @param int _id
+   * @returns Employee l'employé correspondant ou undefined si non trouvé
    */
   read(_id) {
-    let idOk = this.employees.filter(function (employee) {
-      return employee.id == _id;
-    });
-    if (idOk.length == 1) {
-      return idOk[0];
-    } else {
-      return "rip";
+    let emp = this.employees.find((emp) => emp.id === parseInt(_id));
+
+    if (emp !== undefined) {
+      let copie = Object.assign(new Employee(), emp);
+      return copie;
     }
+
+    return undefined;
   }
 
   /**
-   * Met à jour un employé //
+   * Valide les données et met à jour un employé de la collection
    * @param Employee _employee
    */
   update(_employee) {
-    for (let i = 0; i < this.employees.length; i++) {
-      if (this.employees[i].id == _employee.id) {
-        Object.assign(this.employees[i], _employee);
-      }
+    if (!this.isValid(_employee)) {
+      return _employee;
     }
+
+    if (_employee.id < 1 && _employee.id !== NaN) {
+      return _employee;
+    }
+
+    let exists = this.read(_employee.id);
+    if (exists !== undefined && exists === _employee) {
+      return _employee;
+    }
+
+    let emp = this.employees.find((emp) => emp.id === parseInt(_employee.id));
+    Object.assign(emp, _employee);
+    return emp;
   }
 
   /**
-   * Supprime un employé
+   * Supprime un employé identifié par "_id" de la collection
    * @param int _id
+   * @returns bool true en cas de succès sinon, false
    */
   delete(_id) {
-    let index;
-    for (let i = 0; i < this.employees.length; i++) {
-      if (this.employees[i].id == _id) {
-        index = i;
-        break;
-      }
-    }
-    this.employees.splice(index, 1);
+    let indOfId = this.employees.findIndex((emp) => emp.id === parseInt(_id));
+
+    this.employees.splice(indOfId, 1);
   }
 
   /**
-   * Salaire le plus élevé
-   *
+   * Recherche l'employé ayant le salaire le plus élevé
+   * @returns Employee
    */
   getHighestSalary() {
     this.employees.sort(function (a, b) {
@@ -87,8 +116,8 @@ class Enterprise {
   }
 
   /**
-   * Salaire le plus bas
-   *
+   * Recherche l'employé ayant le salaire le plus bas
+   * @returns Employee
    */
   getLowestSalary() {
     this.employees.sort(function (a, b) {
@@ -105,7 +134,8 @@ class Enterprise {
   }
 
   /**
-   * Différence entre salaire le plus élevé et le plus bas
+   * Retrouve la différence entre le salaire le plus elevé et le salaire le plus bas
+   * @returns int
    */
   getSalaryGap() {
     this.employees.sort(function (a, b) {
@@ -131,62 +161,6 @@ class Enterprise {
         "\n"
     );
   }
-
-  /**higher/lower OR highest/lowest ???
-  /**
-   * Augmentation du salaire
-   * @param Employee _employee
-   * @param int _newSalary //nouveau salaire ou montant à ajouter ?
-   
-  getHigherSalary(_employee, _newSalary) {
-    if (_newSalary > _employee.salary) {
-      _employee.salary = _newSalary;
-    }
-  }
-
-  /**
-   * Diminution du salaire (avec l'accord du salarié !)
-   * @param Employee _employee
-   * @param int _newSalary //nouveau salaire ou montant à déduire ?
-  
-  getLowerSalary(_employee, _newSalary) {
-    if (_newSalary < _employee.salary) {
-      _employee.salary = _newSalary;
-    }
-  }
-
-  /**
-   * Ecart : de salaire entre deux employés ?
-   * @param Employee _employeeA
-   * @param Employee _employeeB
-  
-  getSalaryGap(_employeeA, _employeeB) {
-    let diff;
-    if (_employeeA.salary == _employeeB.salary) {
-      return "Ces deux employés perçoivent le même salaire";
-    }
-    if (_employeeA.salary > _employeeB.salary) {
-      diff = _employeeA.salary - _employeeB.salary;
-      return (
-        _employeeA.firstname +
-        " perçoit " +
-        diff +
-        "€/an de plus que " +
-        _employeeB.firstname
-      );
-    }
-    if (_employeeB.salary > _employeeA.salary) {
-      diff = _employeeB.salary - _employeeA.salary;
-      return (
-        _employeeB.firstname +
-        " perçoit " +
-        diff +
-        "€/an de plus que " +
-        _employeeA.firstname
-      );
-    }
-  }
-  */
 }
 
 module.exports = Enterprise;

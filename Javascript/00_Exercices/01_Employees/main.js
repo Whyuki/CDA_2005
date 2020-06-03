@@ -2,7 +2,7 @@ const Employee = require("./Models/Employee.js");
 const Enterprise = require("./Models/Enterprise.js");
 const functions = require("./functions.js");
 
-let nya = new Enterprise();
+let ets = new Enterprise();
 
 let employee1 = new Employee(
   1,
@@ -51,37 +51,41 @@ let employee5 = new Employee(
 //tests methode Enterprise***************
 
 //create
-nya.create(employee1);
-nya.create(employee2);
-nya.create(employee3);
-nya.create(employee4);
-nya.create(employee5);
+ets.create(employee1);
+ets.create(employee2);
+ets.create(employee3);
+ets.create(employee4);
+ets.create(employee5);
 
 //readAll
-console.log(nya.readAll());
+let filtres = ets.readAll(emp => emp.hiredate < new Date());
+console.log(filtres);
 
-//read
-console.log(nya.read(2));
 
-//update
-let update = nya.read(2);
-update.role = "Nyagociateur";
-nya.update(update);
-console.log(nya.read(2));
-
-//delete
-nya.delete(3);
-console.log(nya.employees);
-
-nya.getHighestSalary();
-nya.getLowestSalary();
-nya.getSalaryGap();
+ets.getHighestSalary();
+ets.getLowestSalary();
+ets.getSalaryGap();
 
 //tests fonctions****************
 
 //affiche la liste des employés
-functions.showCollection(nya.employees);
+functions.showCollection(ets.employees);
 //affiche le plus haut et le plus bas salaire
-functions.showSalary(nya.employees);
+functions.showSalary(ets.employees);
 //affiche junior/senior (ancienneté)
-functions.showSeniority(nya.employees);
+functions.showSeniority(ets.employees);
+
+
+//update
+let update = ets.read(2);
+update.role = "Nyagociateur";
+ets.update(update);
+
+console.log(update);
+console.log(ets.employees[1]);
+
+console.log(ets.employees);
+
+//delete
+ets.delete(3);
+console.log(ets.employees);
