@@ -1,0 +1,33 @@
+liste d’objets
+
+Le poste de télévision du salon
+objet : possède des attributs et comportements
+
+La qualité du compilateur
+non objet (attibut) : non médélisable
+
+La deuxième guerre mondiale
+non objet (evenement) : possède des attributs mais pas de comportements
+
+James Rumbaugh
+objet : possède des attributs et comportements
+
+La racine carrée de 4
+non objet : ne possède pas d'attributs ni de comportements
+
+Une transaction boursière
+non objet : possède des attributs mais pas de comportements
+
+La vitesse de la lumière
+non objet (attibut) : non médélisable
+
+
+états d’une bouteille
+
+- ouverte remplie
+- ouverte vide
+- fermée remplie
+- fermée vide
+- ouverte ni vide ni remplie
+- fermée ni vide ni remplie
+
