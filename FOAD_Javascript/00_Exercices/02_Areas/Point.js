@@ -72,11 +72,10 @@ class Point {
    * @param Point objet Point
    */
   rabbit(_point) {
-    
     let p = _point.duplicate();
     _point.copy(this);
     this.copy(p);
-    
+
     /* ou bien : 
     let p = this.duplicate();
     this.copy(_point);
@@ -89,6 +88,7 @@ class Point {
     */
   }
 }
+module.exports = Point;
 
 /**
  * Programme "Point"
@@ -96,11 +96,11 @@ class Point {
  * (utilité, finalité)
  *
  * Création de points
- * Modifications des coordonnées 
+ * Modifications des coordonnées
  * Duplication : création à partir d'un point existant
  * Copie : modification des coordonnées à partir d'un point existant
  * Inversement de coordonnées : point a = point b et point b = point a
- * 
+ *
  */
 
 let p1 = new Point(0, 1);
