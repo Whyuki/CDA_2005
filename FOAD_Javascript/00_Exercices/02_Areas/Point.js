@@ -28,8 +28,8 @@ class Point {
    * @param int _y Coordonnée verticale du point (ordonnée). Valeur négative acceptée
    */
   constructor(_x, _y) {
-    this.x = parseInt(_x);
-    this.y = parseInt(_y);
+    this.x = parseInt(_x || 0);
+    this.y = parseInt(_y || 0);
   }
 
   /**
@@ -73,19 +73,19 @@ class Point {
    */
   rabbit(_point) {
     
-    p5 = _point.duplicate();
+    let p = _point.duplicate();
     _point.copy(this);
-    this.copy(p5);
+    this.copy(p);
     
     /* ou bien : 
-    p5 = this.duplicate();
+    let p = this.duplicate();
     this.copy(_point);
-    _point.copy(p5);
+    _point.copy(p);
     */
     /* ou encore (entre autres) :
-    p5 = _point.duplicate();
+    let p = _point.duplicate();
     _point.move(this.x, this.y);
-    this.move(p5.x, p5.y);
+    this.move(p.x, p.y);
     */
   }
 }
