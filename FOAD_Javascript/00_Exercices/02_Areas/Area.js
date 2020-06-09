@@ -36,12 +36,27 @@ class Area {
    * @param int _height hauteur de la zone
    */
   constructor(_width, _height) {
-    this.area = new Array(_width);
-    let i;
-    for (i = 0; i < _height; i++) {
-      this.area.push(new Array(_width));
+    this.width = _width;
+    this.height = _height;
+    this.maxRange = this.width * this.height;
+    this.area = [];
+    const originPoint = new Point(0, 0);
+    this.area[(0, 0)] = originPoint;
+  }
+
+  /**
+   * Valide un objet Point
+   * @param Point _point
+   * @returns Boolean true: L'objet est de type Point et les données sont valides | false : l'objet n'est pas un Point valide
+   * @todo Ajouter les contrôles des données de l'objet
+   */
+  isValid(_point) {
+    if (!(_point instanceof Point)) {
+      return false;
     }
-    this.area[(0, 0)] = new Point();
+    /** @todo Ajouter ici les contrôles de données de l'objet _point */
+
+    return true; // Valide
   }
 
   /**
@@ -51,22 +66,58 @@ class Area {
    * @returns Boolean true en cas de succès, false si l'ajout est impossible
    */
   addPoint(_point) {
-    if (!(_point instanceof Point)) {
+    if (!this.isValid(_point)) {
       return false;
     }
 
-    // A vous de jouer
+    if (this.area.length >= this.maxRange) {
+      return false;
+    }
 
+    this.area.push(_point);
     return true;
   }
 
   /**
    * Déplace un point existant dans la zone vers de nouvelles coordonnées
    * Les nouvelles coordonnées peuvent se trouver hors limites
+   * @param Point _point
+   * @param _x Coordonnée horizontale du point (abscisse). Valeur négative acceptée
+   * @param _y Coordonnée verticale du point (ordonnée). Valeur négative acceptée
    * @returns Boolean true en cas de succès, false en cas d'échec
    */
-  movePoint(/* déterminer les paramètres */) {
-    // implémenter la méthode
+  movePoint(_point, _x, _y) {
+    // verification point valide
+    if (!this.isValid(_point)) {
+      return false;
+    }
+    // verification point existant
+    let exists = this.area.find((p) => p.x === _point.x && p.y === _point.y);
+
+    //verification coordonnées déjà utilisées
+    let alreadyUsed = this.area.find((p) => p.x === _x && p.y === _y);
+
+    // si nouvelles coordonnées déjà utilisées : recherche position plus proche point origine
+    if (alreadyUsed !== undefined) {
+      let i, j;
+
+      for (i = 0; i < this.width; i++) {
+        for (j = 0; j < this.height; j++) {
+          let notFree = this.area.find((p) => p.x === i && p.y === j);
+          if (notFree === undefined) {
+            _point.move(i, j);
+            return true;
+          }
+        }
+      }
+    }
+
+    if (exists !== undefined && alreadyUsed === undefined) {
+      //point existant et nouvelles coordonnées non utilisées
+      _point.move(_x, _y);
+      return true;
+    }
+    
   }
 
   /**
@@ -76,6 +127,13 @@ class Area {
    */
   needAllInside(/* déterminer les paramètres */) {
     // implémenter la méthode
+    this.area.forEach((p) => {
+      if (p.x > this.width || p.y > this.height) {
+        p.inside = false;
+      } else {
+        p.inside = true;
+      }
+    });
   }
 }
 
