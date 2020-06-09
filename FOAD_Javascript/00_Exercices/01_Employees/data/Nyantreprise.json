@@ -1,0 +1,38 @@
+[
+    {
+        "id": 0,
+        "lastname": "Doe",
+        "firstname": "John",
+        "role": "Unknown",
+        "salary": 0,
+        "hiredate": "2020-06-09T13:47:40.378Z",
+        "email": "jdoe@email.fr"
+    },
+    {
+        "id": 1337,
+        "lastname": "DEV",
+        "firstname": "Mike",
+        "role": "Développeur",
+        "salary": 435000,
+        "hiredate": "2017-08-29T00:00:00.000Z",
+        "email": "mdev@email.fr"
+    },
+    {
+        "id": 1,
+        "lastname": "Schmitt",
+        "firstname": "Joanna",
+        "role": "Quetsche",
+        "salary": 452000,
+        "hiredate": "2002-06-28T00:00:00.000Z",
+        "email": "jschmitt@email.fr"
+    },
+    {
+        "id": 2,
+        "lastname": "Grumpy",
+        "firstname": "Cat",
+        "role": "Nyagociateur",
+        "salary": 453000,
+        "hiredate": "2002-06-28T00:00:00.000Z",
+        "email": "cgrumpy@email.fr"
+    }
+]

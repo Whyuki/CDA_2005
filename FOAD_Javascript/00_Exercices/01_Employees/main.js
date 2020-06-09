@@ -2,7 +2,7 @@ const Employee = require("./Models/Employee.js");
 const Enterprise = require("./Models/Enterprise.js");
 const functions = require("./functions.js");
 
-let ets = new Enterprise();
+let ets = new Enterprise("Nyantreprise");
 
 let employee1 = new Employee(
   1,
@@ -21,50 +21,15 @@ let employee2 = new Employee(
   new Date("2002-06-28")
 );
 
-let employee3 = new Employee(
-  3,
-  "Torrenti",
-  "Sylvain",
-  "hackeur",
-  84000,
-  new Date("2005-01-28")
-);
-
-let employee4 = new Employee(
-  4,
-  "Crouzet",
-  "Gabriel",
-  "débugueur",
-  83000,
-  new Date("1999-05-27")
-);
-
-let employee5 = new Employee(
-  5,
-  "Boudier",
-  "Aurélien",
-  "CTO",
-  81000,
-  new Date("2019-03-18")
-);
 
 //tests methode Enterprise***************
 
 //create
 ets.create(employee1);
 ets.create(employee2);
-ets.create(employee3);
-ets.create(employee4);
-ets.create(employee5);
 
-//readAll
-let filtres = ets.readAll(emp => emp.hiredate < new Date());
-console.log(filtres);
+ets.save();
 
-
-ets.getHighestSalary();
-ets.getLowestSalary();
-ets.getSalaryGap();
 
 //tests fonctions****************
 
@@ -75,16 +40,16 @@ functions.showSalary(ets.employees);
 //affiche junior/senior (ancienneté)
 functions.showSeniority(ets.employees);
 
+//test méthodes class Enterprise
+console.log("L'employée au plus bas salaire : "+ets.getLowestSalary());
+console.log("L'employée au plus haut salaire : "+ets.getHighestSalary());
+console.log("La différence entre les deux : "+ets.getSalaryGap());
 
 //update
-let update = ets.read(2);
+let update = ets.read(2); // récupère une copie de l'employé 2
 update.role = "Nyagociateur";
 ets.update(update);
-
-console.log(update);
-console.log(ets.employees[1]);
-
-console.log(ets.employees);
+ets.save();
 
 //delete
 ets.delete(3);
