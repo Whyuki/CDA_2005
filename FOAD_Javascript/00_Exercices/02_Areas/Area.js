@@ -93,10 +93,28 @@ class Area {
     }
     // verification point existant
     let exists = this.area.find((p) => p.x === _point.x && p.y === _point.y);
-
     if (exists === undefined) {
       //point inexistant
       return false;
+    }
+
+    if (_x === undefined || _y === undefined) {
+      //si nouvelles coordonnées non renseignées :
+      //recherche la position la plus proche du point d'origine et déplace le point en paramètre vers celle-ci
+      //parcours des coordonées par proximité avec le point d'origine
+      //(priorité bord suppérieur : ordonnée(y) croissant
+      //diagonale accessible par mouvement horizontal/vertical uniquement)
+      for (let i = 1; i < this.width; i++) {
+        for (let j = i, k = 0; k < this.height && j >= 0; j--, k++) {
+          // console.log(j + "," + k); //affiche liste coordonnées par proximité avec le point d'origine
+          let oqp = this.area.find((p) => p.x === j && p.y === k);
+          if (oqp === undefined) {
+            //si prochaines coordonnées libres : move
+            _point.move(j, k);
+            return true;
+          }
+        }
+      }
     }
 
     //verification coordonnées déjà utilisées
@@ -106,10 +124,10 @@ class Area {
       //point existant et nouvelles coordonnées non utilisées
       _point.move(_x, _y);
       return true;
-    }
-    // si nouvelles coordonnées déjà utilisées : recherche position plus proche point origine
-    if (alreadyUsed !== undefined) {
-      //todo calcul distance
+    } else {
+      //point existant et nouvelles coordonnées déjà utilisées : deplacement vers position la plus proche du point d'origine
+      this.movePoint(_point);
+      return true;
     }
   }
 
@@ -118,15 +136,16 @@ class Area {
    * Chaque Point hors des limites est automatiquement déplacé dans les limites vers la position libre la plus proche
    * @returns int le nombre de points déplacés
    */
-  needAllInside(/* déterminer les paramètres */) {
-    // implémenter la méthode
+  needAllInside() {
+    let moved = 0; //compteur déplacement
     this.area.forEach((p) => {
-      if (p.x > this.width || p.y > this.height) {
-        p.inside = false;
-      } else {
-        p.inside = true;
+      if (p.x > this.width || p.y > this.height || p.x < 0 || p.y < 0) {
+        //si hors limite
+        this.movePoint(p); //déplace
+        moved++;
       }
     });
+    return moved;
   }
 }
 
