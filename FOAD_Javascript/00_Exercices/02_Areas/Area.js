@@ -147,6 +147,24 @@ class Area {
     });
     return moved;
   }
+
+  /**
+   * Affiche tous les points qui se trouvent hors des limites de la zone
+   * @returns Point[] tableau contenant les points hors zones
+   */
+  outArea() {
+    return this.area.filter(
+      (p) => p.x > this.width || p.y > this.height || p.x < 0 || p.y < 0
+    );
+  }
+
+  /**
+   * Afficher le nombre d'emplacements libres
+   * @returns int nombre emplacements libres
+   */
+  freeEmplacement(){
+   return this.maxRange - this.area.length; //nombre d'emplacements libres
+  }
 }
 
 module.exports = Area;

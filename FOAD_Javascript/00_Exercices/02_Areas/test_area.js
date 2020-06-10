@@ -17,43 +17,56 @@ const Area = require("./Area.js");
  */
 
 // 1ere zone
-const a1 = new Area(4, 4);
+const area1 = new Area(4, 4);
 // 2eme zone
-const a2 = new Area(8, 6);
+const area2 = new Area(8, 6);
 
 // Ajout des 8 points dans la zone 1
 [
-  new Point(1, 2),
+  new Point(0, 2),
   new Point(3, 3),
   new Point(2, 1),
   new Point(2, 3),
-  new Point(0, 2),
+  new Point(3, 1),
   new Point(8, 7),
   new Point(19, 42),
   new Point(0, 8),
-].forEach((p) => a1.addPoint(p));
+].forEach((p) => area1.addPoint(p));
 
 // ajout des 6 points dans la zone 2
 [
-  new Point(19, 2),
-  new Point(45, 3),
-  new Point(17, 1),
-  new Point(11, 3),
-  new Point(15, 2),
-  new Point(1337, 7),
-].forEach((p) => a2.addPoint(p));
+  new Point(25, 12),
+  new Point(5, 83),
+  new Point(77, 1),
+  new Point(22, 4),
+  new Point(2, 112),
+  new Point(-337, 7),
+].forEach((p) => area2.addPoint(p));
 
 // création des 2 points aux mêmes coordonnées
-let p1 = new Point(9, 9);
+let p1 = new Point(8, 6);
 let p2 = p1.duplicate();
 
 // ajout des 2 points dans leur zone respective
-a1.addPoint(p1);
-a2.addPoint(p2);
+area1.addPoint(p1);
+area2.addPoint(p2);
 
-console.log();
-console.log(a2);
-a2.movePoint(p2, -119, -42);
-console.log(a2);
-console.log("Nombre de points déplacés : " + a2.needAllInside());
-console.log(a2);
+//area1
+console.log("\nZone 1 :");
+console.log(
+  "Points hors limites : ",
+  area1.outArea() //Affiche tous les points qui se trouvent hors des limites de la zone
+);
+console.log(area1.needAllInside() + " points déplacés."); //Exécute la méthode "needAllInside" et affiche le nombre de points déplacés
+console.log("Tous les points : ", area1.area); //affiche tous les points
+console.log("Nombre d'emplacements libres : " + area1.freeEmplacement()); //affiche le nombre d'emplacements libres
+
+//area2
+console.log("\nZone 2 :");
+console.log(
+  "Points hors limites : ",
+  area2.outArea() //Affiche tous les points qui se trouvent hors des limites de la zone
+); //Affiche tous les points qui se trouvent hors des limites de la zone
+console.log(area2.needAllInside() + " points déplacés."); //Exécute la méthode "needAllInside" et affiche le nombre de points déplacés
+console.log("Tous les points : ", area2.area); //affiche tous les points
+console.log("Nombre d'emplacements libres : " + area2.freeEmplacement()); //affiche le nombre d'emplacements libres
