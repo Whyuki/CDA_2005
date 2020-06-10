@@ -55,18 +55,21 @@ area2.addPoint(p2);
 console.log("\nZone 1 :");
 console.log(
   "Points hors limites : ",
-  area1.outArea() //Affiche tous les points qui se trouvent hors des limites de la zone
+  area1.outOfBounds() //Affiche tous les points qui se trouvent hors des limites de la zone
 );
 console.log(area1.needAllInside() + " points déplacés."); //Exécute la méthode "needAllInside" et affiche le nombre de points déplacés
-console.log("Tous les points : ", area1.area); //affiche tous les points
+console.log("Tous les points : ", area1.points); //affiche tous les points
 console.log("Nombre d'emplacements libres : " + area1.freeEmplacement()); //affiche le nombre d'emplacements libres
 
 //area2
 console.log("\nZone 2 :");
 console.log(
   "Points hors limites : ",
-  area2.outArea() //Affiche tous les points qui se trouvent hors des limites de la zone
+  area2.outOfBounds() //Affiche tous les points qui se trouvent hors des limites de la zone
 ); //Affiche tous les points qui se trouvent hors des limites de la zone
 console.log(area2.needAllInside() + " points déplacés."); //Exécute la méthode "needAllInside" et affiche le nombre de points déplacés
-console.log("Tous les points : ", area2.area); //affiche tous les points
+console.log("Tous les points : ", area2.points); //affiche tous les points
 console.log("Nombre d'emplacements libres : " + area2.freeEmplacement()); //affiche le nombre d'emplacements libres
+
+let test = new Object;
+area1.addPoint(test);

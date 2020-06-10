@@ -38,10 +38,10 @@ class Area {
   constructor(_width, _height) {
     this.width = _width;
     this.height = _height;
-    this.maxRange = this.width * this.height;
-    this.area = [];
+    this.size = this.width * this.height;
+    this.points = [];
     const originPoint = new Point(0, 0);
-    this.area[0] = originPoint;
+    this.points[0] = originPoint;
   }
 
   /**
@@ -54,7 +54,11 @@ class Area {
     if (!(_point instanceof Point)) {
       return false;
     }
-    /** @todo Ajouter ici les contrôles de données de l'objet _point */
+
+    //contrôles de données de l'objet _point
+    if (typeof _point.x !== "number" || typeof _point.y !== "number") {
+      return false;
+    }
 
     return true; // Valide
   }
@@ -70,11 +74,11 @@ class Area {
       return false;
     }
 
-    if (this.area.length >= this.maxRange) {
+    if (this.points.length >= this.size) {
       return false;
     }
 
-    this.area.push(_point);
+    this.points.push(_point);
     return true;
   }
 
@@ -92,14 +96,14 @@ class Area {
       return false;
     }
     // verification point existant
-    let exists = this.area.find((p) => p.x === _point.x && p.y === _point.y);
+    let exists = this.points.find((p) => p.x === _point.x && p.y === _point.y);
     if (exists === undefined) {
       //point inexistant
       return false;
     }
 
+    //si nouvelles coordonnées non renseignées :
     if (_x === undefined || _y === undefined) {
-      //si nouvelles coordonnées non renseignées :
       //recherche la position la plus proche du point d'origine et déplace le point en paramètre vers celle-ci
       //parcours des coordonées par proximité avec le point d'origine
       //(priorité bord suppérieur : ordonnée(y) croissant
@@ -107,7 +111,7 @@ class Area {
       for (let i = 1; i < this.width; i++) {
         for (let j = i, k = 0; k < this.height && j >= 0; j--, k++) {
           // console.log(j + "," + k); //affiche liste coordonnées par proximité avec le point d'origine
-          let oqp = this.area.find((p) => p.x === j && p.y === k);
+          let oqp = this.points.find((p) => p.x === j && p.y === k);
           if (oqp === undefined) {
             //si prochaines coordonnées libres : move
             _point.move(j, k);
@@ -118,7 +122,7 @@ class Area {
     }
 
     //verification coordonnées déjà utilisées
-    let alreadyUsed = this.area.find((p) => p.x === _x && p.y === _y);
+    let alreadyUsed = this.points.find((p) => p.x === _x && p.y === _y);
 
     if (alreadyUsed === undefined) {
       //point existant et nouvelles coordonnées non utilisées
@@ -138,7 +142,7 @@ class Area {
    */
   needAllInside() {
     let moved = 0; //compteur déplacement
-    this.area.forEach((p) => {
+    this.points.forEach((p) => {
       if (p.x > this.width || p.y > this.height || p.x < 0 || p.y < 0) {
         //si hors limite
         this.movePoint(p); //déplace
@@ -150,10 +154,10 @@ class Area {
 
   /**
    * Affiche tous les points qui se trouvent hors des limites de la zone
-   * @returns Point[] tableau contenant les points hors zones
+   * @returns Point[] tableau contenant les points hors limites
    */
-  outArea() {
-    return this.area.filter(
+  outOfBounds() {
+    return this.points.filter(
       (p) => p.x > this.width || p.y > this.height || p.x < 0 || p.y < 0
     );
   }
@@ -162,8 +166,8 @@ class Area {
    * Afficher le nombre d'emplacements libres
    * @returns int nombre emplacements libres
    */
-  freeEmplacement(){
-   return this.maxRange - this.area.length; //nombre d'emplacements libres
+  freeEmplacement() {
+    return this.size - this.points.length; //nombre d'emplacements libres
   }
 }
 
