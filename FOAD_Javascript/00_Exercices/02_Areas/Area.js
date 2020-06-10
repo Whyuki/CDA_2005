@@ -41,7 +41,7 @@ class Area {
     this.maxRange = this.width * this.height;
     this.area = [];
     const originPoint = new Point(0, 0);
-    this.area[(0, 0)] = originPoint;
+    this.area[0] = originPoint;
   }
 
   /**
@@ -94,30 +94,23 @@ class Area {
     // verification point existant
     let exists = this.area.find((p) => p.x === _point.x && p.y === _point.y);
 
+    if (exists === undefined) {
+      //point inexistant
+      return false;
+    }
+
     //verification coordonnées déjà utilisées
     let alreadyUsed = this.area.find((p) => p.x === _x && p.y === _y);
 
-    // si nouvelles coordonnées déjà utilisées : recherche position plus proche point origine
-    if (alreadyUsed !== undefined) {
-      let i, j;
-
-      for (i = 0; i < this.width; i++) {
-        for (j = 0; j < this.height; j++) {
-          let notFree = this.area.find((p) => p.x === i && p.y === j);
-          if (notFree === undefined) {
-            _point.move(i, j);
-            return true;
-          }
-        }
-      }
-    }
-
-    if (exists !== undefined && alreadyUsed === undefined) {
+    if (alreadyUsed === undefined) {
       //point existant et nouvelles coordonnées non utilisées
       _point.move(_x, _y);
       return true;
     }
-    
+    // si nouvelles coordonnées déjà utilisées : recherche position plus proche point origine
+    if (alreadyUsed !== undefined) {
+      //todo calcul distance
+    }
   }
 
   /**

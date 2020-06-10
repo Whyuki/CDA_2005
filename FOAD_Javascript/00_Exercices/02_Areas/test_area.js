@@ -54,8 +54,8 @@ a2.addPoint(p2);
 
 
 console.log();
-a1.needAllInside();
-a1.movePoint(p1, 0, 8);
+a1.movePoint(p1, 3, 3);
+//a1.needAllInside();
 console.log(p1);
 console.log(a1);
 
