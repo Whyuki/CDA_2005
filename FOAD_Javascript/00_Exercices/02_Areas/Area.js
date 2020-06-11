@@ -134,7 +134,7 @@ class Area {
     if (free === undefined) {
       return false;
     }
-    _point.move(free.x, free.y);
+    _point.copy(free);
     return true;
   }
 
