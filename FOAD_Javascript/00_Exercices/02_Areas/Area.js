@@ -40,8 +40,7 @@ class Area {
     this.height = _height;
     this.size = this.width * this.height;
     this.points = [];
-    const originPoint = new Point(0, 0);
-    this.points[0] = originPoint;
+    this.points.push(new Point(0, 0));
   }
 
   /**
@@ -91,47 +90,71 @@ class Area {
    * @returns Boolean true en cas de succès, false en cas d'échec
    */
   movePoint(_point, _x, _y) {
-    // verification point valide
+    // verifie la validité du point
     if (!this.isValid(_point)) {
       return false;
     }
-    // verification point existant
-    let exists = this.points.find((p) => p.x === _point.x && p.y === _point.y);
-    if (exists === undefined) {
-      //point inexistant
+    // verifie que le point existe dans la zone
+    if (this.isFree(_point.x, _point.y)) {
+      //coordonnées libres : point inexistant
       return false;
     }
 
-    //si nouvelles coordonnées non renseignées :
-    if (_x === undefined || _y === undefined) {
-      //recherche la position la plus proche du point d'origine et déplace le point en paramètre vers celle-ci
-      //parcours des coordonées par proximité avec le point d'origine
-      //(priorité bord suppérieur : ordonnée(y) croissant
-      //diagonale accessible par mouvement horizontal/vertical uniquement)
-      for (let i = 1; i < this.width; i++) {
-        for (let j = i, k = 0; k < this.height && j >= 0; j--, k++) {
-          // console.log(j + "," + k); //affiche liste coordonnées par proximité avec le point d'origine
-          let oqp = this.points.find((p) => p.x === j && p.y === k);
-          if (oqp === undefined) {
-            //si prochaines coordonnées libres : move
-            _point.move(j, k);
-            return true;
-          }
-        }
-      }
-    }
-
-    //verification coordonnées déjà utilisées
-    let alreadyUsed = this.points.find((p) => p.x === _x && p.y === _y);
-
-    if (alreadyUsed === undefined) {
+    //verifie la disponibilité des nouvelles coordonnées
+    if (this.isFree(_x, _y)) {
       //point existant et nouvelles coordonnées non utilisées
       _point.move(_x, _y);
       return true;
     } else {
-      //point existant et nouvelles coordonnées déjà utilisées : deplacement vers position la plus proche du point d'origine
-      this.movePoint(_point);
+      //point existant et nouvelles coordonnées déjà utilisées :
+      this.moveOnFreeEmplacement(_point); //deplacement vers position la plus proche du point d'origine
       return true;
+    }
+  }
+  /**
+   * Vérifie disponibilité des coordonnées en paramètre
+   * @param _x Coordonnée horizontale du point (abscisse). Valeur négative acceptée
+   * @param _y Coordonnée verticale du point (ordonnée). Valeur négative acceptée
+   * @returns Boolean : true si libre / false si occupé
+   */
+  isFree(_x, _y) {
+    if (this.points.find((p) => p.x === _x && p.y === _y) !== undefined) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Déplace le point en paramètre vers le point libre le plus plus proche du point d'origine
+   * @param _point Point à déplacer
+   * @returns Boolean true en cas de succès, false en cas d'échec
+   */
+  moveOnFreeEmplacement(_point) {
+    let free = this.firstFreeEmplacement();
+    if (free === undefined) {
+      return false;
+    }
+    _point.move(free.x, free.y);
+    return true;
+  }
+
+  /** Recherche la position la plus proche du point d'origine
+   * @returns Point le premier point libre trouvé au plus proche du point d'orgine
+   */
+  firstFreeEmplacement() {
+    //parcours des coordonées par proximité avec le point d'origine
+    //(priorité bord suppérieur : ordonnée(y) croissant
+    //diagonale accessible par mouvement horizontal/vertical uniquement)
+    for (let i = 1; i < this.width; i++) {
+      for (let x = i, y = 0; y < this.height && x >= 0; x--, y++) {
+        // console.log(j + "," + k); //affiche liste coordonnées par proximité avec le point d'origine
+
+        //si prochaines coordonnées libres :
+        if (this.isFree(x, y)) {
+          //retourne le point correspondant
+          return new Point(x, y);
+        }
+      }
     }
   }
 
@@ -145,7 +168,7 @@ class Area {
     this.points.forEach((p) => {
       if (p.x > this.width || p.y > this.height || p.x < 0 || p.y < 0) {
         //si hors limite
-        this.movePoint(p); //déplace
+        this.moveOnFreeEmplacement(p); //déplace
         moved++;
       }
     });
@@ -153,7 +176,7 @@ class Area {
   }
 
   /**
-   * Affiche tous les points qui se trouvent hors des limites de la zone
+   * Filtre les points qui se trouvent hors des limites de la zone
    * @returns Point[] tableau contenant les points hors limites
    */
   outOfBounds() {
@@ -163,7 +186,7 @@ class Area {
   }
 
   /**
-   * Afficher le nombre d'emplacements libres
+   * Calcule le nombre d'emplacements libres
    * @returns int nombre emplacements libres
    */
   freeEmplacement() {
