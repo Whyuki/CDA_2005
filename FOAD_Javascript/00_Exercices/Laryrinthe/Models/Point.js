@@ -43,7 +43,7 @@ class Point {
   }
 
   /**
-   * Définit une nouvell valeur pour X
+   * Définit une nouvelle valeur pour X
    * @param int _newX nouvelle valeur pour X
    */
   setX(_newX) {
@@ -52,7 +52,7 @@ class Point {
   }
 
   /**
-   * Définit une nouvell valeur pour Y
+   * Définit une nouvelle valeur pour Y
    * @param int _newY nouvelle valeur pour Y
    */
   setY(_newY) {
