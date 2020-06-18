@@ -1,6 +1,6 @@
 const Point = require("./Point");
 /**
- * La classe "Path" représente les coordonnées d'un point "spécial" //?présence du joueur/nb de passages ??
+ * La classe "Path" représente les coordonnées d'un chemin 
  */
 class Path extends Point {
   /**@var Bool player */
@@ -12,17 +12,15 @@ class Path extends Point {
    * Constructeur: Initialise une nouvelle instance de la classe "Path"
    * @param int _x Coordonnée horizontale du point (abscisse). Valeur négative acceptée
    * @param int _y Coordonnée verticale du point (ordonnée). Valeur négative acceptée
-   * @param Bool _player Présence du joueur ?
-   * @param int _nbPasses Nombre de passages
    */
-  constructor(_x, _y, _player, _nbPasses) {
+  constructor(_x, _y) {
     super(_x, _y);
-    this.#player = _player;
-    this.#nbPasses = _nbPasses;
+    this.#player = false; 
+    this.#nbPasses = 0;
   }
 
   /**
-   * Retourne la valeur de player
+   * Retourne la valeur de player //affiche true si le joueur est présent à ces coordonnées
    * @returns Bool player
    */
   getPlayer() {
@@ -30,7 +28,7 @@ class Path extends Point {
   }
 
   /**
-   * Définit une nouvelle valeur pour player
+   * Définit une nouvelle valeur pour player //indique la présence ou non du joueur à ces coordonnées
    * @param Bool _player nouvelle valeur de player
    */
   setPlayer(_player) {
