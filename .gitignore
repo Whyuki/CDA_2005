@@ -351,3 +351,4 @@ MigrationBackup/
 Javascript/00_Exercices/package-lock.json
 Javascript/00_Exercices/01_Employees/package.json
 FOAD_UML/**/*.vpp.bak*
+*.lo1
