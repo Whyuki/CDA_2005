@@ -1,0 +1,22 @@
+CREATE DATABASE conducteurs; 
+
+USE conducteurs;
+
+CREATE TABLE personnes(
+    id_personne INT NOT NULL PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    n_rue INT NOT NULL,
+    rue VARCHAR(255) NOT NULL,
+    cp INT NOT NULL,
+    ville VARCHAR(50) NOT NULL
+); 
+
+CREATE TABLE vehicules(
+    immatriculation VARCHAR(10) NOT NULL PRIMARY KEY,
+    marque VARCHAR(50) NOT NULL,
+    kilometrage INT NOT NULL,
+    date_mise_service DATETIME NOT NULL,
+    id_personne INT NOT NULL,
+    CONSTRAINT fk_id_personne FOREIGN KEY(id_personne) REFERENCES personnes(id_personne)
+);

@@ -1,0 +1,41 @@
+CREATE DATABASE ets; 
+
+USE ets;
+
+CREATE TABLE rayons(
+    nomRayon VARCHAR(150) NOT NULL PRIMARY KEY,
+    etage TINYINT NOT NULL
+); 
+
+CREATE TABLE employes(
+    codeE INT NOT NULL PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    salaire INT NOT NULL,
+    nomRayon VARCHAR(150) NOT NULL,
+    codeE_chef INT NOT NULL,
+    INDEX(nom),
+    CONSTRAINT fk_codeE_chef FOREIGN KEY(codeE_chef) REFERENCES employes(codeE),
+    CONSTRAINT fk_nom_rayon FOREIGN KEY(nomRayon) REFERENCES rayons(nomRayon)
+); 
+
+CREATE TABLE articles(
+    codeA INT NOT NULL PRIMARY KEY,
+    nomA VARCHAR(100) NOT NULL,
+    TYPE VARCHAR(100) NOT NULL,
+    INDEX(TYPE)
+); 
+
+CREATE TABLE fournisseurs(
+    codeF INT NOT NULL PRIMARY KEY,
+    adresse VARCHAR(255) NOT NULL,
+    nomF VARCHAR(100) NOT NULL
+); 
+
+CREATE TABLE livraisons(
+    codeF INT NOT NULL,
+    codeA INT NOT NULL,
+    quantite INT NOT NULL,
+    CONSTRAINT pk_code_fourisseur_article PRIMARY KEY(codeF, codeA),
+    CONSTRAINT fk_codeF FOREIGN KEY(codeF) REFERENCES fournisseurs(codeF),
+    CONSTRAINT fk_codeA FOREIGN KEY(codeA) REFERENCES articles(codeA)
+);

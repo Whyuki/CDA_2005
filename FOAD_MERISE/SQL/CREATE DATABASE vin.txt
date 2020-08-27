@@ -1,0 +1,53 @@
+CREATE DATABASE vin; 
+
+USE vin;
+
+CREATE TABLE buveurs(
+    num_buv INT NOT NULL PRIMARY KEY,
+    nom_buv VARCHAR(50) NOT NULL,
+    prenom_buv VARCHAR(50) NOT NULL,
+    ville_buv VARCHAR(50) NOT NULL
+); 
+
+CREATE TABLE vignerons(
+    num_vig INT NOT NULL PRIMARY KEY,
+    nom_vig VARCHAR(50) NOT NULL,
+    prenom_vig VARCHAR(50) NOT NULL,
+    ville_vig VARCHAR(50)
+);
+
+CREATE TABLE vins(
+    num_vin INT NOT NULL PRIMARY KEY,
+    cru VARCHAR(50) NOT NULL,
+    millesime INT NOT NULL,
+    num_vig INT NOT NULL,
+    CONSTRAINT fk_num_vig FOREIGN KEY(num_vig) REFERENCES vignerons(num_vig)
+); 
+
+ CREATE TABLE commandes(
+    num_com INT NOT NULL PRIMARY KEY,
+    date_com DATE NOT NULL,
+    num_buv INT NOT NULL,
+    CONSTRAINT fk_num_buv FOREIGN KEY(num_buv) REFERENCES buveurs(num_buv)
+); 
+
+CREATE TABLE acheter(
+    num_vin INT NOT NULL,
+    num_com INT NOT NULL,
+    quantite INT NOT NULL,
+    CONSTRAINT pk_acheter PRIMARY KEY(num_vin, num_com),
+    CONSTRAINT fk_num_vin FOREIGN KEY(num_vin) REFERENCES vins(num_vin),
+    CONSTRAINT fk_num_com FOREIGN KEY(num_com) REFERENCES commandes(num_com)
+); 
+
+CREATE TABLE appreciations(
+    num_vig_appreciant INT NOT NULL,
+    num_vig_apprecie INT NOT NULL,
+    note INT NOT NULL,
+    CONSTRAINT fk_num_vig_appreciant FOREIGN KEY(num_vig_appreciant) REFERENCES vignerons(num_vig),
+    CONSTRAINT fk_num_vug_apprecie FOREIGN KEY(num_vig_apprecie) REFERENCES vignerons(num_vig),
+    CONSTRAINT pk_num_vig_app PRIMARY KEY(
+        num_vig_appreciant,
+        num_vig_apprecie
+    )
+);

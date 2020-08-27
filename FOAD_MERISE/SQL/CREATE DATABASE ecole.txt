@@ -1,0 +1,27 @@
+CREATE DATABASE ecole;
+
+USE ecole;
+
+CREATE TABLE etudiants(
+    id_etudiant int not null PRIMARY KEY,
+    nom varchar(50) not null,
+    prenom varchar(50) not null,
+    date_entree date not null
+);
+
+CREATE TABLE matieres(
+    id_matiere INT NOT NULL PRIMARY KEY,
+    lib_matiere VARCHAR(150) NOT NULL UNIQUE,
+    coefficient tinyint not null
+);
+
+CREATE TABLE controles(
+    id_etudiant INT NOT NULL,
+    id_matiere INT NOT NULL,
+    note TINYINT NULL,
+    CONSTRAINT PRIMARY KEY(id_etudiant, id_matiere),
+    CONSTRAINT fk_id_etudiant FOREIGN KEY(id_etudiant) REFERENCES etudiants(id_etudiant),
+    CONSTRAINT fk_id_matiere FOREIGN KEY(id_matiere) REFERENCES matieres(id_matiere)
+);
+
+
