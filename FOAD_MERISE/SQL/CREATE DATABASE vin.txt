@@ -56,3 +56,5 @@ CREATE TABLE appreciations(
         num_vig_apprecie
     )
 );
+
+CREATE VIEW vue_buv_com AS SELECT nom_buv, prenom_buv FROM buveurs;

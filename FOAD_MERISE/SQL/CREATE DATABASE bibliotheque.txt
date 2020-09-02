@@ -12,5 +12,6 @@ CREATE TABLE exemplaires(
     isbn VARCHAR(50) NOT NULL,
     etat CHAR(1) NOT NULL DEFAULT 'D',
     CONSTRAINT pk_exempl PRIMARY KEY(num_exempl, isbn),
-    CONSTRAINT fk_isbn FOREIGN KEY(isbn) REFERENCES livres(isbn)
+    CONSTRAINT fk_isbn FOREIGN KEY(isbn) REFERENCES livres(isbn),
+    CONSTRAINT etat_chk CHECK (etat IN('D','E','P'))
 );

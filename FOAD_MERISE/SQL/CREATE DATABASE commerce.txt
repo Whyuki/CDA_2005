@@ -8,20 +8,21 @@ CREATE TABLE rayons(
 
 CREATE TABLE magasins(
     codeM INT NOT NULL PRIMARY KEY,
-    nomM VARCHAR(100)
+    nomM VARCHAR(100) NOT NULL
 ); 
 
 CREATE TABLE articles(
     codeA INT NOT NULL PRIMARY KEY,
     nomA VARCHAR(100) NOT NULL,
-    TYPE CHAR(1) NOT NULL
+    TYPE CHAR(1) NOT NULL,
+    CONSTRAINT type_chk CHECK (type IN ('P','L','D'))
 ); 
 
 CREATE TABLE ventes(
     num_vente INT NOT NULL PRIMARY KEY,
     codeA INT NOT NULL,
     codeM INT NOT NULL,
-    nomRayon VARCHAR(50),
+    nomRayon VARCHAR(50) NOT NULL,
     datecommande DATE NOT NULL,
     quantite INT NOT NULL,
     CONSTRAINT fk_codeA FOREIGN KEY(codeA) REFERENCES articles(codeA),
