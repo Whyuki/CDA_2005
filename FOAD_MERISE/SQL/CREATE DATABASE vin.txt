@@ -1,3 +1,5 @@
+--DROP DATABASE vin;
+
 CREATE DATABASE vin; 
 
 USE vin;
@@ -8,13 +10,16 @@ CREATE TABLE buveurs(
     prenom_buv VARCHAR(50) NOT NULL,
     ville_buv VARCHAR(50) NOT NULL
 ); 
+CREATE INDEX index_nom_prenom_buv ON
+    buveurs(nom_buv, prenom_buv);
 
 CREATE TABLE vignerons(
     num_vig INT NOT NULL PRIMARY KEY,
     nom_vig VARCHAR(50) NOT NULL,
     prenom_vig VARCHAR(50) NOT NULL,
-    ville_vig VARCHAR(50)
-);
+    ville_vig VARCHAR(50) NOT NULL,
+    CONSTRAINT nom_prenom_vig_unique UNIQUE(nom_vig, prenom_vig)
+); 
 
 CREATE TABLE vins(
     num_vin INT NOT NULL PRIMARY KEY,
@@ -24,7 +29,7 @@ CREATE TABLE vins(
     CONSTRAINT fk_num_vig FOREIGN KEY(num_vig) REFERENCES vignerons(num_vig)
 ); 
 
- CREATE TABLE commandes(
+CREATE TABLE commandes(
     num_com INT NOT NULL PRIMARY KEY,
     date_com DATE NOT NULL,
     num_buv INT NOT NULL,
