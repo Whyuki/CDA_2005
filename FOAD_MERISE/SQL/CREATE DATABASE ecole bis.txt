@@ -6,7 +6,7 @@ CREATE TABLE etudiants(
     Id_etudiant INT NOT NULL PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
-    date_entree DATE NOT NULL
+    date_entree DATETIME NOT NULL ON UPDATE CURRENT_TIMESTAMP
 ); 
 
 CREATE TABLE matieres(
