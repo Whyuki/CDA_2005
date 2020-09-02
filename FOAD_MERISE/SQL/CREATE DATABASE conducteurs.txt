@@ -9,7 +9,8 @@ CREATE TABLE personnes(
     n_rue INT NOT NULL,
     rue VARCHAR(255) NOT NULL,
     cp INT NOT NULL,
-    ville VARCHAR(50) NOT NULL
+    ville VARCHAR(50) NOT NULL,
+    CONSTRAINT cp_chk CHECK (cp BETWEEN 1 AND 95999)
 ); 
 
 CREATE TABLE vehicules(

@@ -10,14 +10,15 @@ CREATE TABLE etudiants(
 ); 
 
 CREATE TABLE matieres(
-    Id_matiere INT NOT NULL PRIMARY KEY,
-    Lib_matiere VARCHAR(255) NOT NULL,
-    Coefficient TINYINT NOT NULL
+    id_matiere INT NOT NULL PRIMARY KEY,
+    lib_matiere VARCHAR(255) NOT NULL,
+    coefficient TINYINT NOT NULL,
+    CONSTRAINT coef_chk CHECK (coefficient BETWEEN 1 AND 9)
 ); 
 
 CREATE TABLE controles(
-    Id_etudiant INT NOT NULL,
-    Id_matiere INT NOT NULL,
+    id_etudiant INT NOT NULL,
+    id_matiere INT NOT NULL,
     date_controle DATE NOT NULL,
     note TINYINT NOT NULL,
     CONSTRAINT pk_controles PRIMARY KEY(
@@ -27,5 +28,6 @@ CREATE TABLE controles(
     ),
     
 CONSTRAINT fk_id_etudiant FOREIGN KEY(id_etudiant) REFERENCES etudiants(id_etudiant),
-CONSTRAINT fk_id_matiere FOREIGN KEY(id_matiere) REFERENCES matieres(id_matiere)
+CONSTRAINT fk_id_matiere FOREIGN KEY(id_matiere) REFERENCES matieres(id_matiere),
+CONSTRAINT note_chk CHECK (note BETWEEN 0 AND 19)
 );
