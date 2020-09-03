@@ -19,12 +19,13 @@ CREATE TABLE articles(
 ); 
 
 CREATE TABLE ventes(
-    num_vente INT NOT NULL PRIMARY KEY,
+  
     codeA INT NOT NULL,
     codeM INT NOT NULL,
     nomRayon VARCHAR(50) NOT NULL,
     datecommande DATE NOT NULL,
     quantite INT NOT NULL,
+    CONSTRAINT PK_ventes PRIMARY KEY (codeA, CodeM, NomRayon),
     CONSTRAINT fk_codeA FOREIGN KEY(codeA) REFERENCES articles(codeA),
     CONSTRAINT fk_codeM FOREIGN KEY(codeM) REFERENCES magasins(codeM),
     CONSTRAINT fk_nomRayon FOREIGN KEY(nomRayon) REFERENCES rayons(nomRayon)
