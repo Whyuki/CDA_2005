@@ -304,7 +304,7 @@ WHERE
     FROM
         employes
     WHERE
-        ename LIKE 'JONES'
+        ename = 'JONES'
 );
 SELECT
     ename,
