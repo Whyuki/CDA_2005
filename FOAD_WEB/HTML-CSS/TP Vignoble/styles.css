@@ -1,0 +1,150 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    }
+
+body {
+    background-image: url(images/bg_motif.gif);
+}
+
+#logo {
+    position: absolute;
+    left: 50px;
+    top: 100px;
+}
+
+.wrapper {
+    width: 940px;
+    margin: 0 auto;
+    padding: 0 10px;
+    background-color: rgba(128, 128, 128, 0.247);
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav a{
+    display: block;
+    text-decoration: none;
+    color: white;
+    border-bottom: 2px solid transparent;
+    padding : 10px 0px
+}
+
+/*header nav*/
+
+header nav {
+    float: right;
+    margin-top: 30px;
+    width: 100%;
+    margin:  0 auto;
+    background-color: black;
+}
+
+header nav ul {
+    position: relative;
+    left: 40%;
+    width: 60%;
+}
+
+
+header nav ul li, footer nav ul li {
+    float: left;
+    width: 20%;
+    text-align: center;
+    position: relative;
+}
+
+
+header nav ul li {
+    display: inline-block;
+}
+
+
+nav a:hover{
+    color: red;
+}
+
+header nav ul li a {
+    margin-right: 30px;
+}
+
+.sous {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.582);
+    position: absolute;
+    width: 100%;
+  
+}
+
+.sous li {
+    float: none;
+    width: 100%;
+    text-align: left;
+}
+
+.sous a{
+    padding: 10px;
+    border-bottom: none;
+}
+
+nav>ul li:hover .sous {
+    display: block;
+}
+
+.deroulant > a::after {
+content: "▼" ;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.bg_tonneau {
+    width: 33%;
+    height: 100%;
+    background-image: url(images/bg_g.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    position: relative;
+}
+
+.bg_tonneau img {
+    display: inline-block;
+   position: absolute;
+   left: 240px;
+}
+
+h3 {
+    display: inline-block;
+    font-size: 35px;
+    text-align: center;
+    vertical-align: top;
+    position: relative;
+    margin: 20px auto;
+   
+}
+
+#selection, #cadeaux {
+    display: inline-block;
+    vertical-align: top;
+    background-color: rgb(189 189 189 / 21%);
+}
+
+#selection {
+    width: 26%;
+}
+
+#cadeaux {
+    width: 70%;
+    margin-left: 15px;
+}
+
+#selection nav ul li a {
+    color: black;
+}
+
+
