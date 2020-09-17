@@ -3,6 +3,14 @@
     padding: 0px;
     }
 
+@font-face{
+
+    font-family: 'channel-regular';
+    src:url('fonts/channel-webfont.woff');
+    src:url('fonts/channel-webfont.svg#channel-regular')format('svg');
+    src:url('fonts/channel-webfont.ttf')format('truetype');
+}
+
 body {
     background-image: url(images/bg_motif.gif);
 }
@@ -13,11 +21,30 @@ body {
     top: 100px;
 }
 
+.main {
+    text-align: center;
+    padding: 20px 0px 30px 0px;
+    border-bottom: 1px solid white;
+   
+}
+.main img, .main h2 {
+    box-shadow: rgb(255 255 255 / 59%) 1px 0px 20px 0px;
+    border: 1px solid black;
+}
+
+.main h2 {
+    background-color: white;
+    color: rgb(124, 10, 10);
+    width: 900px;
+    margin: -4px 19px;
+    }
+
 .wrapper {
     width: 940px;
     margin: 0 auto;
     padding: 0 10px;
     background-color: rgba(128, 128, 128, 0.247);
+
 }
 
 nav ul {
@@ -34,12 +61,16 @@ nav a{
 
 /*header nav*/
 
+header {
+    height: 80px;
+}
+
 header nav {
     float: right;
-    margin-top: 30px;
+    
     width: 100%;
     margin:  0 auto;
-    background-color: black;
+    background-image: url(images/header.png);
 }
 
 header nav ul {
@@ -49,18 +80,18 @@ header nav ul {
 }
 
 
-header nav ul li, footer nav ul li {
+header nav ul li {
     float: left;
     width: 20%;
     text-align: center;
     position: relative;
+    font-family: channel-regular;
 }
 
 
 header nav ul li {
     display: inline-block;
 }
-
 
 nav a:hover{
     color: red;
@@ -72,7 +103,7 @@ header nav ul li a {
 
 .sous {
     display: none;
-    background-color: rgba(0, 0, 0, 0.582);
+    background-color: rgba(0, 0, 0, 0.685);
     position: absolute;
     width: 100%;
   
@@ -82,6 +113,8 @@ header nav ul li a {
     float: none;
     width: 100%;
     text-align: left;
+    padding: 2px 5px;
+    border: 2px solid white;
 }
 
 .sous a{
@@ -99,6 +132,7 @@ content: "▼" ;
 
 .center {
     margin: 0 auto;
+    padding: 20px 0px;
 }
 
 .bg_tonneau {
@@ -114,8 +148,8 @@ content: "▼" ;
 
 .bg_tonneau img {
     display: inline-block;
-   position: absolute;
-   left: 240px;
+    position: absolute;
+    left: 240px;
 }
 
 h3 {
@@ -125,6 +159,11 @@ h3 {
     vertical-align: top;
     position: relative;
     margin: 20px auto;
+    color: white;
+    font-family: channel-regular;
+    font-weight: initial;
+    font-size: larger;
+    text-shadow: black;
    
 }
 
@@ -136,15 +175,63 @@ h3 {
 
 #selection {
     width: 26%;
+    padding: 5px 0px 5px 25px;
+}
+
+#selection ul li {
+    padding: 5px 0px 5px 25px;
+    border-bottom: 2px solid white;
 }
 
 #cadeaux {
     width: 70%;
-    margin-left: 15px;
+    margin-left: 7px;
+    margin-bottom: 50px;
+   text-align: center;
 }
 
 #selection nav ul li a {
     color: black;
 }
 
+h4, h5 {
+    font-family: channel-regular;
+    color: white;
+}
 
+
+footer {
+    background-image: url(images/footer-bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+footer nav {
+
+border-top: 2px solid white;
+}
+
+footer nav ul {
+    width: 75%;
+    font-size: small;
+}
+
+footer nav ul li {
+    display: inline-block;
+    width: 16%;
+    text-align: center;
+    position: relative;
+    font-family: channel-regular;
+    margin: 2px 10px;
+}
+
+footer img {
+    position: relative;
+    left: 665px;
+    bottom: 66px;
+}
+
+footer div {
+    
+    height: 120px;
+}
