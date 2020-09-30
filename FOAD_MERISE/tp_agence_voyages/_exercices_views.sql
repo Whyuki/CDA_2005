@@ -1,8 +1,6 @@
 use tp_agence_voyages;
 
-
 -- Créer les vues répondant aux demandes suivantes :
-
 
 -- 1) Afficher les informations de toutes les villes (informations du pays incluses)
 
@@ -76,7 +74,7 @@ INNER JOIN cities ON trips.city_code = cities.city_code
 INNER JOIN countries ON cities.country_code = countries.country_code
 WHERE trip_start <= '2021-09-30' AND orders.client_id = clients.client_id ORDER BY trip_start DESC LIMIT 1) AS last_trip_country
 
--- date 2021-09-30 à la place de now() pour test date dans le futur
+-- date 2021-09-30 à la place de now() pour tester date dans le futur
 
 -- // concat ville + pays
 -- (SELECT CONCAT (city_name, ', ', country_name) AS RESULT
