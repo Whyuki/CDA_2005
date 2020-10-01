@@ -17,6 +17,7 @@ BEGIN
 
 	DECLARE service_count INT;
     DECLARE note_exists INT;
+    DECLARE trip_done INT;
 
 	SELECT COUNT(*) INTO service_count 
     FROM consumes WHERE client_id=client_id_in AND service_code=service_code_in;
@@ -24,7 +25,12 @@ BEGIN
     SELECT COUNT(*) INTO note_exists 
     FROM notes WHERE client_id=client_id_in AND service_code=service_code_in;
     
-    IF service_count <> 0 AND note_exists = 0 
+    SELECT COUNT(*) INTO trip_done
+    FROM orders 
+    JOIN trips ON orders.trip_code = trips.trip_code
+    WHERE client_id=client_id_in AND orders.trip_code = trip_code_in AND trip_start <= now();
+    
+    IF service_count <> 0 AND note_exists = 0 AND trip_done <> 0
     THEN 
     
 		INSERT INTO notes 
