@@ -39,6 +39,49 @@ CALL update_client(1,'jean','bon','jeanbon@nomnomnom.fr','');
 -- 		La procédure accepte 3 paramètres :  Le mot de passe actuel | Le nouveau mot de passe | Le nouveau mot de passe (pour confirmation)
 -- 		Gérer les cas d'erreur
 
+DROP PROCEDURE IF EXISTS update_client_password;
+
+DELIMITER $$
+
+CREATE PROCEDURE update_client_password
+(
+	IN client_id_in INT,
+	IN client_current_password CHAR(60), 
+	IN client_new_password CHAR(60),
+	IN client_new_password_confirmed CHAR(60)
+)
+BEGIN 
+	
+    DECLARE client_password_check CHAR(60);
+    
+    SELECT client_password INTO client_password_check FROM clients WHERE client_id=client_id_in;
+    
+	
+    IF client_new_password <> client_new_password_confirmed 
+    THEN 
+		SIGNAL SQLSTATE '45000' 
+		SET MESSAGE_TEXT = "Mise à jour impossible : Nouveau mot de passe et confirmation différents";
+    END IF;
+	
+    IF client_current_password <> client_password_check
+    THEN 
+		SIGNAL SQLSTATE '45000' 
+		SET MESSAGE_TEXT = "Mise à jour impossible : Mot de passe actuel incorrect ";
+    END IF;
+ 
+	UPDATE clients
+	SET client_password = client_new_password
+	WHERE client_id=client_id_in;
+    
+END$$
+
+DELIMITER ;
+
+-- test
+
+CALL update_client_password(1,'','lol','lol');
+CALL update_client_password(1,'lol','mdr','mrd');
+CALL update_client_password(1,'lal','mdr','mdr');
 
 
 -- 3) si une étape est ajoutée à un voyage, vérifier que la ville étape n'est pas identique à la ville de départ du voyage.
