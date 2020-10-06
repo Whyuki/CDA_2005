@@ -22,7 +22,7 @@ namespace CALCULATRICE
         private void buttonNumber_Click(object sender, EventArgs e)
         {
             Button buttonNumber = (Button)sender;
-            int buttonValue = Int32.Parse(buttonNumber.Text.ToString());
+            int buttonValue = Int32.Parse(buttonNumber.Text);
             this.textBoxAffichageCalcul.Text += buttonValue + "+";
             this.somme += buttonValue ;
         }
@@ -36,6 +36,11 @@ namespace CALCULATRICE
         private void calculer_Click(object sender, EventArgs e)
         {
             this.textBoxAffichageCalcul.Text += "=" + this.somme.ToString() + "+";
+
+        }
+
+        private void Calculatrice_Load(object sender, EventArgs e)
+        {
 
         }
     }

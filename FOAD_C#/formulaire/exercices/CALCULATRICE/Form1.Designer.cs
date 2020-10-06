@@ -193,6 +193,7 @@
             this.Controls.Add(this.textBoxAffichageCalcul);
             this.Name = "Calculatrice";
             this.Text = "Calculatrice";
+            this.Load += new System.EventHandler(this.Calculatrice_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
