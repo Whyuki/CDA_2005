@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CALCULATRICE.Properties
+namespace controlesSaisie.Properties
 {
 
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CALCULATRICE
+namespace controlesSaisie
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace CALCULATRICE
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Calculatrice());
+            Application.Run(new Controles());
         }
     }
 }

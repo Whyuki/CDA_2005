@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("CALCULATRICE")]
+[assembly: AssemblyTitle("controlesSaisie")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CALCULATRICE")]
+[assembly: AssemblyProduct("controlesSaisie")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("c2b71fee-bddd-4d9e-ac61-86526a210cd1")]
+[assembly: Guid("b38c78b1-4819-43dd-bb4b-62e730a560db")]
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //
