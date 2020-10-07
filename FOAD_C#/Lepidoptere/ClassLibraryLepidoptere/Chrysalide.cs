@@ -9,7 +9,7 @@ namespace ClassLibraryLepidoptere
     {
         public override bool SeDeplacer()
         {
-            Console.WriteLine("Je ne peux pas bouger");
+            Console.WriteLine("Je ne peux pas bouger, je suis pendu");
             return false;
         }
 

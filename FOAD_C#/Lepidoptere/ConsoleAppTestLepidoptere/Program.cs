@@ -14,8 +14,11 @@ namespace ConsoleAppTestLepidoptere
             Lepidoptere l = new Lepidoptere(new DateTime(2020,01,01));
             l.SeDeplacer();
             l.SeMetamorphoser();
+            l.SeDeplacer();
             l.SeMetamorphoser();
+            l.SeDeplacer();
             l.SeMetamorphoser();
+            l.SeDeplacer();
             l.SeMetamorphoser();
  
             Console.ReadLine();
