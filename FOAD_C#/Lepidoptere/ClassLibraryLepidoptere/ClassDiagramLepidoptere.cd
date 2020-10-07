@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Comment CommentText="1">
+    <Position X="8.128" Y="1.736" Height="0.291" Width="0.7" />
+  </Comment>
+  <Comment CommentText="0..*">
+    <Position X="4.653" Y="1.028" Height="0.306" Width="0.7" />
+  </Comment>
+  <Class Name="ClassLibraryLepidoptere.Lepidoptere">
+    <Position X="0.5" Y="0.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAACAAAAAAAAAAAEAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Lepidoptere.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="monStadeCourant" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ClassLibraryLepidoptere.StadeDEvolution">
+    <Position X="9" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>BAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StadeDEvolution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibraryLepidoptere.Oeuf">
+    <Position X="6.75" Y="4" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Oeuf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibraryLepidoptere.Chenille">
+    <Position X="6.75" Y="2.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Chenille.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibraryLepidoptere.Chrysalide">
+    <Position X="10.75" Y="2.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Chrysalide.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibraryLepidoptere.Papillon">
+    <Position X="10.75" Y="4" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Papillon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
