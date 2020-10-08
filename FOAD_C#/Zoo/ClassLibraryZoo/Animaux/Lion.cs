@@ -18,11 +18,7 @@ namespace ClassLibraryZoo.Animaux
             throw new System.NotImplementedException();
         }
 
-        //public override bool Parler()
-        //{
-        //    Console.WriteLine("Graouuuuuu");
-        //    return false;
-        //}
+  
 
         public override bool SeDeplacer()
         {

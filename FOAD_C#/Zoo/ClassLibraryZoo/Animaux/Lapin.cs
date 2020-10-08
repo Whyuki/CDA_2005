@@ -21,10 +21,6 @@ namespace ClassLibraryZoo.Animaux
             throw new System.NotImplementedException();
         }
 
-        //public override bool Parler()
-        //{
-        //    return false;
-        //}
 
         public override bool SeDeplacer()
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryZoo.Animaux
 {
-    public class Perroquet : AnimalDuZoo, IParlable, IDeplacable
+    public class Perroquet : AnimalDuZoo, IParlable
     {
         public Perroquet(DateTime dateDeNaissance, bool estNeeAuZoo) : base(dateDeNaissance, estNeeAuZoo)
         {
