@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibraryZoo
+namespace ClassLibraryZoo.Contrats
 {
-    public class Class1
+    public interface IParlable
     {
+        bool Parler();
+
     }
 }

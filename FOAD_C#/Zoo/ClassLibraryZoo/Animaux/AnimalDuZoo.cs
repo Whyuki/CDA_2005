@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryZoo.Animaux
 {
-    public abstract class AnimalDuZoo:IDeplacable
+    public abstract class AnimalDuZoo: IComparable, IComparable<AnimalDuZoo>, IDeplacable
+        //, IParlable
     {
         private DateTime dateDeNaissance;
         bool estNeeAuZoo;
@@ -23,6 +24,40 @@ namespace ClassLibraryZoo.Animaux
         }
 
 
+        public DateTime DateDeNaissance
+        {
+            get => dateDeNaissance;
+            //set => dateDeNaissance = value; 
+        }
+        public bool EstNeeAuZoo
+        {
+            get => estNeeAuZoo;
+            //set => estNeeAuZoo = value;
+        }
+
+
+        public int CompareTo(object obj)
+        {
+            AnimalDuZoo animalAComparer = obj as AnimalDuZoo;
+            if (animalAComparer != null)
+            {
+               
+                return this.dateDeNaissance.CompareTo(animalAComparer.dateDeNaissance);
+            }
+            else
+            {
+
+                throw new ArgumentException("Un objet de type AnimalDuZoo état attendu en argument", "obj");
+            }
+        }
+        public int CompareTo(AnimalDuZoo other)
+        {
+            return this.dateDeNaissance.CompareTo(other.dateDeNaissance);
+        }
+
         public abstract bool SeDeplacer();
+
+        //public abstract bool Parler();
+        
     }
 }

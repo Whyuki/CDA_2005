@@ -9,15 +9,29 @@ namespace ClassLibraryZoo.Animaux
 {
     public class Lion : AnimalDuZoo
     {
+
+        public Lion(DateTime dateDeNaissance, bool estNeeAuZoo) : base(dateDeNaissance, estNeeAuZoo)
+        {
+        }
         public void Manger()
         {
             throw new System.NotImplementedException();
         }
 
+        //public override bool Parler()
+        //{
+        //    Console.WriteLine("Graouuuuuu");
+        //    return false;
+        //}
+
         public override bool SeDeplacer()
         {
-            Console.WriteLine("Je marche lentimmment");
+            Console.WriteLine(" /\\_/\\");
+            Console.WriteLine("( o.o ) Je galope");
+            Console.WriteLine(" > ^ <  \n");
             return true;
         }
+
+   
     }
 }

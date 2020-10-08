@@ -44,6 +44,7 @@
     <Compile Include="Animaux\AnimalDuZoo.cs" />
     <Compile Include="Animaux\Lapin.cs" />
     <Compile Include="Contrats\IDeplacable.cs" />
+    <Compile Include="Contrats\IParlable.cs" />
     <Compile Include="Employes\Gardien.cs" />
     <Compile Include="Animaux\Lion.cs" />
     <Compile Include="Animaux\Perroquet.cs" />

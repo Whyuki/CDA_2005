@@ -11,7 +11,7 @@ namespace ClassLibraryZoo.Animaux
     {
         int lgOreilleEnCm;
 
-        public Lapin():base()
+        public Lapin(DateTime dateDeNaissance, bool estNeeAuZoo) :base( dateDeNaissance, estNeeAuZoo)
         {
             this.lgOreilleEnCm = 10;
         }
@@ -21,10 +21,19 @@ namespace ClassLibraryZoo.Animaux
             throw new System.NotImplementedException();
         }
 
+        //public override bool Parler()
+        //{
+        //    return false;
+        //}
+
         public override bool SeDeplacer()
         {
-            Console.WriteLine("Je saute");
+            Console.WriteLine("( )_( )");
+            Console.WriteLine("(='.'=) Je saute");
+            Console.WriteLine("(°)_(°)  \n");
             return true;
         }
+
+     
     }
 }
