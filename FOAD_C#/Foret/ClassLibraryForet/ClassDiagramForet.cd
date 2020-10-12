@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Comment CommentText="0..*">
+    <Position X="6.24" Y="2.458" Height="0.312" Width="0.7" />
+  </Comment>
+  <Comment CommentText="0..1">
+    <Position X="3.792" Y="2.128" Height="0.292" Width="0.7" />
+  </Comment>
+  <Comment CommentText="qd c'est 1 au max, composition (losange noir)&#xD;&#xA;qd c'est 2 à * au max, aggregation (losange transparent)">
+    <Position X="3.83" Y="2.58" Height="1.503" Width="1.242" />
+  </Comment>
+  <Comment CommentText="Losange noir">
+    <Position X="3.816" Y="1.677" Height="0.291" Width="0.908" />
+  </Comment>
+  <Class Name="ClassLibraryForet.Arbre">
+    <Position X="0.5" Y="1" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAQQAIAAEAAAAAAAAEAIA=</HashCode>
+      <FileName>Arbre.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="feuilles" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ClassLibraryForet.Feuille">
+    <Position X="7" Y="0.75" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAggAAEAACAAEAAgAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Feuille.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ClassLibraryForet.EnumFormeFeuille">
+    <Position X="9.75" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAEAAgAAAAAACAAAA=</HashCode>
+      <FileName>EnumFormeFeuille.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ClassLibraryForet.EnumCouleur">
+    <Position X="7.5" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAABAEAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EnumCouleur.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
