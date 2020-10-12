@@ -20,11 +20,9 @@ namespace ConsoleAppTestForet
 
             Arbre a = new Arbre(800);
 
-            Feuille f1 = new Feuille(15, EnumCouleur.Vert, EnumFormeFeuille.ovale);
-            Feuille f2 = new Feuille(18, EnumCouleur.Vert, EnumFormeFeuille.ovale);
-
-            a.AddFeuille(f1);
-            a.AddFeuille(f2);
+     
+            a.AddFeuille(15, EnumCouleur.Vert, EnumFormeFeuille.ovale);
+            a.AddFeuille(18, EnumCouleur.Vert, EnumFormeFeuille.ovale);
 
 
             Console.WriteLine(a.ToString());

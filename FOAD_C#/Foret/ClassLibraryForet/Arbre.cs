@@ -23,9 +23,9 @@ namespace ClassLibraryForet
             feuilles = _feuilles;
         }
 
-        public void AddFeuille(Feuille f)
+        public void AddFeuille(int _nbNervures, EnumCouleur _couleur, EnumFormeFeuille _forme)
         {
-            this.feuilles.Add(f);
+            this.feuilles.Add(new Feuille(_nbNervures, _couleur, _forme));
         }
 
         public int Hauteur
