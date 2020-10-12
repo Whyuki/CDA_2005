@@ -11,16 +11,16 @@ namespace ClassLibraryForet
         int hauteur;
         private List<Feuille> feuilles;
 
-        public Arbre(int hauteur)
+        public Arbre(int _hauteur)
         {
-            this.hauteur = hauteur;
-            feuilles = new List<Feuille>();
+            this.hauteur = _hauteur;
+            this.feuilles = new List<Feuille>();
         }
 
-        public Arbre(int hauteur, List<Feuille> _feuilles) //ouvre porte aggregation
+        public Arbre(int _hauteur, List<Feuille> _feuilles) //ouvre porte aggregation
         {
-            this.hauteur = hauteur;
-            feuilles = _feuilles;
+            this.hauteur = _hauteur;
+            this.feuilles = _feuilles;
         }
 
         private void AddFeuille(Feuille f)
