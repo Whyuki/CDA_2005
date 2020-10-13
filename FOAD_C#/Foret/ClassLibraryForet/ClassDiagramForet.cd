@@ -28,6 +28,10 @@
       <HashCode>AAAAAggAAEAACAAEAAgAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
       <FileName>Feuille.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="couleur" />
+      <Field Name="forme" />
+    </ShowAsAssociation>
   </Class>
   <Enum Name="ClassLibraryForet.EnumFormeFeuille">
     <Position X="12.5" Y="4" Width="2" />
