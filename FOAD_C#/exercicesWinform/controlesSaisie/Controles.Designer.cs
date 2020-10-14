@@ -28,52 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBoxNom = new System.Windows.Forms.TextBox();
-            this.textBoxDate = new System.Windows.Forms.TextBox();
-            this.textBoxMontant = new System.Windows.Forms.TextBox();
-            this.textBoxCP = new System.Windows.Forms.TextBox();
+            this.components = new System.ComponentModel.Container();
+            this.textNom = new System.Windows.Forms.TextBox();
+            this.textDate = new System.Windows.Forms.TextBox();
+            this.textMontant = new System.Windows.Forms.TextBox();
+            this.textCP = new System.Windows.Forms.TextBox();
             this.valider = new System.Windows.Forms.Button();
             this.effacer = new System.Windows.Forms.Button();
             this.Nom = new System.Windows.Forms.Label();
             this.Date = new System.Windows.Forms.Label();
             this.Montant = new System.Windows.Forms.Label();
             this.CodePostal = new System.Windows.Forms.Label();
-            this.Date2 = new System.Windows.Forms.Label();
+            this.DateFormat = new System.Windows.Forms.Label();
+            this.controlErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.controlErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBoxNom
+            // textNom
             // 
-            this.textBoxNom.Location = new System.Drawing.Point(105, 33);
-            this.textBoxNom.MaxLength = 30;
-            this.textBoxNom.Name = "textBoxNom";
-            this.textBoxNom.Size = new System.Drawing.Size(173, 20);
-            this.textBoxNom.TabIndex = 0;
-            this.textBoxNom.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.textNom.Location = new System.Drawing.Point(105, 33);
+            this.textNom.MaxLength = 30;
+            this.textNom.Name = "textNom";
+            this.textNom.Size = new System.Drawing.Size(173, 20);
+            this.textNom.TabIndex = 0;
+            this.textNom.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
-            // textBoxDate
+            // textDate
             // 
-            this.textBoxDate.Location = new System.Drawing.Point(105, 75);
-            this.textBoxDate.Name = "textBoxDate";
-            this.textBoxDate.Size = new System.Drawing.Size(124, 20);
-            this.textBoxDate.TabIndex = 1;
-            this.textBoxDate.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.textDate.Location = new System.Drawing.Point(105, 75);
+            this.textDate.Name = "textDate";
+            this.textDate.Size = new System.Drawing.Size(124, 20);
+            this.textDate.TabIndex = 1;
+            this.textDate.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
-            // textBoxMontant
+            // textMontant
             // 
-            this.textBoxMontant.Location = new System.Drawing.Point(105, 116);
-            this.textBoxMontant.Name = "textBoxMontant";
-            this.textBoxMontant.Size = new System.Drawing.Size(124, 20);
-            this.textBoxMontant.TabIndex = 2;
-            this.textBoxMontant.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.textMontant.Location = new System.Drawing.Point(105, 116);
+            this.textMontant.Name = "textMontant";
+            this.textMontant.Size = new System.Drawing.Size(124, 20);
+            this.textMontant.TabIndex = 2;
+            this.textMontant.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
-            // textBoxCP
+            // textCP
             // 
-            this.textBoxCP.Location = new System.Drawing.Point(105, 159);
-            this.textBoxCP.MaxLength = 5;
-            this.textBoxCP.Name = "textBoxCP";
-            this.textBoxCP.Size = new System.Drawing.Size(100, 20);
-            this.textBoxCP.TabIndex = 3;
-            this.textBoxCP.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.textCP.Location = new System.Drawing.Point(105, 159);
+            this.textCP.MaxLength = 5;
+            this.textCP.Name = "textCP";
+            this.textCP.Size = new System.Drawing.Size(100, 20);
+            this.textCP.TabIndex = 3;
+            this.textCP.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // valider
             // 
@@ -132,35 +135,40 @@
             this.CodePostal.TabIndex = 9;
             this.CodePostal.Text = "Code Postal";
             // 
-            // Date2
+            // DateFormat
             // 
-            this.Date2.AutoSize = true;
-            this.Date2.Location = new System.Drawing.Point(249, 78);
-            this.Date2.Name = "Date2";
-            this.Date2.Size = new System.Drawing.Size(79, 13);
-            this.Date2.TabIndex = 10;
-            this.Date2.Text = "(JJ/MM/AAAA)";
+            this.DateFormat.AutoSize = true;
+            this.DateFormat.Location = new System.Drawing.Point(249, 78);
+            this.DateFormat.Name = "DateFormat";
+            this.DateFormat.Size = new System.Drawing.Size(79, 13);
+            this.DateFormat.TabIndex = 10;
+            this.DateFormat.Text = "(JJ/MM/AAAA)";
+            // 
+            // controlErrorProvider
+            // 
+            this.controlErrorProvider.ContainerControl = this;
             // 
             // Controles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 261);
-            this.Controls.Add(this.Date2);
+            this.Controls.Add(this.DateFormat);
             this.Controls.Add(this.CodePostal);
             this.Controls.Add(this.Montant);
             this.Controls.Add(this.Date);
             this.Controls.Add(this.Nom);
             this.Controls.Add(this.effacer);
             this.Controls.Add(this.valider);
-            this.Controls.Add(this.textBoxCP);
-            this.Controls.Add(this.textBoxMontant);
-            this.Controls.Add(this.textBoxDate);
-            this.Controls.Add(this.textBoxNom);
-            this.MaximumSize = new System.Drawing.Size(400, 300);
-            this.MinimumSize = new System.Drawing.Size(400, 300);
+            this.Controls.Add(this.textCP);
+            this.Controls.Add(this.textMontant);
+            this.Controls.Add(this.textDate);
+            this.Controls.Add(this.textNom);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Controles";
             this.Text = "Les contrôles";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.controle_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.controlErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,14 +181,12 @@
         private System.Windows.Forms.Label Date;
         private System.Windows.Forms.Label Montant;
         private System.Windows.Forms.Label CodePostal;
-        private System.Windows.Forms.Label Date2;
-        public System.Windows.Forms.TextBox textBoxDate;
-        public System.Windows.Forms.TextBox textBoxMontant;
-        public System.Windows.Forms.TextBox textBoxCP;
-        public System.Windows.Forms.TextBox textBoxNom;
-
-
-
+        private System.Windows.Forms.Label DateFormat;
+        public System.Windows.Forms.TextBox textDate;
+        public System.Windows.Forms.TextBox textMontant;
+        public System.Windows.Forms.TextBox textCP;
+        public System.Windows.Forms.TextBox textNom;
+        private System.Windows.Forms.ErrorProvider controlErrorProvider;
     }
 }
 

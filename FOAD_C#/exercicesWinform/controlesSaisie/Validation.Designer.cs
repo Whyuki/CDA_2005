@@ -139,6 +139,7 @@
             this.Controls.Add(this.buttonOk);
             this.Name = "Validation";
             this.Text = "Validation effectuée";
+            this.Load += new System.EventHandler(this.Validation_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

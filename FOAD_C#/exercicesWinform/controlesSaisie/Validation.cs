@@ -55,8 +55,12 @@ namespace controlesSaisie
         /// <param name="e"></param>
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            Fin fin = new Fin();
-            fin.Show();
+            this.Close();
+        }
+
+        private void Validation_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
