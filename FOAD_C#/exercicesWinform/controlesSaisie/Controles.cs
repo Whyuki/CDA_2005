@@ -22,7 +22,7 @@ namespace controlesSaisie
         /// <summary>
         /// reset error alert
         /// </summary>
-        public void clearError()
+        private void clearError()
         {
             controlErrorProvider.SetError(textNom, null);
             controlErrorProvider.SetError(textDate, null);
