@@ -89,7 +89,7 @@ namespace controlesSaisie
         /// <returns></returns>
         private bool ValidMontant()
         {
-            return Regex.IsMatch(textMontant.Text, @"^[0-9]*.?[0-9][^-]*$");
+            return Regex.IsMatch(textMontant.Text, @"^[0-9]+(\.[0-9]+)?$");
         }
 
         /// <summary>
