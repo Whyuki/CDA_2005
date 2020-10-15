@@ -21,16 +21,6 @@ namespace controlesSaisie
             InitializeComponent();
         }
 
-        /// <summary>
-        /// reset error alert
-        /// </summary>
-        private void clearError()
-        {
-            controlErrorProvider.SetError(textNom, null);
-            controlErrorProvider.SetError(textDate, null);
-            controlErrorProvider.SetError(textMontant, null);
-            controlErrorProvider.SetError(textCP, null);
-        }
 
         /// <summary>
         /// button "effacer" clear text boxes and error icones
@@ -44,7 +34,7 @@ namespace controlesSaisie
             textDate.Clear();
             textCP.Clear();
 
-            this.clearError();
+            controlErrorProvider.Clear();
         }
 
 
@@ -63,9 +53,100 @@ namespace controlesSaisie
             {
                 valider.Enabled = false;
             }
+
+            TextBox txtBx = (TextBox)sender;
+            controlErrorProvider.SetError(txtBx, null);
+
         }
 
+        /// <summary>
+        /// alerts the user of an input error in "Nom" field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textNom_Validating(object sender, CancelEventArgs e)
+        {           
+            if (!ClassVerifications.ValidNom(textNom.Text))
+            {
+                if (textNom.TextLength < 1)
+                {
+                    controlErrorProvider.SetError(textNom, "Champ obligatoire");
+                }
+                else
+                {
+                    controlErrorProvider.SetError(textNom, "Nom au format invalide");
+                    SystemSounds.Exclamation.Play();
+                }
+            }
+        }
 
+        /// <summary>
+        /// alerts the user of an input error in "Date" field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textDate_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ClassVerifications.ValidDate(textDate.Text))
+            {
+                if (textDate.TextLength < 1)
+                {
+                    controlErrorProvider.SetError(textDate, "Champ obligatoire");
+                }
+                else
+                {
+                    controlErrorProvider.SetError(textDate, "Format de date invalide");
+                    SystemSounds.Exclamation.Play();
+                }
+            }
+            else if (DateTime.Parse(textDate.Text) <= DateTime.Now)
+            {
+                controlErrorProvider.SetError(textDate, "La date doit être postérieure à aujourd'hui ");
+                SystemSounds.Exclamation.Play();
+            }
+        }
+
+        /// <summary>
+        /// alerts the user of an input error in "Montant" field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textMontant_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ClassVerifications.ValidMontant(textMontant.Text))
+            {
+                if (textMontant.TextLength < 1)
+                {
+                    controlErrorProvider.SetError(textMontant, "Champ obligatoire");
+                }
+                else
+                {
+                    controlErrorProvider.SetError(textMontant, "Montant invalide");
+                    SystemSounds.Exclamation.Play();
+                }
+            }
+        }
+
+        /// <summary>
+        /// alerts the user of an input error in "Code Postal" field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textCP_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ClassVerifications.ValidCP(textCP.Text))
+            {
+                if (textCP.TextLength < 1)
+                {
+                    controlErrorProvider.SetError(textCP, "Champ obligatoire");
+                }
+                else
+                {
+                    controlErrorProvider.SetError(textCP, "Code postal invalide");
+                    SystemSounds.Exclamation.Play();
+                }
+            }
+        }
 
         /// <summary>
         /// click button "Valider" check format and show messageBox with inputs
@@ -84,42 +165,13 @@ namespace controlesSaisie
 
             // check format input
             bool nomIsOk = ClassVerifications.ValidNom(nom);
-            bool dateIsOk = ClassVerifications.ValidDate(date);
+            bool dateIsOk = ClassVerifications.ValidDate(date) & DateTime.Parse(textDate.Text) > DateTime.Now;
             bool montantIsOk = ClassVerifications.ValidMontant(montant);
             bool cpIsOk = ClassVerifications.ValidCP(cp);
 
 
             // output confirmation
             string validOut = "Nom :  " + nom + "\nDate :   " + date + "\nMontant :   " + montant.ToString() + "\nCP :   " + cp.ToString();
-
-            // reset error alert
-            this.clearError();
-
-
-            // alerts the user of an input error
-            if (!cpIsOk)
-            {
-                ClassVerifications.ErreurSaisie(textCP, controlErrorProvider);
-            }
-            if (!montantIsOk)
-            {
-                ClassVerifications.ErreurSaisie(textMontant, controlErrorProvider);
-            }
-            if (!dateIsOk)
-            {
-                ClassVerifications.ErreurSaisie(textDate, controlErrorProvider);
-            }
-            else if (DateTime.Parse(textDate.Text) <= DateTime.Now)
-            {
-                dateIsOk = false;
-                textDate.Focus();
-                controlErrorProvider.SetError(textDate, "Date au format invalide : doit être postérieure à aujourd'hui ");
-                SystemSounds.Exclamation.Play();
-            }
-            if (!nomIsOk)
-            {
-                ClassVerifications.ErreurSaisie(textNom, controlErrorProvider);
-            }
 
 
             // if everything is ok
@@ -147,5 +199,6 @@ namespace controlesSaisie
             if (dr == DialogResult.No)
                 e.Cancel = true;
         }
+
     }
 }

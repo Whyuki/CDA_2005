@@ -55,17 +55,7 @@ namespace ClassLibraryToolsVerifications
             return Regex.IsMatch(_cp, regexCp);
 
         }
-        /// <summary>
-        /// alerts user input error
-        /// </summary>
-        /// <param name="textbox"></param>
-        /// <param name="erreur"></param>
-        public static void ErreurSaisie(TextBox textbox, ErrorProvider erreur)
-        {
-            textbox.Focus();
-            erreur.SetError(textbox, textbox.Tag.ToString()+ " invalide !");
-            SystemSounds.Exclamation.Play();
-        }
+
     }
 
 }
