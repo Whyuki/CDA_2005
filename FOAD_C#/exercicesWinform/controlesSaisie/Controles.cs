@@ -21,16 +21,6 @@ namespace controlesSaisie
             InitializeComponent();
         }
 
-        /// <summary>
-        /// reset error alert
-        /// </summary>
-        private void clearError()
-        {
-            controlErrorProvider.SetError(textNom, null);
-            controlErrorProvider.SetError(textDate, null);
-            controlErrorProvider.SetError(textMontant, null);
-            controlErrorProvider.SetError(textCP, null);
-        }
 
         /// <summary>
         /// button "effacer" clear text boxes and error icones
@@ -44,7 +34,7 @@ namespace controlesSaisie
             textDate.Clear();
             textCP.Clear();
 
-            this.clearError();
+            controlErrorProvider.Clear();
         }
 
 
@@ -93,32 +83,66 @@ namespace controlesSaisie
             string validOut = "Nom :  " + nom + "\nDate :   " + date + "\nMontant :   " + montant.ToString() + "\nCP :   " + cp.ToString();
 
             // reset error alert
-            this.clearError();
+            controlErrorProvider.Clear();
 
 
             // alerts the user of an input error
             if (!cpIsOk)
             {
-                ClassVerifications.ErreurSaisie(textCP, controlErrorProvider);
+                if (textCP.TextLength < 1)
+                {
+                    controlErrorProvider.SetError(textCP, "Champ obligatoire");
+                }
+                else
+                {
+                    controlErrorProvider.SetError(textCP, "Code postal invalide");
+                    SystemSounds.Exclamation.Play();
+                }
             }
             if (!montantIsOk)
             {
-                ClassVerifications.ErreurSaisie(textMontant, controlErrorProvider);
+                if (textMontant.TextLength < 1)
+                {
+                    controlErrorProvider.SetError(textMontant, "Champ obligatoire");
+                }
+                else
+                {
+                    controlErrorProvider.SetError(textMontant, "Montant invalide");
+                    SystemSounds.Exclamation.Play();
+                }
             }
             if (!dateIsOk)
             {
-                ClassVerifications.ErreurSaisie(textDate, controlErrorProvider);
+                if (textDate.TextLength < 1)
+                {
+                    controlErrorProvider.SetError(textDate, "Champ obligatoire");
+                }
+                else
+                {
+                    controlErrorProvider.SetError(textDate, "Format de date invalide");
+                    SystemSounds.Exclamation.Play();
+                }
             }
             else if (DateTime.Parse(textDate.Text) <= DateTime.Now)
             {
                 dateIsOk = false;
-                textDate.Focus();
-                controlErrorProvider.SetError(textDate, "Date au format invalide : doit être postérieure à aujourd'hui ");
+                controlErrorProvider.SetError(textDate, "La date doit être postérieure à aujourd'hui ");
                 SystemSounds.Exclamation.Play();
             }
+
+
+
             if (!nomIsOk)
             {
-                ClassVerifications.ErreurSaisie(textNom, controlErrorProvider);
+                if (textNom.TextLength < 1)
+                {
+                    controlErrorProvider.SetError(textNom, "Champ obligatoire");
+                }
+                else
+                {
+                    controlErrorProvider.SetError(textNom, "Nom au format invalide");
+                    SystemSounds.Exclamation.Play();
+                }
             }
 
 
