@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClassLibraryFacture;
+using ClassLibraryToolsVerifications;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -64,64 +66,28 @@ namespace controlesSaisie
         }
 
 
-        /// <summary>
-        /// check nom format
-        /// </summary>
-        /// <returns></returns>
-        private bool ValidNom()
-        {
-            return Regex.IsMatch(textNom.Text, @"^[A-Za-z]+$");
-        }
-
-        /// <summary>
-        /// check date format JJ/MM/AAAA
-        /// </summary>
-        /// <returns></returns>
-        private bool ValidDate()
-        {
-            return Regex.IsMatch(textDate.Text, @"^([0-2][0-9]|(3)[0-1])(/)(((0)[0-9])|((1)[0-2]))(/)\d{4}$");
-
-        }
-
-        /// <summary>
-        /// check montant format
-        /// </summary>
-        /// <returns></returns>
-        private bool ValidMontant()
-        {
-            return Regex.IsMatch(textMontant.Text, @"^[0-9]+(\.[0-9]+)?$");
-        }
-
-        /// <summary>
-        /// check postal code format
-        /// </summary>
-        /// <returns></returns>
-        private bool ValidCp()
-        {
-            return Regex.IsMatch(textCP.Text, @"^[0-9]{5}$");
-        }
-
 
         /// <summary>
         /// click button "Valider" check format and show messageBox with inputs
-        /// alerts the user of an input error
+        /// and alerts the user of an input error
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void valider_Click(object sender, EventArgs e)
         {
 
-            // check format input
-            bool nomIsOk = this.ValidNom();
-            bool dateIsOk = this.ValidDate();
-            bool montantIsOk = this.ValidMontant();
-            bool cpIsOk = this.ValidCp();
-
             // get input
             string nom = textNom.Text;
             string date = textDate.Text;
             string montant = textMontant.Text;
             string cp = textCP.Text;
+
+            // check format input
+            bool nomIsOk = ClassVerifications.ValidNom(nom);
+            bool dateIsOk = ClassVerifications.ValidDate(date);
+            bool montantIsOk = ClassVerifications.ValidMontant(montant);
+            bool cpIsOk = ClassVerifications.ValidCP(cp);
+
 
             // output confirmation
             string validOut = "Nom :  " + nom + "\nDate :   " + date + "\nMontant :   " + montant.ToString() + "\nCP :   " + cp.ToString();
@@ -133,21 +99,15 @@ namespace controlesSaisie
             // alerts the user of an input error
             if (!cpIsOk)
             {
-                textCP.Focus();
-                controlErrorProvider.SetError(textCP, "Code postal invalide");
-                SystemSounds.Exclamation.Play();
+                ClassVerifications.ErreurSaisie(textCP, controlErrorProvider);
             }
             if (!montantIsOk)
             {
-                textMontant.Focus();
-                controlErrorProvider.SetError(textMontant, "Montant invalide");
-                SystemSounds.Exclamation.Play();
+                ClassVerifications.ErreurSaisie(textMontant, controlErrorProvider);
             }
             if (!dateIsOk)
             {
-                textDate.Focus();
-                controlErrorProvider.SetError(textDate, "Date au format invalide");
-                SystemSounds.Exclamation.Play();
+                ClassVerifications.ErreurSaisie(textDate, controlErrorProvider);
             }
             else if (DateTime.Parse(textDate.Text) <= DateTime.Now)
             {
@@ -158,9 +118,7 @@ namespace controlesSaisie
             }
             if (!nomIsOk)
             {
-                textNom.Focus();
-                controlErrorProvider.SetError(textNom, "Nom au format invalide");
-                SystemSounds.Exclamation.Play();
+                ClassVerifications.ErreurSaisie(textNom, controlErrorProvider);
             }
 
 
@@ -168,6 +126,7 @@ namespace controlesSaisie
             if (nomIsOk & montantIsOk & dateIsOk & cpIsOk)
             {
                 MessageBox.Show(validOut, "Validation éffectuée");
+                new Facture(nom, DateTime.Parse(date), float.Parse(montant), cp);
             }
 
         }

@@ -51,6 +51,7 @@
             this.textNom.Name = "textNom";
             this.textNom.Size = new System.Drawing.Size(173, 20);
             this.textNom.TabIndex = 0;
+            this.textNom.Tag = "Nom";
             this.textNom.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // textDate
@@ -59,6 +60,7 @@
             this.textDate.Name = "textDate";
             this.textDate.Size = new System.Drawing.Size(124, 20);
             this.textDate.TabIndex = 1;
+            this.textDate.Tag = "Date";
             this.textDate.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // textMontant
@@ -67,6 +69,7 @@
             this.textMontant.Name = "textMontant";
             this.textMontant.Size = new System.Drawing.Size(124, 20);
             this.textMontant.TabIndex = 2;
+            this.textMontant.Tag = "Montant";
             this.textMontant.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // textCP
@@ -76,6 +79,7 @@
             this.textCP.Name = "textCP";
             this.textCP.Size = new System.Drawing.Size(100, 20);
             this.textCP.TabIndex = 3;
+            this.textCP.Tag = "Code postal";
             this.textCP.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // valider
