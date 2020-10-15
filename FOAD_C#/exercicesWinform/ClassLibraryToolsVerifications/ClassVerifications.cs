@@ -44,7 +44,7 @@ namespace ClassLibraryToolsVerifications
                         
             if (float.TryParse(_montant, out float result))
             {
-                if (float.Parse(_montant) > 0)
+                if (result > 0)
                 {
                     return true;
                 }
