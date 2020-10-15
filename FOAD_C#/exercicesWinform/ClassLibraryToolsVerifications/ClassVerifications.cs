@@ -42,7 +42,7 @@ namespace ClassLibraryToolsVerifications
         public static bool ValidMontant(string _montant)
         {
 
-            return float.TryParse(_montant, out float result);
+            return float.TryParse(_montant, out float result) & float.Parse(_montant)>0;
 
         }
         /// <summary>
