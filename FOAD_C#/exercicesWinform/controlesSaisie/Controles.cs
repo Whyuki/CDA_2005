@@ -165,13 +165,22 @@ namespace controlesSaisie
 
             // check format input
             bool nomIsOk = ClassVerifications.ValidNom(nom);
-            bool dateIsOk = ClassVerifications.ValidDate(date) & DateTime.Parse(textDate.Text) > DateTime.Now;
+            bool dateIsOk = ClassVerifications.ValidDate(date) ;
             bool montantIsOk = ClassVerifications.ValidMontant(montant);
             bool cpIsOk = ClassVerifications.ValidCP(cp);
 
 
             // output confirmation
             string validOut = "Nom :  " + nom + "\nDate :   " + date + "\nMontant :   " + montant.ToString() + "\nCP :   " + cp.ToString();
+
+            // check if date is later than today
+            if (dateIsOk)
+            {
+                if (DateTime.Parse(textDate.Text) <= DateTime.Now)
+                {
+                    dateIsOk = false;
+                }
+            }
 
 
             // if everything is ok
