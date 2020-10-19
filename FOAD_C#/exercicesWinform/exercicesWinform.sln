@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryFacture", "Clas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryToolsVerifications", "ClassLibraryToolsVerifications\ClassLibraryToolsVerifications.csproj", "{8D7AA6B1-79D7-4068-B1D2-EC1670CE5568}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "checkBox_radioButton", "checkBox_radioButton", "{0AD6E391-87B8-4F54-B9BE-60BE0A3957DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsAppCheckBoxRadioButton", "WindowsFormsAppCheckBoxRadioButton\WindowsFormsAppCheckBoxRadioButton.csproj", "{0E6C414E-2F07-4DFF-93AE-33BFB6720745}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,10 @@ Global
 		{8D7AA6B1-79D7-4068-B1D2-EC1670CE5568}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D7AA6B1-79D7-4068-B1D2-EC1670CE5568}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D7AA6B1-79D7-4068-B1D2-EC1670CE5568}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E6C414E-2F07-4DFF-93AE-33BFB6720745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E6C414E-2F07-4DFF-93AE-33BFB6720745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E6C414E-2F07-4DFF-93AE-33BFB6720745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E6C414E-2F07-4DFF-93AE-33BFB6720745}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +54,7 @@ Global
 		{B38C78B1-4819-43DD-BB4B-62E730A560DB} = {302F75FF-2B48-44F7-B7CA-8DA62061F665}
 		{FCDDA39F-FF38-42EA-8CB4-733D8D81C10D} = {302F75FF-2B48-44F7-B7CA-8DA62061F665}
 		{8D7AA6B1-79D7-4068-B1D2-EC1670CE5568} = {302F75FF-2B48-44F7-B7CA-8DA62061F665}
+		{0E6C414E-2F07-4DFF-93AE-33BFB6720745} = {0AD6E391-87B8-4F54-B9BE-60BE0A3957DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1B91AF3-A208-4AED-9C71-22ADC34D213C}
