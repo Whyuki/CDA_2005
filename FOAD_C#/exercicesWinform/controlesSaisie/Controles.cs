@@ -65,7 +65,7 @@ namespace controlesSaisie
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void textNom_Validating(object sender, CancelEventArgs e)
-        {           
+        {
             if (!ClassVerifications.ValidNom(textNom.Text))
             {
                 if (textNom.TextLength < 1)
@@ -165,7 +165,7 @@ namespace controlesSaisie
 
             // check format input
             bool nomIsOk = ClassVerifications.ValidNom(nom);
-            bool dateIsOk = ClassVerifications.ValidDate(date) ;
+            bool dateIsOk = ClassVerifications.ValidDate(date);
             bool montantIsOk = ClassVerifications.ValidMontant(montant);
             bool cpIsOk = ClassVerifications.ValidCP(cp);
 
@@ -206,7 +206,13 @@ namespace controlesSaisie
             MessageBoxIcon.Question,
             MessageBoxDefaultButton.Button1);
             if (dr == DialogResult.No)
+            {
                 e.Cancel = true;
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
 
     }
