@@ -173,75 +173,12 @@ namespace controlesSaisie
             // output confirmation
             string validOut = "Nom :  " + nom + "\nDate :   " + date + "\nMontant :   " + montant.ToString() + "\nCP :   " + cp.ToString();
 
-<<<<<<< HEAD
             // check if date is later than today
             if (dateIsOk)
             {
                 if (DateTime.Parse(textDate.Text) <= DateTime.Now)
                 {
                     dateIsOk = false;
-=======
-            // reset error alert
-            controlErrorProvider.Clear();
-
-
-            // alerts the user of an input error
-            if (!cpIsOk)
-            {
-                if (textCP.TextLength < 1)
-                {
-                    controlErrorProvider.SetError(textCP, "Champ obligatoire");
-                }
-                else
-                {
-                    controlErrorProvider.SetError(textCP, "Code postal invalide");
-                    SystemSounds.Exclamation.Play();
-                }
-            }
-            if (!montantIsOk)
-            {
-                if (textMontant.TextLength < 1)
-                {
-                    controlErrorProvider.SetError(textMontant, "Champ obligatoire");
-                }
-                else
-                {
-                    controlErrorProvider.SetError(textMontant, "Montant invalide");
-                    SystemSounds.Exclamation.Play();
-                }
-            }
-            if (!dateIsOk)
-            {
-                if (textDate.TextLength < 1)
-                {
-                    controlErrorProvider.SetError(textDate, "Champ obligatoire");
-                }
-                else
-                {
-                    controlErrorProvider.SetError(textDate, "Format de date invalide");
-                    SystemSounds.Exclamation.Play();
-                }
-            }
-            else if (DateTime.Parse(textDate.Text) <= DateTime.Now)
-            {
-                dateIsOk = false;
-                controlErrorProvider.SetError(textDate, "La date doit être postérieure à aujourd'hui ");
-                SystemSounds.Exclamation.Play();
-            }
-
-
-
-            if (!nomIsOk)
-            {
-                if (textNom.TextLength < 1)
-                {
-                    controlErrorProvider.SetError(textNom, "Champ obligatoire");
-                }
-                else
-                {
-                    controlErrorProvider.SetError(textNom, "Nom au format invalide");
-                    SystemSounds.Exclamation.Play();
->>>>>>> master
                 }
             }
 

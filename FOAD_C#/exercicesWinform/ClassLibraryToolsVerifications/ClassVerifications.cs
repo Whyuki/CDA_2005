@@ -41,10 +41,7 @@ namespace ClassLibraryToolsVerifications
         /// <returns></returns>
         public static bool ValidMontant(string _montant)
         {
-<<<<<<< HEAD
                         
-=======
->>>>>>> master
             if (float.TryParse(_montant, out float result))
             {
                 if (result > 0)
@@ -60,10 +57,7 @@ namespace ClassLibraryToolsVerifications
             {
                 return false;
             }
-<<<<<<< HEAD
 
-=======
->>>>>>> master
         }
         /// <summary>
         ///  check postal code
