@@ -53,6 +53,7 @@
             this.textNom.TabIndex = 0;
             this.textNom.Tag = "Nom";
             this.textNom.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.textNom.Validating += new System.ComponentModel.CancelEventHandler(this.textNom_Validating);
             // 
             // textDate
             // 
@@ -62,6 +63,7 @@
             this.textDate.TabIndex = 1;
             this.textDate.Tag = "Date";
             this.textDate.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.textDate.Validating += new System.ComponentModel.CancelEventHandler(this.textDate_Validating);
             // 
             // textMontant
             // 
@@ -71,6 +73,7 @@
             this.textMontant.TabIndex = 2;
             this.textMontant.Tag = "Montant";
             this.textMontant.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.textMontant.Validating += new System.ComponentModel.CancelEventHandler(this.textMontant_Validating);
             // 
             // textCP
             // 
@@ -81,6 +84,7 @@
             this.textCP.TabIndex = 3;
             this.textCP.Tag = "Code postal";
             this.textCP.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.textCP.Validating += new System.ComponentModel.CancelEventHandler(this.textCP_Validating);
             // 
             // valider
             // 

@@ -53,9 +53,100 @@ namespace controlesSaisie
             {
                 valider.Enabled = false;
             }
+
+            TextBox txtBx = (TextBox)sender;
+            controlErrorProvider.SetError(txtBx, null);
+
         }
 
+        /// <summary>
+        /// alerts the user of an input error in "Nom" field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textNom_Validating(object sender, CancelEventArgs e)
+        {           
+            if (!ClassVerifications.ValidNom(textNom.Text))
+            {
+                if (textNom.TextLength < 1)
+                {
+                    controlErrorProvider.SetError(textNom, "Champ obligatoire");
+                }
+                else
+                {
+                    controlErrorProvider.SetError(textNom, "Nom au format invalide");
+                    SystemSounds.Exclamation.Play();
+                }
+            }
+        }
 
+        /// <summary>
+        /// alerts the user of an input error in "Date" field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textDate_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ClassVerifications.ValidDate(textDate.Text))
+            {
+                if (textDate.TextLength < 1)
+                {
+                    controlErrorProvider.SetError(textDate, "Champ obligatoire");
+                }
+                else
+                {
+                    controlErrorProvider.SetError(textDate, "Format de date invalide");
+                    SystemSounds.Exclamation.Play();
+                }
+            }
+            else if (DateTime.Parse(textDate.Text) <= DateTime.Now)
+            {
+                controlErrorProvider.SetError(textDate, "La date doit être postérieure à aujourd'hui ");
+                SystemSounds.Exclamation.Play();
+            }
+        }
+
+        /// <summary>
+        /// alerts the user of an input error in "Montant" field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textMontant_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ClassVerifications.ValidMontant(textMontant.Text))
+            {
+                if (textMontant.TextLength < 1)
+                {
+                    controlErrorProvider.SetError(textMontant, "Champ obligatoire");
+                }
+                else
+                {
+                    controlErrorProvider.SetError(textMontant, "Montant invalide");
+                    SystemSounds.Exclamation.Play();
+                }
+            }
+        }
+
+        /// <summary>
+        /// alerts the user of an input error in "Code Postal" field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textCP_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ClassVerifications.ValidCP(textCP.Text))
+            {
+                if (textCP.TextLength < 1)
+                {
+                    controlErrorProvider.SetError(textCP, "Champ obligatoire");
+                }
+                else
+                {
+                    controlErrorProvider.SetError(textCP, "Code postal invalide");
+                    SystemSounds.Exclamation.Play();
+                }
+            }
+        }
 
         /// <summary>
         /// click button "Valider" check format and show messageBox with inputs
@@ -74,7 +165,7 @@ namespace controlesSaisie
 
             // check format input
             bool nomIsOk = ClassVerifications.ValidNom(nom);
-            bool dateIsOk = ClassVerifications.ValidDate(date);
+            bool dateIsOk = ClassVerifications.ValidDate(date) ;
             bool montantIsOk = ClassVerifications.ValidMontant(montant);
             bool cpIsOk = ClassVerifications.ValidCP(cp);
 
@@ -82,6 +173,14 @@ namespace controlesSaisie
             // output confirmation
             string validOut = "Nom :  " + nom + "\nDate :   " + date + "\nMontant :   " + montant.ToString() + "\nCP :   " + cp.ToString();
 
+<<<<<<< HEAD
+            // check if date is later than today
+            if (dateIsOk)
+            {
+                if (DateTime.Parse(textDate.Text) <= DateTime.Now)
+                {
+                    dateIsOk = false;
+=======
             // reset error alert
             controlErrorProvider.Clear();
 
@@ -142,6 +241,7 @@ namespace controlesSaisie
                 {
                     controlErrorProvider.SetError(textNom, "Nom au format invalide");
                     SystemSounds.Exclamation.Play();
+>>>>>>> master
                 }
             }
 
@@ -171,5 +271,6 @@ namespace controlesSaisie
             if (dr == DialogResult.No)
                 e.Cancel = true;
         }
+
     }
 }
