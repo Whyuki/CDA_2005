@@ -29,11 +29,7 @@ namespace WindowsFormsAppCheckBoxRadioButton
         {
             foreach (RadioButton radio in _groupBox.Controls.OfType<RadioButton>().ToList())
             {
-                if (radio.Checked == true)
-                {
-                    radio.Checked = false;
-                    break;
-                }
+                radio.Checked = false;
             }
         }
 
@@ -81,8 +77,18 @@ namespace WindowsFormsAppCheckBoxRadioButton
         /// <param name="e"></param>
         private void textBoxVotreTexte_TextChanged(object sender, EventArgs e)
         {
-
-            labelTextModifie.Text = textBox_votreTexte.Text;
+            if (radioButtonCasseMajuscules.Checked)
+            {
+                labelTextModifie.Text = textBox_votreTexte.Text.ToUpper();
+            }
+            else if (radioButtonCasseMinuscules.Checked)
+            {
+                labelTextModifie.Text = textBox_votreTexte.Text.ToLower();
+            }
+            else
+            {
+                labelTextModifie.Text = textBox_votreTexte.Text;
+            }
 
             if (textBox_votreTexte.TextLength > 0)
             {
