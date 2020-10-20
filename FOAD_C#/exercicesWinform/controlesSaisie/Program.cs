@@ -16,7 +16,7 @@ namespace controlesSaisie
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Controles());
+            Application.Run(new FormFacture());
         }
     }
 }

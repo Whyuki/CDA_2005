@@ -16,11 +16,18 @@ namespace controlesSaisie
 {
     public partial class Controles : Form
     {
+        private Facture factureActuelle;
+
         public Controles()
         {
             InitializeComponent();
+            factureActuelle = new Facture();
         }
 
+        public Facture FactureActuelle
+        {
+            get => factureActuelle;
+        }
 
         /// <summary>
         /// button "effacer" clear text boxes and error icones
@@ -170,9 +177,7 @@ namespace controlesSaisie
             bool cpIsOk = ClassVerifications.ValidCP(cp);
 
 
-            // output confirmation
-            string validOut = "Nom :  " + nom + "\nDate :   " + date + "\nMontant :   " + montant.ToString() + "\nCP :   " + cp.ToString();
-
+            
             // check if date is later than today
             if (dateIsOk)
             {
@@ -186,8 +191,8 @@ namespace controlesSaisie
             // if everything is ok
             if (nomIsOk & montantIsOk & dateIsOk & cpIsOk)
             {
-                MessageBox.Show(validOut, "Validation éffectuée");
-                new Facture(nom, DateTime.Parse(date), float.Parse(montant), cp);
+                factureActuelle = new Facture(nom, DateTime.Parse(date), float.Parse(montant), cp);
+                MessageBox.Show(factureActuelle.ToString(), "Validation éffectuée");
             }
 
         }
@@ -209,10 +214,7 @@ namespace controlesSaisie
             {
                 e.Cancel = true;
             }
-            else
-            {
-                Application.Exit();
-            }
+            
         }
 
     }

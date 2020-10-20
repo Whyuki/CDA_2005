@@ -8,11 +8,18 @@ namespace ClassLibraryFacture
 {
     public class Facture
     {
-
         private string nom;
         private DateTime date;
         private float montant;
         private string codePostal;
+
+        public Facture()
+        {
+            nom = "";
+            date = DateTime.Now;
+            montant = 0;
+            codePostal = "00000";
+        }
 
         /// <summary>
         /// facture constructor inputs controlesSaisie
@@ -28,6 +35,11 @@ namespace ClassLibraryFacture
             this.montant = _montant;
             this.codePostal = _codePostal;
 
+        }
+
+        public override string ToString()
+        {
+            return "Nom :  " + this.nom + "\nDate :   " + this.date.ToString("MM/dd/yyyy") + "\nMontant :   " + this.montant.ToString() + "\nCP :   " + this.codePostal.ToString(); ;
         }
     }
 }
