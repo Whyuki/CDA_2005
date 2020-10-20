@@ -58,6 +58,16 @@ namespace WindowsFormsAppCheckBoxRadioButton
             groupBoxCasse.Visible = false;
         }
 
+        /// <summary>
+        /// Reinitialise le format du texte
+        /// </summary>
+        private void Format_Reset()
+        {
+            labelTextModifie.BackColor = SystemColors.Control;
+            labelTextModifie.ForeColor = SystemColors.ControlText;
+
+        }
+
 
         //-------------------------------------------------------------------------------- events
 
@@ -83,6 +93,10 @@ namespace WindowsFormsAppCheckBoxRadioButton
                 groupBoxChoix.Enabled = false;
                 this.Choix_reset();
                 this.Hide_Fond_Cara_Casse();
+                this.Format_Reset();
+                this.Clear_RadioButton(groupBoxFond);
+                this.Clear_RadioButton(groupBoxCaracteres);
+                this.Clear_RadioButton(groupBoxCasse);
 
             }
 
