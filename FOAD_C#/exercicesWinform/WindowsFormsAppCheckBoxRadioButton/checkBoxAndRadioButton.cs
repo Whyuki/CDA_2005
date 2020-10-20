@@ -64,18 +64,10 @@ namespace WindowsFormsAppCheckBoxRadioButton
 
         }
 
-
-        //-------------------------------------------------------------------------------- events
-
-
         /// <summary>
-        /// Lorsque le texte est modifié : active les choix si champs non vide
-        /// retranscrit le texte dans le label (texte modifié)
-        /// si champs vide : désactive les choix et cache les options
+        /// Vérifie l'option casse
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void textBoxVotreTexte_TextChanged(object sender, EventArgs e)
+        private void Casse_Chek()
         {
             if (radioButtonCasseMajuscules.Checked)
             {
@@ -89,6 +81,22 @@ namespace WindowsFormsAppCheckBoxRadioButton
             {
                 labelTextModifie.Text = textBox_votreTexte.Text;
             }
+        }
+
+
+        //-------------------------------------------------------------------------------- events
+
+
+        /// <summary>
+        /// Lorsque le texte est modifié : active les choix si champs non vide
+        /// retranscrit le texte dans le label (texte modifié)
+        /// si champs vide : désactive les choix et cache les options
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxVotreTexte_TextChanged(object sender, EventArgs e)
+        {
+            this.Casse_Chek();
 
             if (textBox_votreTexte.TextLength > 0)
             {
