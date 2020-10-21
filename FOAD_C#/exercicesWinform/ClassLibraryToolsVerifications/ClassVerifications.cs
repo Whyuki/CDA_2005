@@ -11,12 +11,12 @@ namespace ClassLibraryToolsVerifications
 {
     public static class ClassVerifications
     {
-        private const string regexNom = @"^[A-Za-z]+$";
+        private const string regexNom = @"^[A-Za-z]+-?[A-Za-z]+$";
         private const string regexCp = @"^(?:[0-8]\d|9[0-8])\d{3}$";
 
 
         /// <summary>
-        /// Check real date
+        /// Indique si la date existe, oui : true / non : false
         /// </summary>
         /// <returns></returns>
         public static bool ValidDate(string _date)
@@ -25,13 +25,13 @@ namespace ClassLibraryToolsVerifications
 
         }
         /// <summary>
-        /// check Nom
+        /// Indique si le nom est valide : uniquement des lettres (possibilité de tiret pour noms composés)
         /// </summary>
         /// <param name="_nom"></param>
         /// <returns></returns>
         public static bool ValidNom(string _nom)
         {
-            return Regex.IsMatch(_nom, regexNom);
+            return Regex.IsMatch(_nom, regexNom) & _nom.Length >1;
 
         }
         /// <summary>
