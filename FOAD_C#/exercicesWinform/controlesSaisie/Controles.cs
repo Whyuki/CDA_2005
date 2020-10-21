@@ -24,6 +24,14 @@ namespace controlesSaisie
             factureActuelle = new Facture();
         }
 
+        public Controles(Facture facture)
+        {
+            InitializeComponent();
+            factureActuelle = facture;
+            textNom.Text = factureActuelle.Nom;
+            this.valider.Text = "Modifier";
+        }
+
         public Facture FactureActuelle
         {
             get => factureActuelle;

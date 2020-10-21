@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibraryFacture;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace controlesSaisie
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormFacture());
+            Application.Run(new Controles(new Facture("joanna", new DateTime(2030, 01, 01), 15f, "67330")));
         }
     }
 }

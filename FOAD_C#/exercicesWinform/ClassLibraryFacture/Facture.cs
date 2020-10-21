@@ -37,6 +37,8 @@ namespace ClassLibraryFacture
 
         }
 
+        public string Nom { get => nom; set => nom = value; }
+
         public override string ToString()
         {
             return "Nom :  " + this.nom + "\nDate :   " + this.date.ToString("MM/dd/yyyy") + "\nMontant :   " + this.montant.ToString() + "\nCP :   " + this.codePostal.ToString(); ;
