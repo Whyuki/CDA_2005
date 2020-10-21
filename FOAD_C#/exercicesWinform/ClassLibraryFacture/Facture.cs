@@ -37,11 +37,22 @@ namespace ClassLibraryFacture
 
         }
 
-        public string Nom { get => nom; set => nom = value; }
+        public string Nom { get => nom; 
+            //set => nom = value; 
+        }
+        public DateTime Date { get => date; 
+            //set => date = value; 
+        }
+        public float Montant { get => montant; 
+            //set => montant = value; 
+        }
+        public string CodePostal { get => codePostal; 
+            //set => codePostal = value; 
+        }
 
         public override string ToString()
         {
-            return "Nom :  " + this.nom + "\nDate :   " + this.date.ToString("MM/dd/yyyy") + "\nMontant :   " + this.montant.ToString() + "\nCP :   " + this.codePostal.ToString(); ;
+            return "Nom :  " + this.nom + "\nDate :   " + this.date.ToString("dd/MM/yyyy") + "\nMontant :   " + this.montant.ToString() + "\nCP :   " + this.codePostal.ToString(); ;
         }
     }
 }

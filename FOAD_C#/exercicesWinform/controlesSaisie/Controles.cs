@@ -29,6 +29,9 @@ namespace controlesSaisie
             InitializeComponent();
             factureActuelle = facture;
             textNom.Text = factureActuelle.Nom;
+            textDate.Text = factureActuelle.Date.ToString("dd/MM/yyyy");
+            textMontant.Text = factureActuelle.Montant.ToString();
+            textCP.Text = factureActuelle.CodePostal;
             this.valider.Text = "Modifier";
         }
 
