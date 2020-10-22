@@ -251,6 +251,7 @@
             this.Controls.Add(this.labelIndexElement);
             this.Controls.Add(this.labelLstListe);
             this.Controls.Add(this.labelNouvelElement);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ListBoxBases";
             this.Text = "Les listes et leurs proprietes";
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAjoutListe)).EndInit();

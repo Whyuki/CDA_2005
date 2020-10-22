@@ -25,6 +25,7 @@ namespace WindowsFormsAppListBoxBases
         private void AjoutListe()
         {
             textBoxNouvelElement.Focus();
+
             if (IsAlreadyInTheList(textBoxNouvelElement.Text, listBoxLstListe))
             {
                 errorProviderAjoutListe.SetError(textBoxNouvelElement, "Cet element existe deja dans la liste !");
@@ -38,6 +39,7 @@ namespace WindowsFormsAppListBoxBases
                 errorProviderAjoutListe.Clear();
                 buttonViderListe.Enabled = true;
             }
+
             textBoxItemsCount.Text = listBoxLstListe.Items.Count.ToString();
         }
 
@@ -59,11 +61,13 @@ namespace WindowsFormsAppListBoxBases
         /// <returns>true si format valide et index existant / false si format invalide ou index inexistant</returns>
         private bool IndexIsOk(string _index, ListBox _listBox)
         {
-            string regexIndex = "^[1-9]*[0-9]*$";
+            string regexIndex = "^[1-9]*[0-9]*$"; 
+
             bool isok = int.TryParse(_index, out int result)
                 & result < _listBox.Items.Count
                 & result >= 0
                 & Regex.IsMatch(_index, regexIndex);
+
             return isok;
         }
 
@@ -76,6 +80,9 @@ namespace WindowsFormsAppListBoxBases
         /// <param name="e"></param>
         private void textBoxNouvelElement_TextChanged(object sender, EventArgs e)
         {
+            errorProviderIndex.Clear();
+            textBoxIndexElement.Clear();
+
             if (ClassVerifications.ValidNom(textBoxNouvelElement.Text))
             {
                 buttonAjoutListe.Enabled = true;
@@ -156,11 +163,13 @@ namespace WindowsFormsAppListBoxBases
         private void buttonViderListe_Click(object sender, EventArgs e)
         {
             listBoxLstListe.Items.Clear();
+
             textBoxItemsCount.Clear();
             textBoxIndexElement.Clear();
             textBoxSelectedIndex.Clear();
             textBoxSelectedText.Clear();
             textBoxNouvelElement.Clear();
+
             buttonViderListe.Enabled = false;
         }
 
