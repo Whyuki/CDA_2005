@@ -24,6 +24,8 @@ namespace WindowsFormsAppListBoxBases
         /// </summary>
         private void AjoutListe()
         {
+            // v1 methode defensive : return;
+            /*
             textBoxNouvelElement.Focus();
 
             if (IsAlreadyInTheList(textBoxNouvelElement.Text, listBoxLstListe))
@@ -40,6 +42,25 @@ namespace WindowsFormsAppListBoxBases
                 buttonViderListe.Enabled = true;
             }
 
+            textBoxItemsCount.Text = listBoxLstListe.Items.Count.ToString(); */
+
+            // v2 methode sans return;     
+            textBoxNouvelElement.Focus();
+
+            if (ClassVerifications.ValidNom(textBoxNouvelElement.Text))
+            {
+                if (IsAlreadyInTheList(textBoxNouvelElement.Text, listBoxLstListe))
+                {
+                    errorProviderAjoutListe.SetError(textBoxNouvelElement, "Cet element existe deja dans la liste !");
+                }
+                else
+                {
+                    listBoxLstListe.Items.Add(textBoxNouvelElement.Text);
+                    textBoxNouvelElement.Clear();
+                    errorProviderAjoutListe.Clear();
+                    buttonViderListe.Enabled = true;
+                }
+            }
             textBoxItemsCount.Text = listBoxLstListe.Items.Count.ToString();
         }
 
@@ -61,7 +82,7 @@ namespace WindowsFormsAppListBoxBases
         /// <returns>true si format valide et index existant / false si format invalide ou index inexistant</returns>
         private bool IndexIsOk(string _index, ListBox _listBox)
         {
-            string regexIndex = "^[1-9]*[0-9]*$"; 
+            string regexIndex = "^[1-9]*[0-9]*$";
 
             bool isok = int.TryParse(_index, out int result)
                 & result < _listBox.Items.Count
