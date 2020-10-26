@@ -13,6 +13,7 @@ namespace ClassLibraryToolsVerifications
     {
         private const string regexNom = @"^[A-Za-z]+-?[A-Za-z]+$";
         private const string regexCp = @"^(?:[0-8]\d|9[0-8])\d{3}$";
+        private const string regexPays = @"^([A-Za-z]+-? ?[A-Za-z]+)+$";
 
 
         /// <summary>
@@ -32,6 +33,16 @@ namespace ClassLibraryToolsVerifications
         public static bool ValidNom(string _nom)
         {
             return Regex.IsMatch(_nom, regexNom) & _nom.Length >1;
+
+        }
+        /// <summary>
+        /// Indique si le format du pays est valide : uniquement des lettres (et tirets pour noms de pays composés)
+        /// </summary>
+        /// <param name="_nom"></param>
+        /// <returns></returns>
+        public static bool ValidPays(string _nom)
+        {
+            return Regex.IsMatch(_nom, regexPays) & _nom.Length > 1;
 
         }
         /// <summary>
