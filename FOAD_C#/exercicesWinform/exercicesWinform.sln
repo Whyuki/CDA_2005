@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsAppListBoxAndCo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "comboBox listBox", "comboBox listBox", "{08709E44-9316-4861-90CF-7F1AFA4FAECC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "defilement", "defilement", "{1C0695C7-A1CE-4BF5-B0FB-FA599CC5CE94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsAppDefilement", "WindowsFormsAppDefilement\WindowsFormsAppDefilement.csproj", "{BD217794-E593-42FF-AE73-C354F4AC17DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,10 @@ Global
 		{F936AB47-D1B0-48E6-B0A1-E3FD4968098A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F936AB47-D1B0-48E6-B0A1-E3FD4968098A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F936AB47-D1B0-48E6-B0A1-E3FD4968098A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD217794-E593-42FF-AE73-C354F4AC17DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD217794-E593-42FF-AE73-C354F4AC17DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD217794-E593-42FF-AE73-C354F4AC17DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD217794-E593-42FF-AE73-C354F4AC17DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +83,7 @@ Global
 		{0E6C414E-2F07-4DFF-93AE-33BFB6720745} = {0AD6E391-87B8-4F54-B9BE-60BE0A3957DC}
 		{F12AB0A5-139B-482B-B954-97339CE6441B} = {DDB3CAC0-1AF8-41EA-9A09-C0D06B953A78}
 		{F936AB47-D1B0-48E6-B0A1-E3FD4968098A} = {08709E44-9316-4861-90CF-7F1AFA4FAECC}
+		{BD217794-E593-42FF-AE73-C354F4AC17DE} = {1C0695C7-A1CE-4BF5-B0FB-FA599CC5CE94}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1B91AF3-A208-4AED-9C71-22ADC34D213C}
