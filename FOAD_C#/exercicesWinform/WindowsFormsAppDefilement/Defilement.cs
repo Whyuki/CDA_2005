@@ -14,19 +14,46 @@ namespace WindowsFormsAppDefilement
     {
         private Color couleurChoisie;
 
+        public Color CouleurChoisie { get => couleurChoisie; /*set => couleurChoisie = value;*/ }
+
         public Defilement()
         {
             InitializeComponent();
             couleurChoisie = Color.FromArgb(0, 0, 0);
+            MiseAJourDeLaVue();
         }
 
         /// <summary>
-        /// Applique la couleur choisie
+        /// Modifier une couleur selectionnée
         /// </summary>
-        private void ChangeCouleur()
+        /// <param name="_couleurAModifier"></param>
+        public Defilement(Color _couleurAModifier)
         {
+            InitializeComponent();
+            couleurChoisie = _couleurAModifier;
+            MiseAJourDeLaVue();
+        }
+
+        /// <summary>
+        /// Met à jour la vue en fonction de la couleur choisie
+        /// </summary>
+        public void MiseAJourDeLaVue()
+        {
+            this.hScrollBarRouge.Value = couleurChoisie.R;
+            this.numericUpDownRouge.Value = couleurChoisie.R;
+            this.textBoxRouge.BackColor = Color.FromArgb(couleurChoisie.R, 0, 0);
+            
+            this.hScrollBarVert.Value = couleurChoisie.G;
+            this.numericUpDownVert.Value = couleurChoisie.G;
+            this.textBoxVert.BackColor = Color.FromArgb(0, couleurChoisie.G, 0);
+
+            this.hScrollBarBleu.Value = couleurChoisie.B;
+            this.numericUpDownBleu.Value = couleurChoisie.B;
+            this.textBoxBleu.BackColor = Color.FromArgb(0, 0, couleurChoisie.B);
+
             textBoxCouleurChoisie.BackColor = couleurChoisie;
         }
+
 
         /// <summary>
         /// Modifie la valeur du rouge de la couleur choisie en défilant la barre (synchronisation avec le controle numérique)
@@ -35,9 +62,10 @@ namespace WindowsFormsAppDefilement
         /// <param name="e"></param>
         private void hScrollBarRouge_ValueChanged(object sender, EventArgs e)
         {
-            numericUpDownRouge.Value = hScrollBarRouge.Value;
+            //mise a jour du modele couleurChoisie
             couleurChoisie = Color.FromArgb(hScrollBarRouge.Value, couleurChoisie.G, couleurChoisie.B);
-            this.ChangeCouleur();
+            //mise a jour de l'IHM a partir du modele
+            MiseAJourDeLaVue();
         }
 
         /// <summary>
@@ -47,9 +75,8 @@ namespace WindowsFormsAppDefilement
         /// <param name="e"></param>
         private void hScrollBarVert_ValueChanged(object sender, EventArgs e)
         {
-            numericUpDownVert.Value = hScrollBarVert.Value;
             couleurChoisie = Color.FromArgb(couleurChoisie.R, hScrollBarVert.Value, couleurChoisie.B);
-            this.ChangeCouleur();
+            MiseAJourDeLaVue();
         }
 
         /// <summary>
@@ -59,9 +86,8 @@ namespace WindowsFormsAppDefilement
         /// <param name="e"></param>
         private void hScrollBarBleu_ValueChanged(object sender, EventArgs e)
         {
-            numericUpDownBleu.Value = hScrollBarBleu.Value;
             couleurChoisie = Color.FromArgb(couleurChoisie.R, couleurChoisie.G, hScrollBarBleu.Value);
-            this.ChangeCouleur();
+            MiseAJourDeLaVue();
         }
 
         /// <summary>
@@ -71,7 +97,9 @@ namespace WindowsFormsAppDefilement
         /// <param name="e"></param>
         private void numericUpDownRouge_ValueChanged(object sender, EventArgs e)
         {
-            hScrollBarRouge.Value = (int)numericUpDownRouge.Value;
+
+            couleurChoisie = Color.FromArgb((int)numericUpDownRouge.Value, couleurChoisie.G, couleurChoisie.B);
+            MiseAJourDeLaVue();
         }
 
         /// <summary>
@@ -81,7 +109,8 @@ namespace WindowsFormsAppDefilement
         /// <param name="e"></param>
         private void numericUpDownVert_ValueChanged(object sender, EventArgs e)
         {
-            hScrollBarVert.Value = (int)numericUpDownVert.Value;
+            couleurChoisie = Color.FromArgb(couleurChoisie.R, (int)numericUpDownVert.Value, couleurChoisie.B);
+            MiseAJourDeLaVue();
         }
 
         /// <summary>
@@ -91,7 +120,8 @@ namespace WindowsFormsAppDefilement
         /// <param name="e"></param>
         private void numericUpDownBleu_ValueChanged(object sender, EventArgs e)
         {
-            hScrollBarBleu.Value = (int)numericUpDownBleu.Value;
+            couleurChoisie = Color.FromArgb(couleurChoisie.R, couleurChoisie.G, (int)numericUpDownBleu.Value);
+            MiseAJourDeLaVue();
         }
     }
 }
