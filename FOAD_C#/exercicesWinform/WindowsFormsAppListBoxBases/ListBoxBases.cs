@@ -59,6 +59,7 @@ namespace WindowsFormsAppListBoxBases
                     textBoxNouvelElement.Clear();
                     errorProviderAjoutListe.Clear();
                     buttonViderListe.Enabled = true;
+                    buttonAjoutListe.Enabled = false;
                 }
             }
             textBoxItemsCount.Text = listBoxLstListe.Items.Count.ToString();
@@ -162,8 +163,15 @@ namespace WindowsFormsAppListBoxBases
         /// <param name="e"></param>
         private void listBoxLstListe_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBoxSelectedIndex.Text = listBoxLstListe.SelectedIndex.ToString();
-            textBoxSelectedText.Text = listBoxLstListe.SelectedItem.ToString();
+            if (listBoxLstListe.SelectedIndex == -1)
+            {
+                listBoxLstListe.ClearSelected();
+            }
+            else
+            {
+                textBoxSelectedIndex.Text = listBoxLstListe.SelectedIndex.ToString();
+                textBoxSelectedText.Text = listBoxLstListe.SelectedItem.ToString();
+            }
         }
 
         /// <summary>
