@@ -11,7 +11,8 @@ namespace ClassLibraryToolsVerifications
 {
     public static class ClassVerifications
     {
-        private const string regexNom = @"^[A-Za-z]+-?[A-Za-z]+$";
+        //private const string regexNom = @"^[A-Za-z]+-?[A-Za-z]+$";
+        private const string regexNom = @"^([A-Za-z]+-? ?[A-Za-z]+)+$";
         private const string regexCp = @"^(?:[0-8]\d|9[0-8])\d{3}$";
         private const string regexPays = @"^([A-Za-z]+-? ?[A-Za-z]+)+$";
 
