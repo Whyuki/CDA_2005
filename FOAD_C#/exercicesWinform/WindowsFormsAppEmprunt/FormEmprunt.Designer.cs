@@ -49,7 +49,6 @@
             this.labelDureeChoisie = new System.Windows.Forms.Label();
             this.errorProviderNom = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderCapital = new System.Windows.Forms.ErrorProvider(this.components);
-            this.helpProviderNom = new System.Windows.Forms.HelpProvider();
             this.groupBoxTauxInteret.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderNom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCapital)).BeginInit();
@@ -99,11 +98,10 @@
             this.labelNbRemboursement.AutoSize = true;
             this.labelNbRemboursement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNbRemboursement.ForeColor = System.Drawing.Color.Red;
-            this.labelNbRemboursement.Location = new System.Drawing.Point(481, 298);
+            this.labelNbRemboursement.Location = new System.Drawing.Point(553, 298);
             this.labelNbRemboursement.Name = "labelNbRemboursement";
-            this.labelNbRemboursement.Size = new System.Drawing.Size(16, 20);
+            this.labelNbRemboursement.Size = new System.Drawing.Size(0, 20);
             this.labelNbRemboursement.TabIndex = 4;
-            this.labelNbRemboursement.Text = "x";
             // 
             // labelRemboursements
             // 
@@ -120,7 +118,7 @@
             this.labelMontantRemboursement.AutoSize = true;
             this.labelMontantRemboursement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMontantRemboursement.ForeColor = System.Drawing.Color.Red;
-            this.labelMontantRemboursement.Location = new System.Drawing.Point(481, 363);
+            this.labelMontantRemboursement.Location = new System.Drawing.Point(662, 360);
             this.labelMontantRemboursement.Name = "labelMontantRemboursement";
             this.labelMontantRemboursement.Size = new System.Drawing.Size(18, 20);
             this.labelMontantRemboursement.TabIndex = 6;
@@ -165,6 +163,7 @@
             this.radioButton9pourcent.Size = new System.Drawing.Size(50, 24);
             this.radioButton9pourcent.TabIndex = 2;
             this.radioButton9pourcent.TabStop = true;
+            this.radioButton9pourcent.Tag = "9";
             this.radioButton9pourcent.Text = "9%";
             this.radioButton9pourcent.UseVisualStyleBackColor = true;
             // 
@@ -176,6 +175,7 @@
             this.radioButton8pourcent.Size = new System.Drawing.Size(50, 24);
             this.radioButton8pourcent.TabIndex = 1;
             this.radioButton8pourcent.TabStop = true;
+            this.radioButton8pourcent.Tag = "8";
             this.radioButton8pourcent.Text = "8%";
             this.radioButton8pourcent.UseVisualStyleBackColor = true;
             // 
@@ -187,8 +187,10 @@
             this.radioButton7pourcent.Size = new System.Drawing.Size(50, 24);
             this.radioButton7pourcent.TabIndex = 0;
             this.radioButton7pourcent.TabStop = true;
+            this.radioButton7pourcent.Tag = "7";
             this.radioButton7pourcent.Text = "7%";
             this.radioButton7pourcent.UseVisualStyleBackColor = true;
+            this.radioButton7pourcent.CheckedChanged += new System.EventHandler(this.radioButtonTaux_CheckedChanged);
             // 
             // buttonOk
             // 
@@ -200,6 +202,7 @@
             this.buttonOk.TabIndex = 10;
             this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = true;
+            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
             // buttonAnnuler
             // 
@@ -248,9 +251,9 @@
             this.labelDureeChoisie.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDureeChoisie.Location = new System.Drawing.Point(202, 192);
             this.labelDureeChoisie.Name = "labelDureeChoisie";
-            this.labelDureeChoisie.Size = new System.Drawing.Size(16, 20);
+            this.labelDureeChoisie.Size = new System.Drawing.Size(18, 20);
             this.labelDureeChoisie.TabIndex = 14;
-            this.labelDureeChoisie.Text = "x";
+            this.labelDureeChoisie.Text = "1";
             // 
             // errorProviderNom
             // 
@@ -259,6 +262,7 @@
             // 
             // errorProviderCapital
             // 
+            this.errorProviderCapital.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProviderCapital.ContainerControl = this;
             // 
             // FormEmprunt
@@ -315,7 +319,6 @@
         private System.Windows.Forms.Label labelDureeChoisie;
         private System.Windows.Forms.ErrorProvider errorProviderNom;
         private System.Windows.Forms.ErrorProvider errorProviderCapital;
-        private System.Windows.Forms.HelpProvider helpProviderNom;
     }
 }
 

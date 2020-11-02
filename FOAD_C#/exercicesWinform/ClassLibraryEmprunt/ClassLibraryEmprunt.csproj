@@ -41,8 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassEmprunt.cs" />
+    <Compile Include="Periodicite.cs" />
+    <Compile Include="Emprunt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibraryToolsVerifications\ClassLibraryToolsVerifications.csproj">
+      <Project>{8d7aa6b1-79d7-4068-b1d2-ec1670ce5568}</Project>
+      <Name>ClassLibraryToolsVerifications</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
