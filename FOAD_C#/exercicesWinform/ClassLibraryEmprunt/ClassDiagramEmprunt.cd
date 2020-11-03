@@ -6,6 +6,9 @@
       <HashCode>EAAAABAIAAQAIAAAAAAEAAAIBAAAQIQAAAAAAAACAAA=</HashCode>
       <FileName>Emprunt.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="periodicite" />
+    </ShowAsAssociation>
   </Class>
   <Enum Name="ClassLibraryEmprunt.Periodicite">
     <Position X="6.25" Y="1.25" Width="1.5" />
