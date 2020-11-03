@@ -98,16 +98,18 @@
             this.labelNbRemboursement.AutoSize = true;
             this.labelNbRemboursement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNbRemboursement.ForeColor = System.Drawing.Color.Red;
-            this.labelNbRemboursement.Location = new System.Drawing.Point(553, 298);
+            this.labelNbRemboursement.Location = new System.Drawing.Point(429, 272);
             this.labelNbRemboursement.Name = "labelNbRemboursement";
-            this.labelNbRemboursement.Size = new System.Drawing.Size(0, 20);
+            this.labelNbRemboursement.Size = new System.Drawing.Size(61, 20);
             this.labelNbRemboursement.TabIndex = 4;
+            this.labelNbRemboursement.Text = "             ";
+            this.labelNbRemboursement.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelRemboursements
             // 
             this.labelRemboursements.AutoSize = true;
             this.labelRemboursements.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRemboursements.Location = new System.Drawing.Point(593, 298);
+            this.labelRemboursements.Location = new System.Drawing.Point(496, 272);
             this.labelRemboursements.Name = "labelRemboursements";
             this.labelRemboursements.Size = new System.Drawing.Size(146, 20);
             this.labelRemboursements.TabIndex = 5;
@@ -115,14 +117,16 @@
             // 
             // labelMontantRemboursement
             // 
+            this.labelMontantRemboursement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelMontantRemboursement.AutoSize = true;
             this.labelMontantRemboursement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMontantRemboursement.ForeColor = System.Drawing.Color.Red;
-            this.labelMontantRemboursement.Location = new System.Drawing.Point(662, 360);
+            this.labelMontantRemboursement.Location = new System.Drawing.Point(515, 325);
             this.labelMontantRemboursement.Name = "labelMontantRemboursement";
             this.labelMontantRemboursement.Size = new System.Drawing.Size(18, 20);
             this.labelMontantRemboursement.TabIndex = 6;
             this.labelMontantRemboursement.Text = "€";
+            this.labelMontantRemboursement.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBoxNom
             // 
@@ -166,6 +170,7 @@
             this.radioButton9pourcent.Tag = "9";
             this.radioButton9pourcent.Text = "9%";
             this.radioButton9pourcent.UseVisualStyleBackColor = true;
+            this.radioButton9pourcent.CheckedChanged += new System.EventHandler(this.radioButtonTaux_CheckedChanged);
             // 
             // radioButton8pourcent
             // 
@@ -178,6 +183,7 @@
             this.radioButton8pourcent.Tag = "8";
             this.radioButton8pourcent.Text = "8%";
             this.radioButton8pourcent.UseVisualStyleBackColor = true;
+            this.radioButton8pourcent.CheckedChanged += new System.EventHandler(this.radioButtonTaux_CheckedChanged);
             // 
             // radioButton7pourcent
             // 
@@ -235,6 +241,7 @@
             // 
             // hScrollBarDuree
             // 
+            this.hScrollBarDuree.Cursor = System.Windows.Forms.Cursors.Hand;
             this.hScrollBarDuree.LargeChange = 1;
             this.hScrollBarDuree.Location = new System.Drawing.Point(244, 190);
             this.hScrollBarDuree.Maximum = 180;

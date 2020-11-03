@@ -15,48 +15,105 @@ namespace WindowsFormsAppEmprunt
     public partial class FormEmprunt : Form
     {
 
-        private Emprunt emprunt;
+        private Emprunt emprunt = new Emprunt();
 
 
         public FormEmprunt()
         {
             InitializeComponent();
-            this.ResetLaVue();
             this.MiseAJourDeLaVue();
-
         }
 
+        /// <summary>
+        /// Mode modification
+        /// </summary>
+        /// <param name="_empruntAModifier"></param>
+        public FormEmprunt(Emprunt _empruntAModifier)
+        {
+            InitializeComponent();
+            emprunt = _empruntAModifier;
+            textBoxCapitalEmprunte.Text = emprunt.CapitalEmprunte.ToString();
+            this.MiseAJourDeLaVue();
+        }
+
+        /// <summary>
+        /// Mise à jour de la fenêtre 
+        /// </summary>
         public void MiseAJourDeLaVue()
         {
             textBoxNom.Text = emprunt.NomClient;
+            labelNbRemboursement.Text = emprunt.CalculNombreDeRemboursement().ToString();
+            labelMontantRemboursement.Text = Math.Round(emprunt.CalculMontantEcheance(), 2).ToString() + " €";
 
-            if (emprunt.CapitalEmprunte > 0)
+            switch (emprunt.TauxEnPourcentage)
             {
-                textBoxCapitalEmprunte.Text = emprunt.CapitalEmprunte.ToString();
+                case 7:
+                    radioButton7pourcent.Checked = true;
+                    break;
+                case 8:
+                    radioButton8pourcent.Checked = true;
+                    break;
+                case 9:
+                    radioButton9pourcent.Checked = true;
+                    break;
+                default:
+                    radioButton7pourcent.Checked = true;
+                    break;
+            }
+
+            switch (emprunt.Periodicite)
+            {
+                case Periodicite.Mensuellement:
+                    listBoxPeriodicite.SetSelected(0, true);
+                    break;
+                case Periodicite.Bimestriellement:
+                    listBoxPeriodicite.SetSelected(1, true);
+                    break;
+                case Periodicite.Trimestriellement:
+                    listBoxPeriodicite.SetSelected(2, true);
+                    break;
+                case Periodicite.Semestriellement:
+                    listBoxPeriodicite.SetSelected(3, true);
+                    break;
+                case Periodicite.Annuellement:
+                    listBoxPeriodicite.SetSelected(4, true);
+                    break;
+                default:
+                    listBoxPeriodicite.SetSelected(0, true);
+                    break;
+            }
+
+            hScrollBarDuree.Value = emprunt.DureeRemboursementEnMois;
+
+        }
+
+        /// <summary>
+        /// Met à jour la durée de remboursement en mois en fonciton de la périodicité 
+        /// </summary>
+        private void MiseAjourDeLaDureeSelonPeriodicite()
+        {
+            int periodicite = Convert.ToInt32(emprunt.Periodicite);
+
+            if (hScrollBarDuree.Value % periodicite == 0)
+            {
+                labelDureeChoisie.Text = hScrollBarDuree.Value.ToString();
+                emprunt.DureeRemboursementEnMois = hScrollBarDuree.Value;
             }
             else
             {
-                textBoxCapitalEmprunte.Clear();
+                hScrollBarDuree.Value += 1;
             }
-
-            labelNbRemboursement.Text = emprunt.CalculNombreDeRemboursement().ToString();
-            labelMontantRemboursement.Text = Math.Round(emprunt.CalculMontantEcheance(), 2).ToString() + " €";
         }
 
-        public void ResetLaVue()
-        {
-            emprunt = new Emprunt();
-            this.MiseAJourDeLaVue();
-            errorProviderNom.Clear();
-            errorProviderCapital.Clear();
-            hScrollBarDuree.Value = 1;
-            listBoxPeriodicite.SetSelected(0, true);
-            radioButton7pourcent.Checked = true;
-        }
 
+        /// <summary>
+        /// Vérifie le format du nom du client saisi
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBoxNom_TextChanged(object sender, EventArgs e)
         {
-            if (ClassVerifications.ValidNom(textBoxNom.Text) || textBoxNom.TextLength == 0) // facultatif !!!
+            if (ClassVerifications.ValidNom(textBoxNom.Text) || textBoxNom.TextLength == 0)
             {
                 buttonOk.Enabled = true;
                 errorProviderNom.Clear();
@@ -68,105 +125,101 @@ namespace WindowsFormsAppEmprunt
             }
         }
 
+        /// <summary>
+        /// Modifie le capital emprunté
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBoxCapitalEmprunte_TextChanged(object sender, EventArgs e)
         {
-            if (float.TryParse(textBoxCapitalEmprunte.Text, out float result))
+            if (float.TryParse(textBoxCapitalEmprunte.Text, out float result) && result >= 0)
             {
-                if (result == 0)
-                {
-                    errorProviderCapital.Clear();
-                    emprunt.CapitalEmprunte = 0;
-                }
-                if (result > 0)
-                {
-                    errorProviderCapital.Clear();
-                    emprunt.CapitalEmprunte = float.Parse(textBoxCapitalEmprunte.Text);
-                    this.MiseAJourDeLaVue();
-                }
-                else
-                {
-                    emprunt.CapitalEmprunte = 0;
-                    errorProviderCapital.SetError(textBoxCapitalEmprunte, "Saisir un montant supérieur à zéro");
-                }
-
+                errorProviderCapital.Clear();
+                emprunt.CapitalEmprunte = result;
             }
             else
             {
                 emprunt.CapitalEmprunte = 0;
-                errorProviderCapital.SetError(textBoxCapitalEmprunte, "Chiffre uniquement");
 
+                if (textBoxCapitalEmprunte.Text == "")
+                {
+                    errorProviderCapital.Clear();
+                }
+                else
+                {
+                    errorProviderCapital.SetError(textBoxCapitalEmprunte, "Montant positif attendu : \nChiffres et sépareur décimal (,) uniquement");
+                }
             }
-
-        }
-
-        private void hScrollBarDuree_ValueChanged(object sender, EventArgs e)
-        {
-            int periodicite = Convert.ToInt32(emprunt.Periodicite);
-
-            if (hScrollBarDuree.Value % periodicite == 0)
-            {
-                labelDureeChoisie.Text = hScrollBarDuree.Value.ToString();
-                emprunt.DureeRemboursementEnMois = hScrollBarDuree.Value;
-            }
-            else
-            {
-                hScrollBarDuree.Value = hScrollBarDuree.Value + 1;
-            }
-
             this.MiseAJourDeLaVue();
         }
 
-        private void buttonAnnuler_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Modifie la durée de remboursement en mois en fonction de la périodicité sélectionnée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void hScrollBarDuree_ValueChanged(object sender, EventArgs e)
         {
-            this.ResetLaVue();
+            this.MiseAjourDeLaDureeSelonPeriodicite();
+            this.MiseAJourDeLaVue();
         }
 
+        /// <summary>
+        /// Redéfinit la barre de défilement en fonction de la périodicité sélectionnée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxPeriodicite_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Periodicite presentePeriodicite = emprunt.Periodicite;
+            Periodicite prochainePeriodicite = emprunt.Periodicite;
+
+
             switch (listBoxPeriodicite.SelectedItem)
             {
                 case "Mensuelle":
-                    emprunt.Periodicite = Periodicite.Mensuellement;
-                    hScrollBarDuree.LargeChange = 1;
-                    hScrollBarDuree.SmallChange = 1;
-                    hScrollBarDuree.Value = 1;
+                    prochainePeriodicite = Periodicite.Mensuellement;
+
                     break;
                 case "Bimestrielle":
-                    emprunt.Periodicite = Periodicite.Bimestriellement;
-                    hScrollBarDuree.LargeChange = 2;
-                    hScrollBarDuree.SmallChange = 2;
-                    hScrollBarDuree.Value = 2;
+                    prochainePeriodicite = Periodicite.Bimestriellement;
 
                     break;
                 case "Trimestrielle":
-                    emprunt.Periodicite = Periodicite.Trimestriellement;
-                    hScrollBarDuree.LargeChange = 3;
-                    hScrollBarDuree.SmallChange = 3;
-                    hScrollBarDuree.Value = 3;
+                    prochainePeriodicite = Periodicite.Trimestriellement;
 
                     break;
                 case "Semestrielle":
-                    emprunt.Periodicite = Periodicite.Semestriellement;
-                    hScrollBarDuree.LargeChange = 6;
-                    hScrollBarDuree.SmallChange = 6;
-                    hScrollBarDuree.Value = 6;
+                    prochainePeriodicite = Periodicite.Semestriellement;
 
                     break;
                 case "Annuelle":
-                    emprunt.Periodicite = Periodicite.Annuellement;
-                    hScrollBarDuree.LargeChange = 12;
-                    hScrollBarDuree.SmallChange = 12;
-                    hScrollBarDuree.Value = 12;
+                    prochainePeriodicite = Periodicite.Annuellement;
 
                     break;
                 default:
                     break;
             }
 
-            this.MiseAJourDeLaVue();
+            if (presentePeriodicite != prochainePeriodicite)
+            {
+                emprunt.Periodicite = prochainePeriodicite;
+                int nbMoisPeriodicite = Convert.ToInt32(emprunt.Periodicite);
+                hScrollBarDuree.LargeChange = nbMoisPeriodicite;
+                hScrollBarDuree.SmallChange = nbMoisPeriodicite;
+                // hScrollBarDuree.Value = nbMoisPeriodicite;
+                this.MiseAjourDeLaDureeSelonPeriodicite();
+                hScrollBarDuree.Value = emprunt.DureeRemboursementEnMois;
+                this.MiseAJourDeLaVue();
+            }
 
         }
 
+        /// <summary>
+        /// Modifie le taux de l'emprunt en fonction du taux séléctionné
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioButtonTaux_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton7pourcent.Checked)
@@ -185,15 +238,37 @@ namespace WindowsFormsAppEmprunt
             this.MiseAJourDeLaVue();
         }
 
+        /// <summary>
+        /// Réinitialise le formulaire
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAnnuler_Click(object sender, EventArgs e)
+        {
+            emprunt = new Emprunt();
+            this.MiseAJourDeLaVue();
+            textBoxCapitalEmprunte.Clear();
+            errorProviderNom.Clear();
+            errorProviderCapital.Clear();
+            hScrollBarDuree.Value = 1;
+            listBoxPeriodicite.SetSelected(0, true);
+            radioButton7pourcent.Checked = true;
+        }
+
+        /// <summary>
+        /// Bouton ok : confirme si le capital répond au format attendu, sinon affiche un message d'erreur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonOk_Click(object sender, EventArgs e)
         {
             if (emprunt.CapitalEmprunte == 0)
             {
-                MessageBox.Show("Aucun montant saisi !");
+                MessageBox.Show("Veuillez saisir un montant valide");
             }
             else
             {
-                MessageBox.Show("Ok !");
+                MessageBox.Show("Validé");
             }
         }
     }

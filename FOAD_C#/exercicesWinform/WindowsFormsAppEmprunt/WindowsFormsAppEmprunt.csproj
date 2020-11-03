@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormSimulationEmprunt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSimulationEmprunt.Designer.cs">
+      <DependentUpon>FormSimulationEmprunt.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormEmprunt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +62,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormEmprunt.resx">
       <DependentUpon>FormEmprunt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSimulationEmprunt.resx">
+      <DependentUpon>FormSimulationEmprunt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

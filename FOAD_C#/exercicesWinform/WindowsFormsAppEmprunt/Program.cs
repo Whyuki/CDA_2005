@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibraryEmprunt;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace WindowsFormsAppEmprunt
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormEmprunt());
+            //  Application.Run(new FormEmprunt());
+            Application.Run(new FormSimulationEmprunt());
         }
     }
 }
