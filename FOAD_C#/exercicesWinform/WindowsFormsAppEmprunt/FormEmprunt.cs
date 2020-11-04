@@ -15,12 +15,12 @@ namespace WindowsFormsAppEmprunt
     public partial class FormEmprunt : Form
     {
 
-        private Emprunt emprunt = new Emprunt();
-
+        private Emprunt emprunt;
 
         public FormEmprunt()
         {
             InitializeComponent();
+            emprunt = new Emprunt();
             this.MiseAJourDeLaVue();
         }
 
@@ -174,7 +174,6 @@ namespace WindowsFormsAppEmprunt
             Periodicite presentePeriodicite = emprunt.Periodicite;
             Periodicite prochainePeriodicite = emprunt.Periodicite;
 
-
             switch (listBoxPeriodicite.SelectedItem)
             {
                 case "Mensuelle":
@@ -207,7 +206,6 @@ namespace WindowsFormsAppEmprunt
                 int nbMoisPeriodicite = Convert.ToInt32(emprunt.Periodicite);
                 hScrollBarDuree.LargeChange = nbMoisPeriodicite;
                 hScrollBarDuree.SmallChange = nbMoisPeriodicite;
-                // hScrollBarDuree.Value = nbMoisPeriodicite;
                 this.MiseAjourDeLaDureeSelonPeriodicite();
                 hScrollBarDuree.Value = emprunt.DureeRemboursementEnMois;
                 this.MiseAJourDeLaVue();
