@@ -38,7 +38,6 @@ namespace WindowsFormsAppEmprunt
             InitializeComponent();
             emprunt = _empruntAModifier;
             listBoxPeriodicite.DataSource = new BindingList<Periodicite>(Enum.GetValues(typeof(Periodicite)).OfType<Periodicite>().ToList());
-            textBoxCapitalEmprunte.Text = emprunt.CapitalEmprunte.ToString();
             this.MiseAJourDeLaVue();
         }
 
@@ -48,6 +47,9 @@ namespace WindowsFormsAppEmprunt
         public void MiseAJourDeLaVue()
         {
             int periodicite = Convert.ToInt32(emprunt.Periodicite);
+
+            float actuelCapital = emprunt.CapitalEmprunte;
+            float.TryParse(textBoxCapitalEmprunte.Text, out float prochainCapital);
 
             switch (emprunt.TauxEnPourcentage)
             {
@@ -102,6 +104,11 @@ namespace WindowsFormsAppEmprunt
             textBoxNom.Text = emprunt.NomClient;
             labelNbRemboursement.Text = emprunt.CalculNombreDeRemboursement().ToString();
             labelMontantRemboursement.Text = Math.Round(emprunt.CalculMontantEcheance(), 2).ToString() + " €";
+
+            if (actuelCapital != prochainCapital)
+            {
+                textBoxCapitalEmprunte.Text = emprunt.CapitalEmprunte.ToString();
+            }
 
         }
 
