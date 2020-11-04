@@ -115,12 +115,12 @@ namespace WindowsFormsAppEmprunt
         {
             if (ClassVerifications.ValidNom(textBoxNom.Text) || textBoxNom.TextLength == 0)
             {
-                buttonOk.Enabled = true;
                 errorProviderNom.Clear();
                 emprunt.NomClient = textBoxNom.Text;
             }
             else
             {
+                emprunt.NomClient = "";
                 errorProviderNom.SetError(textBoxNom, "Format invalide \nFormat attendu : lettres (deux au minimum), espaces et tirets uniquement");
             }
         }
@@ -268,7 +268,13 @@ namespace WindowsFormsAppEmprunt
             }
             else
             {
+                if(textBoxNom.Text =="" || emprunt.NomClient != "")
+                {
                 MessageBox.Show("Validé");
+                } else
+                {
+                MessageBox.Show("Nom au format invalide : Veuillez saisir un nom valide ou ne pas en saisir, celui-ci est facultatif");
+                }
             }
         }
     }
