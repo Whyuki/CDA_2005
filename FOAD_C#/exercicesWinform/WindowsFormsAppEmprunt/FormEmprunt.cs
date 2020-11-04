@@ -90,8 +90,8 @@ namespace WindowsFormsAppEmprunt
             // Met à jour la durée de remboursement en mois en fonciton de la périodicité 
             if (hScrollBarDuree.Value % periodicite == 0)
             {
-                labelDureeChoisie.Text = hScrollBarDuree.Value.ToString();
                 emprunt.DureeRemboursementEnMois = hScrollBarDuree.Value;
+                labelDureeChoisie.Text = hScrollBarDuree.Value.ToString();
             }
             else
             {
@@ -244,9 +244,7 @@ namespace WindowsFormsAppEmprunt
             textBoxCapitalEmprunte.Clear();
             errorProviderNom.Clear();
             errorProviderCapital.Clear();
-            hScrollBarDuree.Value = 1;
-            listBoxPeriodicite.SetSelected(0, true);
-            radioButton7pourcent.Checked = true;
+            
         }
 
         /// <summary>

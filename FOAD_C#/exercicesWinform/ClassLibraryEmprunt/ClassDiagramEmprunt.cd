@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="ClassLibraryEmprunt.Emprunt">
-    <Position X="0.5" Y="3.5" Width="9.25" />
+    <Position X="0.5" Y="3.5" Width="12" />
     <TypeIdentifier>
       <HashCode>EAAAABAIAAQAIAAAAAAEAAAIBAAAQIQAAAAAAAACAAA=</HashCode>
       <FileName>Emprunt.cs</FileName>

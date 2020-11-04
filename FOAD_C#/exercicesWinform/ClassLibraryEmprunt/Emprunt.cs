@@ -14,27 +14,16 @@ namespace ClassLibraryEmprunt
         private Periodicite periodicite;
         private double tauxEnPourcentage;
 
+       
         /// <summary>
-        /// Constructeur par defaut
-        /// </summary>
-        public Emprunt()
-        {
-            this.capitalEmprunte = 0;
-            this.dureeRemboursementEnMois = 1;
-            this.periodicite = Periodicite.Mensuellement;
-            this.tauxEnPourcentage = 7;
-            this.nomClient = "";
-        }
-
-        /// <summary>
-        /// Constructeur avec parametres
+        /// Constructeur par defaut et avec parametres
         /// </summary>
         /// <param name="_capitalEmprunte"></param>
         /// <param name="_dureeRemboursementEnMois"></param>
         /// <param name="_periodicite"></param>
         /// <param name="_tauxEnPourcentage"></param>
         /// <param name="_nomClientFacultatif"></param>
-        public Emprunt(float _capitalEmprunte, int _dureeRemboursementEnMois, Periodicite _periodicite, double _tauxEnPourcentage, string _nomClientFacultatif = "")
+        public Emprunt(float _capitalEmprunte = 0, int _dureeRemboursementEnMois = 1, Periodicite _periodicite = Periodicite.Mensuellement, double _tauxEnPourcentage=7, string _nomClientFacultatif = "")
         {
             this.capitalEmprunte = _capitalEmprunte;
             this.dureeRemboursementEnMois = _dureeRemboursementEnMois;
