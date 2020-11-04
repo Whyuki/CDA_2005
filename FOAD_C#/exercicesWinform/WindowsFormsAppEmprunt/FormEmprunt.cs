@@ -17,10 +17,15 @@ namespace WindowsFormsAppEmprunt
 
         private Emprunt emprunt;
 
+        private BindingList<Periodicite> listePeriodicites;
+
         public FormEmprunt()
         {
             InitializeComponent();
             emprunt = new Emprunt();
+            listePeriodicites = new BindingList<Periodicite>(Enum.GetValues(typeof(Periodicite)).OfType<Periodicite>().ToList());
+            listBoxPeriodicite.DataSource = listePeriodicites;
+
             this.MiseAJourDeLaVue();
         }
 
@@ -32,6 +37,7 @@ namespace WindowsFormsAppEmprunt
         {
             InitializeComponent();
             emprunt = _empruntAModifier;
+            listBoxPeriodicite.DataSource = new BindingList<Periodicite>(Enum.GetValues(typeof(Periodicite)).OfType<Periodicite>().ToList());
             textBoxCapitalEmprunte.Text = emprunt.CapitalEmprunte.ToString();
             this.MiseAJourDeLaVue();
         }
@@ -168,23 +174,23 @@ namespace WindowsFormsAppEmprunt
 
             switch (listBoxPeriodicite.SelectedItem)
             {
-                case "Mensuelle":
+                case Periodicite.Mensuellement:
                     prochainePeriodicite = Periodicite.Mensuellement;
 
                     break;
-                case "Bimestrielle":
+                case Periodicite.Bimestriellement:
                     prochainePeriodicite = Periodicite.Bimestriellement;
 
                     break;
-                case "Trimestrielle":
+                case Periodicite.Trimestriellement:
                     prochainePeriodicite = Periodicite.Trimestriellement;
 
                     break;
-                case "Semestrielle":
+                case Periodicite.Semestriellement:
                     prochainePeriodicite = Periodicite.Semestriellement;
 
                     break;
-                case "Annuelle":
+                case Periodicite.Annuellement:
                     prochainePeriodicite = Periodicite.Annuellement;
 
                     break;
@@ -256,14 +262,16 @@ namespace WindowsFormsAppEmprunt
             }
             else
             {
-                if(textBoxNom.Text =="" || emprunt.NomClient != "")
+                if (textBoxNom.Text == "" || emprunt.NomClient != "")
                 {
-                MessageBox.Show("Validé");
-                } else
+                    MessageBox.Show("Validé");
+                }
+                else
                 {
-                MessageBox.Show("Nom au format invalide : Veuillez saisir un nom valide ou ne pas en saisir, celui-ci est facultatif");
+                    MessageBox.Show("Nom au format invalide : Veuillez saisir un nom valide ou ne pas en saisir, celui-ci est facultatif");
                 }
             }
         }
+
     }
 }
