@@ -41,9 +41,7 @@ namespace WindowsFormsAppEmprunt
         /// </summary>
         public void MiseAJourDeLaVue()
         {
-            textBoxNom.Text = emprunt.NomClient;
-            labelNbRemboursement.Text = emprunt.CalculNombreDeRemboursement().ToString();
-            labelMontantRemboursement.Text = Math.Round(emprunt.CalculMontantEcheance(), 2).ToString() + " €";
+            int periodicite = Convert.ToInt32(emprunt.Periodicite);
 
             switch (emprunt.TauxEnPourcentage)
             {
@@ -83,17 +81,7 @@ namespace WindowsFormsAppEmprunt
                     break;
             }
 
-            hScrollBarDuree.Value = emprunt.DureeRemboursementEnMois;
-
-        }
-
-        /// <summary>
-        /// Met à jour la durée de remboursement en mois en fonciton de la périodicité 
-        /// </summary>
-        private void MiseAjourDeLaDureeSelonPeriodicite()
-        {
-            int periodicite = Convert.ToInt32(emprunt.Periodicite);
-
+            // Met à jour la durée de remboursement en mois en fonciton de la périodicité 
             if (hScrollBarDuree.Value % periodicite == 0)
             {
                 labelDureeChoisie.Text = hScrollBarDuree.Value.ToString();
@@ -103,8 +91,13 @@ namespace WindowsFormsAppEmprunt
             {
                 hScrollBarDuree.Value += 1;
             }
-        }
 
+            hScrollBarDuree.Value = emprunt.DureeRemboursementEnMois;
+            textBoxNom.Text = emprunt.NomClient;
+            labelNbRemboursement.Text = emprunt.CalculNombreDeRemboursement().ToString();
+            labelMontantRemboursement.Text = Math.Round(emprunt.CalculMontantEcheance(), 2).ToString() + " €";
+
+        }
 
         /// <summary>
         /// Vérifie le format du nom du client saisi
@@ -160,7 +153,6 @@ namespace WindowsFormsAppEmprunt
         /// <param name="e"></param>
         private void hScrollBarDuree_ValueChanged(object sender, EventArgs e)
         {
-            this.MiseAjourDeLaDureeSelonPeriodicite();
             this.MiseAJourDeLaVue();
         }
 
@@ -206,8 +198,6 @@ namespace WindowsFormsAppEmprunt
                 int nbMoisPeriodicite = Convert.ToInt32(emprunt.Periodicite);
                 hScrollBarDuree.LargeChange = nbMoisPeriodicite;
                 hScrollBarDuree.SmallChange = nbMoisPeriodicite;
-                this.MiseAjourDeLaDureeSelonPeriodicite();
-                hScrollBarDuree.Value = emprunt.DureeRemboursementEnMois;
                 this.MiseAJourDeLaVue();
             }
 
