@@ -14,7 +14,13 @@ namespace ClassLibraryEmprunt
         private Periodicite periodicite;
         private double tauxEnPourcentage;
 
-       
+        /// <summary>
+        /// Constructeur par défaut
+        /// </summary>
+        public Emprunt() : this(0, 1, Periodicite.Mensuellement, 7, "")
+        {
+        }
+
         /// <summary>
         /// Constructeur par defaut et avec parametres
         /// </summary>
@@ -23,7 +29,7 @@ namespace ClassLibraryEmprunt
         /// <param name="_periodicite"></param>
         /// <param name="_tauxEnPourcentage"></param>
         /// <param name="_nomClientFacultatif"></param>
-        public Emprunt(float _capitalEmprunte = 0, int _dureeRemboursementEnMois = 1, Periodicite _periodicite = Periodicite.Mensuellement, double _tauxEnPourcentage=7, string _nomClientFacultatif = "")
+        public Emprunt(float _capitalEmprunte, int _dureeRemboursementEnMois, Periodicite _periodicite, double _tauxEnPourcentage, string _nomClientFacultatif = "")
         {
             this.capitalEmprunte = _capitalEmprunte;
             this.dureeRemboursementEnMois = _dureeRemboursementEnMois;
