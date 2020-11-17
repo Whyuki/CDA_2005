@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExceptionOfFraction\UndefinedDenominatorException.cs" />
+    <Compile Include="ExceptionOfFraction\ImpossibleDInverserLaFraction.cs" />
     <Compile Include="ExceptionOfFraction\ZeroDenominatorImpossibleException.cs" />
     <Compile Include="Fraction.cs" />
     <Compile Include="ExceptionOfFraction\ImpossibleEvaluationOfFraction.cs" />

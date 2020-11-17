@@ -11,17 +11,17 @@ namespace ConsoleAppCreationDUneException.ExceptionOfFraction
         public ZeroDenominatorImpossibleException() : base()
         {
             this.HelpLink = "https://docs.microsoft.com";
-            this.Source = "InvalidFractionDenominateurException_Class_Samples";
+            this.Source = "ZeroDenominatorImpossibleException_Class_Samples";
         }
         public ZeroDenominatorImpossibleException(string message) : base(message)
         {
             this.HelpLink = "https://docs.microsoft.com";
-            this.Source = "InvalidFractionDenominateurException_Class_Samples";
+            this.Source = "ZeroDenominatorImpossibleException_Class_Samples";
         }
         public ZeroDenominatorImpossibleException(string message, System.Exception inner) : base(message, inner)
         {
             this.HelpLink = "https://docs.microsoft.com";
-            this.Source = "InvalidFractionDenominateurException_Class_Samples";
+            this.Source = "ZeroDenominatorImpossibleException_Class_Samples";
         }
 
         // A constructor is needed for serialization when an
