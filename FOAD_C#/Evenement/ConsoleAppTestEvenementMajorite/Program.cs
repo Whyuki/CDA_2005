@@ -31,7 +31,7 @@ namespace ConsoleAppTestEvenementMajorite
 
         private static void P_JeRisqueUneCrise(Personne sender, string typeDeCrise)
         {
-            Console.WriteLine(sender.Name + " risque de faire une " + typeDeCrise);
+            Console.WriteLine(sender.Name + " risque " + typeDeCrise);
         }
 
         private static void P_JeViensDEtreMajeur(Personne sender)

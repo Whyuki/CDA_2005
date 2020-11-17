@@ -44,25 +44,25 @@ namespace ClassLibraryPersonne
                 switch (this.age)
                 {
                     case 2:
-                        JeRisqueUneCrise(this, "crise de l'imitation");
+                        JeRisqueUneCrise(this, "d'imiter tout et tout le monde");
                         break;
                     case 4:
-                        JeRisqueUneCrise(this, "crise de poser beaucoup de questions");
+                        JeRisqueUneCrise(this, "de poser beaucoup de questions");
                         break;
                     case 15:
-                        JeRisqueUneCrise(this, "crise d'adolescence");
+                        JeRisqueUneCrise(this, "la crise d'adolescence");
                         break;
                     case 20:
-                        JeRisqueUneCrise(this, "crise financière");
+                        JeRisqueUneCrise(this, "la crise financière");
                         break;
                     case 30:
-                        JeRisqueUneCrise(this, "crise de la trentaine");
+                        JeRisqueUneCrise(this, "la crise de la trentaine");
                         break;
                     case 40:
-                        JeRisqueUneCrise(this, "crise de la quarantaine");
+                        JeRisqueUneCrise(this, "la crise de la quarantaine");
                         break;
                     case 50:
-                        JeRisqueUneCrise(this, "crise de la cinquantaine");
+                        JeRisqueUneCrise(this, "la crise de la cinquantaine");
                         break;
                     default:
                         break;
