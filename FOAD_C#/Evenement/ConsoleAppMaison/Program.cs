@@ -24,7 +24,7 @@ namespace ConsoleAppMaison
                 temperatureInterieure.Monter();
             }
 
-            if (temperatureInterieure.Degres > 22)
+            while (temperatureInterieure.Degres > 10)
             {
                 Console.WriteLine(temperatureInterieure.Degres + "°C");
                 temperatureInterieure.Diminuer();
