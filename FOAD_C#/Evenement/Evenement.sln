@@ -11,6 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsAppReagitAUnEve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsControlLibrary", "WindowsFormsControlLibrary\WindowsFormsControlLibrary.csproj", "{FA1E4218-A87E-4EE7-BE17-5060DB6BB1B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryTemp", "ClassLibraryMeteo\ClassLibraryTemp.csproj", "{0F52B9BF-FFE9-4805-92ED-FFC5852A54AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppHumain", "ConsoleAppHumain\ConsoleAppHumain.csproj", "{99F660C9-838C-4F27-BE26-F6EAF010727D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppMeteo", "ConsoleAppMeteo\ConsoleAppMeteo.csproj", "{0DB083F8-16B0-4863-AE58-4280CF60D300}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppMaison", "ConsoleAppMaison\ConsoleAppMaison.csproj", "{9A1801C4-FA78-4701-845E-B8B69A9B50AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +41,22 @@ Global
 		{FA1E4218-A87E-4EE7-BE17-5060DB6BB1B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA1E4218-A87E-4EE7-BE17-5060DB6BB1B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA1E4218-A87E-4EE7-BE17-5060DB6BB1B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F52B9BF-FFE9-4805-92ED-FFC5852A54AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F52B9BF-FFE9-4805-92ED-FFC5852A54AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F52B9BF-FFE9-4805-92ED-FFC5852A54AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F52B9BF-FFE9-4805-92ED-FFC5852A54AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99F660C9-838C-4F27-BE26-F6EAF010727D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99F660C9-838C-4F27-BE26-F6EAF010727D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99F660C9-838C-4F27-BE26-F6EAF010727D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F660C9-838C-4F27-BE26-F6EAF010727D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DB083F8-16B0-4863-AE58-4280CF60D300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DB083F8-16B0-4863-AE58-4280CF60D300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DB083F8-16B0-4863-AE58-4280CF60D300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DB083F8-16B0-4863-AE58-4280CF60D300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A1801C4-FA78-4701-845E-B8B69A9B50AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A1801C4-FA78-4701-845E-B8B69A9B50AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A1801C4-FA78-4701-845E-B8B69A9B50AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A1801C4-FA78-4701-845E-B8B69A9B50AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
