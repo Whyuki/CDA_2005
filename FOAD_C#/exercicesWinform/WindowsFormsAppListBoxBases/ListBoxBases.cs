@@ -14,9 +14,14 @@ namespace WindowsFormsAppListBoxBases
 {
     public partial class ListBoxBases : Form
     {
+
+        private static int compteurInstance;
         public ListBoxBases()
         {
             InitializeComponent();
+
+            compteurInstance++;
+            this.Text += " n° " + compteurInstance.ToString();
         }
 
         /// <summary>

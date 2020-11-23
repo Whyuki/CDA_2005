@@ -15,6 +15,8 @@ namespace WindowsFormsAppEmprunt
     public partial class FormEmprunt : Form
     {
 
+        private static int compteurInstance;
+
         private Emprunt emprunt;
 
         private BindingList<Periodicite> listePeriodicites;
@@ -22,6 +24,8 @@ namespace WindowsFormsAppEmprunt
         public FormEmprunt()
         {
             InitializeComponent();
+            compteurInstance++;
+            this.Text += " n° " + compteurInstance.ToString();
             emprunt = new Emprunt();
             listePeriodicites = new BindingList<Periodicite>(Enum.GetValues(typeof(Periodicite)).OfType<Periodicite>().ToList());
             listBoxPeriodicite.DataSource = listePeriodicites;
@@ -89,7 +93,7 @@ namespace WindowsFormsAppEmprunt
                     break;
             }
 
-            // Met à jour la durée de remboursement en mois en fonciton de la périodicité 
+            // Met à jour la durée de remboursement en mois en fonction de la périodicité 
             if (hScrollBarDuree.Value % periodicite == 0)
             {
                 emprunt.DureeRemboursementEnMois = hScrollBarDuree.Value;
@@ -251,7 +255,7 @@ namespace WindowsFormsAppEmprunt
             textBoxCapitalEmprunte.Clear();
             errorProviderNom.Clear();
             errorProviderCapital.Clear();
-            
+
         }
 
         /// <summary>

@@ -14,11 +14,14 @@ namespace WindowsFormsAppDefilement
     {
         private Color couleurChoisie;
 
+        private static int compteurInstance;
         public Color CouleurChoisie { get => couleurChoisie; /*set => couleurChoisie = value;*/ }
 
         public Defilement()
         {
             InitializeComponent();
+            compteurInstance++;
+            this.Text += " n° " + compteurInstance.ToString();
             couleurChoisie = Color.FromArgb(0, 0, 0);
             MiseAJourDeLaVue();
         }
@@ -42,7 +45,7 @@ namespace WindowsFormsAppDefilement
             this.hScrollBarRouge.Value = couleurChoisie.R;
             this.numericUpDownRouge.Value = couleurChoisie.R;
             this.textBoxRouge.BackColor = Color.FromArgb(couleurChoisie.R, 0, 0);
-            
+
             this.hScrollBarVert.Value = couleurChoisie.G;
             this.numericUpDownVert.Value = couleurChoisie.G;
             this.textBoxVert.BackColor = Color.FromArgb(0, couleurChoisie.G, 0);

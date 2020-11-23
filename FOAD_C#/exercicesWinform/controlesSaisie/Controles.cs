@@ -18,10 +18,14 @@ namespace controlesSaisie
     {
         private Facture factureActuelle;
 
+        private static int compteurInstance;
+
         public Controles()
         {
             InitializeComponent();
             factureActuelle = new Facture();
+            compteurInstance++;
+            this.Text += " n° " + compteurInstance.ToString();
         }
 
         public Controles(Facture facture)
@@ -188,7 +192,7 @@ namespace controlesSaisie
             bool cpIsOk = ClassVerifications.ValidCP(cp);
 
 
-            
+
             // check if date is later than today
             if (dateIsOk)
             {
@@ -225,7 +229,7 @@ namespace controlesSaisie
             {
                 e.Cancel = true;
             }
-            
+
         }
 
     }

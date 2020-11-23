@@ -14,11 +14,21 @@ namespace WindowsFormsAppCheckBoxRadioButton
 {
     public partial class checkBoxAndRadioButton : Form
     {
+        private static int compteurInstance;
+
         public checkBoxAndRadioButton()
         {
             InitializeComponent();
+            compteurInstance++;
+            this.Text += " n° " + compteurInstance.ToString();
         }
-
+        public checkBoxAndRadioButton(string str)
+        {
+            InitializeComponent();
+            compteurInstance++;
+            this.Text += " n° " + compteurInstance.ToString();
+            textBox_votreTexte.Text = str;
+        }
 
 
         /// <summary>

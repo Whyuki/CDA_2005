@@ -14,9 +14,13 @@ namespace CALCULATRICE
     {
         private int somme = 0;
 
+        private static int compteurInstance;
+
         public Calculatrice()
         {
             InitializeComponent();
+            compteurInstance++;
+            this.Text += " n° "+ compteurInstance.ToString();
         }
 
         private void buttonNumber_Click(object sender, EventArgs e)

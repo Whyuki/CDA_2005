@@ -13,9 +13,12 @@ namespace WindowsFormsAppListBoxAndComboBox
 {
     public partial class FormListBoxComboBox : Form
     {
+        private static int compteurInstance;
         public FormListBoxComboBox()
         {
             InitializeComponent();
+            compteurInstance++;
+            this.Text += " n° " + compteurInstance.ToString();
             comboBoxSource.Items.Add("France");
             comboBoxSource.Items.Add("Belgique");
             comboBoxSource.Items.Add("Allemagne");
