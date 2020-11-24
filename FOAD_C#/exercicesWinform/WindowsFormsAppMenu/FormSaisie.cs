@@ -26,7 +26,28 @@ namespace WindowsFormsAppMenu
 
         private void buttonValider_Click(object sender, EventArgs e)
         {
-            TexteSaisi(textBoxVotreTexte.Text, this);
+            if (textBoxVotreTexte.Text.Length > 0)
+            {
+                TexteSaisi(textBoxVotreTexte.Text, this);
+            }
+            else
+            {
+                errorProviderSaisie.SetError(buttonValider, "Veuillez saisir un texte");
+            }
+        }
+
+        private void textBoxVotreTexte_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                this.buttonValider_Click(this, e);
+            }
+        }
+
+        private void textBoxVotreTexte_TextChanged(object sender, EventArgs e)
+        {
+            errorProviderSaisie.Clear();
         }
     }
 }

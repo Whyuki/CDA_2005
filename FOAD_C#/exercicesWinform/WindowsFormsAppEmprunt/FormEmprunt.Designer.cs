@@ -286,6 +286,7 @@
             this.Controls.Add(this.labelDureeMoisRemboursement);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelNom);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormEmprunt";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Emprunts";

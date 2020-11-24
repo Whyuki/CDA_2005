@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsAppCheckBoxRadioButton;
@@ -19,20 +20,45 @@ namespace WindowsFormsAppMenu
 {
     public partial class FormMenu : Form
     {
+
         public FormMenu()
         {
+            Thread trdSplash = new Thread(new ThreadStart(RunSplashScreen));
+            trdSplash.Start();
+
+            Thread.Sleep(5000);
             InitializeComponent();
-            toolStripStatusLabelDate.Text = DateTime.Now.ToString("d");
+
+             trdSplash.Abort(); 
+
+            menuStripMain.MdiWindowListItem = toolStripMenuItemFenetres;
+            toolStripStatusLabelDate.Text = DateTime.Now.ToString();
+            timerDate.Start();
+            
+        }
+
+        private void RunSplashScreen()
+        {
+            Application.Run(new FormSplashScreen());
+
         }
 
         private void Identification_Click(object sender, EventArgs e)
         {
             toolStripStatusLabelDerniereOperation.Text = "S'identifier";
-            MessageBox.Show("Bienvenue :)");
-            toolStripMenuItemPhase1.Enabled = true;
-            toolStripMenuItemPhase2.Enabled = true;
-            toolStripMenuItemPhase3.Enabled = true;
-            toolStripMenuItemFenetres.Enabled = true;
+            FormLogin formLogin = new FormLogin();
+            formLogin.ShowDialog();
+
+            if (formLogin.LoginIsOk)
+            {
+                toolStripMenuItemPhase1.Enabled = true;
+                toolStripMenuItemPhase2.Enabled = true;
+                toolStripMenuItemPhase3.Enabled = true;
+                toolStripSplitButtonPhase3.Enabled = true;
+                toolStripMenuItemFenetres.Enabled = true;
+                toolStripMenuItemIdentification.Enabled = false;
+                toolStripButtonIdentification.Enabled = false;
+            }
         }
 
         private void toolStripMenuItemAdditionneur_Click(object sender, EventArgs e)
@@ -40,7 +66,9 @@ namespace WindowsFormsAppMenu
             toolStripStatusLabelDerniereOperation.Text = "Additionneur";
             Calculatrice formCalculatrice = new Calculatrice();
             formCalculatrice.MdiParent = this;
+
             formCalculatrice.Show();
+
         }
 
         private void toolStripMenuItemControles_Click(object sender, EventArgs e)
@@ -51,16 +79,26 @@ namespace WindowsFormsAppMenu
             formControles.Show();
         }
 
-        private void toolStripMenuItemCases_Click(object sender, EventArgs e)
+        private void Cases_Click()
         {
             toolStripStatusLabelDerniereOperation.Text = "Cases";
-          
+
             FormSaisie formSaisie = new FormSaisie();
             formSaisie.MdiParent = this;
             formSaisie.TexteSaisi += FormSaisie_TexteSaisi;
             formSaisie.Show();
 
         }
+
+        private void toolStripMenuItemCases_Click(object sender, EventArgs e)
+        {
+            this.Cases_Click();
+        }
+        private void toolStripOutilsMenuItemCases_Click(object sender, EventArgs e)
+        {
+            this.Cases_Click();
+        }
+
 
         private void FormSaisie_TexteSaisi(string texte, FormSaisie saisieSender)
         {
@@ -70,16 +108,26 @@ namespace WindowsFormsAppMenu
             formck.Show();
         }
 
-        private void toolStripMenuItemListBox_Click(object sender, EventArgs e)
+        private void ListBoxOpening()
         {
             toolStripStatusLabelDerniereOperation.Text = "ListBox";
             ListBoxBases formListBoxBases = new ListBoxBases();
             formListBoxBases.MdiParent = this;
             formListBoxBases.Show();
+        }
+
+        private void toolStripMenuItemListBox_Click(object sender, EventArgs e)
+        {
+            this.ListBoxOpening();
 
         }
 
-        private void toolStripMenuItemComboBox_Click(object sender, EventArgs e)
+        private void toolStripOutilsMenuItemListBox_Click(object sender, EventArgs e)
+        {
+            this.ListBoxOpening();
+        }
+
+        private void ComboBoxOpening()
         {
             toolStripStatusLabelDerniereOperation.Text = "ComboBox";
             FormListBoxComboBox formListBoxComboBox = new FormListBoxComboBox();
@@ -87,7 +135,17 @@ namespace WindowsFormsAppMenu
             formListBoxComboBox.Show();
         }
 
-        private void toolStripMenuItemDefilement_Click(object sender, EventArgs e)
+        private void toolStripMenuItemComboBox_Click(object sender, EventArgs e)
+        {
+            this.ComboBoxOpening();
+        }
+
+        private void toolStripOutilsMenuItemComboBox_Click(object sender, EventArgs e)
+        {
+            this.ComboBoxOpening();
+        }
+
+        private void DefilementOpening()
         {
             toolStripStatusLabelDerniereOperation.Text = "Defilement";
             Defilement formDefilement = new Defilement();
@@ -95,7 +153,17 @@ namespace WindowsFormsAppMenu
             formDefilement.Show();
         }
 
-        private void toolStripMenuItemEmprunt_Click(object sender, EventArgs e)
+        private void toolStripMenuItemDefilement_Click(object sender, EventArgs e)
+        {
+            this.DefilementOpening();
+        }
+
+        private void toolStripOutilsMenuItemDefilement_Click(object sender, EventArgs e)
+        {
+            this.DefilementOpening();
+        }
+
+        private void EmpruntOpening()
         {
             toolStripStatusLabelDerniereOperation.Text = "Emprunt";
             FormEmprunt formEmprunt = new FormEmprunt();
@@ -103,10 +171,20 @@ namespace WindowsFormsAppMenu
             formEmprunt.Show();
         }
 
+        private void toolStripMenuItemEmprunt_Click(object sender, EventArgs e)
+        {
+            this.EmpruntOpening();
+        }
+
+        private void toolStripOutilsMenuItemEmprunt_Click(object sender, EventArgs e)
+        {
+            this.EmpruntOpening();
+        }
+
         private void FormMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult dr = MessageBox.Show
-           ("Fin de l’application", "FIN",
+           ("Fin de l’application", "Quitter",
            MessageBoxButtons.YesNo,
            MessageBoxIcon.Question,
            MessageBoxDefaultButton.Button1);
@@ -132,6 +210,21 @@ namespace WindowsFormsAppMenu
         {
             this.LayoutMdi(MdiLayout.TileVertical);
 
+        }
+
+        private void toolStripMenuItemQuitter_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void timerDate_Tick(object sender, EventArgs e)
+        {
+            toolStripStatusLabelDate.Text = DateTime.Now.ToString();
+        }
+
+        private void toolStripSplitButtonPhase3_ButtonClick(object sender, EventArgs e)
+        {
+            toolStripSplitButtonPhase3.ShowDropDown();
         }
     }
 }
