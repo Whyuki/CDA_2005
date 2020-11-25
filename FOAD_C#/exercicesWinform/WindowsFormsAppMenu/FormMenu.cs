@@ -23,24 +23,12 @@ namespace WindowsFormsAppMenu
 
         public FormMenu()
         {
-            Thread trdSplash = new Thread(new ThreadStart(RunSplashScreen));
-            trdSplash.Start();
-
-            Thread.Sleep(5000);
             InitializeComponent();
-
-             trdSplash.Abort(); 
 
             menuStripMain.MdiWindowListItem = toolStripMenuItemFenetres;
             toolStripStatusLabelDate.Text = DateTime.Now.ToString();
             timerDate.Start();
             
-        }
-
-        private void RunSplashScreen()
-        {
-            Application.Run(new FormSplashScreen());
-
         }
 
         private void Identification_Click(object sender, EventArgs e)

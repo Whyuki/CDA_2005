@@ -36,7 +36,7 @@
             // 
             // timerSplashScreen
             // 
-            this.timerSplashScreen.Interval = 1000;
+            this.timerSplashScreen.Interval = 250;
             this.timerSplashScreen.Tick += new System.EventHandler(this.timerSplashScreen_Tick);
             // 
             // progressBarSplashScreen
@@ -47,6 +47,7 @@
             this.progressBarSplashScreen.Name = "progressBarSplashScreen";
             this.progressBarSplashScreen.Size = new System.Drawing.Size(334, 40);
             this.progressBarSplashScreen.TabIndex = 0;
+            this.progressBarSplashScreen.UseWaitCursor = true;
             // 
             // FormSplashScreen
             // 

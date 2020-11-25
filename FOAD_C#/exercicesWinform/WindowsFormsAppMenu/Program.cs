@@ -16,6 +16,7 @@ namespace WindowsFormsAppMenu
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new FormSplashScreen());
             Application.Run(new FormMenu());
         }
     }

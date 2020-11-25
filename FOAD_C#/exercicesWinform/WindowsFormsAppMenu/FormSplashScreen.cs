@@ -21,12 +21,14 @@ namespace WindowsFormsAppMenu
 
         private void timerSplashScreen_Tick(object sender, EventArgs e)
         {
-            progressBarSplashScreen.Increment(25);
-            if (progressBarSplashScreen.Value >100)
+            progressBarSplashScreen.Increment(5);
+
+            if (progressBarSplashScreen.Value == progressBarSplashScreen.Maximum)
             {
                 timerSplashScreen.Stop();
-                Application.Exit();
+                this.Close();
             }
+
         }
     }
 }
