@@ -30,7 +30,7 @@ namespace WindowsFormsAppMenu
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            if (textBoxLogin.Text == "admin" && textBoxPassword.Text == "admin")
+            if (textBoxLogin.Text == "nyadmin" && textBoxPassword.Text == "nyadmin")
             {
                 loginIsOk = true;
                 this.Close();
