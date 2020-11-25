@@ -175,7 +175,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Controles";
             this.Text = "Les contrôles";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.controle_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.controlErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -212,17 +212,5 @@ namespace controlesSaisie
 
         }
 
-
-        /// <summary>
-        /// Asks the user to confirm closing the application
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void controle_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-
-        }
-
     }
 }
