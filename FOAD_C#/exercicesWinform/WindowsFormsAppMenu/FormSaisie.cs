@@ -24,7 +24,7 @@ namespace WindowsFormsAppMenu
             this.Text += " n° " + compteurInstance.ToString();
         }
 
-        private void buttonValider_Click(object sender, EventArgs e)
+        private void ValiderSaisie()
         {
             if (textBoxVotreTexte.Text.Length > 0)
             {
@@ -36,12 +36,17 @@ namespace WindowsFormsAppMenu
             }
         }
 
+        private void buttonValider_Click(object sender, EventArgs e)
+        {
+            this.ValiderSaisie();
+        }
+
         private void textBoxVotreTexte_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
-                this.buttonValider_Click(this, e);
+                this.ValiderSaisie();
             }
         }
 

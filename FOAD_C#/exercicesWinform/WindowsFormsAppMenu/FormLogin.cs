@@ -28,7 +28,7 @@ namespace WindowsFormsAppMenu
             this.Close();
         }
 
-        private void buttonOk_Click(object sender, EventArgs e)
+        private void ValiderSaisie()
         {
             if (textBoxLogin.Text == "nyadmin" && textBoxPassword.Text == "nyadmin")
             {
@@ -39,6 +39,11 @@ namespace WindowsFormsAppMenu
             {
                 errorProviderLogin.SetError(buttonOk, "Echec de l'identification");
             }
+        }
+
+        private void buttonOk_Click(object sender, EventArgs e)
+        {
+            this.ValiderSaisie();
         }
 
         private void textBoxLogin_TextChanged(object sender, EventArgs e)
@@ -54,14 +59,14 @@ namespace WindowsFormsAppMenu
 
         private void textBoxLogin_KeyPress(object sender, KeyPressEventArgs e)
         {
-            this.click_Enter(sender, e);
+            this.ValiderSaisie();
         }
 
 
 
         private void textBoxPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
-            this.click_Enter(sender, e);
+            this.ValiderSaisie();
         }
 
         private void click_Enter(object sender, KeyPressEventArgs e)
@@ -69,7 +74,7 @@ namespace WindowsFormsAppMenu
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
-                this.buttonOk_Click(this, e);
+                this.ValiderSaisie();
             }
         }
     }
