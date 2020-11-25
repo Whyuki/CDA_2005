@@ -220,15 +220,7 @@ namespace controlesSaisie
         /// <param name="e"></param>
         private void controle_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dr = MessageBox.Show
-            ("Fin de l’application", "FIN",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question,
-            MessageBoxDefaultButton.Button1);
-            if (dr == DialogResult.No)
-            {
-                e.Cancel = true;
-            }
+            Application.Exit();
 
         }
 
