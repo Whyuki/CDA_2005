@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="ClassLibraryProduction.Production">
+    <Position X="4" Y="1.25" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgEAABoAAAAKgDAgAAAAIAAAAAAAAAIABAACAAUA=</HashCode>
+      <FileName>Production.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="statutDeLaProduction" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="ClassLibraryProduction.StatutProduction">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAQAAAAAAQAAAAAAgAAAACAAAAAAAAAA=</HashCode>
+      <FileName>StatutProduction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
