@@ -94,10 +94,9 @@
             this.toolStripButtonContinuerC = new System.Windows.Forms.ToolStripButton();
             this.errorProviderRedemarrage = new System.Windows.Forms.ErrorProvider(this.components);
             this.timerHeure = new System.Windows.Forms.Timer(this.components);
-            this.timerProdA = new System.Windows.Forms.Timer(this.components);
-            this.timerProdB = new System.Windows.Forms.Timer(this.components);
-            this.timerProdC = new System.Windows.Forms.Timer(this.components);
-            this.timerDerniereHeure = new System.Windows.Forms.Timer(this.components);
+            this.labelAvancementA = new System.Windows.Forms.Label();
+            this.labelAvancementB = new System.Windows.Forms.Label();
+            this.labelAvancementC = new System.Windows.Forms.Label();
             this.tabControlOngletsType.SuspendLayout();
             this.tabTypeA.SuspendLayout();
             this.tabTypeB.SuspendLayout();
@@ -520,7 +519,7 @@
             // quitterToolStripMenuItem
             // 
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
             this.quitterToolStripMenuItem.Text = "Quitter";
             this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
             // 
@@ -659,7 +658,6 @@
             // toolStripButtonDemarrerA
             // 
             this.toolStripButtonDemarrerA.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.toolStripButtonDemarrerA.Enabled = false;
             this.toolStripButtonDemarrerA.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.toolStripButtonDemarrerA.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDemarrerA.Image")));
             this.toolStripButtonDemarrerA.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -675,7 +673,6 @@
             // toolStripButtonSuspendreA
             // 
             this.toolStripButtonSuspendreA.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.toolStripButtonSuspendreA.Enabled = false;
             this.toolStripButtonSuspendreA.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.toolStripButtonSuspendreA.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSuspendreA.Image")));
             this.toolStripButtonSuspendreA.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -691,7 +688,6 @@
             // toolStripButtonContinuerA
             // 
             this.toolStripButtonContinuerA.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.toolStripButtonContinuerA.Enabled = false;
             this.toolStripButtonContinuerA.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.toolStripButtonContinuerA.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonContinuerA.Image")));
             this.toolStripButtonContinuerA.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -706,7 +702,6 @@
             // toolStripButtonDemarrerB
             // 
             this.toolStripButtonDemarrerB.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.toolStripButtonDemarrerB.Enabled = false;
             this.toolStripButtonDemarrerB.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.toolStripButtonDemarrerB.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDemarrerB.Image")));
             this.toolStripButtonDemarrerB.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -722,7 +717,6 @@
             // toolStripButtonSuspendreB
             // 
             this.toolStripButtonSuspendreB.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.toolStripButtonSuspendreB.Enabled = false;
             this.toolStripButtonSuspendreB.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.toolStripButtonSuspendreB.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSuspendreB.Image")));
             this.toolStripButtonSuspendreB.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -737,7 +731,6 @@
             // toolStripButtonContinuerB
             // 
             this.toolStripButtonContinuerB.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.toolStripButtonContinuerB.Enabled = false;
             this.toolStripButtonContinuerB.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.toolStripButtonContinuerB.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonContinuerB.Image")));
             this.toolStripButtonContinuerB.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -752,7 +745,6 @@
             // toolStripButtonDemarrerC
             // 
             this.toolStripButtonDemarrerC.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.toolStripButtonDemarrerC.Enabled = false;
             this.toolStripButtonDemarrerC.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.toolStripButtonDemarrerC.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDemarrerC.Image")));
             this.toolStripButtonDemarrerC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -768,7 +760,6 @@
             // toolStripButtonSuspendreC
             // 
             this.toolStripButtonSuspendreC.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.toolStripButtonSuspendreC.Enabled = false;
             this.toolStripButtonSuspendreC.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.toolStripButtonSuspendreC.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSuspendreC.Image")));
             this.toolStripButtonSuspendreC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -783,7 +774,6 @@
             // toolStripButtonContinuerC
             // 
             this.toolStripButtonContinuerC.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.toolStripButtonContinuerC.Enabled = false;
             this.toolStripButtonContinuerC.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.toolStripButtonContinuerC.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonContinuerC.Image")));
             this.toolStripButtonContinuerC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -804,30 +794,47 @@
             this.timerHeure.Interval = 1000;
             this.timerHeure.Tick += new System.EventHandler(this.timerHeure_Tick);
             // 
-            // timerProdA
+            // labelAvancementA
             // 
-            this.timerProdA.Interval = 1000;
-            this.timerProdA.Tick += new System.EventHandler(this.timerProdA_Tick);
+            this.labelAvancementA.AutoSize = true;
+            this.labelAvancementA.BackColor = System.Drawing.Color.Transparent;
+            this.labelAvancementA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAvancementA.Location = new System.Drawing.Point(591, 313);
+            this.labelAvancementA.Name = "labelAvancementA";
+            this.labelAvancementA.Size = new System.Drawing.Size(32, 20);
+            this.labelAvancementA.TabIndex = 10;
+            this.labelAvancementA.Text = "0%";
             // 
-            // timerProdB
+            // labelAvancementB
             // 
-            this.timerProdB.Interval = 1000;
-            this.timerProdB.Tick += new System.EventHandler(this.timerProdB_Tick);
+            this.labelAvancementB.AutoSize = true;
+            this.labelAvancementB.BackColor = System.Drawing.Color.Transparent;
+            this.labelAvancementB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAvancementB.Location = new System.Drawing.Point(591, 366);
+            this.labelAvancementB.Name = "labelAvancementB";
+            this.labelAvancementB.Size = new System.Drawing.Size(32, 20);
+            this.labelAvancementB.TabIndex = 11;
+            this.labelAvancementB.Text = "0%";
             // 
-            // timerProdC
+            // labelAvancementC
             // 
-            this.timerProdC.Interval = 1000;
-            this.timerProdC.Tick += new System.EventHandler(this.timerProdC_Tick);
-            // 
-            // timerDerniereHeure
-            // 
-            this.timerDerniereHeure.Interval = 3600000;
+            this.labelAvancementC.AutoSize = true;
+            this.labelAvancementC.BackColor = System.Drawing.Color.Transparent;
+            this.labelAvancementC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAvancementC.Location = new System.Drawing.Point(591, 421);
+            this.labelAvancementC.Name = "labelAvancementC";
+            this.labelAvancementC.Size = new System.Drawing.Size(32, 20);
+            this.labelAvancementC.TabIndex = 12;
+            this.labelAvancementC.Text = "0%";
             // 
             // FormToutEmbal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(920, 523);
+            this.Controls.Add(this.labelAvancementC);
+            this.Controls.Add(this.labelAvancementB);
+            this.Controls.Add(this.labelAvancementA);
             this.Controls.Add(this.tabControlOngletsType);
             this.Controls.Add(this.toolStripFeuxTricolore);
             this.Controls.Add(this.progressBarProdB);
@@ -846,6 +853,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PRODUCTION DES CAISSES";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormToutEmbal_FormClosing);
             this.tabControlOngletsType.ResumeLayout(false);
             this.tabTypeA.ResumeLayout(false);
             this.tabTypeA.PerformLayout();
@@ -931,10 +939,9 @@
         private System.Windows.Forms.TextBox textBoxNbCaisseDepuisDemarrageTypeC;
         private System.Windows.Forms.Label labelNbCaisseDepuisDemarrageTypeC;
         private System.Windows.Forms.Timer timerHeure;
-        private System.Windows.Forms.Timer timerProdA;
-        private System.Windows.Forms.Timer timerProdB;
-        private System.Windows.Forms.Timer timerProdC;
-        private System.Windows.Forms.Timer timerDerniereHeure;
+        private System.Windows.Forms.Label labelAvancementA;
+        private System.Windows.Forms.Label labelAvancementC;
+        private System.Windows.Forms.Label labelAvancementB;
     }
 }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ClassLibraryProduction
@@ -9,14 +10,16 @@ namespace ClassLibraryProduction
     public class Production
     {
         #region Champs
+        public delegate void DelegateProduction(Production prodSender, StatutProduction prodStatut);
+        public event DelegateProduction ChangementStatutProduction;
+        public event DelegateProduction ChangementNbCaisses;
+
+        string nom;
         DateTime dateTimeDemarrageProduction;
         StatutProduction statutDeLaProduction;
-
         int nbCaissesAProduire;
         int nbCaissesAProduireParHeure;
-
         int nbCaissesDepuisDemarrageTotal;
-        int nbCaissesDepuisDemarrageSansDefaut;
         int nbCaissesDepuisDemarrageAvecDefaut;
         #endregion
 
@@ -41,23 +44,26 @@ namespace ClassLibraryProduction
         {
             get => nbCaissesDepuisDemarrageTotal; //set => nbCaissesDepuisDemarrageTotal = value; 
         }
-        public int NbCaissesDepuisDemarrageSansDefaut
-        {
-            get => nbCaissesDepuisDemarrageSansDefaut; //set => nbCaissesDepuisDemarrageSansDefaut = value; 
-        }
+
         public int NbCaissesDepuisDemarrageAvecDefaut
         {
             get => nbCaissesDepuisDemarrageAvecDefaut; //set => nbCaissesDepuisDemarrageAvecDefaut = value; 
         }
+        public string Nom
+        {
+            get => nom; //set => nom = value; 
+        }
         #endregion
 
         #region Constructeur
-        public Production(int _nbCaissesAProduire, int _nbCaissesAProduireParHeure)
+        public Production(string _nom, int _nbCaissesAProduire, int _nbCaissesAProduireParHeure)
         {
+            this.nom = _nom;
             this.nbCaissesAProduire = _nbCaissesAProduire;
             this.nbCaissesAProduireParHeure = _nbCaissesAProduireParHeure;
             this.statutDeLaProduction = StatutProduction.NonDemarré;
             this.Reinitialisation();
+
         }
         #endregion
 
@@ -65,7 +71,6 @@ namespace ClassLibraryProduction
         public void Reinitialisation()
         {
             this.nbCaissesDepuisDemarrageTotal = 0;
-            this.nbCaissesDepuisDemarrageSansDefaut = 0;
             this.nbCaissesDepuisDemarrageAvecDefaut = 0;
             this.dateTimeDemarrageProduction = new DateTime();
         }
@@ -78,10 +83,10 @@ namespace ClassLibraryProduction
                 || statutDeLaProduction == StatutProduction.Suspendu
                 || statutDeLaProduction == StatutProduction.Terminé)
             {
-
                 this.statutDeLaProduction = StatutProduction.Demarré;
                 this.Reinitialisation();
                 this.dateTimeDemarrageProduction = DateTime.Now;
+                ChangementStatutProduction(this, this.statutDeLaProduction);
                 return true;
             }
             else
@@ -96,6 +101,8 @@ namespace ClassLibraryProduction
                 || statutDeLaProduction == StatutProduction.Redemarré)
             {
                 this.statutDeLaProduction = StatutProduction.Suspendu;
+                ChangementStatutProduction(this, this.statutDeLaProduction);
+
                 return true;
             }
             else
@@ -109,6 +116,7 @@ namespace ClassLibraryProduction
             if (statutDeLaProduction == StatutProduction.Suspendu)
             {
                 this.statutDeLaProduction = StatutProduction.Redemarré;
+                ChangementStatutProduction(this, this.statutDeLaProduction);
                 return true;
             }
             else
@@ -127,7 +135,7 @@ namespace ClassLibraryProduction
             {
                 nbCaissesDepuisDemarrageTotal++;
                 nbCaissesDepuisDemarrageAvecDefaut += random;
-                nbCaissesDepuisDemarrageSansDefaut = this.nbCaissesDepuisDemarrageTotal - nbCaissesDepuisDemarrageAvecDefaut;
+                ChangementNbCaisses(this, this.statutDeLaProduction);
             }
         }
         #endregion
@@ -147,25 +155,23 @@ namespace ClassLibraryProduction
         }
         #endregion
 
-        #region calculs taux defaut
+        #region Calculs taux defaut
         public double CalculTauxDefautHeure()
         {
-            // à faire par heure 
+            // methode a revoir
             TimeSpan tempsEcouleDepuisDemarrage = DateTime.Now - dateTimeDemarrageProduction;
             double nbHeuredepuisDemarrage = tempsEcouleDepuisDemarrage.TotalHours;
             if (nbCaissesDepuisDemarrageTotal > 0 && nbHeuredepuisDemarrage > 0)
             {
-                return Math.Round(((double)nbCaissesDepuisDemarrageAvecDefaut / nbHeuredepuisDemarrage) / ((double)nbCaissesDepuisDemarrageTotal / nbHeuredepuisDemarrage), 4);
+                return Math.Round(((double)nbCaissesDepuisDemarrageAvecDefaut / nbHeuredepuisDemarrage) / ((double)nbCaissesAProduireParHeure), 4);
             }
             else
             {
                 return 0;
             }
         }
-
         public double CalculTauxDefautDepuisDemarrage()
         {
-
             if (nbCaissesDepuisDemarrageTotal > 0)
             {
                 return Math.Round((double)nbCaissesDepuisDemarrageAvecDefaut / (double)nbCaissesDepuisDemarrageTotal, 4);
@@ -175,13 +181,17 @@ namespace ClassLibraryProduction
                 return 0;
             }
         }
+
+
         #endregion
 
-        #region CalculAvancement
+        #region Calcul pourcentage d'avancement
         public int CalculAvancementEnPourcentage()
         {
             return Convert.ToInt32(((double)nbCaissesDepuisDemarrageTotal / (double)nbCaissesAProduire) * 100);
         }
         #endregion
+
+
     }
 }

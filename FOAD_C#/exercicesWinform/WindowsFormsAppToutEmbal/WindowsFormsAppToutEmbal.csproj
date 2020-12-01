@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAccueilToutEmbal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAccueilToutEmbal.Designer.cs">
+      <DependentUpon>FormAccueilToutEmbal.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormToutEmbal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAccueilToutEmbal.resx">
+      <DependentUpon>FormAccueilToutEmbal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormToutEmbal.resx">
       <DependentUpon>FormToutEmbal.cs</DependentUpon>
     </EmbeddedResource>
