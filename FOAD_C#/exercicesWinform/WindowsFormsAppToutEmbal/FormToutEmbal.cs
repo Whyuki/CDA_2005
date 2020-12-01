@@ -145,15 +145,15 @@ namespace WindowsFormsAppToutEmbal
         }
         private void TauxDefautHeureAJour()
         {
-            if (!prodTypeA.IsTermine())
+            if (!prodTypeA.IsTermine() && prodTypeA.StatutDeLaProduction!=StatutProduction.Suspendu)
             {
                 textBoxTauxDefautHeureTypeA.Text = prodTypeA.CalculTauxDefautHeure().ToString();
             }
-            if (!prodTypeB.IsTermine())
+            if (!prodTypeB.IsTermine() && prodTypeB.StatutDeLaProduction != StatutProduction.Suspendu)
             {
                 textBoxTauxDefautHeureTypeB.Text = prodTypeB.CalculTauxDefautHeure().ToString();
             }
-            if (!prodTypeC.IsTermine())
+            if (!prodTypeC.IsTermine() && prodTypeC.StatutDeLaProduction != StatutProduction.Suspendu)
             {
                 textBoxTauxDefautHeureTypeC.Text = prodTypeC.CalculTauxDefautHeure().ToString();
             }
@@ -302,7 +302,7 @@ namespace WindowsFormsAppToutEmbal
             }
             else if (ReprisePossible(prod))
             {
-                DialogResult result = MessageBox.Show("Cette action redémarre la production: êtes vous sûr de vouloir redémarrer ? \nPour reprendre la production cliquez sur NON\nPour annuler cliquez sur ANNULER", "REDEMARRER OU CONTINUER", MessageBoxButtons.YesNoCancel);
+                DialogResult result = MessageBox.Show("Cette action redémarre la production "+prod.Nom+" : êtes vous sûr de vouloir redémarrer ? \nPour reprendre la production cliquez sur NON\nPour annuler cliquez sur ANNULER", "REDEMARRER OU CONTINUER", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
                 {
                     prod.DemarrerProduction();
@@ -366,114 +366,114 @@ namespace WindowsFormsAppToutEmbal
         #region Actions prod A
         private void toolStripButtonDemarrerA_Click(object sender, EventArgs e)
         {
-            this.Demarrer(prodTypeA);
             tabControlOngletsType.SelectedTab = tabTypeA;
+            this.Demarrer(prodTypeA);
         }
 
         private void toolStripMenuItemDemarrerA_Click(object sender, EventArgs e)
         {
-            this.Demarrer(prodTypeA);
             tabControlOngletsType.SelectedTab = tabTypeA;
+            this.Demarrer(prodTypeA);
         }
 
         private void toolStripButtonSuspendreA_Click(object sender, EventArgs e)
         {
-            this.Arreter(prodTypeA);
             tabControlOngletsType.SelectedTab = tabTypeA;
+            this.Arreter(prodTypeA);
         }
 
         private void toolStripMenuItemArreterA_Click(object sender, EventArgs e)
         {
-            this.Arreter(prodTypeA);
             tabControlOngletsType.SelectedTab = tabTypeA;
+            this.Arreter(prodTypeA);
         }
 
         private void toolStripMenuItemContinuerA_Click(object sender, EventArgs e)
         {
-            this.Continuer(prodTypeA);
             tabControlOngletsType.SelectedTab = tabTypeA;
+            this.Continuer(prodTypeA);
         }
 
         private void toolStripButtonContinuerA_Click(object sender, EventArgs e)
         {
-            this.Continuer(prodTypeA);
             tabControlOngletsType.SelectedTab = tabTypeA;
+            this.Continuer(prodTypeA);
         }
         #endregion
 
         #region Actions prod B
         private void toolStripButtonDemarrerB_Click(object sender, EventArgs e)
         {
-            this.Demarrer(prodTypeB);
             tabControlOngletsType.SelectedTab = tabTypeB;
+            this.Demarrer(prodTypeB);
         }
 
         private void toolStripMenuItemDemarrerB_Click(object sender, EventArgs e)
         {
-            this.Demarrer(prodTypeB);
             tabControlOngletsType.SelectedTab = tabTypeB;
+            this.Demarrer(prodTypeB);
         }
 
         private void toolStripButtonSuspendreB_Click(object sender, EventArgs e)
         {
-            this.Arreter(prodTypeB);
             tabControlOngletsType.SelectedTab = tabTypeB;
+            this.Arreter(prodTypeB);
         }
 
         private void toolStripMenuItemArreterB_Click(object sender, EventArgs e)
         {
-            this.Arreter(prodTypeB);
             tabControlOngletsType.SelectedTab = tabTypeB;
+            this.Arreter(prodTypeB);
         }
 
         private void toolStripMenuItemContinuerB_Click(object sender, EventArgs e)
         {
-            this.Continuer(prodTypeB);
             tabControlOngletsType.SelectedTab = tabTypeB;
+            this.Continuer(prodTypeB);
         }
 
         private void toolStripButtonContinuerB_Click(object sender, EventArgs e)
         {
-            this.Continuer(prodTypeB);
             tabControlOngletsType.SelectedTab = tabTypeB;
+            this.Continuer(prodTypeB);
         }
         #endregion
 
         #region Actions prod C
         private void toolStripButtonDemarrerC_Click(object sender, EventArgs e)
         {
-            this.Demarrer(prodTypeC);
             tabControlOngletsType.SelectedTab = tabTypeC;
+            this.Demarrer(prodTypeC);
         }
 
         private void toolStripMenuItemDemarrerC_Click(object sender, EventArgs e)
         {
-            this.Demarrer(prodTypeC);
             tabControlOngletsType.SelectedTab = tabTypeC;
+            this.Demarrer(prodTypeC);
         }
 
         private void toolStripButtonSuspendreC_Click(object sender, EventArgs e)
         {
-            this.Arreter(prodTypeC);
             tabControlOngletsType.SelectedTab = tabTypeC;
+            this.Arreter(prodTypeC);
         }
 
         private void toolStripMenuItemArreterC_Click(object sender, EventArgs e)
         {
-            this.Arreter(prodTypeC);
             tabControlOngletsType.SelectedTab = tabTypeC;
+            this.Arreter(prodTypeC);
         }
 
         private void toolStripButtonContinuerC_Click(object sender, EventArgs e)
         {
-            this.Continuer(prodTypeC);
             tabControlOngletsType.SelectedTab = tabTypeC;
+            this.Continuer(prodTypeC);
         }
 
         private void toolStripMenuItemContinuerC_Click(object sender, EventArgs e)
         {
-            this.Continuer(prodTypeC);
             tabControlOngletsType.SelectedTab = tabTypeC;
+            this.Continuer(prodTypeC);
         }
         #endregion
 
