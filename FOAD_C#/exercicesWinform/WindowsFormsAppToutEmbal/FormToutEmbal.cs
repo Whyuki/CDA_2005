@@ -23,7 +23,6 @@ namespace WindowsFormsAppToutEmbal
         private Production prodTypeB;
         private Production prodTypeC;
 
-        private const int NombreMilliSecondesParHeure = 1000 * 60 * 60;
 
         #endregion
 
@@ -53,28 +52,27 @@ namespace WindowsFormsAppToutEmbal
             prodTypeB.ChangementStatutProduction += ProdTypeB_ChangementStatutProduction;
             prodTypeC.ChangementStatutProduction += ProdTypeC_ChangementStatutProduction;
 
+
             prodTypeA.ChangementNbCaisses += ProdTypeA_ChangementNbCaisses;
             prodTypeB.ChangementNbCaisses += ProdTypeB_ChangementNbCaisses;
             prodTypeC.ChangementNbCaisses += ProdTypeC_ChangementNbCaisses;
 
             miseAjourIHM = new DelegateMiseAJourIHM(MiseAjourIHM);
-            this.miseAjourIHM();
+            
+            this.MiseAjourIHM();
         }
-
         #endregion
 
         #region Event changement nombre de caisses
-        private void ProdTypeC_ChangementNbCaisses(Production prodSender, StatutProduction prodStatut)
+        private void ProdTypeA_ChangementNbCaisses(Production prodSender, StatutProduction prodStatut)
         {
             this.Invoke(this.miseAjourIHM);
         }
-
         private void ProdTypeB_ChangementNbCaisses(Production prodSender, StatutProduction prodStatut)
         {
             this.Invoke(this.miseAjourIHM);
         }
-
-        private void ProdTypeA_ChangementNbCaisses(Production prodSender, StatutProduction prodStatut)
+        private void ProdTypeC_ChangementNbCaisses(Production prodSender, StatutProduction prodStatut)
         {
             this.Invoke(this.miseAjourIHM);
         }
@@ -83,48 +81,27 @@ namespace WindowsFormsAppToutEmbal
         #region Event changement statut de la production
         private void ProdTypeC_ChangementStatutProduction(Production prodSender, StatutProduction prodStatut)
         {
-            Thread t = new Thread(() => MajInvok(prodTypeC));
-            t.Start();
+            this.NotificationProductionTerminee(prodSender, prodStatut);
         }
-
         private void ProdTypeB_ChangementStatutProduction(Production prodSender, StatutProduction prodStatut)
         {
-            Thread t = new Thread(() => MajInvok(prodTypeB));
-            t.Start();
+            this.NotificationProductionTerminee(prodSender, prodStatut);
         }
-
         private void ProdTypeA_ChangementStatutProduction(Production prodSender, StatutProduction prodStatut)
         {
-            Thread t = new Thread(() => MajInvok(prodTypeA));
-            t.Start();
+            this.NotificationProductionTerminee(prodSender, prodStatut);
         }
-        #endregion
-
-        #region Thread production
-        public void MajInvok(Production prod)
+        
+        public void NotificationProductionTerminee(Production prod, StatutProduction prodStatut)
         {
-            int dureeDodo = NombreMilliSecondesParHeure / prod.NbCaissesAProduireParHeure;
-            bool continuerThread = true;
-            while (continuerThread)
+            if (prodStatut == StatutProduction.Terminé)
             {
-                if (prod.StatutDeLaProduction == StatutProduction.Demarré || prod.StatutDeLaProduction == StatutProduction.Redemarré)
-                {
-                    Thread.Sleep(dureeDodo);
-                    this.Produire(prod);
-                    this.Invoke(this.miseAjourIHM);
-                }
-                else
-                {
-                    if (prod.StatutDeLaProduction == StatutProduction.Terminé)
-                    {
-                        MessageBox.Show("Production " + prod.Nom + " terminée !");
-                    }
-                    continuerThread = false;
-                }
+                this.Invoke(this.miseAjourIHM);
+                MessageBox.Show("Production " + prod.Nom + " terminée !");
             }
         }
         #endregion
-
+       
         #region Mise a jour de l'IHM
         private void MiseAjourIHM()
         {
@@ -145,15 +122,15 @@ namespace WindowsFormsAppToutEmbal
         }
         private void TauxDefautHeureAJour()
         {
-            if (!prodTypeA.IsTermine() && prodTypeA.StatutDeLaProduction!=StatutProduction.Suspendu)
+            if (prodTypeA.StatutDeLaProduction == StatutProduction.Demarré || prodTypeA.StatutDeLaProduction == StatutProduction.Redemarré)
             {
                 textBoxTauxDefautHeureTypeA.Text = prodTypeA.CalculTauxDefautHeure().ToString();
             }
-            if (!prodTypeB.IsTermine() && prodTypeB.StatutDeLaProduction != StatutProduction.Suspendu)
+            if (prodTypeB.StatutDeLaProduction == StatutProduction.Demarré || prodTypeB.StatutDeLaProduction == StatutProduction.Redemarré)
             {
                 textBoxTauxDefautHeureTypeB.Text = prodTypeB.CalculTauxDefautHeure().ToString();
             }
-            if (!prodTypeC.IsTermine() && prodTypeC.StatutDeLaProduction != StatutProduction.Suspendu)
+            if (prodTypeC.StatutDeLaProduction == StatutProduction.Demarré || prodTypeC.StatutDeLaProduction == StatutProduction.Redemarré)
             {
                 textBoxTauxDefautHeureTypeC.Text = prodTypeC.CalculTauxDefautHeure().ToString();
             }
@@ -296,13 +273,13 @@ namespace WindowsFormsAppToutEmbal
         #region Demarrer / Redemarrer
         private void Demarrer(Production prod)
         {
-            if (prod.IsTermine())
+            if (prod.StatutDeLaProduction==StatutProduction.Terminé)
             {
                 prod.DemarrerProduction();
             }
             else if (ReprisePossible(prod))
             {
-                DialogResult result = MessageBox.Show("Cette action redémarre la production "+prod.Nom+" : êtes vous sûr de vouloir redémarrer ? \nPour reprendre la production cliquez sur NON\nPour annuler cliquez sur ANNULER", "REDEMARRER OU CONTINUER", MessageBoxButtons.YesNoCancel);
+                DialogResult result = MessageBox.Show("Cette action redémarre la production " + prod.Nom + " : êtes vous sûr de vouloir redémarrer ? \nPour reprendre la production cliquez sur NON\nPour annuler cliquez sur ANNULER", "REDEMARRER OU CONTINUER", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
                 {
                     prod.DemarrerProduction();
@@ -344,18 +321,7 @@ namespace WindowsFormsAppToutEmbal
 
         }
         #endregion
-
-        #region Produire
-        private void Produire(Production prod)
-        {
-            if (prod.StatutDeLaProduction == StatutProduction.Demarré
-           || prod.StatutDeLaProduction == StatutProduction.Redemarré)
-            {
-                prod.ProduireUneCaisse();
-            }
-        }
-        #endregion
-
+     
         #region Timer Heure
         private void timerHeure_Tick(object sender, EventArgs e)
         {
@@ -531,7 +497,6 @@ namespace WindowsFormsAppToutEmbal
         {
             this.Close();
         }
-
 
         private void FormToutEmbal_FormClosing(object sender, FormClosingEventArgs e)
         {

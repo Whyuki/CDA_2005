@@ -10,6 +10,10 @@ namespace ClassLibraryProduction
     public class Production
     {
         #region Champs
+
+        private const int NombreMilliSecondesParHeure = 1000 * 60 * 60;
+
+
         public delegate void DelegateProduction(Production prodSender, StatutProduction prodStatut);
         public event DelegateProduction ChangementStatutProduction;
         public event DelegateProduction ChangementNbCaisses;
@@ -64,6 +68,39 @@ namespace ClassLibraryProduction
             this.statutDeLaProduction = StatutProduction.NonDemarré;
             this.Reinitialisation();
 
+            this.ChangementStatutProduction += Production_ChangementStatutProduction;
+
+        }
+        #endregion
+
+        #region Event Changement Statut de la production
+        private void Production_ChangementStatutProduction(Production prodSender, StatutProduction prodStatut)
+        {
+            if (prodStatut != StatutProduction.Terminé)
+            {
+                Thread t = new Thread(() => ThreadProduction());
+                t.Start();
+            }
+        }
+        #endregion
+
+        #region Thread Production
+        public void ThreadProduction()
+        {
+            int dureeDodo = NombreMilliSecondesParHeure / this.nbCaissesAProduireParHeure;
+            bool continuerThread = true;
+            while (continuerThread)
+            {
+                if (this.StatutDeLaProduction == StatutProduction.Demarré || this.StatutDeLaProduction == StatutProduction.Redemarré)
+                {
+                    Thread.Sleep(dureeDodo);
+                    this.ProduireUneCaisse();
+                }
+                else
+                {
+                    continuerThread = false;
+                }
+            }
         }
         #endregion
 
@@ -86,7 +123,10 @@ namespace ClassLibraryProduction
                 this.statutDeLaProduction = StatutProduction.Demarré;
                 this.Reinitialisation();
                 this.dateTimeDemarrageProduction = DateTime.Now;
-                ChangementStatutProduction(this, this.statutDeLaProduction);
+                if (ChangementStatutProduction != null)
+                {
+                    ChangementStatutProduction(this, this.statutDeLaProduction);
+                }
                 return true;
             }
             else
@@ -101,8 +141,10 @@ namespace ClassLibraryProduction
                 || statutDeLaProduction == StatutProduction.Redemarré)
             {
                 this.statutDeLaProduction = StatutProduction.Suspendu;
-                ChangementStatutProduction(this, this.statutDeLaProduction);
-
+                if (ChangementStatutProduction != null)
+                {
+                    ChangementStatutProduction(this, this.statutDeLaProduction);
+                }
                 return true;
             }
             else
@@ -116,7 +158,10 @@ namespace ClassLibraryProduction
             if (statutDeLaProduction == StatutProduction.Suspendu)
             {
                 this.statutDeLaProduction = StatutProduction.Redemarré;
-                ChangementStatutProduction(this, this.statutDeLaProduction);
+                if (ChangementStatutProduction != null)
+                {
+                    ChangementStatutProduction(this, this.statutDeLaProduction);
+                }
                 return true;
             }
             else
@@ -124,6 +169,25 @@ namespace ClassLibraryProduction
                 return false;
             }
         }
+        #region Production terminée
+        public bool IsTermine()
+        {
+            if (this.nbCaissesDepuisDemarrageTotal == this.NbCaissesAProduire)
+            {
+                this.statutDeLaProduction = StatutProduction.Terminé;
+                if (ChangementStatutProduction != null)
+                {
+                    ChangementStatutProduction(this, this.statutDeLaProduction);
+                }
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
         #endregion
 
         #region Produire
@@ -135,22 +199,10 @@ namespace ClassLibraryProduction
             {
                 nbCaissesDepuisDemarrageTotal++;
                 nbCaissesDepuisDemarrageAvecDefaut += random;
-                ChangementNbCaisses(this, this.statutDeLaProduction);
-            }
-        }
-        #endregion
-
-        #region Production terminée
-        public bool IsTermine()
-        {
-            if (this.nbCaissesDepuisDemarrageTotal == this.NbCaissesAProduire)
-            {
-                this.statutDeLaProduction = StatutProduction.Terminé;
-                return true;
-            }
-            else
-            {
-                return false;
+                if (ChangementNbCaisses != null)
+                {
+                    ChangementNbCaisses(this, this.statutDeLaProduction);
+                }
             }
         }
         #endregion
