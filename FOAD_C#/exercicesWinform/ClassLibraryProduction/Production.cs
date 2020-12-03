@@ -66,7 +66,9 @@ namespace ClassLibraryProduction
             this.nbCaissesAProduire = _nbCaissesAProduire;
             this.nbCaissesAProduireParHeure = _nbCaissesAProduireParHeure;
             this.statutDeLaProduction = StatutProduction.NonDemarré;
-            this.Reinitialisation();
+            this.nbCaissesDepuisDemarrageTotal = 0;
+            this.nbCaissesDepuisDemarrageAvecDefaut = 0;
+            this.dateTimeDemarrageProduction = new DateTime();
 
             this.ChangementStatutProduction += Production_ChangementStatutProduction;
 
@@ -116,12 +118,10 @@ namespace ClassLibraryProduction
         #region Changement etat production
         public bool DemarrerProduction()
         {
-            if (statutDeLaProduction == StatutProduction.NonDemarré
-                || statutDeLaProduction == StatutProduction.Suspendu
-                || statutDeLaProduction == StatutProduction.Terminé)
+            if (statutDeLaProduction == StatutProduction.NonDemarré)
             {
                 this.statutDeLaProduction = StatutProduction.Demarré;
-                this.Reinitialisation();
+
                 this.dateTimeDemarrageProduction = DateTime.Now;
                 if (ChangementStatutProduction != null)
                 {
@@ -135,7 +135,7 @@ namespace ClassLibraryProduction
             }
         }
 
-        public bool ArreterProduction()
+        public bool SuspendreProduction()
         {
             if (statutDeLaProduction == StatutProduction.Demarré
                 || statutDeLaProduction == StatutProduction.Redemarré)
@@ -172,7 +172,7 @@ namespace ClassLibraryProduction
         #region Production terminée
         public bool IsTermine()
         {
-            if (this.nbCaissesDepuisDemarrageTotal == this.NbCaissesAProduire)
+            if (CalculNbCaissesDepuisDemarrageSansDefaut() == this.NbCaissesAProduire)
             {
                 this.statutDeLaProduction = StatutProduction.Terminé;
                 if (ChangementStatutProduction != null)
@@ -207,10 +207,17 @@ namespace ClassLibraryProduction
         }
         #endregion
 
+        #region Calcul nombre de caisses sans defaut depuisdemarrage 
+        public int CalculNbCaissesDepuisDemarrageSansDefaut()
+        {
+            return this.nbCaissesDepuisDemarrageTotal - nbCaissesDepuisDemarrageAvecDefaut;
+        }
+        #endregion;
+
         #region Calculs taux defaut
         public double CalculTauxDefautHeure()
         {
-            // methode a revoir
+
             TimeSpan tempsEcouleDepuisDemarrage = DateTime.Now - dateTimeDemarrageProduction;
             double nbHeuredepuisDemarrage = tempsEcouleDepuisDemarrage.TotalHours;
             if (nbCaissesDepuisDemarrageTotal > 0 && nbHeuredepuisDemarrage > 0)
@@ -240,7 +247,7 @@ namespace ClassLibraryProduction
         #region Calcul pourcentage d'avancement
         public int CalculAvancementEnPourcentage()
         {
-            return Convert.ToInt32(((double)nbCaissesDepuisDemarrageTotal / (double)nbCaissesAProduire) * 100);
+            return Convert.ToInt32(((double)CalculNbCaissesDepuisDemarrageSansDefaut() / (double)nbCaissesAProduire) * 100);
         }
         #endregion
 

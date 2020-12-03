@@ -58,7 +58,7 @@ namespace WindowsFormsAppToutEmbal
             prodTypeC.ChangementNbCaisses += ProdTypeC_ChangementNbCaisses;
 
             miseAjourIHM = new DelegateMiseAJourIHM(MiseAjourIHM);
-            
+
             this.MiseAjourIHM();
         }
         #endregion
@@ -91,7 +91,7 @@ namespace WindowsFormsAppToutEmbal
         {
             this.NotificationProductionTerminee(prodSender, prodStatut);
         }
-        
+
         public void NotificationProductionTerminee(Production prod, StatutProduction prodStatut)
         {
             if (prodStatut == StatutProduction.Terminé)
@@ -101,7 +101,7 @@ namespace WindowsFormsAppToutEmbal
             }
         }
         #endregion
-       
+
         #region Mise a jour de l'IHM
         private void MiseAjourIHM()
         {
@@ -173,12 +173,12 @@ namespace WindowsFormsAppToutEmbal
                 item.Enabled = false;
             }
 
-            if (DemarragePossible(prodTypeA) || ReprisePossible(prodTypeA))
+            if (DemarragePossible(prodTypeA))
             {
                 toolStripButtonDemarrerA.Enabled = true;
                 toolStripMenuItemDemarrerA.Enabled = true;
             }
-            if (ArretPossible(prodTypeA))
+            if (PausePossible(prodTypeA))
             {
                 toolStripButtonSuspendreA.Enabled = true;
                 toolStripMenuItemArreterA.Enabled = true;
@@ -189,12 +189,12 @@ namespace WindowsFormsAppToutEmbal
                 toolStripMenuItemContinuerA.Enabled = true;
             }
 
-            if (DemarragePossible(prodTypeB) || ReprisePossible(prodTypeB))
+            if (DemarragePossible(prodTypeB))
             {
                 toolStripButtonDemarrerB.Enabled = true;
                 toolStripMenuItemDemarrerB.Enabled = true;
             }
-            if (ArretPossible(prodTypeB))
+            if (PausePossible(prodTypeB))
             {
                 toolStripButtonSuspendreB.Enabled = true;
                 toolStripMenuItemArreterB.Enabled = true;
@@ -205,12 +205,12 @@ namespace WindowsFormsAppToutEmbal
                 toolStripMenuItemContinuerB.Enabled = true;
             }
 
-            if (DemarragePossible(prodTypeC) || ReprisePossible(prodTypeC))
+            if (DemarragePossible(prodTypeC))
             {
                 toolStripButtonDemarrerC.Enabled = true;
                 toolStripMenuItemDemarrerC.Enabled = true;
             }
-            if (ArretPossible(prodTypeC))
+            if (PausePossible(prodTypeC))
             {
                 toolStripButtonSuspendreC.Enabled = true;
                 toolStripMenuItemArreterC.Enabled = true;
@@ -223,9 +223,9 @@ namespace WindowsFormsAppToutEmbal
         }
         private void AvancementAJour()
         {
-            labelAvancementA.Text = prodTypeA.NbCaissesDepuisDemarrageTotal.ToString() + "/" + prodTypeA.NbCaissesAProduire.ToString() + " : " + prodTypeA.CalculAvancementEnPourcentage().ToString() + "%";
-            labelAvancementB.Text = prodTypeB.NbCaissesDepuisDemarrageTotal.ToString() + "/" + prodTypeB.NbCaissesAProduire.ToString() + " : " + prodTypeB.CalculAvancementEnPourcentage().ToString() + "%";
-            labelAvancementC.Text = prodTypeC.NbCaissesDepuisDemarrageTotal.ToString() + "/" + prodTypeC.NbCaissesAProduire.ToString() + " : " + prodTypeC.CalculAvancementEnPourcentage().ToString() + "%";
+            labelAvancementA.Text = prodTypeA.CalculNbCaissesDepuisDemarrageSansDefaut().ToString() + "/" + prodTypeA.NbCaissesAProduire.ToString() + " : " + prodTypeA.CalculAvancementEnPourcentage().ToString() + "%";
+            labelAvancementB.Text = prodTypeB.CalculNbCaissesDepuisDemarrageSansDefaut().ToString() + "/" + prodTypeB.NbCaissesAProduire.ToString() + " : " + prodTypeB.CalculAvancementEnPourcentage().ToString() + "%";
+            labelAvancementC.Text = prodTypeC.CalculNbCaissesDepuisDemarrageSansDefaut().ToString() + "/" + prodTypeC.NbCaissesAProduire.ToString() + " : " + prodTypeC.CalculAvancementEnPourcentage().ToString() + "%";
 
         }
 
@@ -235,7 +235,7 @@ namespace WindowsFormsAppToutEmbal
         private bool DemarragePossible(Production prod)
         {
             if (prod.StatutDeLaProduction == StatutProduction.NonDemarré
-                    || prod.StatutDeLaProduction == StatutProduction.Terminé)
+                   )
             {
                 return true;
             }
@@ -244,7 +244,7 @@ namespace WindowsFormsAppToutEmbal
                 return false;
             }
         }
-        private bool ArretPossible(Production prod)
+        private bool PausePossible(Production prod)
         {
             if (prod.StatutDeLaProduction == StatutProduction.Redemarré
                 || prod.StatutDeLaProduction == StatutProduction.Demarré)
@@ -273,23 +273,7 @@ namespace WindowsFormsAppToutEmbal
         #region Demarrer / Redemarrer
         private void Demarrer(Production prod)
         {
-            if (prod.StatutDeLaProduction==StatutProduction.Terminé)
-            {
-                prod.DemarrerProduction();
-            }
-            else if (ReprisePossible(prod))
-            {
-                DialogResult result = MessageBox.Show("Cette action redémarre la production " + prod.Nom + " : êtes vous sûr de vouloir redémarrer ? \nPour reprendre la production cliquez sur NON\nPour annuler cliquez sur ANNULER", "REDEMARRER OU CONTINUER", MessageBoxButtons.YesNoCancel);
-                if (result == DialogResult.Yes)
-                {
-                    prod.DemarrerProduction();
-                }
-                else if (result == DialogResult.No)
-                {
-                    prod.ContinuerProduction();
-                }
-            }
-            else if (DemarragePossible(prod))
+            if (DemarragePossible(prod))
             {
                 prod.DemarrerProduction();
             }
@@ -301,9 +285,9 @@ namespace WindowsFormsAppToutEmbal
         #region Arreter
         private void Arreter(Production prod)
         {
-            if (ArretPossible(prod))
+            if (PausePossible(prod))
             {
-                prod.ArreterProduction();
+                prod.SuspendreProduction();
             }
             this.miseAjourIHM();
 
@@ -321,7 +305,7 @@ namespace WindowsFormsAppToutEmbal
 
         }
         #endregion
-     
+
         #region Timer Heure
         private void timerHeure_Tick(object sender, EventArgs e)
         {
