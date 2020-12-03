@@ -122,15 +122,15 @@ namespace WindowsFormsAppToutEmbal
         }
         private void TauxDefautHeureAJour()
         {
-            if (prodTypeA.StatutDeLaProduction == StatutProduction.Demarré || prodTypeA.StatutDeLaProduction == StatutProduction.Redemarré)
+            if (prodTypeA.StatutDeLaProduction != StatutProduction.Suspendu)
             {
                 textBoxTauxDefautHeureTypeA.Text = prodTypeA.CalculTauxDefautHeure().ToString();
             }
-            if (prodTypeB.StatutDeLaProduction == StatutProduction.Demarré || prodTypeB.StatutDeLaProduction == StatutProduction.Redemarré)
+            if (prodTypeB.StatutDeLaProduction != StatutProduction.Suspendu)
             {
                 textBoxTauxDefautHeureTypeB.Text = prodTypeB.CalculTauxDefautHeure().ToString();
             }
-            if (prodTypeC.StatutDeLaProduction == StatutProduction.Demarré || prodTypeC.StatutDeLaProduction == StatutProduction.Redemarré)
+            if (prodTypeC.StatutDeLaProduction != StatutProduction.Suspendu)
             {
                 textBoxTauxDefautHeureTypeC.Text = prodTypeC.CalculTauxDefautHeure().ToString();
             }
