@@ -247,7 +247,14 @@ namespace ClassLibraryProduction
         #region Calcul pourcentage d'avancement
         public int CalculAvancementEnPourcentage()
         {
+            if (nbCaissesAProduire > 0)
+            {
+
             return Convert.ToInt32(((double)CalculNbCaissesDepuisDemarrageSansDefaut() / (double)nbCaissesAProduire) * 100);
+            } else
+            {
+                return 0;
+            }
         }
         #endregion
 

@@ -17,8 +17,10 @@ namespace WindowsFormsAppToutEmbal
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-          //  Application.Run(new FormToutEmbal());
-            Application.Run(new FormAccueilToutEmbal());
+            //Application.Run(new FormToutEmbal());
+            //Application.Run(new FormAccueilToutEmbal());
+            Application.Run(new FormToutEmbalV2());
+
         }
     }
 }

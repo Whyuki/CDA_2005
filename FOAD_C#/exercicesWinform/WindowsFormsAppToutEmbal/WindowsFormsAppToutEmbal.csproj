@@ -52,19 +52,37 @@
     <Compile Include="FormAccueilToutEmbal.Designer.cs">
       <DependentUpon>FormAccueilToutEmbal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAjouterProductionToutEmbal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAjouterProductionToutEmbal.Designer.cs">
+      <DependentUpon>FormAjouterProductionToutEmbal.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormToutEmbal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormToutEmbal.Designer.cs">
       <DependentUpon>FormToutEmbal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormToutEmbalV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormToutEmbalV2.Designer.cs">
+      <DependentUpon>FormToutEmbalV2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAccueilToutEmbal.resx">
       <DependentUpon>FormAccueilToutEmbal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAjouterProductionToutEmbal.resx">
+      <DependentUpon>FormAjouterProductionToutEmbal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormToutEmbal.resx">
       <DependentUpon>FormToutEmbal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormToutEmbalV2.resx">
+      <DependentUpon>FormToutEmbalV2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -92,6 +110,10 @@
     <ProjectReference Include="..\ClassLibraryProduction\ClassLibraryProduction.csproj">
       <Project>{7343872d-d271-4b46-b868-035748bdcbed}</Project>
       <Name>ClassLibraryProduction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibraryUserControlToutEmbal\ClassLibraryUserControlToutEmbal.csproj">
+      <Project>{d83c95a4-7bcd-4db3-aac5-ffc10c141e58}</Project>
+      <Name>ClassLibraryUserControlToutEmbal</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

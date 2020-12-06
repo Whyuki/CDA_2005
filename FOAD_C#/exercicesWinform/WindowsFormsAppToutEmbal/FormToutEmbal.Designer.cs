@@ -113,7 +113,7 @@
             this.tabControlOngletsType.Controls.Add(this.tabTypeB);
             this.tabControlOngletsType.Controls.Add(this.tabTypeC);
             this.tabControlOngletsType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControlOngletsType.Location = new System.Drawing.Point(366, 29);
+            this.tabControlOngletsType.Location = new System.Drawing.Point(370, 29);
             this.tabControlOngletsType.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlOngletsType.Name = "tabControlOngletsType";
             this.tabControlOngletsType.SelectedIndex = 0;
@@ -530,7 +530,7 @@
             this.arrêterToolStripMenuItem,
             this.continuerToolStripMenuItem});
             this.productionToolStripMenuItem.Name = "productionToolStripMenuItem";
-            this.productionToolStripMenuItem.Size = new System.Drawing.Size(122, 25);
+            this.productionToolStripMenuItem.Size = new System.Drawing.Size(98, 25);
             this.productionToolStripMenuItem.Text = "Production";
             // 
             // démarrerToolStripMenuItem
@@ -581,7 +581,7 @@
             // 
             this.toolStripMenuItemArreterA.Enabled = false;
             this.toolStripMenuItemArreterA.Name = "toolStripMenuItemArreterA";
-            this.toolStripMenuItemArreterA.Size = new System.Drawing.Size(180, 26);
+            this.toolStripMenuItemArreterA.Size = new System.Drawing.Size(90, 26);
             this.toolStripMenuItemArreterA.Text = "A";
             this.toolStripMenuItemArreterA.Click += new System.EventHandler(this.toolStripMenuItemArreterA_Click);
             // 
@@ -589,7 +589,7 @@
             // 
             this.toolStripMenuItemArreterB.Enabled = false;
             this.toolStripMenuItemArreterB.Name = "toolStripMenuItemArreterB";
-            this.toolStripMenuItemArreterB.Size = new System.Drawing.Size(180, 26);
+            this.toolStripMenuItemArreterB.Size = new System.Drawing.Size(90, 26);
             this.toolStripMenuItemArreterB.Text = "B";
             this.toolStripMenuItemArreterB.Click += new System.EventHandler(this.toolStripMenuItemArreterB_Click);
             // 
@@ -597,7 +597,7 @@
             // 
             this.toolStripMenuItemArreterC.Enabled = false;
             this.toolStripMenuItemArreterC.Name = "toolStripMenuItemArreterC";
-            this.toolStripMenuItemArreterC.Size = new System.Drawing.Size(180, 26);
+            this.toolStripMenuItemArreterC.Size = new System.Drawing.Size(90, 26);
             this.toolStripMenuItemArreterC.Text = "C";
             this.toolStripMenuItemArreterC.Click += new System.EventHandler(this.toolStripMenuItemArreterC_Click);
             // 
