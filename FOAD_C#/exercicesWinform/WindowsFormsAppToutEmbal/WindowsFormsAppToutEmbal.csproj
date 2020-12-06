@@ -58,17 +58,17 @@
     <Compile Include="FormAjouterProductionToutEmbal.Designer.cs">
       <DependentUpon>FormAjouterProductionToutEmbal.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormToutEmbal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormToutEmbal.Designer.cs">
-      <DependentUpon>FormToutEmbal.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormToutEmbalV2.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormToutEmbalV2.Designer.cs">
       <DependentUpon>FormToutEmbalV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormToutEmbalV3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormToutEmbalV3.Designer.cs">
+      <DependentUpon>FormToutEmbalV3.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,11 +78,11 @@
     <EmbeddedResource Include="FormAjouterProductionToutEmbal.resx">
       <DependentUpon>FormAjouterProductionToutEmbal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormToutEmbal.resx">
-      <DependentUpon>FormToutEmbal.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormToutEmbalV2.resx">
       <DependentUpon>FormToutEmbalV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormToutEmbalV3.resx">
+      <DependentUpon>FormToutEmbalV3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

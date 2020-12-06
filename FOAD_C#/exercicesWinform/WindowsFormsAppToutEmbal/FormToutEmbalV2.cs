@@ -1,6 +1,4 @@
-﻿using ClassLibraryProduction;
-using ClassLibraryUserControlToutEmbal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,235 +8,228 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClassLibraryProduction;
 
 namespace WindowsFormsAppToutEmbal
 {
     public partial class FormToutEmbalV2 : Form
     {
         #region Champs
-        private delegate void DelegateMiseAJourIHM(Production prodSender, StatutProduction prodStatut);
+        private delegate void DelegateMiseAJourIHM();
         private DelegateMiseAJourIHM miseAjourIHM;
 
         private List<Production> productions;
+        private Production prodTypeA;
+        private Production prodTypeB;
+        private Production prodTypeC;
+
 
         #endregion
 
         #region Constructeurs
+        public FormToutEmbalV2() : this(new Production("A", 10000, 1000), new Production("B", 25000, 5000), new Production("C", 120000, 10000))
+        {
 
-        public FormToutEmbalV2()
+        }
+
+        public FormToutEmbalV2(Production prod1, Production prod2, Production prod3)
         {
             InitializeComponent();
-
-            productions = new List<Production>();
-            productions.Add(new Production("A", 10000, 1000));
-            productions.Add(new Production("B", 25000, 5000));
-            productions.Add(new Production("C", 120000, 10000));
-            productions.Add(new Production("D", 85000, 10000));
-            productions.Add(new Production("E", 700, 2000));
-            productions.Add(new Production("F", 800, 3000));
-            productions.Add(new Production("G", 500, 4000));
-            productions.Add(new Production("H", 200, 7000));
-            productions.Add(new Production("I", 300, 3000));
-
-            foreach (Production prod in productions)
-            {
-                this.AjouterProd(prod);
-            }
-
             timerHeure.Start();
+
             toolStripStatusLabelHeure.Text = DateTime.Now.ToString("t");
+
+            this.prodTypeA = prod1;
+            this.prodTypeB = prod2;
+            this.prodTypeC = prod3;
+            productions = new List<Production>();
+            productions.Add(prodTypeA);
+            productions.Add(prodTypeB);
+            productions.Add(prodTypeC);
+
+            //event & thread
+            prodTypeA.ChangementStatutProduction += ProdTypeA_ChangementStatutProduction;
+            prodTypeB.ChangementStatutProduction += ProdTypeB_ChangementStatutProduction;
+            prodTypeC.ChangementStatutProduction += ProdTypeC_ChangementStatutProduction;
+
+
+            prodTypeA.ChangementNbCaisses += ProdTypeA_ChangementNbCaisses;
+            prodTypeB.ChangementNbCaisses += ProdTypeB_ChangementNbCaisses;
+            prodTypeC.ChangementNbCaisses += ProdTypeC_ChangementNbCaisses;
+
             miseAjourIHM = new DelegateMiseAJourIHM(MiseAjourIHM);
 
-            for (int i = 0; i < productions.Count; i++)
-            {
-                this.MiseAjourIHM(productions[i], productions[i].StatutDeLaProduction);
-            }
-
-        }
-        #endregion
-
-        /// <summary>
-        /// Ajoute une production à la collection de productions
-        /// </summary>
-        /// <param name="prod"></param>
-        private void AjouterProd(Production prod)
-        {
-            prod.ChangementStatutProduction += Prod_ChangementStatutProduction;
-            prod.ChangementNbCaisses += Prod_ChangementNbCaisses;
-            ucProgressBar progressBar = new ucProgressBar(prod.Nom);
-            this.flowLayoutPanelProgressBar.Controls.Add(progressBar);
-
-            progressBar.Name = prod.Nom;
-            this.AjouterTabPage(prod);
-            this.AjouterEtat(prod);
-
-            ucBoutons ucActions = new ucBoutons(prod.Nom);
-            this.flowLayoutPanelBoutonsActions.Controls.Add(ucActions);
-            Button boutonDemarrer = this.Controls.Find("buttonDemarrer" + prod.Nom, true).First() as Button;
-            Button boutonPause = this.Controls.Find("buttonPause" + prod.Nom, true).First() as Button;
-            Button boutonContinuer = this.Controls.Find("buttonContinuer" + prod.Nom, true).First() as Button;
-            boutonDemarrer.Click += delegate (object sender, EventArgs e) { BoutonDemarrer_Click(sender, e, prod); };
-            boutonPause.Click += delegate (object sender, EventArgs e) { BoutonPause_Click(sender, e, prod); };
-            boutonContinuer.Click += delegate (object sender, EventArgs e) { BoutonContinuer_Click(sender, e, prod); };
-
-
-            this.AjouterToolStripMenuItemDemarrer(prod);
-            this.AjouterToolStripMenuItemSuspendre(prod);
-            this.AjouterToolStripMenuItemContinuer(prod);
-        }
-
-        #region Ajouter controls
-        private void AjouterTabPage(Production prod)
-        {
-            ucTabPageToutEmbal tab = new ucTabPageToutEmbal(prod.Nom);
-
-            ucTabContenuToutEmbal contenuTab = new ucTabContenuToutEmbal(prod.Nom);
-            contenuTab.Dock = DockStyle.Fill;
-            contenuTab.BringToFront();
-            contenuTab.Name = "tabPage" + prod.Nom;
-            tab.Controls.Add(contenuTab);
-            tabControlOngletsType.Controls.Add(tab);
-
-        }
-
-        private void AjouterEtat(Production prod)
-        {
-            ucEtatProd ucetat = new ucEtatProd(prod.Nom);
-            this.flowLayoutPanelEtat.Controls.Add(ucetat);
-        }
-
-        private void AjouterToolStripMenuItemDemarrer(Production prod)
-        {
-            ToolStripMenuItem menuDemarrer = new ToolStripMenuItem();
-            menuDemarrer.Name = prod.Nom + "ToolStripMenuItem";
-            menuDemarrer.Text = prod.Nom;
-            menuDemarrer.Click += delegate (object sender, EventArgs e) { MenuDemarrer_Click(sender, e, prod); };
-
-            démarrerToolStripMenuItem.DropDownItems.Add(menuDemarrer);
-
-        }
-        private void AjouterToolStripMenuItemSuspendre(Production prod)
-        {
-            ToolStripMenuItem menuSuspendre = new ToolStripMenuItem();
-            menuSuspendre.Name = prod.Nom + "ToolStripMenuItem";
-            menuSuspendre.Text = prod.Nom;
-            suspendreToolStripMenuItem.DropDownItems.Add(menuSuspendre);
-            menuSuspendre.Click += delegate (object sender, EventArgs e) { MenuSuspendre_Click(sender, e, prod); };
-
-        }
-        private void AjouterToolStripMenuItemContinuer(Production prod)
-        {
-            ToolStripMenuItem menuContinuer = new ToolStripMenuItem();
-            menuContinuer.Name = prod.Nom + "ToolStripMenuItem";
-            menuContinuer.Text = prod.Nom;
-            continuerToolStripMenuItem.DropDownItems.Add(menuContinuer);
-            menuContinuer.Click += delegate (object sender, EventArgs e) { MenuContinuer_Click(sender, e, prod); };
-        }
-        #endregion
-
-        #region event click actions
-        private void MenuDemarrer_Click(object sender, EventArgs e, Production prod)
-        {
-            this.Demarrer(prod);
-            TabPage tabPage = this.Controls.Find("tabPage" + prod.Nom, true).First() as TabPage;
-            this.tabControlOngletsType.SelectedTab = tabPage;
-        }
-        private void MenuSuspendre_Click(object sender, EventArgs e, Production prod)
-        {
-            this.Suspendre(prod);
-            TabPage tabPage = this.Controls.Find("tabPage" + prod.Nom, true).First() as TabPage;
-            this.tabControlOngletsType.SelectedTab = tabPage;
-        }
-        private void MenuContinuer_Click(object sender, EventArgs e, Production prod)
-        {
-            this.Continuer(prod);
-            TabPage tabPage = this.Controls.Find("tabPage" + prod.Nom, true).First() as TabPage;
-            this.tabControlOngletsType.SelectedTab = tabPage;
-        }
-
-        private void BoutonDemarrer_Click(object sender, EventArgs e, Production prod)
-        {
-            this.Demarrer(prod);
-            TabPage tabPage = this.Controls.Find("tabPage" + prod.Nom, true).First() as TabPage;
-            this.tabControlOngletsType.SelectedTab = tabPage;
-        }
-        private void BoutonPause_Click(object sender, EventArgs e, Production prod)
-        {
-            this.Suspendre(prod);
-            TabPage tabPage = this.Controls.Find("tabPage" + prod.Nom, true).First() as TabPage;
-            this.tabControlOngletsType.SelectedTab = tabPage;
-        }
-        private void BoutonContinuer_Click(object sender, EventArgs e, Production prod)
-        {
-            this.Continuer(prod);
-            TabPage tabPage = this.Controls.Find("tabPage" + prod.Nom, true).First() as TabPage;
-            this.tabControlOngletsType.SelectedTab = tabPage;
+            this.MiseAjourIHM();
         }
         #endregion
 
         #region Event changement nombre de caisses
-        private void Prod_ChangementNbCaisses(Production prodSender, StatutProduction prodStatut)
+        private void ProdTypeA_ChangementNbCaisses(Production prodSender, StatutProduction prodStatut)
         {
-            this.Invoke(this.miseAjourIHM, new Object[] { prodSender, prodStatut });
+            this.Invoke(this.miseAjourIHM);
+        }
+        private void ProdTypeB_ChangementNbCaisses(Production prodSender, StatutProduction prodStatut)
+        {
+            this.Invoke(this.miseAjourIHM);
+        }
+        private void ProdTypeC_ChangementNbCaisses(Production prodSender, StatutProduction prodStatut)
+        {
+            this.Invoke(this.miseAjourIHM);
         }
         #endregion
 
         #region Event changement statut de la production
-
-        private void Prod_ChangementStatutProduction(Production prodSender, StatutProduction prodStatut)
+        private void ProdTypeC_ChangementStatutProduction(Production prodSender, StatutProduction prodStatut)
         {
             this.NotificationProductionTerminee(prodSender, prodStatut);
-            this.Invoke(this.miseAjourIHM, new Object[] { prodSender, prodStatut });
+        }
+        private void ProdTypeB_ChangementStatutProduction(Production prodSender, StatutProduction prodStatut)
+        {
+            this.NotificationProductionTerminee(prodSender, prodStatut);
+        }
+        private void ProdTypeA_ChangementStatutProduction(Production prodSender, StatutProduction prodStatut)
+        {
+            this.NotificationProductionTerminee(prodSender, prodStatut);
         }
 
-        public void NotificationProductionTerminee(Production prodSender, StatutProduction prodStatut)
+        public void NotificationProductionTerminee(Production prod, StatutProduction prodStatut)
         {
-
             if (prodStatut == StatutProduction.Terminé)
             {
-                this.Invoke(this.miseAjourIHM, new Object[] { prodSender, prodStatut });
-                MessageBox.Show("Production " + prodSender.Nom + " terminée !");
+                this.Invoke(this.miseAjourIHM);
+                MessageBox.Show("Production " + prod.Nom + " terminée !");
             }
         }
         #endregion
 
         #region Mise a jour de l'IHM
-        private void MiseAjourIHM(Production prodSender, StatutProduction prodStatut)
+        private void MiseAjourIHM()
         {
-            ProgressBar pb1 = this.Controls.Find("progressBar" + prodSender.Nom, true).First() as ProgressBar;
-            pb1.Value = prodSender.CalculAvancementEnPourcentage();
-            pb1.Focus();
+            this.ActiverDesactiverBoutonsActions();
+            this.ProgressBarsAJour();
+            this.StatutProductionLabelAJour();
+            this.TauxDefautHeureAJour();
+            this.TauxDefautDepuisDemarrageAJour();
+            this.NombreCaissesDepuisDemarrageAjour();
+            this.AvancementAJour();
+        }
 
-            TextBox textBoxNbCaisseDepuisDemarrage = this.Controls.Find("textBoxNbCaisseDepuisDemarrage" + prodSender.Nom, true).First() as TextBox;
-            textBoxNbCaisseDepuisDemarrage.Text = prodSender.NbCaissesDepuisDemarrageTotal.ToString();
+        private void NombreCaissesDepuisDemarrageAjour()
+        {
+            textBoxNbCaisseDepuisDemarrageTypeA.Text = prodTypeA.NbCaissesDepuisDemarrageTotal.ToString();
+            textBoxNbCaisseDepuisDemarrageTypeB.Text = prodTypeB.NbCaissesDepuisDemarrageTotal.ToString();
+            textBoxNbCaisseDepuisDemarrageTypeC.Text = prodTypeC.NbCaissesDepuisDemarrageTotal.ToString();
+        }
+        private void TauxDefautHeureAJour()
+        {
+            if (prodTypeA.StatutDeLaProduction != StatutProduction.Suspendu)
+            {
+                textBoxTauxDefautHeureTypeA.Text = prodTypeA.CalculTauxDefautHeure().ToString();
+            }
+            if (prodTypeB.StatutDeLaProduction != StatutProduction.Suspendu)
+            {
+                textBoxTauxDefautHeureTypeB.Text = prodTypeB.CalculTauxDefautHeure().ToString();
+            }
+            if (prodTypeC.StatutDeLaProduction != StatutProduction.Suspendu)
+            {
+                textBoxTauxDefautHeureTypeC.Text = prodTypeC.CalculTauxDefautHeure().ToString();
+            }
+        }
+        private void TauxDefautDepuisDemarrageAJour()
+        {
+            textBoxTauxDefautDepuisDemarrageTypeA.Text = prodTypeA.CalculTauxDefautDepuisDemarrage().ToString();
+            textBoxTauxDefautDepuisDemarrageTypeB.Text = prodTypeB.CalculTauxDefautDepuisDemarrage().ToString();
+            textBoxTauxDefautDepuisDemarrageTypeC.Text = prodTypeC.CalculTauxDefautDepuisDemarrage().ToString();
+        }
+        private void StatutProductionLabelAJour()
+        {
+            toolStripStatusLabelCaisseAEtat.Text = prodTypeA.StatutDeLaProduction.ToString();
+            toolStripStatusLabelCaisseBEtat.Text = prodTypeB.StatutDeLaProduction.ToString();
+            toolStripStatusLabelCaisseCEtat.Text = prodTypeC.StatutDeLaProduction.ToString();
+        }
+        private void ProgressBarsAJour()
+        {
+            progressBarProdA.Value = prodTypeA.CalculAvancementEnPourcentage();
+            progressBarProdB.Value = prodTypeB.CalculAvancementEnPourcentage();
+            progressBarProdC.Value = prodTypeC.CalculAvancementEnPourcentage();
+        }
+        private void ActiverDesactiverBoutonsActions()
+        {
+            foreach (ToolStripButton item in toolStripFeuxTricolore.Items)
+            {
+                item.Enabled = false;
+            }
 
-            TextBox textBoxTauxDefautHeure = this.Controls.Find("textBoxTauxDefautHeure" + prodSender.Nom, true).First() as TextBox;
-            textBoxTauxDefautHeure.Text = prodSender.CalculTauxDefautHeure().ToString();
+            foreach (ToolStripMenuItem item in démarrerToolStripMenuItem.DropDownItems)
+            {
+                item.Enabled = false;
+            }
+            foreach (ToolStripMenuItem item in arrêterToolStripMenuItem.DropDownItems)
+            {
+                item.Enabled = false;
+            }
+            foreach (ToolStripMenuItem item in continuerToolStripMenuItem.DropDownItems)
+            {
+                item.Enabled = false;
+            }
 
-            TextBox textBoxTauxDefautDepuisDemarrage = this.Controls.Find("textBoxTauxDefautDepuisDemarrage" + prodSender.Nom, true).First() as TextBox;
-            textBoxTauxDefautDepuisDemarrage.Text = prodSender.CalculTauxDefautHeure().ToString();
+            if (DemarragePossible(prodTypeA))
+            {
+                toolStripButtonDemarrerA.Enabled = true;
+                toolStripMenuItemDemarrerA.Enabled = true;
+            }
+            if (PausePossible(prodTypeA))
+            {
+                toolStripButtonSuspendreA.Enabled = true;
+                toolStripMenuItemArreterA.Enabled = true;
+            }
+            if (ReprisePossible(prodTypeA))
+            {
+                toolStripButtonContinuerA.Enabled = true;
+                toolStripMenuItemContinuerA.Enabled = true;
+            }
 
+            if (DemarragePossible(prodTypeB))
+            {
+                toolStripButtonDemarrerB.Enabled = true;
+                toolStripMenuItemDemarrerB.Enabled = true;
+            }
+            if (PausePossible(prodTypeB))
+            {
+                toolStripButtonSuspendreB.Enabled = true;
+                toolStripMenuItemArreterB.Enabled = true;
+            }
+            if (ReprisePossible(prodTypeB))
+            {
+                toolStripButtonContinuerB.Enabled = true;
+                toolStripMenuItemContinuerB.Enabled = true;
+            }
 
-
-            TextBox textBoxEtatProduction = this.flowLayoutPanelEtat.Controls.Find("textBoxEtat" + prodSender.Nom, true).First() as TextBox;
-            textBoxEtatProduction.Text = prodSender.StatutDeLaProduction.ToString();
-
-            Button boutonDemarrer = this.Controls.Find("buttonDemarrer" + prodSender.Nom, true).First() as Button;
-            Button boutonPause = this.Controls.Find("buttonPause" + prodSender.Nom, true).First() as Button;
-            Button boutonContinuer = this.Controls.Find("buttonContinuer" + prodSender.Nom, true).First() as Button;
-
-            boutonDemarrer.Enabled = this.DemarragePossible(prodSender);
-            boutonPause.Enabled = this.PausePossible(prodSender);
-            boutonContinuer.Enabled = this.ReprisePossible(prodSender);
-
-            ToolStripMenuItem menuDemarrer = this.démarrerToolStripMenuItem.DropDownItems.Find(prodSender.Nom + "ToolStripMenuItem", true).First() as ToolStripMenuItem;
-            ToolStripMenuItem menuPause = this.suspendreToolStripMenuItem.DropDownItems.Find(prodSender.Nom + "ToolStripMenuItem", true).First() as ToolStripMenuItem;
-            ToolStripMenuItem menuContinuer = this.continuerToolStripMenuItem.DropDownItems.Find(prodSender.Nom + "ToolStripMenuItem", true).First() as ToolStripMenuItem;
-            menuDemarrer.Enabled = this.DemarragePossible(prodSender);
-            menuPause.Enabled = this.PausePossible(prodSender);
-            menuContinuer.Enabled = this.ReprisePossible(prodSender);
+            if (DemarragePossible(prodTypeC))
+            {
+                toolStripButtonDemarrerC.Enabled = true;
+                toolStripMenuItemDemarrerC.Enabled = true;
+            }
+            if (PausePossible(prodTypeC))
+            {
+                toolStripButtonSuspendreC.Enabled = true;
+                toolStripMenuItemArreterC.Enabled = true;
+            }
+            if (ReprisePossible(prodTypeC))
+            {
+                toolStripButtonContinuerC.Enabled = true;
+                toolStripMenuItemContinuerC.Enabled = true;
+            }
+        }
+        private void AvancementAJour()
+        {
+            labelAvancementA.Text = prodTypeA.CalculNbCaissesDepuisDemarrageSansDefaut().ToString() + "/" + prodTypeA.NbCaissesAProduire.ToString() + " : " + prodTypeA.CalculAvancementEnPourcentage().ToString() + "%";
+            labelAvancementB.Text = prodTypeB.CalculNbCaissesDepuisDemarrageSansDefaut().ToString() + "/" + prodTypeB.NbCaissesAProduire.ToString() + " : " + prodTypeB.CalculAvancementEnPourcentage().ToString() + "%";
+            labelAvancementC.Text = prodTypeC.CalculNbCaissesDepuisDemarrageSansDefaut().ToString() + "/" + prodTypeC.NbCaissesAProduire.ToString() + " : " + prodTypeC.CalculAvancementEnPourcentage().ToString() + "%";
 
         }
+
+        #endregion
 
         #region Actions possibles
         private bool DemarragePossible(Production prod)
@@ -279,24 +270,26 @@ namespace WindowsFormsAppToutEmbal
         }
         #endregion
 
-        #region Demarrer
+        #region Demarrer / Redemarrer
         private void Demarrer(Production prod)
         {
             if (DemarragePossible(prod))
             {
                 prod.DemarrerProduction();
             }
+            this.miseAjourIHM();
         }
 
         #endregion
 
         #region Arreter
-        private void Suspendre(Production prod)
+        private void Arreter(Production prod)
         {
             if (PausePossible(prod))
             {
                 prod.SuspendreProduction();
             }
+            this.miseAjourIHM();
 
         }
         #endregion
@@ -308,6 +301,7 @@ namespace WindowsFormsAppToutEmbal
             {
                 prod.ContinuerProduction();
             }
+            this.miseAjourIHM();
 
         }
         #endregion
@@ -319,8 +313,168 @@ namespace WindowsFormsAppToutEmbal
         }
         #endregion
 
+        #region Actions prod A
+        private void toolStripButtonDemarrerA_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeA;
+            this.Demarrer(prodTypeA);
+        }
 
+        private void toolStripMenuItemDemarrerA_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeA;
+            this.Demarrer(prodTypeA);
+        }
 
+        private void toolStripButtonSuspendreA_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeA;
+            this.Arreter(prodTypeA);
+        }
+
+        private void toolStripMenuItemArreterA_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeA;
+            this.Arreter(prodTypeA);
+        }
+
+        private void toolStripMenuItemContinuerA_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeA;
+            this.Continuer(prodTypeA);
+        }
+
+        private void toolStripButtonContinuerA_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeA;
+            this.Continuer(prodTypeA);
+        }
+        #endregion
+
+        #region Actions prod B
+        private void toolStripButtonDemarrerB_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeB;
+            this.Demarrer(prodTypeB);
+        }
+
+        private void toolStripMenuItemDemarrerB_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeB;
+            this.Demarrer(prodTypeB);
+        }
+
+        private void toolStripButtonSuspendreB_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeB;
+            this.Arreter(prodTypeB);
+        }
+
+        private void toolStripMenuItemArreterB_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeB;
+            this.Arreter(prodTypeB);
+        }
+
+        private void toolStripMenuItemContinuerB_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeB;
+            this.Continuer(prodTypeB);
+        }
+
+        private void toolStripButtonContinuerB_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeB;
+            this.Continuer(prodTypeB);
+        }
+        #endregion
+
+        #region Actions prod C
+        private void toolStripButtonDemarrerC_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeC;
+            this.Demarrer(prodTypeC);
+        }
+
+        private void toolStripMenuItemDemarrerC_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeC;
+            this.Demarrer(prodTypeC);
+        }
+
+        private void toolStripButtonSuspendreC_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeC;
+            this.Arreter(prodTypeC);
+        }
+
+        private void toolStripMenuItemArreterC_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeC;
+            this.Arreter(prodTypeC);
+        }
+
+        private void toolStripButtonContinuerC_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeC;
+            this.Continuer(prodTypeC);
+        }
+
+        private void toolStripMenuItemContinuerC_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeC;
+            this.Continuer(prodTypeC);
+        }
+        #endregion
+
+        #region Clics progress bars select tab
+        private void labelProgressProdA_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeA;
+        }
+
+        private void labelProgressProdB_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeB;
+        }
+
+        private void labelProgressProdC_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeC;
+        }
+
+        private void progressBarProdA_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeA;
+        }
+
+        private void progressBarProdB_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeB;
+        }
+
+        private void progressBarProdC_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeC;
+        }
+        #endregion
+
+        #region Clics label status bars select tab
+        private void toolStripStatusLabelA_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeA;
+        }
+
+        private void toolStripStatusLabelB_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeB;
+        }
+
+        private void toolStripStatusLabelC_Click(object sender, EventArgs e)
+        {
+            tabControlOngletsType.SelectedTab = tabTypeC;
+        }
+        #endregion
 
         #region Quitter
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -345,43 +499,7 @@ namespace WindowsFormsAppToutEmbal
             }
         }
         #endregion
-        #endregion
-
-        #region event ajouter production
-        private void ajouterUneProductionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormAjouterProductionToutEmbal ajouterProd = new FormAjouterProductionToutEmbal();
-            ajouterProd.AjouterProduction += AjouterProd_AjouterProduction;
-            ajouterProd.ShowDialog();
-        }
-        private void AjouterProd_AjouterProduction(string nom, int nbAProduire, int nbAProdParHeure, Form formSender)
-        {
-            bool ajoutPossible = true;
-            foreach (Production production in productions)
-            {
-                if (string.Equals(production.Nom, nom, StringComparison.OrdinalIgnoreCase))
-
-                {
-                    MessageBox.Show("Ajout impossible : une production existante porte déjà ce nom");
-
-                    ajoutPossible = false;
-                }
-            }
-
-            if (ajoutPossible)
-            {
-                formSender.Close();
-                MessageBox.Show("Production " + nom + " ajoutée avec succès");
-
-                Production prod = new Production(nom, nbAProduire, nbAProdParHeure);
-                productions.Add(prod);
-                this.AjouterProd(prod);
-
-                this.Invoke(this.miseAjourIHM, new Object[] { prod, prod.StatutDeLaProduction });
-
-            }
-        }
-        #endregion
 
     }
 }
+

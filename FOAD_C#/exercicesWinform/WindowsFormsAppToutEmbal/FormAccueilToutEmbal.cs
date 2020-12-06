@@ -20,13 +20,13 @@ namespace WindowsFormsAppToutEmbal
 
         private void buttonDemo_Click(object sender, EventArgs e)
         {
-            FormToutEmbal formToutEmbalDemo = new FormToutEmbal(new Production("A", 100, 10000), new Production("B", 400, 30000), new Production("C", 600, 100000));
+            FormToutEmbalV2 formToutEmbalDemo = new FormToutEmbalV2(new Production("A", 100, 10000), new Production("B", 400, 30000), new Production("C", 600, 100000));
             formToutEmbalDemo.ShowDialog();
         }
 
         private void buttonExo_Click(object sender, EventArgs e)
         {
-            FormToutEmbal formToutEmbalExo = new FormToutEmbal();
+            FormToutEmbalV2 formToutEmbalExo = new FormToutEmbalV2();
             formToutEmbalExo.ShowDialog();
         }
     }
