@@ -57,6 +57,7 @@ namespace WindowsFormsAppToutEmbal
         }
         #endregion
 
+        #region Ajout production
         /// <summary>
         /// Ajoute une production à la collection de productions
         /// </summary>
@@ -86,6 +87,7 @@ namespace WindowsFormsAppToutEmbal
             this.AjouterToolStripMenuItemSuspendre(prod);
             this.AjouterToolStripMenuItemContinuer(prod);
         }
+        #endregion
 
         #region Ajouter controls
         private void AjouterTabPage(Production prod)
@@ -136,43 +138,62 @@ namespace WindowsFormsAppToutEmbal
         }
         #endregion
 
-        #region event click actions
-        private void MenuDemarrer_Click(object sender, EventArgs e, Production prod)
+        #region Actions Demarrer / Pause / Continuer
+        private void ActionDemarrer(Production prod)
         {
             this.Demarrer(prod);
             TabPage tabPage = this.Controls.Find("tabPage" + prod.Nom, true).First() as TabPage;
             this.tabControlOngletsType.SelectedTab = tabPage;
+            ProgressBar progressbar = this.Controls.Find("progressBar" + prod.Nom, true).First() as ProgressBar;
+            progressbar.Focus();
         }
-        private void MenuSuspendre_Click(object sender, EventArgs e, Production prod)
+        private void ActionPause(Production prod)
         {
             this.Suspendre(prod);
             TabPage tabPage = this.Controls.Find("tabPage" + prod.Nom, true).First() as TabPage;
             this.tabControlOngletsType.SelectedTab = tabPage;
+            ProgressBar progressbar = this.Controls.Find("progressBar" + prod.Nom, true).First() as ProgressBar;
+            progressbar.Focus();
         }
-        private void MenuContinuer_Click(object sender, EventArgs e, Production prod)
+        private void ActionContinuer(Production prod)
         {
             this.Continuer(prod);
             TabPage tabPage = this.Controls.Find("tabPage" + prod.Nom, true).First() as TabPage;
             this.tabControlOngletsType.SelectedTab = tabPage;
+            ProgressBar progressbar = this.Controls.Find("progressBar" + prod.Nom, true).First() as ProgressBar;
+            progressbar.Focus();
+        }
+        #endregion
+
+        #region event click actions
+        private void MenuDemarrer_Click(object sender, EventArgs e, Production prod)
+        {
+            ActionDemarrer(prod);
+        }
+        private void MenuSuspendre_Click(object sender, EventArgs e, Production prod)
+        {
+            ActionPause(prod);
+        }
+
+        private void MenuContinuer_Click(object sender, EventArgs e, Production prod)
+        {
+            ActionContinuer(prod);
         }
 
         private void BoutonDemarrer_Click(object sender, EventArgs e, Production prod)
         {
-            this.Demarrer(prod);
-            TabPage tabPage = this.Controls.Find("tabPage" + prod.Nom, true).First() as TabPage;
-            this.tabControlOngletsType.SelectedTab = tabPage;
+            ActionDemarrer(prod);
         }
+
         private void BoutonPause_Click(object sender, EventArgs e, Production prod)
         {
-            this.Suspendre(prod);
-            TabPage tabPage = this.Controls.Find("tabPage" + prod.Nom, true).First() as TabPage;
-            this.tabControlOngletsType.SelectedTab = tabPage;
+            ActionPause(prod);
+
         }
         private void BoutonContinuer_Click(object sender, EventArgs e, Production prod)
         {
-            this.Continuer(prod);
-            TabPage tabPage = this.Controls.Find("tabPage" + prod.Nom, true).First() as TabPage;
-            this.tabControlOngletsType.SelectedTab = tabPage;
+            ActionContinuer(prod);
+
         }
         #endregion
 
@@ -205,9 +226,8 @@ namespace WindowsFormsAppToutEmbal
         #region Mise a jour de l'IHM
         private void MiseAjourIHM(Production prodSender, StatutProduction prodStatut)
         {
-            ProgressBar pb1 = this.Controls.Find("progressBar" + prodSender.Nom, true).First() as ProgressBar;
-            pb1.Value = prodSender.CalculAvancementEnPourcentage();
-            pb1.Focus();
+            ProgressBar progressbar = this.Controls.Find("progressBar" + prodSender.Nom, true).First() as ProgressBar;
+            progressbar.Value = prodSender.CalculAvancementEnPourcentage();
 
             TextBox textBoxNbCaisseDepuisDemarrage = this.Controls.Find("textBoxNbCaisseDepuisDemarrage" + prodSender.Nom, true).First() as TextBox;
             textBoxNbCaisseDepuisDemarrage.Text = prodSender.NbCaissesDepuisDemarrageTotal.ToString();
@@ -217,8 +237,6 @@ namespace WindowsFormsAppToutEmbal
 
             TextBox textBoxTauxDefautDepuisDemarrage = this.Controls.Find("textBoxTauxDefautDepuisDemarrage" + prodSender.Nom, true).First() as TextBox;
             textBoxTauxDefautDepuisDemarrage.Text = prodSender.CalculTauxDefautHeure().ToString();
-
-
 
             TextBox textBoxEtatProduction = this.flowLayoutPanelEtat.Controls.Find("textBoxEtat" + prodSender.Nom, true).First() as TextBox;
             textBoxEtatProduction.Text = prodSender.StatutDeLaProduction.ToString();
@@ -239,6 +257,7 @@ namespace WindowsFormsAppToutEmbal
             menuContinuer.Enabled = this.ReprisePossible(prodSender);
 
         }
+        #endregion
 
         #region Actions possibles
         private bool DemarragePossible(Production prod)
@@ -319,9 +338,6 @@ namespace WindowsFormsAppToutEmbal
         }
         #endregion
 
-
-
-
         #region Quitter
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -344,7 +360,6 @@ namespace WindowsFormsAppToutEmbal
                 Environment.Exit(0);
             }
         }
-        #endregion
         #endregion
 
         #region event ajouter production

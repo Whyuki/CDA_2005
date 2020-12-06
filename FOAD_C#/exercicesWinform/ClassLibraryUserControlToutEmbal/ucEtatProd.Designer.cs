@@ -51,10 +51,12 @@
             // 
             // textBoxEtat
             // 
+            this.textBoxEtat.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBoxEtat.Enabled = false;
             this.textBoxEtat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxEtat.Location = new System.Drawing.Point(53, 3);
             this.textBoxEtat.Name = "textBoxEtat";
+            this.textBoxEtat.ReadOnly = true;
             this.textBoxEtat.Size = new System.Drawing.Size(91, 20);
             this.textBoxEtat.TabIndex = 2;
             // 
