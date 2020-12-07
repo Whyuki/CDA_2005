@@ -236,7 +236,7 @@ namespace WindowsFormsAppToutEmbal
             textBoxTauxDefautHeure.Text = prodSender.CalculTauxDefautHeure().ToString();
 
             TextBox textBoxTauxDefautDepuisDemarrage = this.Controls.Find("textBoxTauxDefautDepuisDemarrage" + prodSender.Nom, true).First() as TextBox;
-            textBoxTauxDefautDepuisDemarrage.Text = prodSender.CalculTauxDefautHeure().ToString();
+            textBoxTauxDefautDepuisDemarrage.Text = prodSender.CalculTauxDefautDepuisDemarrage().ToString();
 
             TextBox textBoxEtatProduction = this.flowLayoutPanelEtat.Controls.Find("textBoxEtat" + prodSender.Nom, true).First() as TextBox;
             textBoxEtatProduction.Text = prodSender.StatutDeLaProduction.ToString();
