@@ -1,0 +1,13 @@
+USE papyrus;
+INSERT INTO commandes VALUES (1,'20201204','fragile')
+INSERT INTO commandes VALUES (2,'20201127','black friday')
+INSERT INTO commandes VALUES (3,'20201010','zevent')
+INSERT INTO commandes VALUES (4,'20201204','soldes noel')
+INSERT INTO commandes VALUES (5,'20201130','cyber monday')
+INSERT INTO commandes VALUES (6,'20201010','vide grenier')
+INSERT INTO commandes VALUES (7,'20201001','braderie')
+INSERT INTO commandes VALUES (8,'20201002','promo')
+INSERT INTO commandes VALUES (9,'20201003','liquidation')
+INSERT INTO commandes VALUES (10,'20201004','halloween')
+INSERT INTO commandes VALUES (11,'20201005','vacances scolaires')
+INSERT INTO commandes VALUES (12,'20201006','confinement')
