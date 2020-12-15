@@ -35,17 +35,19 @@ namespace WindowsFormsAppPapyrus
             this.toolStripButtonRechercheFournisseur = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRechercheCommande = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonAfficherProduits = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonGestionFournisseurs = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonConnexion,
             this.toolStripButtonRechercheFournisseur,
             this.toolStripButtonRechercheCommande,
-            this.toolStripButtonAfficherProduits});
+            this.toolStripButtonAfficherProduits,
+            this.toolStripButtonGestionFournisseurs});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
@@ -97,6 +99,17 @@ namespace WindowsFormsAppPapyrus
             this.toolStripButtonAfficherProduits.Text = "Afficher les produits";
             this.toolStripButtonAfficherProduits.Click += new System.EventHandler(this.toolStripButtonAfficherProduits_Click);
             // 
+            // toolStripButtonGestionFournisseurs
+            // 
+            this.toolStripButtonGestionFournisseurs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonGestionFournisseurs.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.toolStripButtonGestionFournisseurs.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonGestionFournisseurs.Image")));
+            this.toolStripButtonGestionFournisseurs.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonGestionFournisseurs.Name = "toolStripButtonGestionFournisseurs";
+            this.toolStripButtonGestionFournisseurs.Size = new System.Drawing.Size(201, 32);
+            this.toolStripButtonGestionFournisseurs.Text = "Gerer les fournisseurs";
+            this.toolStripButtonGestionFournisseurs.Click += new System.EventHandler(this.toolStripButtonGestionFournisseurs_Click);
+            // 
             // FormMenuPapyrus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -123,5 +136,6 @@ namespace WindowsFormsAppPapyrus
         private System.Windows.Forms.ToolStripButton toolStripButtonConnexion;
         private System.Windows.Forms.ToolStripButton toolStripButtonRechercheCommande;
         private System.Windows.Forms.ToolStripButton toolStripButtonAfficherProduits;
+        private System.Windows.Forms.ToolStripButton toolStripButtonGestionFournisseurs;
     }
 }

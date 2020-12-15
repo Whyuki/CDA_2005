@@ -51,5 +51,11 @@ namespace WindowsFormsAppPapyrus
             FormAffichageProduits formAffichageProduits = new FormAffichageProduits();
             formAffichageProduits.ShowDialog();
         }
+
+        private void toolStripButtonGestionFournisseurs_Click(object sender, EventArgs e)
+        {
+            FormMajFournisseurs formMajFournisseurs = new FormMajFournisseurs();
+            formMajFournisseurs.ShowDialog();
+        }
     }
 }

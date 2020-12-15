@@ -64,7 +64,7 @@ namespace WindowsFormsAppPapyrus
             // 
             // textBoxAdresseFournisseur
             // 
-            this.textBoxAdresseFournisseur.Location = new System.Drawing.Point(196, 91);
+            this.textBoxAdresseFournisseur.Location = new System.Drawing.Point(196, 79);
             this.textBoxAdresseFournisseur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxAdresseFournisseur.Name = "textBoxAdresseFournisseur";
             this.textBoxAdresseFournisseur.ReadOnly = true;
@@ -74,7 +74,7 @@ namespace WindowsFormsAppPapyrus
             // labelAdresseFournisseur
             // 
             this.labelAdresseFournisseur.AutoSize = true;
-            this.labelAdresseFournisseur.Location = new System.Drawing.Point(38, 95);
+            this.labelAdresseFournisseur.Location = new System.Drawing.Point(38, 83);
             this.labelAdresseFournisseur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAdresseFournisseur.Name = "labelAdresseFournisseur";
             this.labelAdresseFournisseur.Size = new System.Drawing.Size(68, 20);
@@ -83,7 +83,7 @@ namespace WindowsFormsAppPapyrus
             // 
             // textBoxCpFournisseur
             // 
-            this.textBoxCpFournisseur.Location = new System.Drawing.Point(196, 142);
+            this.textBoxCpFournisseur.Location = new System.Drawing.Point(196, 127);
             this.textBoxCpFournisseur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxCpFournisseur.Name = "textBoxCpFournisseur";
             this.textBoxCpFournisseur.ReadOnly = true;
@@ -93,7 +93,7 @@ namespace WindowsFormsAppPapyrus
             // labelCpVilleFournisseur
             // 
             this.labelCpVilleFournisseur.AutoSize = true;
-            this.labelCpVilleFournisseur.Location = new System.Drawing.Point(38, 146);
+            this.labelCpVilleFournisseur.Location = new System.Drawing.Point(38, 131);
             this.labelCpVilleFournisseur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCpVilleFournisseur.Name = "labelCpVilleFournisseur";
             this.labelCpVilleFournisseur.Size = new System.Drawing.Size(71, 20);
@@ -102,7 +102,7 @@ namespace WindowsFormsAppPapyrus
             // 
             // textBoxVilleFournisseur
             // 
-            this.textBoxVilleFournisseur.Location = new System.Drawing.Point(273, 142);
+            this.textBoxVilleFournisseur.Location = new System.Drawing.Point(273, 127);
             this.textBoxVilleFournisseur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxVilleFournisseur.Name = "textBoxVilleFournisseur";
             this.textBoxVilleFournisseur.ReadOnly = true;
@@ -111,7 +111,7 @@ namespace WindowsFormsAppPapyrus
             // 
             // textBoxContactFournisseur
             // 
-            this.textBoxContactFournisseur.Location = new System.Drawing.Point(196, 182);
+            this.textBoxContactFournisseur.Location = new System.Drawing.Point(196, 175);
             this.textBoxContactFournisseur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxContactFournisseur.Name = "textBoxContactFournisseur";
             this.textBoxContactFournisseur.ReadOnly = true;
@@ -121,7 +121,7 @@ namespace WindowsFormsAppPapyrus
             // labelContactFournisseur
             // 
             this.labelContactFournisseur.AutoSize = true;
-            this.labelContactFournisseur.Location = new System.Drawing.Point(38, 186);
+            this.labelContactFournisseur.Location = new System.Drawing.Point(38, 179);
             this.labelContactFournisseur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelContactFournisseur.Name = "labelContactFournisseur";
             this.labelContactFournisseur.Size = new System.Drawing.Size(65, 20);
@@ -130,7 +130,7 @@ namespace WindowsFormsAppPapyrus
             // 
             // textBoxSatisfactionFournisseur
             // 
-            this.textBoxSatisfactionFournisseur.Location = new System.Drawing.Point(196, 222);
+            this.textBoxSatisfactionFournisseur.Location = new System.Drawing.Point(196, 221);
             this.textBoxSatisfactionFournisseur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxSatisfactionFournisseur.Name = "textBoxSatisfactionFournisseur";
             this.textBoxSatisfactionFournisseur.ReadOnly = true;
@@ -140,7 +140,7 @@ namespace WindowsFormsAppPapyrus
             // labelSatisfactionFournisseur
             // 
             this.labelSatisfactionFournisseur.AutoSize = true;
-            this.labelSatisfactionFournisseur.Location = new System.Drawing.Point(38, 226);
+            this.labelSatisfactionFournisseur.Location = new System.Drawing.Point(38, 225);
             this.labelSatisfactionFournisseur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSatisfactionFournisseur.Name = "labelSatisfactionFournisseur";
             this.labelSatisfactionFournisseur.Size = new System.Drawing.Size(93, 20);

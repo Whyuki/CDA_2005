@@ -53,6 +53,12 @@
     <Compile Include="FormAffichageProduits.Designer.cs">
       <DependentUpon>FormAffichageProduits.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormMajFournisseurs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMajFournisseurs.Designer.cs">
+      <DependentUpon>FormMajFournisseurs.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMenuPapyrus.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAffichageProduits.resx">
       <DependentUpon>FormAffichageProduits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMajFournisseurs.resx">
+      <DependentUpon>FormMajFournisseurs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenuPapyrus.resx">
       <DependentUpon>FormMenuPapyrus.cs</DependentUpon>

@@ -31,18 +31,18 @@ namespace WindowsFormsAppPapyrus
         {
             this.labelNomFournisseur = new System.Windows.Forms.Label();
             this.comboBoxListeFournisseurs = new System.Windows.Forms.ComboBox();
-            this.richTextBoxCommandesNum = new System.Windows.Forms.RichTextBox();
-            this.labelIdCommande = new System.Windows.Forms.Label();
-            this.labelDate = new System.Windows.Forms.Label();
-            this.labelComment = new System.Windows.Forms.Label();
-            this.richTextBoxCommandesDate = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxCommandesComment = new System.Windows.Forms.RichTextBox();
+            this.listViewCommandes = new System.Windows.Forms.ListView();
+            this.columnHeaderNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderComm = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonQuitter = new System.Windows.Forms.Button();
+            this.labelCommandes = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelNomFournisseur
             // 
             this.labelNomFournisseur.AutoSize = true;
-            this.labelNomFournisseur.Location = new System.Drawing.Point(83, 27);
+            this.labelNomFournisseur.Location = new System.Drawing.Point(73, 30);
             this.labelNomFournisseur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNomFournisseur.Name = "labelNomFournisseur";
             this.labelNomFournisseur.Size = new System.Drawing.Size(162, 20);
@@ -52,87 +52,78 @@ namespace WindowsFormsAppPapyrus
             // comboBoxListeFournisseurs
             // 
             this.comboBoxListeFournisseurs.FormattingEnabled = true;
-            this.comboBoxListeFournisseurs.Location = new System.Drawing.Point(307, 22);
+            this.comboBoxListeFournisseurs.Location = new System.Drawing.Point(297, 25);
             this.comboBoxListeFournisseurs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxListeFournisseurs.Name = "comboBoxListeFournisseurs";
             this.comboBoxListeFournisseurs.Size = new System.Drawing.Size(180, 28);
             this.comboBoxListeFournisseurs.TabIndex = 1;
             this.comboBoxListeFournisseurs.SelectedIndexChanged += new System.EventHandler(this.comboBoxListeFournisseurs_SelectedIndexChanged);
             // 
-            // richTextBoxCommandesNum
+            // listViewCommandes
             // 
-            this.richTextBoxCommandesNum.Location = new System.Drawing.Point(24, 112);
-            this.richTextBoxCommandesNum.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.richTextBoxCommandesNum.Name = "richTextBoxCommandesNum";
-            this.richTextBoxCommandesNum.ReadOnly = true;
-            this.richTextBoxCommandesNum.Size = new System.Drawing.Size(96, 146);
-            this.richTextBoxCommandesNum.TabIndex = 2;
-            this.richTextBoxCommandesNum.Text = "";
+            this.listViewCommandes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderNum,
+            this.columnHeaderDate,
+            this.columnHeaderComm});
+            this.listViewCommandes.FullRowSelect = true;
+            this.listViewCommandes.HideSelection = false;
+            this.listViewCommandes.Location = new System.Drawing.Point(54, 109);
+            this.listViewCommandes.Name = "listViewCommandes";
+            this.listViewCommandes.Size = new System.Drawing.Size(462, 179);
+            this.listViewCommandes.TabIndex = 9;
+            this.listViewCommandes.UseCompatibleStateImageBehavior = false;
+            this.listViewCommandes.View = System.Windows.Forms.View.Details;
+            this.listViewCommandes.Visible = false;
             // 
-            // labelIdCommande
+            // columnHeaderNum
             // 
-            this.labelIdCommande.AutoSize = true;
-            this.labelIdCommande.Location = new System.Drawing.Point(24, 83);
-            this.labelIdCommande.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelIdCommande.Name = "labelIdCommande";
-            this.labelIdCommande.Size = new System.Drawing.Size(25, 20);
-            this.labelIdCommande.TabIndex = 3;
-            this.labelIdCommande.Text = "N°";
+            this.columnHeaderNum.Text = "Numéro";
+            this.columnHeaderNum.Width = 100;
             // 
-            // labelDate
+            // columnHeaderDate
             // 
-            this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(126, 83);
-            this.labelDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(52, 20);
-            this.labelDate.TabIndex = 4;
-            this.labelDate.Text = "DATE";
+            this.columnHeaderDate.Text = "Date";
+            this.columnHeaderDate.Width = 100;
             // 
-            // labelComment
+            // columnHeaderComm
             // 
-            this.labelComment.AutoSize = true;
-            this.labelComment.Location = new System.Drawing.Point(266, 83);
-            this.labelComment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelComment.Name = "labelComment";
-            this.labelComment.Size = new System.Drawing.Size(128, 20);
-            this.labelComment.TabIndex = 5;
-            this.labelComment.Text = "COMMENTAIRE";
+            this.columnHeaderComm.Text = "Commentaire";
+            this.columnHeaderComm.Width = 200;
             // 
-            // richTextBoxCommandesDate
+            // buttonQuitter
             // 
-            this.richTextBoxCommandesDate.Location = new System.Drawing.Point(130, 112);
-            this.richTextBoxCommandesDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.richTextBoxCommandesDate.Name = "richTextBoxCommandesDate";
-            this.richTextBoxCommandesDate.ReadOnly = true;
-            this.richTextBoxCommandesDate.Size = new System.Drawing.Size(128, 146);
-            this.richTextBoxCommandesDate.TabIndex = 6;
-            this.richTextBoxCommandesDate.Text = "";
+            this.buttonQuitter.AutoSize = true;
+            this.buttonQuitter.Location = new System.Drawing.Point(474, 323);
+            this.buttonQuitter.Name = "buttonQuitter";
+            this.buttonQuitter.Size = new System.Drawing.Size(75, 30);
+            this.buttonQuitter.TabIndex = 10;
+            this.buttonQuitter.Text = "Quitter";
+            this.buttonQuitter.UseVisualStyleBackColor = true;
+            this.buttonQuitter.Click += new System.EventHandler(this.buttonQuitter_Click);
             // 
-            // richTextBoxCommandesComment
+            // labelCommandes
             // 
-            this.richTextBoxCommandesComment.Location = new System.Drawing.Point(270, 112);
-            this.richTextBoxCommandesComment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.richTextBoxCommandesComment.Name = "richTextBoxCommandesComment";
-            this.richTextBoxCommandesComment.ReadOnly = true;
-            this.richTextBoxCommandesComment.Size = new System.Drawing.Size(287, 146);
-            this.richTextBoxCommandesComment.TabIndex = 7;
-            this.richTextBoxCommandesComment.Text = "";
+            this.labelCommandes.AutoSize = true;
+            this.labelCommandes.Location = new System.Drawing.Point(50, 86);
+            this.labelCommandes.Name = "labelCommandes";
+            this.labelCommandes.Size = new System.Drawing.Size(126, 20);
+            this.labelCommandes.TabIndex = 11;
+            this.labelCommandes.Text = "Les commandes";
+            this.labelCommandes.Visible = false;
             // 
             // FormRechercheCommandes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(580, 283);
-            this.Controls.Add(this.richTextBoxCommandesComment);
-            this.Controls.Add(this.richTextBoxCommandesDate);
-            this.Controls.Add(this.labelComment);
-            this.Controls.Add(this.labelDate);
-            this.Controls.Add(this.labelIdCommande);
-            this.Controls.Add(this.richTextBoxCommandesNum);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(561, 365);
+            this.Controls.Add(this.labelCommandes);
+            this.Controls.Add(this.buttonQuitter);
+            this.Controls.Add(this.listViewCommandes);
             this.Controls.Add(this.comboBoxListeFournisseurs);
             this.Controls.Add(this.labelNomFournisseur);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormRechercheCommandes";
             this.Text = "Affichage des commandes";
@@ -146,11 +137,11 @@ namespace WindowsFormsAppPapyrus
 
         private System.Windows.Forms.Label labelNomFournisseur;
         private System.Windows.Forms.ComboBox comboBoxListeFournisseurs;
-        private System.Windows.Forms.RichTextBox richTextBoxCommandesNum;
-        private System.Windows.Forms.Label labelIdCommande;
-        private System.Windows.Forms.Label labelDate;
-        private System.Windows.Forms.Label labelComment;
-        private System.Windows.Forms.RichTextBox richTextBoxCommandesDate;
-        private System.Windows.Forms.RichTextBox richTextBoxCommandesComment;
+        private System.Windows.Forms.ListView listViewCommandes;
+        private System.Windows.Forms.ColumnHeader columnHeaderNum;
+        private System.Windows.Forms.ColumnHeader columnHeaderDate;
+        private System.Windows.Forms.ColumnHeader columnHeaderComm;
+        private System.Windows.Forms.Button buttonQuitter;
+        private System.Windows.Forms.Label labelCommandes;
     }
 }
