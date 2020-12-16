@@ -29,6 +29,7 @@ namespace WindowsFormsAppPapyrus
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelNomFournisseur = new System.Windows.Forms.Label();
             this.comboBoxListeFournisseurs = new System.Windows.Forms.ComboBox();
             this.listViewCommandes = new System.Windows.Forms.ListView();
@@ -37,6 +38,8 @@ namespace WindowsFormsAppPapyrus
             this.columnHeaderComm = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonQuitter = new System.Windows.Forms.Button();
             this.labelCommandes = new System.Windows.Forms.Label();
+            this.errorProviderCommandes = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCommandes)).BeginInit();
             this.SuspendLayout();
             // 
             // labelNomFournisseur
@@ -58,6 +61,7 @@ namespace WindowsFormsAppPapyrus
             this.comboBoxListeFournisseurs.Size = new System.Drawing.Size(180, 28);
             this.comboBoxListeFournisseurs.TabIndex = 1;
             this.comboBoxListeFournisseurs.SelectedIndexChanged += new System.EventHandler(this.comboBoxListeFournisseurs_SelectedIndexChanged);
+            this.comboBoxListeFournisseurs.TextChanged += new System.EventHandler(this.comboBoxListeFournisseurs_TextChanged);
             // 
             // listViewCommandes
             // 
@@ -111,6 +115,10 @@ namespace WindowsFormsAppPapyrus
             this.labelCommandes.Text = "Les commandes";
             this.labelCommandes.Visible = false;
             // 
+            // errorProviderCommandes
+            // 
+            this.errorProviderCommandes.ContainerControl = this;
+            // 
             // FormRechercheCommandes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -127,7 +135,9 @@ namespace WindowsFormsAppPapyrus
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormRechercheCommandes";
             this.Text = "Affichage des commandes";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormRechercheCommandes_FormClosing);
             this.Load += new System.EventHandler(this.FormRechercheCommandes_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCommandes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,5 +153,6 @@ namespace WindowsFormsAppPapyrus
         private System.Windows.Forms.ColumnHeader columnHeaderComm;
         private System.Windows.Forms.Button buttonQuitter;
         private System.Windows.Forms.Label labelCommandes;
+        private System.Windows.Forms.ErrorProvider errorProviderCommandes;
     }
 }
