@@ -54,6 +54,7 @@ namespace WindowsFormsAppPapyrus
             // 
             // comboBoxListeFournisseurs
             // 
+            this.comboBoxListeFournisseurs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxListeFournisseurs.FormattingEnabled = true;
             this.comboBoxListeFournisseurs.Location = new System.Drawing.Point(297, 25);
             this.comboBoxListeFournisseurs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

@@ -48,13 +48,11 @@ namespace WindowsFormsAppPapyrus
                 sqlCommande.CommandText = strSql;
                 sqlReader = sqlCommande.ExecuteReader();
 
-                if (sqlReader.HasRows)
-                {
+                
                     while (sqlReader.Read())
                     {
                         listeFournisseurs.Add(sqlReader.GetInt32(1), sqlReader.GetString(0));
                     }
-                }
 
                 sqlReader.Close();
 
@@ -151,6 +149,7 @@ namespace WindowsFormsAppPapyrus
             listViewCommandes.Items.Clear();
             labelCommandes.Visible = false;
             listViewCommandes.Visible = false;
+            errorProviderCommandes.Clear();
         }
 
         private void buttonQuitter_Click(object sender, EventArgs e)

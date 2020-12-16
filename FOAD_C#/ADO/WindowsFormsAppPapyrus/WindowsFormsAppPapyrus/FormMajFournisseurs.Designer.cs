@@ -53,12 +53,19 @@ namespace WindowsFormsAppPapyrus
             this.label1 = new System.Windows.Forms.Label();
             this.errorProviderCodeFournisseur = new System.Windows.Forms.ErrorProvider(this.components);
             this.buttonAnnuler = new System.Windows.Forms.Button();
+            this.errorProviderSuppression = new System.Windows.Forms.ErrorProvider(this.components);
+            this.panelSelectFournisseur = new System.Windows.Forms.Panel();
+            this.panelTBFournisseur = new System.Windows.Forms.Panel();
+            this.buttonValider = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCodeFournisseur)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderSuppression)).BeginInit();
+            this.panelSelectFournisseur.SuspendLayout();
+            this.panelTBFournisseur.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxSatisfactionFournisseur
             // 
-            this.textBoxSatisfactionFournisseur.Location = new System.Drawing.Point(120, 348);
+            this.textBoxSatisfactionFournisseur.Location = new System.Drawing.Point(4, 168);
             this.textBoxSatisfactionFournisseur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxSatisfactionFournisseur.Name = "textBoxSatisfactionFournisseur";
             this.textBoxSatisfactionFournisseur.ReadOnly = true;
@@ -68,7 +75,7 @@ namespace WindowsFormsAppPapyrus
             // labelSatisfactionFournisseur
             // 
             this.labelSatisfactionFournisseur.AutoSize = true;
-            this.labelSatisfactionFournisseur.Location = new System.Drawing.Point(37, 351);
+            this.labelSatisfactionFournisseur.Location = new System.Drawing.Point(39, 354);
             this.labelSatisfactionFournisseur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSatisfactionFournisseur.Name = "labelSatisfactionFournisseur";
             this.labelSatisfactionFournisseur.Size = new System.Drawing.Size(62, 13);
@@ -77,7 +84,7 @@ namespace WindowsFormsAppPapyrus
             // 
             // textBoxContactFournisseur
             // 
-            this.textBoxContactFournisseur.Location = new System.Drawing.Point(120, 308);
+            this.textBoxContactFournisseur.Location = new System.Drawing.Point(4, 128);
             this.textBoxContactFournisseur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxContactFournisseur.Name = "textBoxContactFournisseur";
             this.textBoxContactFournisseur.ReadOnly = true;
@@ -87,7 +94,7 @@ namespace WindowsFormsAppPapyrus
             // labelContactFournisseur
             // 
             this.labelContactFournisseur.AutoSize = true;
-            this.labelContactFournisseur.Location = new System.Drawing.Point(37, 311);
+            this.labelContactFournisseur.Location = new System.Drawing.Point(39, 314);
             this.labelContactFournisseur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelContactFournisseur.Name = "labelContactFournisseur";
             this.labelContactFournisseur.Size = new System.Drawing.Size(44, 13);
@@ -96,7 +103,7 @@ namespace WindowsFormsAppPapyrus
             // 
             // textBoxVilleFournisseur
             // 
-            this.textBoxVilleFournisseur.Location = new System.Drawing.Point(197, 268);
+            this.textBoxVilleFournisseur.Location = new System.Drawing.Point(81, 88);
             this.textBoxVilleFournisseur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxVilleFournisseur.Name = "textBoxVilleFournisseur";
             this.textBoxVilleFournisseur.ReadOnly = true;
@@ -105,7 +112,7 @@ namespace WindowsFormsAppPapyrus
             // 
             // textBoxCpFournisseur
             // 
-            this.textBoxCpFournisseur.Location = new System.Drawing.Point(120, 268);
+            this.textBoxCpFournisseur.Location = new System.Drawing.Point(4, 88);
             this.textBoxCpFournisseur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxCpFournisseur.MaxLength = 5;
             this.textBoxCpFournisseur.Name = "textBoxCpFournisseur";
@@ -116,7 +123,7 @@ namespace WindowsFormsAppPapyrus
             // labelCpVilleFournisseur
             // 
             this.labelCpVilleFournisseur.AutoSize = true;
-            this.labelCpVilleFournisseur.Location = new System.Drawing.Point(37, 271);
+            this.labelCpVilleFournisseur.Location = new System.Drawing.Point(39, 274);
             this.labelCpVilleFournisseur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCpVilleFournisseur.Name = "labelCpVilleFournisseur";
             this.labelCpVilleFournisseur.Size = new System.Drawing.Size(51, 13);
@@ -125,7 +132,7 @@ namespace WindowsFormsAppPapyrus
             // 
             // textBoxAdresseFournisseur
             // 
-            this.textBoxAdresseFournisseur.Location = new System.Drawing.Point(120, 226);
+            this.textBoxAdresseFournisseur.Location = new System.Drawing.Point(4, 46);
             this.textBoxAdresseFournisseur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxAdresseFournisseur.Name = "textBoxAdresseFournisseur";
             this.textBoxAdresseFournisseur.ReadOnly = true;
@@ -135,7 +142,7 @@ namespace WindowsFormsAppPapyrus
             // labelAdresseFournisseur
             // 
             this.labelAdresseFournisseur.AutoSize = true;
-            this.labelAdresseFournisseur.Location = new System.Drawing.Point(37, 229);
+            this.labelAdresseFournisseur.Location = new System.Drawing.Point(39, 232);
             this.labelAdresseFournisseur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAdresseFournisseur.Name = "labelAdresseFournisseur";
             this.labelAdresseFournisseur.Size = new System.Drawing.Size(45, 13);
@@ -144,7 +151,7 @@ namespace WindowsFormsAppPapyrus
             // 
             // textBoxNomFournisseur
             // 
-            this.textBoxNomFournisseur.Location = new System.Drawing.Point(120, 185);
+            this.textBoxNomFournisseur.Location = new System.Drawing.Point(4, 5);
             this.textBoxNomFournisseur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxNomFournisseur.Name = "textBoxNomFournisseur";
             this.textBoxNomFournisseur.ReadOnly = true;
@@ -154,7 +161,7 @@ namespace WindowsFormsAppPapyrus
             // labelNomFournisseur
             // 
             this.labelNomFournisseur.AutoSize = true;
-            this.labelNomFournisseur.Location = new System.Drawing.Point(37, 188);
+            this.labelNomFournisseur.Location = new System.Drawing.Point(39, 191);
             this.labelNomFournisseur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNomFournisseur.Name = "labelNomFournisseur";
             this.labelNomFournisseur.Size = new System.Drawing.Size(29, 13);
@@ -163,17 +170,18 @@ namespace WindowsFormsAppPapyrus
             // 
             // textBoxCodeFournisseur
             // 
-            this.textBoxCodeFournisseur.Location = new System.Drawing.Point(152, 66);
+            this.textBoxCodeFournisseur.Location = new System.Drawing.Point(128, 64);
             this.textBoxCodeFournisseur.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxCodeFournisseur.Name = "textBoxCodeFournisseur";
             this.textBoxCodeFournisseur.Size = new System.Drawing.Size(97, 20);
             this.textBoxCodeFournisseur.TabIndex = 23;
             this.textBoxCodeFournisseur.TextChanged += new System.EventHandler(this.textBoxCodeFournisseur_TextChanged);
+            this.textBoxCodeFournisseur.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCodeFournisseur_KeyPress);
             // 
             // labelCodeFournisseur
             // 
             this.labelCodeFournisseur.AutoSize = true;
-            this.labelCodeFournisseur.Location = new System.Drawing.Point(37, 69);
+            this.labelCodeFournisseur.Location = new System.Drawing.Point(13, 67);
             this.labelCodeFournisseur.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelCodeFournisseur.Name = "labelCodeFournisseur";
             this.labelCodeFournisseur.Size = new System.Drawing.Size(86, 13);
@@ -183,7 +191,7 @@ namespace WindowsFormsAppPapyrus
             // buttonRechercher
             // 
             this.buttonRechercher.Enabled = false;
-            this.buttonRechercher.Location = new System.Drawing.Point(284, 64);
+            this.buttonRechercher.Location = new System.Drawing.Point(249, 62);
             this.buttonRechercher.Name = "buttonRechercher";
             this.buttonRechercher.Size = new System.Drawing.Size(75, 23);
             this.buttonRechercher.TabIndex = 24;
@@ -194,17 +202,18 @@ namespace WindowsFormsAppPapyrus
             // buttonModifier
             // 
             this.buttonModifier.Enabled = false;
-            this.buttonModifier.Location = new System.Drawing.Point(96, 107);
+            this.buttonModifier.Location = new System.Drawing.Point(72, 105);
             this.buttonModifier.Name = "buttonModifier";
             this.buttonModifier.Size = new System.Drawing.Size(75, 23);
             this.buttonModifier.TabIndex = 25;
             this.buttonModifier.Text = "Modifier";
             this.buttonModifier.UseVisualStyleBackColor = true;
+            this.buttonModifier.Click += new System.EventHandler(this.buttonModifier_Click);
             // 
             // buttonSupprimer
             // 
             this.buttonSupprimer.Enabled = false;
-            this.buttonSupprimer.Location = new System.Drawing.Point(197, 107);
+            this.buttonSupprimer.Location = new System.Drawing.Point(173, 105);
             this.buttonSupprimer.Name = "buttonSupprimer";
             this.buttonSupprimer.Size = new System.Drawing.Size(75, 23);
             this.buttonSupprimer.TabIndex = 26;
@@ -232,6 +241,7 @@ namespace WindowsFormsAppPapyrus
             this.buttonAjouter.TabIndex = 28;
             this.buttonAjouter.Text = "Ajouter";
             this.buttonAjouter.UseVisualStyleBackColor = true;
+            this.buttonAjouter.Visible = false;
             this.buttonAjouter.Click += new System.EventHandler(this.buttonAjouter_Click);
             // 
             // buttonQuitter
@@ -248,7 +258,7 @@ namespace WindowsFormsAppPapyrus
             // 
             this.comboBoxListeFournisseurs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxListeFournisseurs.FormattingEnabled = true;
-            this.comboBoxListeFournisseurs.Location = new System.Drawing.Point(175, 14);
+            this.comboBoxListeFournisseurs.Location = new System.Drawing.Point(151, 12);
             this.comboBoxListeFournisseurs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxListeFournisseurs.Name = "comboBoxListeFournisseurs";
             this.comboBoxListeFournisseurs.Size = new System.Drawing.Size(161, 21);
@@ -258,7 +268,7 @@ namespace WindowsFormsAppPapyrus
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 17);
+            this.label1.Location = new System.Drawing.Point(13, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(107, 13);
@@ -278,40 +288,79 @@ namespace WindowsFormsAppPapyrus
             this.buttonAnnuler.TabIndex = 32;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = true;
+            this.buttonAnnuler.Visible = false;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
+            // 
+            // errorProviderSuppression
+            // 
+            this.errorProviderSuppression.ContainerControl = this;
+            // 
+            // panelSelectFournisseur
+            // 
+            this.panelSelectFournisseur.Controls.Add(this.buttonSupprimer);
+            this.panelSelectFournisseur.Controls.Add(this.labelCodeFournisseur);
+            this.panelSelectFournisseur.Controls.Add(this.comboBoxListeFournisseurs);
+            this.panelSelectFournisseur.Controls.Add(this.textBoxCodeFournisseur);
+            this.panelSelectFournisseur.Controls.Add(this.label1);
+            this.panelSelectFournisseur.Controls.Add(this.buttonRechercher);
+            this.panelSelectFournisseur.Controls.Add(this.buttonModifier);
+            this.panelSelectFournisseur.Location = new System.Drawing.Point(12, 12);
+            this.panelSelectFournisseur.Name = "panelSelectFournisseur";
+            this.panelSelectFournisseur.Size = new System.Drawing.Size(363, 136);
+            this.panelSelectFournisseur.TabIndex = 33;
+            // 
+            // panelTBFournisseur
+            // 
+            this.panelTBFournisseur.Controls.Add(this.textBoxNomFournisseur);
+            this.panelTBFournisseur.Controls.Add(this.textBoxAdresseFournisseur);
+            this.panelTBFournisseur.Controls.Add(this.textBoxCpFournisseur);
+            this.panelTBFournisseur.Controls.Add(this.textBoxVilleFournisseur);
+            this.panelTBFournisseur.Controls.Add(this.textBoxContactFournisseur);
+            this.panelTBFournisseur.Controls.Add(this.textBoxSatisfactionFournisseur);
+            this.panelTBFournisseur.Location = new System.Drawing.Point(108, 183);
+            this.panelTBFournisseur.Name = "panelTBFournisseur";
+            this.panelTBFournisseur.Size = new System.Drawing.Size(216, 195);
+            this.panelTBFournisseur.TabIndex = 34;
+            // 
+            // buttonValider
+            // 
+            this.buttonValider.Enabled = false;
+            this.buttonValider.Location = new System.Drawing.Point(12, 386);
+            this.buttonValider.Name = "buttonValider";
+            this.buttonValider.Size = new System.Drawing.Size(75, 23);
+            this.buttonValider.TabIndex = 35;
+            this.buttonValider.Text = "Valider";
+            this.buttonValider.UseVisualStyleBackColor = true;
+            this.buttonValider.Visible = false;
+            this.buttonValider.Click += new System.EventHandler(this.buttonValider_Click);
             // 
             // FormMajFournisseurs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(387, 451);
+            this.Controls.Add(this.buttonValider);
+            this.Controls.Add(this.panelTBFournisseur);
+            this.Controls.Add(this.panelSelectFournisseur);
             this.Controls.Add(this.buttonAnnuler);
-            this.Controls.Add(this.comboBoxListeFournisseurs);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonQuitter);
             this.Controls.Add(this.buttonAjouter);
             this.Controls.Add(this.buttonNouveau);
-            this.Controls.Add(this.buttonSupprimer);
-            this.Controls.Add(this.buttonModifier);
-            this.Controls.Add(this.buttonRechercher);
-            this.Controls.Add(this.textBoxCodeFournisseur);
-            this.Controls.Add(this.labelCodeFournisseur);
-            this.Controls.Add(this.textBoxSatisfactionFournisseur);
             this.Controls.Add(this.labelSatisfactionFournisseur);
-            this.Controls.Add(this.textBoxContactFournisseur);
             this.Controls.Add(this.labelContactFournisseur);
-            this.Controls.Add(this.textBoxVilleFournisseur);
-            this.Controls.Add(this.textBoxCpFournisseur);
             this.Controls.Add(this.labelCpVilleFournisseur);
-            this.Controls.Add(this.textBoxAdresseFournisseur);
             this.Controls.Add(this.labelAdresseFournisseur);
-            this.Controls.Add(this.textBoxNomFournisseur);
             this.Controls.Add(this.labelNomFournisseur);
             this.Name = "FormMajFournisseurs";
             this.Text = "Gestion fournisseurs";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMajFournisseurs_FormClosing);
             this.Load += new System.EventHandler(this.FormMajFournisseurs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCodeFournisseur)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderSuppression)).EndInit();
+            this.panelSelectFournisseur.ResumeLayout(false);
+            this.panelSelectFournisseur.PerformLayout();
+            this.panelTBFournisseur.ResumeLayout(false);
+            this.panelTBFournisseur.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,5 +391,9 @@ namespace WindowsFormsAppPapyrus
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ErrorProvider errorProviderCodeFournisseur;
         private System.Windows.Forms.Button buttonAnnuler;
+        private System.Windows.Forms.ErrorProvider errorProviderSuppression;
+        private System.Windows.Forms.Panel panelSelectFournisseur;
+        private System.Windows.Forms.Panel panelTBFournisseur;
+        private System.Windows.Forms.Button buttonValider;
     }
 }

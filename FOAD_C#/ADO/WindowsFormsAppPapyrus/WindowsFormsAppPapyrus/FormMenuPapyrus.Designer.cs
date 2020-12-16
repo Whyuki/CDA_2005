@@ -34,9 +34,11 @@ namespace WindowsFormsAppPapyrus
             this.toolStripButtonConnexion = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRechercheFournisseur = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRechercheCommande = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonAfficherProduits = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonGestionFournisseurs = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonAfficherProduits = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -46,7 +48,6 @@ namespace WindowsFormsAppPapyrus
             this.toolStripButtonConnexion,
             this.toolStripButtonRechercheFournisseur,
             this.toolStripButtonRechercheCommande,
-            this.toolStripButtonAfficherProduits,
             this.toolStripButtonGestionFournisseurs});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -88,17 +89,6 @@ namespace WindowsFormsAppPapyrus
             this.toolStripButtonRechercheCommande.Text = "Rechercher une commande";
             this.toolStripButtonRechercheCommande.Click += new System.EventHandler(this.toolStripButtonRechercheCommande_Click);
             // 
-            // toolStripButtonAfficherProduits
-            // 
-            this.toolStripButtonAfficherProduits.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonAfficherProduits.Font = new System.Drawing.Font("Segoe UI", 15F);
-            this.toolStripButtonAfficherProduits.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAfficherProduits.Image")));
-            this.toolStripButtonAfficherProduits.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonAfficherProduits.Name = "toolStripButtonAfficherProduits";
-            this.toolStripButtonAfficherProduits.Size = new System.Drawing.Size(190, 32);
-            this.toolStripButtonAfficherProduits.Text = "Afficher les produits";
-            this.toolStripButtonAfficherProduits.Click += new System.EventHandler(this.toolStripButtonAfficherProduits_Click);
-            // 
             // toolStripButtonGestionFournisseurs
             // 
             this.toolStripButtonGestionFournisseurs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -110,11 +100,33 @@ namespace WindowsFormsAppPapyrus
             this.toolStripButtonGestionFournisseurs.Text = "Gerer les fournisseurs";
             this.toolStripButtonGestionFournisseurs.Click += new System.EventHandler(this.toolStripButtonGestionFournisseurs_Click);
             // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonAfficherProduits});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 35);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(1200, 35);
+            this.toolStrip2.TabIndex = 3;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // toolStripButtonAfficherProduits
+            // 
+            this.toolStripButtonAfficherProduits.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonAfficherProduits.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.toolStripButtonAfficherProduits.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAfficherProduits.Image")));
+            this.toolStripButtonAfficherProduits.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAfficherProduits.Name = "toolStripButtonAfficherProduits";
+            this.toolStripButtonAfficherProduits.Size = new System.Drawing.Size(190, 32);
+            this.toolStripButtonAfficherProduits.Text = "Afficher les produits";
+            this.toolStripButtonAfficherProduits.Click += new System.EventHandler(this.toolStripButtonAfficherProduits_Click_1);
+            // 
             // FormMenuPapyrus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 692);
+            this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
@@ -124,6 +136,8 @@ namespace WindowsFormsAppPapyrus
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,7 +149,8 @@ namespace WindowsFormsAppPapyrus
         private System.Windows.Forms.ToolStripButton toolStripButtonRechercheFournisseur;
         private System.Windows.Forms.ToolStripButton toolStripButtonConnexion;
         private System.Windows.Forms.ToolStripButton toolStripButtonRechercheCommande;
-        private System.Windows.Forms.ToolStripButton toolStripButtonAfficherProduits;
         private System.Windows.Forms.ToolStripButton toolStripButtonGestionFournisseurs;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripButton toolStripButtonAfficherProduits;
     }
 }

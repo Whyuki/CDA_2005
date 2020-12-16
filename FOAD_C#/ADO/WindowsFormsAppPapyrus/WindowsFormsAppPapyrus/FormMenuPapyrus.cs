@@ -46,16 +46,16 @@ namespace WindowsFormsAppPapyrus
             formRechercheCommandes.ShowDialog();
         }
 
-        private void toolStripButtonAfficherProduits_Click(object sender, EventArgs e)
-        {
-            FormAffichageProduits formAffichageProduits = new FormAffichageProduits();
-            formAffichageProduits.ShowDialog();
-        }
-
         private void toolStripButtonGestionFournisseurs_Click(object sender, EventArgs e)
         {
             FormMajFournisseurs formMajFournisseurs = new FormMajFournisseurs();
             formMajFournisseurs.ShowDialog();
+        }
+
+        private void toolStripButtonAfficherProduits_Click_1(object sender, EventArgs e)
+        {
+            FormAffichageProduits formAffichageProduits = new FormAffichageProduits();
+            formAffichageProduits.ShowDialog();
         }
     }
 }
