@@ -1,5 +1,18 @@
-﻿USE papyrus;
-create table fournisseurs
+﻿USE master;
+DROP DATABASE IF EXISTS papyrusGaming;
+GO
+CREATE DATABASE papyrusGaming;
+GO
+USE papyrusGaming;
+GO
+
+DROP TABLE IF EXISTS lignes_commandes;
+DROP TABLE IF EXISTS commandes;
+DROP TABLE IF EXISTS produits;
+DROP TABLE IF EXISTS fournisseurs;
+
+
+CREATE TABLE fournisseurs
 (
 fournisseur_id int primary key IDENTITY,
 fournisseur_nom varchar(50) CHECK (DATALENGTH(fournisseur_nom) > 0),
@@ -9,7 +22,7 @@ fournisseur_ville varchar(50),
 fournisseur_contact varchar(50),
 fournisseur_satisfaction tinyint,
 );
-create table produits
+CREATE TABLE produits
 (
 produit_id int primary key,
 produit_label varchar(50),
@@ -21,13 +34,13 @@ fournisseur_id int,
 CONSTRAINT fk_fournisseur_produit FOREIGN KEY (fournisseur_id)
         REFERENCES fournisseurs (fournisseur_id)
 );
-create table commandes
+CREATE TABLE commandes
 (
 commande_id int primary key IDENTITY,
 commande_date DATE,
 commande_commentaire varchar(100),
 );
-create table lignes_commandes
+CREATE TABLE lignes_commandes
 (
 produit_id int,
 commande_id int unique,

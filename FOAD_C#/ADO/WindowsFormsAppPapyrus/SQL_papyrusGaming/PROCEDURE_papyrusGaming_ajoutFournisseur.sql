@@ -1,4 +1,6 @@
-﻿CREATE PROCEDURE ajoutFournisseur
+﻿use papyrusGaming;
+GO
+CREATE PROCEDURE ajoutFournisseur
 (@nomFournisseur varchar(50),
 @adresseFournisseur varchar(100),
 @cpFournisseur char(5),
@@ -9,3 +11,4 @@
 AS
 INSERT INTO fournisseurs (fournisseur_nom, fournisseur_adresse, fournisseur_cp, fournisseur_ville, fournisseur_contact, fournisseur_satisfaction) VALUES(@nomFournisseur, @adresseFournisseur, @cpFournisseur, @villeFournisseur, @contactFournisseur, @satisfactionFournisseur) 
 SET @idFournisseur =SCOPE_IDENTITY();
+GO

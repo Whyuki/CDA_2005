@@ -1,4 +1,6 @@
-﻿CREATE PROCEDURE GetCommandesParFournisseur
+﻿use papyrusGaming;
+GO
+CREATE PROCEDURE GetCommandesParFournisseur
 (@codeFournisseur int)
 AS
 SET NOCOUNT ON;
@@ -10,3 +12,4 @@ ON lignes_commandes.produit_id = produits.produit_id
 INNER JOIN fournisseurs 
 ON produits.fournisseur_id = fournisseurs.fournisseur_id 
 where fournisseurs.fournisseur_id =@codeFournisseur
+GO
