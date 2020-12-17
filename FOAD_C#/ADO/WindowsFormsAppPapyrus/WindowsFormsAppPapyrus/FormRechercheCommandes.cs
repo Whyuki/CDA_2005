@@ -48,11 +48,11 @@ namespace WindowsFormsAppPapyrus
                 sqlCommande.CommandText = strSql;
                 sqlReader = sqlCommande.ExecuteReader();
 
-                
-                    while (sqlReader.Read())
-                    {
-                        listeFournisseurs.Add(sqlReader.GetInt32(1), sqlReader.GetString(0));
-                    }
+
+                while (sqlReader.Read())
+                {
+                    listeFournisseurs.Add(sqlReader.GetInt32(1), sqlReader.GetString(0));
+                }
 
                 sqlReader.Close();
 
@@ -61,7 +61,7 @@ namespace WindowsFormsAppPapyrus
             {
                 MessageBox.Show(se.Message);
             }
-          
+
 
             this.comboBoxListeFournisseurs.DataSource = new BindingSource(listeFournisseurs, null);
             this.comboBoxListeFournisseurs.DisplayMember = "Value";
@@ -94,7 +94,7 @@ namespace WindowsFormsAppPapyrus
                         "ON lignes_commandes.produit_id = produits.produit_id " +
                         "INNER JOIN fournisseurs " +
                         "ON produits.fournisseur_id = fournisseurs.fournisseur_id ";
-               
+
                         sqlCommande.CommandType = CommandType.Text;
                         sqlCommande.CommandText = strSql;
                     }
@@ -140,7 +140,7 @@ namespace WindowsFormsAppPapyrus
                 {
                     MessageBox.Show(se.Message);
                 }
-               
+
             }
         }
 
@@ -159,7 +159,10 @@ namespace WindowsFormsAppPapyrus
 
         private void comboBoxListeFournisseurs_TextChanged(object sender, EventArgs e)
         {
-            this.ResetListeCommandes();
+            if (comboBoxListeFournisseurs.SelectedIndex < 0)
+            {
+                this.ResetListeCommandes();
+            }
         }
 
         private void FormRechercheCommandes_FormClosing(object sender, FormClosingEventArgs e)
