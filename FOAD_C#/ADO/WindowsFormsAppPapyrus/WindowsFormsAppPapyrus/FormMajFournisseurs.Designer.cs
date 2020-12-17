@@ -57,10 +57,12 @@ namespace WindowsFormsAppPapyrus
             this.panelSelectFournisseur = new System.Windows.Forms.Panel();
             this.panelTBFournisseur = new System.Windows.Forms.Panel();
             this.buttonValider = new System.Windows.Forms.Button();
+            this.errorProviderSaisie = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCodeFournisseur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderSuppression)).BeginInit();
             this.panelSelectFournisseur.SuspendLayout();
             this.panelTBFournisseur.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderSaisie)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxSatisfactionFournisseur
@@ -71,6 +73,8 @@ namespace WindowsFormsAppPapyrus
             this.textBoxSatisfactionFournisseur.ReadOnly = true;
             this.textBoxSatisfactionFournisseur.Size = new System.Drawing.Size(54, 20);
             this.textBoxSatisfactionFournisseur.TabIndex = 21;
+            this.textBoxSatisfactionFournisseur.TextChanged += new System.EventHandler(this.textBoxSatisfactionFournisseur_TextChanged);
+            this.textBoxSatisfactionFournisseur.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxSatisfactionFournisseur_Validating);
             // 
             // labelSatisfactionFournisseur
             // 
@@ -90,6 +94,8 @@ namespace WindowsFormsAppPapyrus
             this.textBoxContactFournisseur.ReadOnly = true;
             this.textBoxContactFournisseur.Size = new System.Drawing.Size(193, 20);
             this.textBoxContactFournisseur.TabIndex = 19;
+            this.textBoxContactFournisseur.TextChanged += new System.EventHandler(this.textBoxContactFournisseur_TextChanged);
+            this.textBoxContactFournisseur.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxContactFournisseur_Validating);
             // 
             // labelContactFournisseur
             // 
@@ -109,6 +115,8 @@ namespace WindowsFormsAppPapyrus
             this.textBoxVilleFournisseur.ReadOnly = true;
             this.textBoxVilleFournisseur.Size = new System.Drawing.Size(116, 20);
             this.textBoxVilleFournisseur.TabIndex = 17;
+            this.textBoxVilleFournisseur.TextChanged += new System.EventHandler(this.textBoxVilleFournisseur_TextChanged);
+            this.textBoxVilleFournisseur.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxVilleFournisseur_Validating);
             // 
             // textBoxCpFournisseur
             // 
@@ -119,6 +127,8 @@ namespace WindowsFormsAppPapyrus
             this.textBoxCpFournisseur.ReadOnly = true;
             this.textBoxCpFournisseur.Size = new System.Drawing.Size(66, 20);
             this.textBoxCpFournisseur.TabIndex = 16;
+            this.textBoxCpFournisseur.TextChanged += new System.EventHandler(this.textBoxCpFournisseur_TextChanged);
+            this.textBoxCpFournisseur.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxCpFournisseur_Validating);
             // 
             // labelCpVilleFournisseur
             // 
@@ -138,6 +148,8 @@ namespace WindowsFormsAppPapyrus
             this.textBoxAdresseFournisseur.ReadOnly = true;
             this.textBoxAdresseFournisseur.Size = new System.Drawing.Size(193, 20);
             this.textBoxAdresseFournisseur.TabIndex = 14;
+            this.textBoxAdresseFournisseur.TextChanged += new System.EventHandler(this.textBoxAdresseFournisseur_TextChanged);
+            this.textBoxAdresseFournisseur.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxAdresseFournisseur_Validating);
             // 
             // labelAdresseFournisseur
             // 
@@ -157,6 +169,8 @@ namespace WindowsFormsAppPapyrus
             this.textBoxNomFournisseur.ReadOnly = true;
             this.textBoxNomFournisseur.Size = new System.Drawing.Size(193, 20);
             this.textBoxNomFournisseur.TabIndex = 12;
+            this.textBoxNomFournisseur.TextChanged += new System.EventHandler(this.textBoxNomFournisseur_TextChanged);
+            this.textBoxNomFournisseur.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxNomFournisseur_Validating);
             // 
             // labelNomFournisseur
             // 
@@ -334,6 +348,10 @@ namespace WindowsFormsAppPapyrus
             this.buttonValider.Visible = false;
             this.buttonValider.Click += new System.EventHandler(this.buttonValider_Click);
             // 
+            // errorProviderSaisie
+            // 
+            this.errorProviderSaisie.ContainerControl = this;
+            // 
             // FormMajFournisseurs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,6 +379,7 @@ namespace WindowsFormsAppPapyrus
             this.panelSelectFournisseur.PerformLayout();
             this.panelTBFournisseur.ResumeLayout(false);
             this.panelTBFournisseur.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderSaisie)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -395,5 +414,6 @@ namespace WindowsFormsAppPapyrus
         private System.Windows.Forms.Panel panelSelectFournisseur;
         private System.Windows.Forms.Panel panelTBFournisseur;
         private System.Windows.Forms.Button buttonValider;
+        private System.Windows.Forms.ErrorProvider errorProviderSaisie;
     }
 }

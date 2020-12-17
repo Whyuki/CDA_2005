@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibraryVerifications;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -55,7 +56,6 @@ namespace WindowsFormsAppPapyrus
         #endregion
 
         #region Mise à jour liste fournisseurs
-
         private void MajListBoxFournisseurs()
         {
             comboBoxListeFournisseurs.DisplayMember = "Text";
@@ -206,6 +206,7 @@ namespace WindowsFormsAppPapyrus
                         textBoxVilleFournisseur.Text = villeFournisseur;
                         textBoxContactFournisseur.Text = contactFournisseur;
                         textBoxSatisfactionFournisseur.Text = satisfactionFournisseur;
+
                     }
                 }
                 else
@@ -219,7 +220,7 @@ namespace WindowsFormsAppPapyrus
 
                 foreach (KeyValuePair<int, string> item in listeFournisseurs)
                 {
-                    if (item.Key == Int32.Parse(textBoxCodeFournisseur.Text))
+                    if (item.Key == Int32.Parse(sqlCodeFournisseur.Value.ToString()))
                     {
                         comboBoxListeFournisseurs.SelectedItem = item;
                     }
@@ -272,8 +273,11 @@ namespace WindowsFormsAppPapyrus
         {
             mode = ModeBDD.ajout;
 
+            errorProviderSaisie.Clear();
+
+
             this.MajListBoxFournisseurs();
-         
+
             this.MiseAjourControles();
 
             this.ResetTextBoxes();
@@ -286,68 +290,83 @@ namespace WindowsFormsAppPapyrus
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
             mode = ModeBDD.lecture;
+            errorProviderSaisie.Clear();
 
             comboBoxListeFournisseurs.SelectedIndex = -1;
             textBoxCodeFournisseur.ResetText();
-        
-            this.ResetTextBoxes();
-          
-            this.MiseAjourControles();
 
+            this.ResetTextBoxes();
+            this.MiseAjourControles();
 
         }
         #endregion
 
         #region Ajouter un fournisseur 
-        //to-do : verif champs, methode ajout
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
             mode = ModeBDD.lecture;
 
-            try
+            errorProviderSaisie.Clear();
+
+            if (SaisieValide())
             {
-                sqlCommande = new SqlCommand();
-                sqlCommande.Connection = sqlConnect;
-
-                SqlParameter sqlNomFournisseur = new SqlParameter("@nomFournisseur", DbType.String);
-                sqlNomFournisseur.Value = textBoxNomFournisseur.Text;
-                SqlParameter sqlAdresseFournisseur = new SqlParameter("@adresseFournisseur", DbType.String);
-                sqlAdresseFournisseur.Value = textBoxAdresseFournisseur.Text;
-                SqlParameter sqlCpFournisseur = new SqlParameter("@cpFournisseur", DbType.String);
-                sqlCpFournisseur.Value = textBoxCpFournisseur.Text;
-                SqlParameter sqlVilleFournisseur = new SqlParameter("@villeFournisseur", DbType.String);
-                sqlVilleFournisseur.Value = textBoxVilleFournisseur.Text;
-                SqlParameter sqlContactFournisseur = new SqlParameter("@contactFournisseur", DbType.String);
-                sqlContactFournisseur.Value = textBoxContactFournisseur.Text;
-                SqlParameter sqlSatisfactionFournisseur = new SqlParameter("@satisfactionFournisseur", DbType.Int16);
-                sqlSatisfactionFournisseur.Value = textBoxSatisfactionFournisseur.Text;
-
-                SqlParameter[] sqlParams = new SqlParameter[] { sqlNomFournisseur, sqlAdresseFournisseur, sqlCpFournisseur, sqlVilleFournisseur, sqlContactFournisseur, sqlSatisfactionFournisseur };
-
-                sqlCommande.Parameters.AddRange(sqlParams);
-
-
-                string strSql = "INSERT INTO fournisseurs (fournisseur_nom, fournisseur_adresse, fournisseur_cp, fournisseur_ville, fournisseur_contact, fournisseur_satisfaction) " +
-                    "VALUES(@nomFournisseur, @adresseFournisseur, @cpFournisseur, @villeFournisseur, @contactFournisseur, @satisfactionFournisseur) ";
-                sqlCommande.CommandType = CommandType.Text;
-                sqlCommande.CommandText = strSql;
-                int sqlNbLignesAffectees = sqlCommande.ExecuteNonQuery();
-
-                if (sqlNbLignesAffectees > 0)
+                try
                 {
-                    MessageBox.Show("Ajout effectué");
-                    this.MajListBoxFournisseurs();
+                    sqlCommande = new SqlCommand();
+                    sqlCommande.Connection = sqlConnect;
 
-                    comboBoxListeFournisseurs.SelectedIndex = comboBoxListeFournisseurs.Items.Count - 1;
+                    sqlCommande.CommandType = CommandType.StoredProcedure;
+                    sqlCommande.CommandText = "ajoutFournisseur";
+
+                    SqlParameter sqlNomFournisseur = new SqlParameter("@nomFournisseur", SqlDbType.VarChar, 50);
+                    sqlNomFournisseur.Value = textBoxNomFournisseur.Text;
+                    SqlParameter sqlAdresseFournisseur = new SqlParameter("@adresseFournisseur", SqlDbType.VarChar, 100);
+                    sqlAdresseFournisseur.Value = textBoxAdresseFournisseur.Text;
+                    SqlParameter sqlCpFournisseur = new SqlParameter("@cpFournisseur", SqlDbType.VarChar, 5);
+                    sqlCpFournisseur.Value = textBoxCpFournisseur.Text;
+                    SqlParameter sqlVilleFournisseur = new SqlParameter("@villeFournisseur", SqlDbType.VarChar, 50);
+                    sqlVilleFournisseur.Value = textBoxVilleFournisseur.Text;
+                    SqlParameter sqlContactFournisseur = new SqlParameter("@contactFournisseur", SqlDbType.VarChar, 50);
+                    sqlContactFournisseur.Value = textBoxContactFournisseur.Text;
+                    SqlParameter sqlSatisfactionFournisseur = new SqlParameter("@satisfactionFournisseur", SqlDbType.TinyInt);
+                    sqlSatisfactionFournisseur.Value = textBoxSatisfactionFournisseur.Text;
+
+                    SqlParameter pIdOut = new SqlParameter("@idFournisseur", SqlDbType.Int);
+                    pIdOut.Direction = ParameterDirection.Output;
+
+                    SqlParameter[] sqlParams = new SqlParameter[] { sqlNomFournisseur, sqlAdresseFournisseur, sqlCpFournisseur, sqlVilleFournisseur, sqlContactFournisseur, sqlSatisfactionFournisseur, pIdOut };
+
+                    sqlCommande.Parameters.AddRange(sqlParams);
+
+
+                    int sqlNbLignesAffectees = sqlCommande.ExecuteNonQuery();
+
+                    if (sqlNbLignesAffectees == 1)
+                    {
+                        MessageBox.Show("Fournisseur ajouté avec succes\nID :" + pIdOut.Value);
+                        this.MajListBoxFournisseurs();
+
+                        this.MiseAjourControles();
+                        foreach (KeyValuePair<int, string> item in listeFournisseurs)
+                        {
+                            if (item.Key == Int32.Parse(pIdOut.Value.ToString()))
+                            {
+                                comboBoxListeFournisseurs.SelectedItem = item;
+                            }
+                        }
+                    }
                 }
+                catch (SqlException se)
+                {
+                    MessageBox.Show("Ajout impossible");
+                    MessageBox.Show(se.Message);
+                }
+
             }
-            catch (SqlException se)
+            else
             {
-                MessageBox.Show("Ajout impossible");
-                MessageBox.Show(se.Message);
+                errorProviderSaisie.SetError(buttonAjouter, "Ajout impossible, saisie incorrecte");
             }
-           
-            this.MiseAjourControles();
 
         }
         #endregion
@@ -408,24 +427,13 @@ namespace WindowsFormsAppPapyrus
         }
         #endregion
 
-        #region Fermeture de la fenetre
-        private void buttonQuitter_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        private void FormMajFournisseurs_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            sqlConnect.Close();
-        }
-        #endregion
-
         #region Modifier un fournisseur
         private void buttonModifier_Click(object sender, EventArgs e)
         {
             mode = ModeBDD.modification;
-          
+
             this.MiseAjourControles();
-           
+
         }
         #endregion
 
@@ -489,7 +497,6 @@ namespace WindowsFormsAppPapyrus
                     foreach (TextBox tB in panelTBFournisseur.Controls)
                     {
                         tB.ReadOnly = false;
-
                     }
                     break;
                 default:
@@ -503,80 +510,246 @@ namespace WindowsFormsAppPapyrus
         {
             mode = ModeBDD.lecture;
 
-            try
+            if (SaisieValide())
             {
-                sqlCommande = new SqlCommand();
-                sqlCommande.Connection = sqlConnect;
+                try
+                {
+                    sqlCommande = new SqlCommand();
+                    sqlCommande.Connection = sqlConnect;
 
-                SqlParameter sqlCodeFournisseur = new SqlParameter("@codeFournisseur", DbType.Int32);
-                sqlCodeFournisseur.Value = textBoxCodeFournisseur.Text;
-                SqlParameter sqlNomFournisseur = new SqlParameter("@nomFournisseur", DbType.String);
-                sqlNomFournisseur.Value = textBoxNomFournisseur.Text;
-                SqlParameter sqlAdresseFournisseur = new SqlParameter("@adresseFournisseur", DbType.String);
-                sqlAdresseFournisseur.Value = textBoxAdresseFournisseur.Text;
-                SqlParameter sqlCpFournisseur = new SqlParameter("@cpFournisseur", DbType.String);
-                sqlCpFournisseur.Value = textBoxCpFournisseur.Text;
-                SqlParameter sqlVilleFournisseur = new SqlParameter("@villeFournisseur", DbType.String);
-                sqlVilleFournisseur.Value = textBoxVilleFournisseur.Text;
-                SqlParameter sqlContactFournisseur = new SqlParameter("@contactFournisseur", DbType.String);
-                sqlContactFournisseur.Value = textBoxContactFournisseur.Text;
-                SqlParameter sqlSatisfactionFournisseur = new SqlParameter("@satisfactionFournisseur", DbType.Int16);
-                sqlSatisfactionFournisseur.Value = textBoxSatisfactionFournisseur.Text;
+                    SqlParameter sqlCodeFournisseur = new SqlParameter("@codeFournisseur", DbType.Int32);
+                    sqlCodeFournisseur.Value = textBoxCodeFournisseur.Text;
+                    SqlParameter sqlNomFournisseur = new SqlParameter("@nomFournisseur", DbType.String);
+                    sqlNomFournisseur.Value = textBoxNomFournisseur.Text;
+                    SqlParameter sqlAdresseFournisseur = new SqlParameter("@adresseFournisseur", DbType.String);
+                    sqlAdresseFournisseur.Value = textBoxAdresseFournisseur.Text;
+                    SqlParameter sqlCpFournisseur = new SqlParameter("@cpFournisseur", DbType.String);
+                    sqlCpFournisseur.Value = textBoxCpFournisseur.Text;
+                    SqlParameter sqlVilleFournisseur = new SqlParameter("@villeFournisseur", DbType.String);
+                    sqlVilleFournisseur.Value = textBoxVilleFournisseur.Text;
+                    SqlParameter sqlContactFournisseur = new SqlParameter("@contactFournisseur", DbType.String);
+                    sqlContactFournisseur.Value = textBoxContactFournisseur.Text;
+                    SqlParameter sqlSatisfactionFournisseur = new SqlParameter("@satisfactionFournisseur", DbType.Int16);
+                    sqlSatisfactionFournisseur.Value = textBoxSatisfactionFournisseur.Text;
 
-                SqlParameter[] sqlParams = new SqlParameter[] { sqlCodeFournisseur, sqlNomFournisseur, sqlAdresseFournisseur,
+                    SqlParameter[] sqlParams = new SqlParameter[] { sqlCodeFournisseur, sqlNomFournisseur, sqlAdresseFournisseur,
                     sqlCpFournisseur, sqlVilleFournisseur, sqlContactFournisseur, sqlSatisfactionFournisseur };
 
-                sqlCommande.Parameters.AddRange(sqlParams);
+                    sqlCommande.Parameters.AddRange(sqlParams);
 
-                string strSql = "UPDATE fournisseurs " +
-                    "SET fournisseur_nom =@nomFournisseur, " +
-                    "fournisseur_adresse=@adresseFournisseur, " +
-                    "fournisseur_cp=@cpFournisseur, " +
-                    "fournisseur_ville=@villeFournisseur, " +
-                    "fournisseur_contact=@contactFournisseur, " +
-                    "fournisseur_satisfaction=@satisfactionFournisseur " +
-                    "WHERE fournisseur_id =@codeFournisseur ";
-                sqlCommande.CommandType = CommandType.Text;
-                sqlCommande.CommandText = strSql;
-                int sqlNbLignesAffectees = sqlCommande.ExecuteNonQuery();
+                    string strSql = "UPDATE fournisseurs " +
+                        "SET fournisseur_nom =@nomFournisseur, " +
+                        "fournisseur_adresse=@adresseFournisseur, " +
+                        "fournisseur_cp=@cpFournisseur, " +
+                        "fournisseur_ville=@villeFournisseur, " +
+                        "fournisseur_contact=@contactFournisseur, " +
+                        "fournisseur_satisfaction=@satisfactionFournisseur " +
+                        "WHERE fournisseur_id =@codeFournisseur ";
+                    sqlCommande.CommandType = CommandType.Text;
+                    sqlCommande.CommandText = strSql;
+                    int sqlNbLignesAffectees = sqlCommande.ExecuteNonQuery();
 
-                if (sqlNbLignesAffectees > 0)
-                {
-                    MessageBox.Show("Modification effectuée");
-
-                    textBoxCodeFournisseur.ReadOnly = false;
-                    textBoxCodeFournisseur.Enabled = true;
-
-                    foreach (KeyValuePair<int, string> item in listeFournisseurs)
+                    if (sqlNbLignesAffectees > 0)
                     {
-                        if (item.Key == Int32.Parse(textBoxCodeFournisseur.Text))
+                        MessageBox.Show("Modification effectuée");
+
+                        textBoxCodeFournisseur.ReadOnly = false;
+                        textBoxCodeFournisseur.Enabled = true;
+
+                        foreach (KeyValuePair<int, string> item in listeFournisseurs)
                         {
-                            comboBoxListeFournisseurs.SelectedItem = item;
+                            if (item.Key == Int32.Parse(sqlCodeFournisseur.Value.ToString()))
+                            {
+                                comboBoxListeFournisseurs.SelectedItem = item;
+                            }
                         }
                     }
                 }
+                catch (SqlException se)
+                {
+                    MessageBox.Show("Modification impossible");
+                    MessageBox.Show(se.Message);
+                }
+
+                foreach (TextBox tB in panelTBFournisseur.Controls)
+                {
+                    tB.ReadOnly = true;
+
+                }
+                buttonValider.Enabled = false;
+                buttonAnnuler.Enabled = false;
+                buttonValider.Visible = false;
+                buttonAnnuler.Visible = false;
+                comboBoxListeFournisseurs.Enabled = true;
+                buttonNouveau.Enabled = true;
+
+                buttonSupprimer.Enabled = true;
+                buttonModifier.Enabled = true;
             }
-            catch (SqlException se)
+            else
             {
-                MessageBox.Show("Modification impossible");
-                MessageBox.Show(se.Message);
+                errorProviderSaisie.SetError(buttonValider, "Modification impossible : saisie incorrecte");
             }
+        }
+        #endregion
 
-            foreach (TextBox tB in panelTBFournisseur.Controls)
+        #region validation saisie ajout/modification fournisseur
+        private void textBoxNomFournisseur_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ClassVerifications.ValidNom(textBoxNomFournisseur.Text))
             {
-                tB.ReadOnly = true;
-
+                if (textBoxNomFournisseur.TextLength < 1)
+                {
+                    errorProviderSaisie.SetError(textBoxNomFournisseur, "Champ obligatoire");
+                }
+                else
+                {
+                    errorProviderSaisie.SetError(textBoxNomFournisseur, "Nom au format invalide");
+                }
             }
-            buttonValider.Enabled = false;
-            buttonAnnuler.Enabled = false;
-            buttonValider.Visible = false;
-            buttonAnnuler.Visible = false;
-            comboBoxListeFournisseurs.Enabled = true;
-            buttonNouveau.Enabled = true;
 
-            buttonSupprimer.Enabled = true;
-            buttonModifier.Enabled = true;
+        }
 
+        private void textBoxAdresseFournisseur_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ClassVerifications.ValidNom(textBoxAdresseFournisseur.Text))
+            {
+                if (textBoxAdresseFournisseur.TextLength < 1)
+                {
+                    errorProviderSaisie.SetError(textBoxAdresseFournisseur, "Champ obligatoire");
+                }
+                else
+                {
+                    errorProviderSaisie.SetError(textBoxAdresseFournisseur, "Adresse au format invalide");
+                }
+            }
+        }
+
+        private void textBoxCpFournisseur_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ClassVerifications.ValidCP(textBoxCpFournisseur.Text))
+            {
+                if (textBoxCpFournisseur.TextLength < 1)
+                {
+                    errorProviderSaisie.SetError(textBoxCpFournisseur, "Champ obligatoire");
+                }
+                else
+                {
+                    errorProviderSaisie.SetError(textBoxCpFournisseur, "Code postal invalide");
+                }
+            }
+        }
+
+        private void textBoxVilleFournisseur_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ClassVerifications.ValidNom(textBoxVilleFournisseur.Text))
+            {
+                if (textBoxVilleFournisseur.TextLength < 1)
+                {
+                    errorProviderSaisie.SetError(textBoxVilleFournisseur, "Champ obligatoire");
+                }
+                else
+                {
+                    errorProviderSaisie.SetError(textBoxVilleFournisseur, "Nom de ville au format invalide");
+                }
+            }
+        }
+
+        private void textBoxContactFournisseur_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ClassVerifications.ValidNom(textBoxContactFournisseur.Text))
+            {
+                if (textBoxContactFournisseur.TextLength < 1)
+                {
+                    errorProviderSaisie.SetError(textBoxContactFournisseur, "Champ obligatoire");
+                }
+                else
+                {
+                    errorProviderSaisie.SetError(textBoxContactFournisseur, "Nom au format invalide");
+                }
+            }
+        }
+
+        private void textBoxSatisfactionFournisseur_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ClassVerifications.ValidMontantInt(textBoxSatisfactionFournisseur.Text))
+            {
+                if (textBoxSatisfactionFournisseur.TextLength < 1)
+                {
+                    errorProviderSaisie.SetError(textBoxSatisfactionFournisseur, "Champ obligatoire");
+                }
+                else
+                {
+                    errorProviderSaisie.SetError(textBoxSatisfactionFournisseur, "Note invalide");
+                }
+            }
+        }
+
+        private bool SaisieValide()
+        {
+            string nom = textBoxNomFournisseur.Text;
+            string adresse = textBoxAdresseFournisseur.Text;
+            string cp = textBoxCpFournisseur.Text;
+            string ville = textBoxVilleFournisseur.Text;
+            string contact = textBoxContactFournisseur.Text;
+            string satisfaction = textBoxSatisfactionFournisseur.Text;
+
+            bool nomIsValid = ClassVerifications.ValidNom(nom);
+            bool adresseIsValid = ClassVerifications.ValidNom(adresse);
+            bool cPIsValid = ClassVerifications.ValidCP(cp);
+            bool villeIsValid = ClassVerifications.ValidNom(ville);
+            bool contactIsValid = ClassVerifications.ValidNom(contact);
+            bool satisfactionIsValid = ClassVerifications.ValidMontantInt(satisfaction);
+
+            return nomIsValid & adresseIsValid & cPIsValid & villeIsValid & contactIsValid & satisfactionIsValid;
+
+
+        }
+
+        private void textBoxNomFournisseur_TextChanged(object sender, EventArgs e)
+        {
+            errorProviderSaisie.Clear();
+        }
+
+        private void textBoxAdresseFournisseur_TextChanged(object sender, EventArgs e)
+        {
+            errorProviderSaisie.Clear();
+
+        }
+
+        private void textBoxCpFournisseur_TextChanged(object sender, EventArgs e)
+        {
+            errorProviderSaisie.Clear();
+
+        }
+
+        private void textBoxVilleFournisseur_TextChanged(object sender, EventArgs e)
+        {
+            errorProviderSaisie.Clear();
+
+        }
+
+        private void textBoxContactFournisseur_TextChanged(object sender, EventArgs e)
+        {
+            errorProviderSaisie.Clear();
+
+        }
+
+        private void textBoxSatisfactionFournisseur_TextChanged(object sender, EventArgs e)
+        {
+            errorProviderSaisie.Clear();
+
+        }
+        #endregion
+
+        #region Fermeture de la fenetre
+        private void buttonQuitter_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void FormMajFournisseurs_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            sqlConnect.Close();
         }
         #endregion
     }
