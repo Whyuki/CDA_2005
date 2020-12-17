@@ -89,6 +89,7 @@
     <Compile Include="FormInformationsFournisseur.Designer.cs">
       <DependentUpon>FormInformationsFournisseur.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModeBDD.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAffichageProduits.resx">

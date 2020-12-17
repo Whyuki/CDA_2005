@@ -19,12 +19,16 @@ namespace WindowsFormsAppPapyrus
         private SqlCommand sqlCommande;
         private SqlDataReader sqlReader;
         Dictionary<int, string> listeFournisseurs;
+        private ModeBDD mode;
         #endregion
 
         #region Constructeur
         public FormMajFournisseurs()
         {
             InitializeComponent();
+
+            mode = ModeBDD.lecture;
+
             sqlConnect = new SqlConnection();
             ConnectionStringSettings oConfig = ConfigurationManager.ConnectionStrings["papyrusConnectionString"];
             if (oConfig != null)
@@ -54,8 +58,6 @@ namespace WindowsFormsAppPapyrus
 
         private void MajListBoxFournisseurs()
         {
-            errorProviderSuppression.Clear();
-
             comboBoxListeFournisseurs.DisplayMember = "Text";
             comboBoxListeFournisseurs.ValueMember = "Value";
             listeFournisseurs = new Dictionary<int, string>();
@@ -89,8 +91,6 @@ namespace WindowsFormsAppPapyrus
             {
                 MessageBox.Show(se.Message);
             }
-
-
             this.comboBoxListeFournisseurs.DataSource = new BindingSource(listeFournisseurs, null);
             this.comboBoxListeFournisseurs.DisplayMember = "Value";
             this.comboBoxListeFournisseurs.ValueMember = "Key";
@@ -102,11 +102,9 @@ namespace WindowsFormsAppPapyrus
         #region Selection d'un fournisseur dans la liste
         private void comboBoxListeFournisseurs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            errorProviderSuppression.Clear();
             if (comboBoxListeFournisseurs.SelectedIndex >= 0)
             {
                 textBoxCodeFournisseur.ReadOnly = false;
-
                 try
                 {
                     sqlReader.Close();
@@ -126,6 +124,8 @@ namespace WindowsFormsAppPapyrus
 
                     if (sqlReader.HasRows)
                     {
+                        mode = ModeBDD.lecture;
+
                         buttonModifier.Enabled = true;
                         buttonSupprimer.Enabled = true;
                         while (sqlReader.Read())
@@ -161,9 +161,7 @@ namespace WindowsFormsAppPapyrus
                 {
                     MessageBox.Show(se.Message);
                 }
-
                 buttonRechercher.Enabled = false;
-
             }
 
         }
@@ -172,6 +170,8 @@ namespace WindowsFormsAppPapyrus
         #region Rechercher un fournisseur par son code
         private void buttonRechercher_Click(object sender, EventArgs e)
         {
+            mode = ModeBDD.lecture;
+
             try
             {
                 sqlCommande = new SqlCommand();
@@ -180,7 +180,6 @@ namespace WindowsFormsAppPapyrus
                 SqlParameter sqlCodeFournisseur = new SqlParameter("@codeFournisseur", DbType.Int32);
                 sqlCodeFournisseur.Value = textBoxCodeFournisseur.Text;
                 sqlCommande.Parameters.Add(sqlCodeFournisseur);
-
 
                 string strSql = "Select * from fournisseurs where fournisseur_id =@codeFournisseur";
                 sqlCommande.CommandType = CommandType.Text;
@@ -201,7 +200,6 @@ namespace WindowsFormsAppPapyrus
                         string contactFournisseur = sqlReader.GetString(5);
                         string satisfactionFournisseur = sqlReader.GetByte(6).ToString();
 
-                        // textBoxCodeFournisseur.SelectAll();
                         textBoxNomFournisseur.Text = nomFournisseur;
                         textBoxAdresseFournisseur.Text = adresseFournisseur;
                         textBoxCpFournisseur.Text = cpFournisseur;
@@ -240,9 +238,8 @@ namespace WindowsFormsAppPapyrus
         #region Saisie code fournisseur
         private void textBoxCodeFournisseur_TextChanged(object sender, EventArgs e)
         {
-            errorProviderSuppression.Clear();
+            mode = ModeBDD.lecture;
 
-            errorProviderCodeFournisseur.Clear();
             if (textBoxCodeFournisseur.TextLength > 0)
             {
                 buttonRechercher.Enabled = true;
@@ -254,7 +251,7 @@ namespace WindowsFormsAppPapyrus
                 buttonSupprimer.Enabled = false;
             }
             ResetTextBoxes();
-            errorProviderCodeFournisseur.Clear();
+
             if (comboBoxListeFournisseurs.SelectedIndex < 0)
             {
                 buttonModifier.Enabled = false;
@@ -263,6 +260,8 @@ namespace WindowsFormsAppPapyrus
         }
         private void textBoxCodeFournisseur_KeyPress(object sender, KeyPressEventArgs e)
         {
+            mode = ModeBDD.lecture;
+
             comboBoxListeFournisseurs.SelectedIndex = -1;
         }
 
@@ -271,32 +270,14 @@ namespace WindowsFormsAppPapyrus
         #region Creer nouveau fournisseur
         private void buttonNouveau_Click(object sender, EventArgs e)
         {
-            errorProviderSuppression.Clear();
+            mode = ModeBDD.ajout;
 
             this.MajListBoxFournisseurs();
-
-            foreach (Control c in panelSelectFournisseur.Controls)
-            {
-                c.Visible = false;
-            }
-
-            buttonAjouter.Enabled = true;
-            buttonAnnuler.Enabled = true;
-            buttonAjouter.Visible = true;
-            buttonAnnuler.Visible = true;
-            buttonValider.Enabled = false;
-            buttonValider.Visible = false;
+         
+            this.MiseAjourControles();
 
             this.ResetTextBoxes();
             textBoxCodeFournisseur.ResetText();
-
-
-            foreach (TextBox tB in panelTBFournisseur.Controls)
-            {
-                tB.ReadOnly = false;
-            }
-
-            buttonNouveau.Enabled = false;
 
         }
         #endregion
@@ -304,31 +285,15 @@ namespace WindowsFormsAppPapyrus
         #region Annuler saisie nouveau fournisseur ou modification
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
-            errorProviderSuppression.Clear();
-            textBoxCodeFournisseur.ResetText();
-            textBoxCodeFournisseur.ReadOnly = false;
+            mode = ModeBDD.lecture;
+
             comboBoxListeFournisseurs.SelectedIndex = -1;
-            foreach (Control c in panelSelectFournisseur.Controls)
-            {
-                c.Visible = true;
-            }
-
-            foreach (TextBox tB in panelTBFournisseur.Controls)
-            {
-                tB.ReadOnly = true;
-            }
+            textBoxCodeFournisseur.ResetText();
+        
             this.ResetTextBoxes();
+          
+            this.MiseAjourControles();
 
-            buttonAjouter.Enabled = false;
-            buttonAnnuler.Enabled = false;
-            buttonAjouter.Visible = false;
-            buttonAnnuler.Visible = false;
-            buttonValider.Enabled = false;
-            buttonValider.Visible = false;
-
-            buttonNouveau.Enabled = true;
-
-            comboBoxListeFournisseurs.Enabled = true;
 
         }
         #endregion
@@ -337,6 +302,8 @@ namespace WindowsFormsAppPapyrus
         //to-do : verif champs, methode ajout
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
+            mode = ModeBDD.lecture;
+
             try
             {
                 sqlCommande = new SqlCommand();
@@ -379,28 +346,17 @@ namespace WindowsFormsAppPapyrus
                 MessageBox.Show("Ajout impossible");
                 MessageBox.Show(se.Message);
             }
+           
+            this.MiseAjourControles();
 
-
-
-            foreach (Control c in panelSelectFournisseur.Controls)
-            {
-                c.Visible = true;
-            }
-
-            buttonAjouter.Enabled = false;
-            buttonAnnuler.Enabled = false;
-            buttonAjouter.Visible = false;
-            buttonAnnuler.Visible = false;
-
-            buttonNouveau.Enabled = true;
-
-        
         }
         #endregion
 
         #region supprimer un fournisseur
         private void buttonSupprimer_Click(object sender, EventArgs e)
         {
+            mode = ModeBDD.lecture;
+
             try
             {
                 sqlCommande = new SqlCommand();
@@ -466,27 +422,87 @@ namespace WindowsFormsAppPapyrus
         #region Modifier un fournisseur
         private void buttonModifier_Click(object sender, EventArgs e)
         {
+            mode = ModeBDD.modification;
+          
+            this.MiseAjourControles();
+           
+        }
+        #endregion
+
+        #region Activation/Desactivation des boutons et champs en fonction du mode en cours
+        private void MiseAjourControles()
+        {
             errorProviderSuppression.Clear();
-
-            foreach (TextBox tB in panelTBFournisseur.Controls)
+            errorProviderCodeFournisseur.Clear();
+            switch (mode)
             {
-                tB.ReadOnly = false;
+                case ModeBDD.lecture:
+                    buttonAjouter.Enabled = false;
+                    buttonAnnuler.Enabled = false;
+                    buttonAjouter.Visible = false;
+                    buttonAnnuler.Visible = false;
+                    buttonNouveau.Enabled = true;
+                    buttonValider.Enabled = false;
+                    buttonValider.Visible = false;
+                    comboBoxListeFournisseurs.Enabled = true;
+                    textBoxCodeFournisseur.ReadOnly = false;
+                    textBoxCodeFournisseur.Enabled = true;
+                    foreach (TextBox tB in panelTBFournisseur.Controls)
+                    {
+                        tB.ReadOnly = true;
+                    }
+                    foreach (Control c in panelSelectFournisseur.Controls)
+                    {
+                        c.Visible = true;
+                    }
+                    break;
+                case ModeBDD.ajout:
+                    buttonAjouter.Enabled = true;
+                    buttonAnnuler.Enabled = true;
+                    buttonAjouter.Visible = true;
+                    buttonAnnuler.Visible = true;
+                    buttonValider.Enabled = false;
+                    buttonValider.Visible = false;
+                    buttonNouveau.Enabled = false;
+                    foreach (Control c in panelSelectFournisseur.Controls)
+                    {
+                        c.Visible = false;
+                    }
+                    foreach (TextBox tB in panelTBFournisseur.Controls)
+                    {
+                        tB.ReadOnly = false;
+                    }
 
+                    break;
+                case ModeBDD.modification:
+
+                    buttonValider.Enabled = true;
+                    buttonAnnuler.Enabled = true;
+                    buttonValider.Visible = true;
+                    buttonAnnuler.Visible = true;
+                    buttonSupprimer.Enabled = false;
+                    buttonNouveau.Enabled = false;
+                    buttonModifier.Enabled = false;
+                    textBoxCodeFournisseur.ReadOnly = true;
+                    textBoxCodeFournisseur.Enabled = false;
+                    comboBoxListeFournisseurs.Enabled = false;
+                    foreach (TextBox tB in panelTBFournisseur.Controls)
+                    {
+                        tB.ReadOnly = false;
+
+                    }
+                    break;
+                default:
+                    break;
             }
-
-            buttonValider.Enabled = true;
-            buttonAnnuler.Enabled = true;
-            buttonValider.Visible = true;
-            buttonAnnuler.Visible = true;
-
-            textBoxCodeFournisseur.ReadOnly = true;
-            comboBoxListeFournisseurs.Enabled = false;
         }
         #endregion
 
         #region Valider modification fournisseur
         private void buttonValider_Click(object sender, EventArgs e)
         {
+            mode = ModeBDD.lecture;
+
             try
             {
                 sqlCommande = new SqlCommand();
@@ -512,7 +528,6 @@ namespace WindowsFormsAppPapyrus
 
                 sqlCommande.Parameters.AddRange(sqlParams);
 
-
                 string strSql = "UPDATE fournisseurs " +
                     "SET fournisseur_nom =@nomFournisseur, " +
                     "fournisseur_adresse=@adresseFournisseur, " +
@@ -528,8 +543,10 @@ namespace WindowsFormsAppPapyrus
                 if (sqlNbLignesAffectees > 0)
                 {
                     MessageBox.Show("Modification effectuée");
-           
+
                     textBoxCodeFournisseur.ReadOnly = false;
+                    textBoxCodeFournisseur.Enabled = true;
+
                     foreach (KeyValuePair<int, string> item in listeFournisseurs)
                     {
                         if (item.Key == Int32.Parse(textBoxCodeFournisseur.Text))
@@ -555,6 +572,10 @@ namespace WindowsFormsAppPapyrus
             buttonValider.Visible = false;
             buttonAnnuler.Visible = false;
             comboBoxListeFournisseurs.Enabled = true;
+            buttonNouveau.Enabled = true;
+
+            buttonSupprimer.Enabled = true;
+            buttonModifier.Enabled = true;
 
         }
         #endregion
