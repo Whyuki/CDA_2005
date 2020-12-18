@@ -102,7 +102,7 @@ namespace WindowsFormsAppPapyrus
         #region Selection d'un fournisseur dans la liste
         private void comboBoxListeFournisseurs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxListeFournisseurs.SelectedIndex >= 0)
+            if (comboBoxListeFournisseurs.SelectedIndex >= 0 && comboBoxListeFournisseurs.SelectedValue.GetType().Equals(typeof(int)))
             {
                 textBoxCodeFournisseur.ReadOnly = false;
                 try
@@ -111,9 +111,9 @@ namespace WindowsFormsAppPapyrus
                     sqlCommande = new SqlCommand();
                     sqlCommande.Connection = sqlConnect;
 
-                    SqlParameter sqlNomFournisseur = new SqlParameter("@codeFournisseur", DbType.Int32);
-                    sqlNomFournisseur.Value = comboBoxListeFournisseurs.SelectedValue;
-                    sqlCommande.Parameters.Add(sqlNomFournisseur);
+                    SqlParameter sqlCodeFournisseur = new SqlParameter("@codeFournisseur", DbType.Int32);
+                    sqlCodeFournisseur.Value = comboBoxListeFournisseurs.SelectedValue;
+                    sqlCommande.Parameters.Add(sqlCodeFournisseur);
 
 
                     string strSql = "Select * from fournisseurs where fournisseur_id =@codeFournisseur";
@@ -122,13 +122,13 @@ namespace WindowsFormsAppPapyrus
 
                     sqlReader = sqlCommande.ExecuteReader();
 
-                    if (sqlReader.HasRows)
+                    if (sqlReader.Read() && ((int)sqlReader["fournisseur_id"]).Equals(Int32.Parse(sqlCodeFournisseur.Value.ToString())))
                     {
                         mode = ModeBDD.lecture;
 
                         buttonModifier.Enabled = true;
                         buttonSupprimer.Enabled = true;
-                        sqlReader.Read();
+
                         string idFournisseur = sqlReader.GetInt32(0).ToString();
                         string nomFournisseur = sqlReader.GetString(1);
                         string adresseFournisseur = sqlReader.GetString(2);
@@ -184,12 +184,11 @@ namespace WindowsFormsAppPapyrus
                 sqlCommande.CommandText = strSql;
                 sqlReader = sqlCommande.ExecuteReader();
 
-                if (sqlReader.HasRows)
+                if (sqlReader.Read() && ((int)sqlReader["fournisseur_id"]).Equals(Int32.Parse(sqlCodeFournisseur.Value.ToString())))
                 {
                     buttonModifier.Enabled = true;
                     buttonSupprimer.Enabled = true;
 
-                    sqlReader.Read();
                     string nomFournisseur = sqlReader.GetString(1);
                     string adresseFournisseur = sqlReader.GetString(2);
                     string cpFournisseur = sqlReader.GetString(3);

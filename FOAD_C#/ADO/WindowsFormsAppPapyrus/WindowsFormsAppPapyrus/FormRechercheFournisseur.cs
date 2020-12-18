@@ -54,10 +54,9 @@ namespace WindowsFormsAppPapyrus
                 sqlCommande.CommandText = strSql;
                 sqlReader = sqlCommande.ExecuteReader();
 
-                if (sqlReader.HasRows)
-                {
-                    sqlReader.Read();
 
+                if (sqlReader.Read() && ((int)sqlReader["fournisseur_id"]).Equals(Int32.Parse(sqlCodeFournisseur.Value.ToString())))
+                {
                     string nomFournisseur = sqlReader.GetString(1);
                     string adresseFournisseur = sqlReader.GetString(2);
                     string cpFournisseur = sqlReader.GetString(3);
