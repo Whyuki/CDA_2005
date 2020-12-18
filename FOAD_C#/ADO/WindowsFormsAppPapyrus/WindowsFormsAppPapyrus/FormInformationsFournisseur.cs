@@ -14,7 +14,7 @@ namespace WindowsFormsAppPapyrus
     {
 
        
-        public FormInformationsFournisseur(string nom, string adresse, string cp, string ville, string contact, byte satisfaction)
+        public FormInformationsFournisseur(string nom, string adresse, string cp, string ville, string contact, string satisfaction)
         {
             InitializeComponent();
             textBoxNomFournisseur.Text = nom;
@@ -22,7 +22,7 @@ namespace WindowsFormsAppPapyrus
             textBoxCpFournisseur.Text = cp;
             textBoxVilleFournisseur.Text = ville;
             textBoxContactFournisseur.Text = contact;
-            textBoxSatisfactionFournisseur.Text = satisfaction.ToString();
+            textBoxSatisfactionFournisseur.Text = satisfaction;
             this.AcceptButton = buttonRetour;
             this.CancelButton = buttonRetour;
 

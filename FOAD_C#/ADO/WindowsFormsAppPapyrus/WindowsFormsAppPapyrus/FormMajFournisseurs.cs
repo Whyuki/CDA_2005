@@ -42,6 +42,13 @@ namespace WindowsFormsAppPapyrus
         #region Connexion à l'initialisation de la fênetre
         private void FormMajFournisseurs_Load(object sender, EventArgs e)
         {
+            sqlConnect = new SqlConnection();
+            ConnectionStringSettings oConfig = ConfigurationManager.ConnectionStrings["papyrusConnectionString"];
+            if (oConfig != null)
+            {
+                sqlConnect.ConnectionString = oConfig.ConnectionString;
+            }
+
             try
             {
                 sqlConnect.Open();
@@ -52,28 +59,29 @@ namespace WindowsFormsAppPapyrus
             }
 
             this.MajListBoxFournisseurs();
+
+            this.comboBoxListeFournisseurs.SelectedIndex = -1;
+            this.textBoxCodeFournisseur.ResetText();
+            this.ResetTextBoxes();
+            this.buttonModifier.Enabled = false;
+            this.buttonSupprimer.Enabled = false;
+
         }
         #endregion
 
         #region Mise à jour liste fournisseurs
         private void MajListBoxFournisseurs()
         {
-            comboBoxListeFournisseurs.DisplayMember = "Text";
-            comboBoxListeFournisseurs.ValueMember = "Value";
+            this.comboBoxListeFournisseurs.DisplayMember = "Value";
+            this.comboBoxListeFournisseurs.ValueMember = "Key";
             listeFournisseurs = new Dictionary<int, string>();
 
-            sqlConnect = new SqlConnection();
-            ConnectionStringSettings oConfig = ConfigurationManager.ConnectionStrings["papyrusConnectionString"];
-            if (oConfig != null)
-            {
-                sqlConnect.ConnectionString = oConfig.ConnectionString;
-            }
+
             try
             {
-                sqlConnect.Open();
                 sqlCommande = new SqlCommand();
                 sqlCommande.Connection = sqlConnect;
-                string strSql = "select  fournisseur_id, fournisseur_nom from fournisseurs";
+                string strSql = "select fournisseur_id, fournisseur_nom from fournisseurs";
                 sqlCommande.CommandType = CommandType.Text;
                 sqlCommande.CommandText = strSql;
                 sqlReader = sqlCommande.ExecuteReader();
@@ -81,7 +89,7 @@ namespace WindowsFormsAppPapyrus
 
                 while (sqlReader.Read())
                 {
-                    listeFournisseurs.Add(sqlReader.GetInt32(0), sqlReader.GetString(1));
+                    listeFournisseurs.Add((int)sqlReader["fournisseur_id"], sqlReader["fournisseur_nom"].ToString());
                 }
 
                 sqlReader.Close();
@@ -91,18 +99,17 @@ namespace WindowsFormsAppPapyrus
             {
                 MessageBox.Show(se.Message);
             }
-            this.comboBoxListeFournisseurs.DataSource = new BindingSource(listeFournisseurs, null);
-            this.comboBoxListeFournisseurs.DisplayMember = "Value";
-            this.comboBoxListeFournisseurs.ValueMember = "Key";
 
+            this.comboBoxListeFournisseurs.DataSource = new BindingSource(listeFournisseurs, null);
             this.comboBoxListeFournisseurs.SelectedIndex = -1;
+
         }
         #endregion
 
         #region Selection d'un fournisseur dans la liste
         private void comboBoxListeFournisseurs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxListeFournisseurs.SelectedIndex >= 0 && comboBoxListeFournisseurs.SelectedValue.GetType().Equals(typeof(int)))
+            if (comboBoxListeFournisseurs.SelectedIndex >= 0)
             {
                 textBoxCodeFournisseur.ReadOnly = false;
                 try
@@ -115,6 +122,7 @@ namespace WindowsFormsAppPapyrus
                     sqlCodeFournisseur.Value = comboBoxListeFournisseurs.SelectedValue;
                     sqlCommande.Parameters.Add(sqlCodeFournisseur);
 
+                    int id = Int32.Parse(sqlCodeFournisseur.Value.ToString());
 
                     string strSql = "Select * from fournisseurs where fournisseur_id =@codeFournisseur";
                     sqlCommande.CommandType = CommandType.Text;
@@ -122,20 +130,20 @@ namespace WindowsFormsAppPapyrus
 
                     sqlReader = sqlCommande.ExecuteReader();
 
-                    if (sqlReader.Read() && ((int)sqlReader["fournisseur_id"]).Equals(Int32.Parse(sqlCodeFournisseur.Value.ToString())))
+                    if (sqlReader.Read() && ((int)sqlReader["fournisseur_id"]).Equals(id))
                     {
                         mode = ModeBDD.lecture;
 
                         buttonModifier.Enabled = true;
                         buttonSupprimer.Enabled = true;
 
-                        string idFournisseur = sqlReader.GetInt32(0).ToString();
-                        string nomFournisseur = sqlReader.GetString(1);
-                        string adresseFournisseur = sqlReader.GetString(2);
-                        string cpFournisseur = sqlReader.GetString(3);
-                        string villeFournisseur = sqlReader.GetString(4);
-                        string contactFournisseur = sqlReader.GetString(5);
-                        string satisfactionFournisseur = sqlReader.GetByte(6).ToString();
+                        string idFournisseur = sqlReader["fournisseur_id"].ToString();
+                        string nomFournisseur = sqlReader["fournisseur_nom"].ToString();
+                        string adresseFournisseur = sqlReader["fournisseur_adresse"].ToString();
+                        string cpFournisseur = sqlReader["fournisseur_cp"].ToString();
+                        string villeFournisseur = sqlReader["fournisseur_ville"].ToString();
+                        string contactFournisseur = sqlReader["fournisseur_contact"].ToString();
+                        string satisfactionFournisseur = sqlReader["fournisseur_satisfaction"].ToString();
 
                         textBoxCodeFournisseur.Text = idFournisseur;
                         textBoxNomFournisseur.Text = nomFournisseur;
@@ -179,22 +187,24 @@ namespace WindowsFormsAppPapyrus
                 sqlCodeFournisseur.Value = textBoxCodeFournisseur.Text;
                 sqlCommande.Parameters.Add(sqlCodeFournisseur);
 
+                int id = Int32.Parse(sqlCodeFournisseur.Value.ToString());
+
                 string strSql = "Select * from fournisseurs where fournisseur_id =@codeFournisseur";
                 sqlCommande.CommandType = CommandType.Text;
                 sqlCommande.CommandText = strSql;
                 sqlReader = sqlCommande.ExecuteReader();
 
-                if (sqlReader.Read() && ((int)sqlReader["fournisseur_id"]).Equals(Int32.Parse(sqlCodeFournisseur.Value.ToString())))
+                if (sqlReader.Read() && ((int)sqlReader["fournisseur_id"]).Equals(id))
                 {
                     buttonModifier.Enabled = true;
                     buttonSupprimer.Enabled = true;
 
-                    string nomFournisseur = sqlReader.GetString(1);
-                    string adresseFournisseur = sqlReader.GetString(2);
-                    string cpFournisseur = sqlReader.GetString(3);
-                    string villeFournisseur = sqlReader.GetString(4);
-                    string contactFournisseur = sqlReader.GetString(5);
-                    string satisfactionFournisseur = sqlReader.GetByte(6).ToString();
+                    string nomFournisseur = sqlReader["fournisseur_nom"].ToString();
+                    string adresseFournisseur = sqlReader["fournisseur_adresse"].ToString();
+                    string cpFournisseur = sqlReader["fournisseur_cp"].ToString();
+                    string villeFournisseur = sqlReader["fournisseur_ville"].ToString();
+                    string contactFournisseur = sqlReader["fournisseur_contact"].ToString();
+                    string satisfactionFournisseur = sqlReader["fournisseur_satisfaction"].ToString();
 
                     textBoxNomFournisseur.Text = nomFournisseur;
                     textBoxAdresseFournisseur.Text = adresseFournisseur;
@@ -202,7 +212,6 @@ namespace WindowsFormsAppPapyrus
                     textBoxVilleFournisseur.Text = villeFournisseur;
                     textBoxContactFournisseur.Text = contactFournisseur;
                     textBoxSatisfactionFournisseur.Text = satisfactionFournisseur;
-
 
                 }
                 else
@@ -268,17 +277,11 @@ namespace WindowsFormsAppPapyrus
         private void buttonNouveau_Click(object sender, EventArgs e)
         {
             mode = ModeBDD.ajout;
-
-            errorProviderSaisie.Clear();
-
-
-            this.MajListBoxFournisseurs();
-
             this.MiseAjourControles();
-
+            errorProviderSaisie.Clear();
             this.ResetTextBoxes();
             textBoxCodeFournisseur.ResetText();
-
+            this.comboBoxListeFournisseurs.SelectedIndex = -1;
         }
         #endregion
 
@@ -387,7 +390,7 @@ namespace WindowsFormsAppPapyrus
                 sqlCommande.CommandText = strSql;
                 int sqlNbLignesAffectees = sqlCommande.ExecuteNonQuery();
 
-                if (sqlNbLignesAffectees > 0)
+                if (sqlNbLignesAffectees == 1)
                 {
                     MessageBox.Show("Suppression effectuée");
 
@@ -476,10 +479,8 @@ namespace WindowsFormsAppPapyrus
                     {
                         tB.ReadOnly = false;
                     }
-
                     break;
                 case ModeBDD.modification:
-
                     buttonValider.Enabled = true;
                     buttonAnnuler.Enabled = true;
                     buttonValider.Visible = true;
@@ -545,7 +546,7 @@ namespace WindowsFormsAppPapyrus
                     sqlCommande.CommandText = strSql;
                     int sqlNbLignesAffectees = sqlCommande.ExecuteNonQuery();
 
-                    if (sqlNbLignesAffectees > 0)
+                    if (sqlNbLignesAffectees == 1)
                     {
                         MessageBox.Show("Modification effectuée");
 
@@ -608,17 +609,12 @@ namespace WindowsFormsAppPapyrus
 
         private void textBoxAdresseFournisseur_Validating(object sender, CancelEventArgs e)
         {
-            if (!ClassVerifications.ValidNom(textBoxAdresseFournisseur.Text))
+
+            if (textBoxAdresseFournisseur.TextLength < 1)
             {
-                if (textBoxAdresseFournisseur.TextLength < 1)
-                {
-                    errorProviderSaisie.SetError(textBoxAdresseFournisseur, "Champ obligatoire");
-                }
-                else
-                {
-                    errorProviderSaisie.SetError(textBoxAdresseFournisseur, "Adresse au format invalide");
-                }
+                errorProviderSaisie.SetError(textBoxAdresseFournisseur, "Champ obligatoire");
             }
+
         }
 
         private void textBoxCpFournisseur_Validating(object sender, CancelEventArgs e)
@@ -691,7 +687,7 @@ namespace WindowsFormsAppPapyrus
             string satisfaction = textBoxSatisfactionFournisseur.Text;
 
             bool nomIsValid = ClassVerifications.ValidNom(nom);
-            bool adresseIsValid = ClassVerifications.ValidNom(adresse);
+            bool adresseIsValid = adresse.Length > 0;
             bool cPIsValid = ClassVerifications.ValidCP(cp);
             bool villeIsValid = ClassVerifications.ValidNom(ville);
             bool contactIsValid = ClassVerifications.ValidNom(contact);

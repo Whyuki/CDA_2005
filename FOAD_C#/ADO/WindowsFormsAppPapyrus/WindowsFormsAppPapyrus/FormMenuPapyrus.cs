@@ -25,7 +25,7 @@ namespace WindowsFormsAppPapyrus
             formRechercheFournisseur.ShowDialog();
         }
 
-        private void FormRechercheFournisseur_RechercheFournisseur(string nom, string adresse, string cp, string ville, string contact, byte satisfaction, FormRechercheFournisseur formSender)
+        private void FormRechercheFournisseur_RechercheFournisseur(string nom, string adresse, string cp, string ville, string contact, string satisfaction, FormRechercheFournisseur formSender)
         {
             // formSender.Close();
             FormInformationsFournisseur formInfoFournisseur = new FormInformationsFournisseur(nom, adresse, cp, ville, contact, satisfaction);

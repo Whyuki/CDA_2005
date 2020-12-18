@@ -14,7 +14,7 @@ namespace WindowsFormsAppPapyrus
 {
     public partial class FormRechercheFournisseur : Form
     {
-        public delegate void DelegateFournisseur(string nom, string adresse, string cp, string ville, string contact, byte satisfaction, FormRechercheFournisseur formSender);
+        public delegate void DelegateFournisseur(string nom, string adresse, string cp, string ville, string contact, string satisfaction, FormRechercheFournisseur formSender);
         public event DelegateFournisseur RechercheFournisseur;
 
         private SqlConnection sqlConnect;
@@ -48,6 +48,7 @@ namespace WindowsFormsAppPapyrus
                 sqlCodeFournisseur.Value = textBoxCodeFournisseur.Text;
                 sqlCommande.Parameters.Add(sqlCodeFournisseur);
 
+                int id = Int32.Parse(sqlCodeFournisseur.Value.ToString());
 
                 string strSql = "Select * from fournisseurs where fournisseur_id =@codeFournisseur";
                 sqlCommande.CommandType = CommandType.Text;
@@ -55,14 +56,14 @@ namespace WindowsFormsAppPapyrus
                 sqlReader = sqlCommande.ExecuteReader();
 
 
-                if (sqlReader.Read() && ((int)sqlReader["fournisseur_id"]).Equals(Int32.Parse(sqlCodeFournisseur.Value.ToString())))
+                if (sqlReader.Read() && ((int)sqlReader["fournisseur_id"]).Equals(id))
                 {
-                    string nomFournisseur = sqlReader.GetString(1);
-                    string adresseFournisseur = sqlReader.GetString(2);
-                    string cpFournisseur = sqlReader.GetString(3);
-                    string villeFournisseur = sqlReader.GetString(4);
-                    string contactFournisseur = sqlReader.GetString(5);
-                    byte satisfactionFournisseur = sqlReader.GetByte(6);
+                    string nomFournisseur = sqlReader["fournisseur_nom"].ToString();
+                    string adresseFournisseur = sqlReader["fournisseur_adresse"].ToString();
+                    string cpFournisseur = sqlReader["fournisseur_cp"].ToString();
+                    string villeFournisseur = sqlReader["fournisseur_ville"].ToString();
+                    string contactFournisseur = sqlReader["fournisseur_contact"].ToString();
+                    string satisfactionFournisseur = sqlReader["fournisseur_satisfaction"].ToString();
 
                     textBoxCodeFournisseur.SelectAll();
                     RechercheFournisseur(nomFournisseur, adresseFournisseur, cpFournisseur, villeFournisseur, contactFournisseur, satisfactionFournisseur, this);

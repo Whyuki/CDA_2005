@@ -25,12 +25,11 @@ namespace WindowsFormsAppPapyrus
         }
         private void FormRechercheCommandes_Load(object sender, EventArgs e)
         {
-            comboBoxListeFournisseurs.DisplayMember = "Text";
-            comboBoxListeFournisseurs.ValueMember = "Value";
+            this.comboBoxListeFournisseurs.DisplayMember = "Value";
+            this.comboBoxListeFournisseurs.ValueMember = "Key";
             Dictionary<int, string> listeFournisseurs = new Dictionary<int, string>();
 
             listeFournisseurs.Add(0, "Tous");
-
 
             sqlConnect = new SqlConnection();
             ConnectionStringSettings oConfig = ConfigurationManager.ConnectionStrings["papyrusConnectionString"];
@@ -43,7 +42,7 @@ namespace WindowsFormsAppPapyrus
                 sqlConnect.Open();
                 sqlCommande = new SqlCommand();
                 sqlCommande.Connection = sqlConnect;
-                string strSql = "select fournisseur_nom, fournisseur_id from fournisseurs";
+                string strSql = "select fournisseur_id, fournisseur_nom from fournisseurs";
                 sqlCommande.CommandType = CommandType.Text;
                 sqlCommande.CommandText = strSql;
                 sqlReader = sqlCommande.ExecuteReader();
@@ -51,7 +50,7 @@ namespace WindowsFormsAppPapyrus
 
                 while (sqlReader.Read())
                 {
-                    listeFournisseurs.Add(sqlReader.GetInt32(1), sqlReader.GetString(0));
+                    listeFournisseurs.Add((int)sqlReader["fournisseur_id"], sqlReader["fournisseur_nom"].ToString());
                 }
 
                 sqlReader.Close();
@@ -64,9 +63,7 @@ namespace WindowsFormsAppPapyrus
 
 
             this.comboBoxListeFournisseurs.DataSource = new BindingSource(listeFournisseurs, null);
-            this.comboBoxListeFournisseurs.DisplayMember = "Value";
-            this.comboBoxListeFournisseurs.ValueMember = "Key";
-
+         
             this.comboBoxListeFournisseurs.SelectedIndex = -1;
         }
 
