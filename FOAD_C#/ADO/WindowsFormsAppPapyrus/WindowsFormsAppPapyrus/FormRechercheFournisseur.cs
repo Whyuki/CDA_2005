@@ -56,18 +56,17 @@ namespace WindowsFormsAppPapyrus
 
                 if (sqlReader.HasRows)
                 {
-                    while (sqlReader.Read())
-                    {
-                        string nomFournisseur = sqlReader.GetString(1);
-                        string adresseFournisseur = sqlReader.GetString(2);
-                        string cpFournisseur = sqlReader.GetString(3);
-                        string villeFournisseur = sqlReader.GetString(4);
-                        string contactFournisseur = sqlReader.GetString(5);
-                        byte satisfactionFournisseur = sqlReader.GetByte(6);
+                    sqlReader.Read();
 
-                        textBoxCodeFournisseur.SelectAll();
-                        RechercheFournisseur(nomFournisseur, adresseFournisseur, cpFournisseur, villeFournisseur, contactFournisseur, satisfactionFournisseur, this);
-                    }
+                    string nomFournisseur = sqlReader.GetString(1);
+                    string adresseFournisseur = sqlReader.GetString(2);
+                    string cpFournisseur = sqlReader.GetString(3);
+                    string villeFournisseur = sqlReader.GetString(4);
+                    string contactFournisseur = sqlReader.GetString(5);
+                    byte satisfactionFournisseur = sqlReader.GetByte(6);
+
+                    textBoxCodeFournisseur.SelectAll();
+                    RechercheFournisseur(nomFournisseur, adresseFournisseur, cpFournisseur, villeFournisseur, contactFournisseur, satisfactionFournisseur, this);
                 }
                 else
                 {

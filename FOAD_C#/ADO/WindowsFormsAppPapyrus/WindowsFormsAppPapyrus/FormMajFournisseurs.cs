@@ -128,25 +128,23 @@ namespace WindowsFormsAppPapyrus
 
                         buttonModifier.Enabled = true;
                         buttonSupprimer.Enabled = true;
-                        while (sqlReader.Read())
-                        {
-                            string idFournisseur = sqlReader.GetInt32(0).ToString();
-                            string nomFournisseur = sqlReader.GetString(1);
-                            string adresseFournisseur = sqlReader.GetString(2);
-                            string cpFournisseur = sqlReader.GetString(3);
-                            string villeFournisseur = sqlReader.GetString(4);
-                            string contactFournisseur = sqlReader.GetString(5);
-                            string satisfactionFournisseur = sqlReader.GetByte(6).ToString();
+                        sqlReader.Read();
+                        string idFournisseur = sqlReader.GetInt32(0).ToString();
+                        string nomFournisseur = sqlReader.GetString(1);
+                        string adresseFournisseur = sqlReader.GetString(2);
+                        string cpFournisseur = sqlReader.GetString(3);
+                        string villeFournisseur = sqlReader.GetString(4);
+                        string contactFournisseur = sqlReader.GetString(5);
+                        string satisfactionFournisseur = sqlReader.GetByte(6).ToString();
 
-                            textBoxCodeFournisseur.Text = idFournisseur;
-                            textBoxNomFournisseur.Text = nomFournisseur;
-                            textBoxAdresseFournisseur.Text = adresseFournisseur;
-                            textBoxCpFournisseur.Text = cpFournisseur;
-                            textBoxVilleFournisseur.Text = villeFournisseur;
-                            textBoxContactFournisseur.Text = contactFournisseur;
-                            textBoxSatisfactionFournisseur.Text = satisfactionFournisseur;
+                        textBoxCodeFournisseur.Text = idFournisseur;
+                        textBoxNomFournisseur.Text = nomFournisseur;
+                        textBoxAdresseFournisseur.Text = adresseFournisseur;
+                        textBoxCpFournisseur.Text = cpFournisseur;
+                        textBoxVilleFournisseur.Text = villeFournisseur;
+                        textBoxContactFournisseur.Text = contactFournisseur;
+                        textBoxSatisfactionFournisseur.Text = satisfactionFournisseur;
 
-                        }
                     }
                     else
                     {
@@ -191,23 +189,22 @@ namespace WindowsFormsAppPapyrus
                     buttonModifier.Enabled = true;
                     buttonSupprimer.Enabled = true;
 
-                    while (sqlReader.Read())
-                    {
-                        string nomFournisseur = sqlReader.GetString(1);
-                        string adresseFournisseur = sqlReader.GetString(2);
-                        string cpFournisseur = sqlReader.GetString(3);
-                        string villeFournisseur = sqlReader.GetString(4);
-                        string contactFournisseur = sqlReader.GetString(5);
-                        string satisfactionFournisseur = sqlReader.GetByte(6).ToString();
+                    sqlReader.Read();
+                    string nomFournisseur = sqlReader.GetString(1);
+                    string adresseFournisseur = sqlReader.GetString(2);
+                    string cpFournisseur = sqlReader.GetString(3);
+                    string villeFournisseur = sqlReader.GetString(4);
+                    string contactFournisseur = sqlReader.GetString(5);
+                    string satisfactionFournisseur = sqlReader.GetByte(6).ToString();
 
-                        textBoxNomFournisseur.Text = nomFournisseur;
-                        textBoxAdresseFournisseur.Text = adresseFournisseur;
-                        textBoxCpFournisseur.Text = cpFournisseur;
-                        textBoxVilleFournisseur.Text = villeFournisseur;
-                        textBoxContactFournisseur.Text = contactFournisseur;
-                        textBoxSatisfactionFournisseur.Text = satisfactionFournisseur;
+                    textBoxNomFournisseur.Text = nomFournisseur;
+                    textBoxAdresseFournisseur.Text = adresseFournisseur;
+                    textBoxCpFournisseur.Text = cpFournisseur;
+                    textBoxVilleFournisseur.Text = villeFournisseur;
+                    textBoxContactFournisseur.Text = contactFournisseur;
+                    textBoxSatisfactionFournisseur.Text = satisfactionFournisseur;
 
-                    }
+
                 }
                 else
                 {
