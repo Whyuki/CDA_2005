@@ -48,7 +48,7 @@ namespace WindowsFormsAppPapyrus
 
         private void toolStripButtonGestionFournisseurs_Click(object sender, EventArgs e)
         {
-            FormMajFournisseurs formMajFournisseurs = new FormMajFournisseurs();
+            FormGestionFournisseurs formMajFournisseurs = new FormGestionFournisseurs();
             formMajFournisseurs.ShowDialog();
         }
 

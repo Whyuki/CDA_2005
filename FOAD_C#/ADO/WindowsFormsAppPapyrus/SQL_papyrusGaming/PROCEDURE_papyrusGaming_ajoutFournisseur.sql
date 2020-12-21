@@ -1,6 +1,6 @@
 ﻿use papyrusGaming;
 GO
-CREATE PROCEDURE ajoutFournisseur
+CREATE PROCEDURE AjoutFournisseur
 (@nomFournisseur varchar(50),
 @adresseFournisseur varchar(100),
 @cpFournisseur char(5),

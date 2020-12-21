@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsAppPapyrus
 {
-    public partial class FormMajFournisseurs : Form
+    public partial class FormGestionFournisseurs : Form
     {
         #region Champs
         private SqlConnection sqlConnect;
@@ -24,7 +24,7 @@ namespace WindowsFormsAppPapyrus
         #endregion
 
         #region Constructeur
-        public FormMajFournisseurs()
+        public FormGestionFournisseurs()
         {
             InitializeComponent();
 
@@ -40,7 +40,7 @@ namespace WindowsFormsAppPapyrus
         #endregion
 
         #region Connexion à l'initialisation de la fênetre
-        private void FormMajFournisseurs_Load(object sender, EventArgs e)
+        private void FormGestionFournisseurs_Load(object sender, EventArgs e)
         {
             sqlConnect = new SqlConnection();
             ConnectionStringSettings oConfig = ConfigurationManager.ConnectionStrings["papyrusConnectionString"];
@@ -282,6 +282,18 @@ namespace WindowsFormsAppPapyrus
             this.ResetTextBoxes();
             textBoxCodeFournisseur.ResetText();
             this.comboBoxListeFournisseurs.SelectedIndex = -1;
+            //test
+            this.SaisieJeuEssaiPourTest();
+        }
+
+        private void SaisieJeuEssaiPourTest()
+        {
+            textBoxNomFournisseur.Text = "Kitty";
+            textBoxAdresseFournisseur.Text = "42 rue de la gouttiere";
+            textBoxCpFournisseur.Text = "44444";
+            textBoxVilleFournisseur.Text = "KitCat";
+            textBoxContactFournisseur.Text = "Mr Moustache";
+            textBoxSatisfactionFournisseur.Text = "3";
         }
         #endregion
 
@@ -315,7 +327,7 @@ namespace WindowsFormsAppPapyrus
                     sqlCommande.Connection = sqlConnect;
 
                     sqlCommande.CommandType = CommandType.StoredProcedure;
-                    sqlCommande.CommandText = "ajoutFournisseur";
+                    sqlCommande.CommandText = "AjoutFournisseur";
 
                     SqlParameter sqlNomFournisseur = new SqlParameter("@nomFournisseur", SqlDbType.VarChar, 50);
                     sqlNomFournisseur.Value = textBoxNomFournisseur.Text;
@@ -407,8 +419,8 @@ namespace WindowsFormsAppPapyrus
             }
             catch (SqlException se)
             {
-                //  MessageBox.Show(se.Message);
                 errorProviderSuppression.SetError(buttonSupprimer, "Impossible de supprimer un fournisseur pour lequel il existe une commande ou vente");
+                MessageBox.Show(se.Message);
 
             }
         }
@@ -739,9 +751,13 @@ namespace WindowsFormsAppPapyrus
         {
             this.Close();
         }
-        private void FormMajFournisseurs_FormClosing(object sender, FormClosingEventArgs e)
+        private void FormGestionFournisseurs_FormClosing(object sender, FormClosingEventArgs e)
         {
-            sqlConnect.Close();
+            if (sqlConnect != null && sqlConnect.State != ConnectionState.Closed)
+            {
+                sqlConnect.Close();
+            }
+
         }
         #endregion
     }

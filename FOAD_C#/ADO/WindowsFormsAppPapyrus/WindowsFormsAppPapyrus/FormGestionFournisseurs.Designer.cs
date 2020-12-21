@@ -1,7 +1,7 @@
 ﻿
 namespace WindowsFormsAppPapyrus
 {
-    partial class FormMajFournisseurs
+    partial class FormGestionFournisseurs
     {
         /// <summary>
         /// Required designer variable.
@@ -371,8 +371,8 @@ namespace WindowsFormsAppPapyrus
             this.Controls.Add(this.labelNomFournisseur);
             this.Name = "FormMajFournisseurs";
             this.Text = "Gestion fournisseurs";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMajFournisseurs_FormClosing);
-            this.Load += new System.EventHandler(this.FormMajFournisseurs_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormGestionFournisseurs_FormClosing);
+            this.Load += new System.EventHandler(this.FormGestionFournisseurs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCodeFournisseur)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderSuppression)).EndInit();
             this.panelSelectFournisseur.ResumeLayout(false);
