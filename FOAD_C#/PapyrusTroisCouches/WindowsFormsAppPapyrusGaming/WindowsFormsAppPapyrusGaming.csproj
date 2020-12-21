@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{54DBA137-FD60-4E55-AD3A-9604CF6831DD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WindowsFormsAppPapyrusGaming</RootNamespace>
+    <AssemblyName>WindowsFormsAppPapyrusGaming</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ModeInteractionBDD.cs" />
+    <Compile Include="FormFournisseur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFournisseur.Designer.cs">
+      <DependentUpon>FormFournisseur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProduit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProduit.Designer.cs">
+      <DependentUpon>FormProduit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormFournisseur.resx">
+      <DependentUpon>FormFournisseur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibraryDomainePersistance\ClassLibraryDomainePersistance.csproj">
+      <Project>{772f0d59-86ea-40a8-9625-ad492a385ade}</Project>
+      <Name>ClassLibraryDomainePersistance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibraryMetierFournisseur\ClassLibraryMetierFournisseur.csproj">
+      <Project>{f05a10c2-e887-45ff-8c91-350dbf88bc5e}</Project>
+      <Name>ClassLibraryMetierFournisseur</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibraryMetierProduit\ClassLibraryMetierProduit.csproj">
+      <Project>{0ee277a6-bc9f-4158-8bea-5abbf4d81ebb}</Project>
+      <Name>ClassLibraryMetierProduit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibraryPersistanceSQLServer\ClassLibraryPersistanceSQLServer.csproj">
+      <Project>{106a1b07-5c70-4d1d-9128-a7ecb514e09c}</Project>
+      <Name>ClassLibraryPersistanceSQLServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibraryVerifications\ClassLibraryVerifications.csproj">
+      <Project>{09597cf6-b444-427a-8c27-6119b6b22a5c}</Project>
+      <Name>ClassLibraryVerifications</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
