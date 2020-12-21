@@ -352,7 +352,7 @@ namespace WindowsFormsAppPapyrus
             // 
             this.errorProviderSaisie.ContainerControl = this;
             // 
-            // FormMajFournisseurs
+            // FormGestionFournisseurs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -369,10 +369,9 @@ namespace WindowsFormsAppPapyrus
             this.Controls.Add(this.labelCpVilleFournisseur);
             this.Controls.Add(this.labelAdresseFournisseur);
             this.Controls.Add(this.labelNomFournisseur);
-            this.Name = "FormMajFournisseurs";
+            this.Name = "FormGestionFournisseurs";
             this.Text = "Gestion fournisseurs";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormGestionFournisseurs_FormClosing);
-            this.Load += new System.EventHandler(this.FormGestionFournisseurs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCodeFournisseur)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderSuppression)).EndInit();
             this.panelSelectFournisseur.ResumeLayout(false);

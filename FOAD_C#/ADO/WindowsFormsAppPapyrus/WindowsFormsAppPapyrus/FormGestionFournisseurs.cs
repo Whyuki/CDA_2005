@@ -36,18 +36,6 @@ namespace WindowsFormsAppPapyrus
             {
                 sqlConnect.ConnectionString = oConfig.ConnectionString;
             }
-        }
-        #endregion
-
-        #region Connexion à l'initialisation de la fênetre
-        private void FormGestionFournisseurs_Load(object sender, EventArgs e)
-        {
-            sqlConnect = new SqlConnection();
-            ConnectionStringSettings oConfig = ConfigurationManager.ConnectionStrings["papyrusConnectionString"];
-            if (oConfig != null)
-            {
-                sqlConnect.ConnectionString = oConfig.ConnectionString;
-            }
 
             try
             {
@@ -65,7 +53,6 @@ namespace WindowsFormsAppPapyrus
             this.ResetTextBoxes();
             this.buttonModifier.Enabled = false;
             this.buttonSupprimer.Enabled = false;
-
         }
         #endregion
 
@@ -76,7 +63,6 @@ namespace WindowsFormsAppPapyrus
             this.comboBoxListeFournisseurs.ValueMember = "Key";
             listeFournisseurs = new Dictionary<int, string>();
 
-
             try
             {
                 sqlCommande = new SqlCommand();
@@ -85,7 +71,6 @@ namespace WindowsFormsAppPapyrus
                 sqlCommande.CommandType = CommandType.Text;
                 sqlCommande.CommandText = strSql;
                 sqlReader = sqlCommande.ExecuteReader();
-
 
                 while (sqlReader.Read())
                 {
