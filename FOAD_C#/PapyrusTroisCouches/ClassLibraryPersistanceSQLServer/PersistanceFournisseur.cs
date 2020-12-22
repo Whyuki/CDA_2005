@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace ClassLibraryPersistanceSQLServer
 
         public PersistanceFournisseur(string _connectionString)
         {
+            Trace.Listeners.Add(new TextWriterTraceListener("PapyrusGamingOutput.log", "myListener"));
+
             sqlConnection = new SqlConnection();
 
             sqlConnection.ConnectionString = _connectionString;
@@ -65,21 +68,21 @@ namespace ClassLibraryPersistanceSQLServer
 
                 if (sqlCommand.ExecuteNonQuery() == 1)
                 {
-                    //   Trace.TraceInformation($"{DateTime.Now} Création du fournisseur {fournisseur.nom}");
+                    Trace.TraceInformation($"{DateTime.Now} Création du fournisseur {fournisseur.nom}");
                 }
                 else
                 {
-                    // Trace.TraceError($"{DateTime.Now} Execution échouée de la création du fournisseur {fournisseur.nom}");
+                    Trace.TraceError($"{DateTime.Now} Echec de la création du fournisseur {fournisseur.nom}");
                 }
 
             }
             catch (Exception e)
             {
 
-                // Trace.TraceError($"{DateTime.Now} Execution échouée de la création d'un fournisseur {e.Message}");
+                Trace.TraceError($"{DateTime.Now} Echec de la création d'un fournisseur {e.Message}");
             }
 
-            //  Trace.Flush();
+            Trace.Flush();
 
             if (sqlConnection.State != ConnectionState.Closed)
             {
@@ -119,11 +122,11 @@ namespace ClassLibraryPersistanceSQLServer
                     ok = true;
                 }
 
-                // Trace.TraceInformation($"{DateTime.Now} Mise à jour du fournisseur {fournisseur.nom}");
+                Trace.TraceInformation($"{DateTime.Now} Mise à jour du fournisseur {fournisseur.nom}");
             }
             catch (Exception e)
             {
-                //  Trace.TraceError($"{DateTime.Now} Execution échouée de la mise à jour du fournisseur {fournisseur.nom} {e.Message}");
+                Trace.TraceError($"{DateTime.Now} Echec de la mise à jour du fournisseur {fournisseur.nom} {e.Message}");
             }
 
             if (sqlConnection.State != System.Data.ConnectionState.Closed)
@@ -131,7 +134,7 @@ namespace ClassLibraryPersistanceSQLServer
                 sqlConnection.Close();
             }
 
-            //  Trace.Flush();
+            Trace.Flush();
 
             return ok;
         }
@@ -155,16 +158,16 @@ namespace ClassLibraryPersistanceSQLServer
                 if (sqlCommand.ExecuteNonQuery() == 1)
                 {
                     ok = true;
-                    //  Trace.TraceInformation($"{DateTime.Now} Suppression du fournisseur {fournisseur.nom}");
+                    Trace.TraceInformation($"{DateTime.Now} Suppression du fournisseur {fournisseur.nom}");
                 }
 
             }
             catch (Exception e)
             {
-                // Trace.TraceError($"{DateTime.Now} Execution échouée de la supression du fournisseur {fournisseur.nom} {e.Message}");
+                Trace.TraceError($"{DateTime.Now} Echec de la supression du fournisseur {fournisseur.nom} \n{e.Message}");
             }
 
-            // Trace.Flush();
+            Trace.Flush();
 
             if (sqlConnection.State != ConnectionState.Closed)
             {
@@ -208,25 +211,25 @@ namespace ClassLibraryPersistanceSQLServer
 
                     fournisseur = new sFournisseur(idFournisseur, nomFournisseur, adresseFournisseur, cpFournisseur, villeFournisseur, contactFournisseur, satisfactionFournisseur);
 
-                    // Trace.TraceInformation($"{DateTime.Now} Accès au fournisseur {fournisseur_id}");
+                    Trace.TraceInformation($"{DateTime.Now} Accès au fournisseur {id}");
 
                     ok = true;
                 }
 
                 if (!ok)
                 {
-                    //  Trace.TraceError($"{DateTime.Now} Tentative d'acces à un fournisseur inexistant : {fournisseur_id}");
+                    Trace.TraceError($"{DateTime.Now} Tentative d'acces à un fournisseur inexistant : {id}");
                 }
 
                 sqlDataReader.Close();
             }
             catch (Exception e)
             {
-                // Trace.TraceError($"{DateTime.Now} Echec de la tentative d'accès au fournisseur {fournisseur_id} {e.Message}");
+                Trace.TraceError($"{DateTime.Now} Echec de la tentative d'accès au fournisseur {id} {e.Message}");
 
             }
 
-            //  Trace.Flush();
+            Trace.Flush();
 
             if (sqlConnection.State != ConnectionState.Closed)
             {
@@ -266,7 +269,7 @@ namespace ClassLibraryPersistanceSQLServer
             }
             catch (Exception e)
             {
-                // Trace.TraceError($"{DateTime.Now} Echec de la tentative d'accès au fournisseur {fournisseur_id} {e.Message}");
+                Trace.TraceError($"{DateTime.Now} Echec de la tentative d'accès à un des fournisseurs {e.Message}");
             }
 
             if (sqlConnection.State != ConnectionState.Closed)

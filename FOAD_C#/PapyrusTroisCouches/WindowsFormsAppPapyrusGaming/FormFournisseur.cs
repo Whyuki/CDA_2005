@@ -26,7 +26,6 @@ namespace WindowsFormsAppPapyrusGaming
             InitializeComponent();
             listeFournisseurs = new Dictionary<int, string>();
             this.GetListBoxFournisseurs();
-            modeCourant = ModeInteractionBDD.lecture;
         }
         public FormFournisseur(Fournisseur _fournisseurCourant)
         {
@@ -35,7 +34,6 @@ namespace WindowsFormsAppPapyrusGaming
             fournisseurCourant = _fournisseurCourant;
             this.AfficherInformationsFournisseur(_fournisseurCourant);
             this.GetListBoxFournisseurs();
-            modeCourant = ModeInteractionBDD.lecture;
         }
         #endregion
 
@@ -174,7 +172,6 @@ namespace WindowsFormsAppPapyrusGaming
                 buttonValider.Enabled = false;
                 buttonModifier.Enabled = false;
                 buttonAnnuler.Enabled = false;
-                buttonRechercher.Enabled = true;
                 buttonNouveau.Enabled = true;
 
                 foreach (TextBox tb in panelFournisseur.Controls)
