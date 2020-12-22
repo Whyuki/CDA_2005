@@ -180,7 +180,10 @@ namespace ClassLibraryPersistanceSQLServer
                 id = -1
             };
 
-            sqlConnection.Open();
+            if (sqlConnection.State != ConnectionState.Open)
+            {
+                sqlConnection.Open();
+            }
 
             try
             {
@@ -234,24 +237,28 @@ namespace ClassLibraryPersistanceSQLServer
             return fournisseur;
         }
 
-        public Dictionary<int, string> GetListFournisseurs()
+        public List<sFournisseur> GetAllFournisseurs()
         {
-            Dictionary<int, string> listeFournisseurs = new Dictionary<int, string>();
+            List<sFournisseur> listeFournisseurs = new List<sFournisseur>();
 
-            sqlConnection.Open();
+            if (sqlConnection.State != ConnectionState.Open)
+            {
+                sqlConnection.Open();
+            }
 
             try
             {
                 SqlCommand sqlCommande = new SqlCommand();
                 sqlCommande.Connection = sqlConnection;
-                string strSql = "select fournisseur_id, fournisseur_nom from fournisseurs";
+                string strSql = "select * from fournisseurs";
                 sqlCommande.CommandType = CommandType.Text;
                 sqlCommande.CommandText = strSql;
                 SqlDataReader sqlReader = sqlCommande.ExecuteReader();
 
                 while (sqlReader.Read())
                 {
-                    listeFournisseurs.Add((int)sqlReader["fournisseur_id"], sqlReader["fournisseur_nom"].ToString());
+                    sFournisseur sfournisseur = new sFournisseur((int)sqlReader["fournisseur_id"], sqlReader["fournisseur_nom"].ToString(), sqlReader["fournisseur_adresse"].ToString(), sqlReader["fournisseur_cp"].ToString(), sqlReader["fournisseur_ville"].ToString(), sqlReader["fournisseur_contact"].ToString(), (byte)sqlReader["fournisseur_satisfaction"]);
+                    listeFournisseurs.Add(sfournisseur);
                 }
 
                 sqlReader.Close();
@@ -268,8 +275,6 @@ namespace ClassLibraryPersistanceSQLServer
             }
 
             return listeFournisseurs;
-
         }
-
     }
 }

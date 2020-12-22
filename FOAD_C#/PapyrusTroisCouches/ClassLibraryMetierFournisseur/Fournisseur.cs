@@ -95,7 +95,16 @@ namespace ClassLibraryMetierFournisseur
 
         public static Dictionary<int, string> LoadAll()
         {
-            return maPersistanceFournisseur.GetListFournisseurs();
+            Dictionary<int, string> dictionnaireFournisseurIdNom = new Dictionary<int, string>();
+
+            List<sFournisseur> tousLesFournisseurs = maPersistanceFournisseur.GetAllFournisseurs();
+
+            foreach (sFournisseur sF in tousLesFournisseurs)
+            {
+                dictionnaireFournisseurIdNom.Add(sF.id, sF.nom);
+            }
+
+            return dictionnaireFournisseurIdNom;
         }
     }
 }

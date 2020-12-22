@@ -12,6 +12,6 @@ namespace ClassLibraryDomainePersistance
         bool UpdateFournisseur(sFournisseur fournisseur);
         bool DeleteFournisseur(sFournisseur fournisseur);
         sFournisseur GetFournisseur(int id);
-        Dictionary<int, string> GetListFournisseurs();
+        List<sFournisseur> GetAllFournisseurs();
     }
 }
