@@ -32,6 +32,7 @@ header {
 }
 
 #menu>li>a{
+    text-decoration: none;
     background-color: rgb(49, 80, 49);    
     display: grid;
     margin: 1px;
