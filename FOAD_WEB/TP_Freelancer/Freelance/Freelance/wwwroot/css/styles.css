@@ -111,6 +111,10 @@ td {
     color: #990000;
 }
 
+.fa-info-circle {
+    color: #45505E;
+}
+
 .fa-circle {
     font-size: 40%;
     vertical-align: middle;
