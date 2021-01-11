@@ -104,7 +104,6 @@ td {
 
 .fa-edit {
     color: #049c2a;
-    margin-right: 10px;
 }
 
 .fa-times {
@@ -115,10 +114,50 @@ td {
     color: #45505E;
 }
 
+.fa-edit, .fa-times, .fa-info-circle, .fa-trash-alt, .fa-chevron-left, .fa-save {
+    margin: 0 10px;
+}
+
+.fa-trash-alt {
+    color: darkred;
+}
+
+
+.action {
+    background-color: white;
+    border: solid 2px #45505E;
+    color: #45505E;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: large;
+    cursor: pointer;
+}
+
+btn-danger{
+    border:none;
+    background-color:white;
+
+}
+
+.entete {
+    width: 150px;
+    margin: 5px;
+}
+
+.form-footer{
+    margin:20px auto;
+}
+
 .fa-circle {
     font-size: 40%;
     vertical-align: middle;
     color: #45505E;
+}
+
+footer{
+    margin-top:10px;
 }
 
 #liensFooter {

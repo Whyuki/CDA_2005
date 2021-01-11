@@ -7,24 +7,26 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Client</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
+        <p>
+            <span class="entete">
             @Html.DisplayNameFor(model => model.Nom)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nom)
-        </dd>
-        <dt class = "col-sm-2">
+                :
+            </span>
+            <span>
+        @Html.DisplayFor(model => model.Nom)
+
+            </span>
+        </p>
+        <p>
+            <span class="entete">
             @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-    </dl>
+                :
+            </span>
+
+        @Html.DisplayFor(model => model.Email)
+        </p>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ClientId"><i class="fas fa-edit"></i></a> |
-    <a asp-action="Index"><i class="fas fa-chevron-left"></i>Retour</a>
+<div class="form-footer">
+    <a asp-action="Edit" asp-route-id="@Model.ClientId" class="action"><i class="fas fa-edit"></i>Editer</a>
+    <a asp-action="Index" class="action"><i class="fas fa-chevron-left"></i>Retour</a>
 </div>

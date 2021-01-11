@@ -32,8 +32,8 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ClientId"><i class="fas fa-edit"></i></a>|
-                    <a asp-action="Delete" asp-route-id="@item.ClientId"><i class="fas fa-times"></i></a>|
+                    <a asp-action="Edit" asp-route-id="@item.ClientId"><i class="fas fa-edit"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.ClientId"><i class="fas fa-times"></i></a>
                     <a asp-action="Details" asp-route-id="@item.ClientId"><i class="fas fa-info-circle"></i></a>
                 </td>
             </tr>
@@ -41,3 +41,5 @@
 
     </tbody>
 </table>
+
+
