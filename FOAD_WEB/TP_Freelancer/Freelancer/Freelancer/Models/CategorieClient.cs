@@ -17,9 +17,11 @@ namespace Freelancer.Models
         [Required]
         //[Index(IsUnique = true)]
         [MaxLength(50)]
+        [Display(Name = "Nom de la catégorie")]
         public string Nom { get; set; }
 
         [DataType(DataType.Text)]
+        [Display(Name = "Description de la catégorie")]
         public string Description { get; set; }
     }
 }
