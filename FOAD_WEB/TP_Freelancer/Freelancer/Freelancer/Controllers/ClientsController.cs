@@ -22,7 +22,9 @@ namespace Freelancer.Controllers
         // GET: Clients
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Clients.ToListAsync());
+            //return View(await _context.Clients.ToListAsync());
+            var clients = _context.Clients.Include(c => c.Categorie);
+            return View(await clients.ToListAsync());
         }
 
         // GET: Clients/Details/5
@@ -32,9 +34,8 @@ namespace Freelancer.Controllers
             {
                 return NotFound();
             }
-
-            var client = await _context.Clients
-                .FirstOrDefaultAsync(m => m.ClientId == id);
+            var clients = _context.Clients.Include(c => c.Categorie);
+            var client = await clients.FirstOrDefaultAsync(m => m.ClientId == id);
             if (client == null)
             {
                 return NotFound();
@@ -46,6 +47,7 @@ namespace Freelancer.Controllers
         // GET: Clients/Create
         public IActionResult Create()
         {
+            ViewData["listCats"] = new SelectList(_context.CategoriesClient, "CategorieId", "Nom");
             return View();
         }
 

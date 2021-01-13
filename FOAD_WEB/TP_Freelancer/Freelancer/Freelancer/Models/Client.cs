@@ -26,7 +26,10 @@ namespace Freelancer.Models
 
         [Required]
         [ForeignKey("CategorieClient")]
+        [Display(Name ="Catégorie")]
         public int CategorieClientId { get; set; }
+
+        public virtual CategorieClient Categorie { get; set; }
 
     }
 }
