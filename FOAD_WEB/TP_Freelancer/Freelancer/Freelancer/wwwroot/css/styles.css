@@ -1,0 +1,173 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #faf7f5;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #45505E;
+}
+
+
+#content {
+    margin: 20px auto;
+    border-radius: 5px;
+    border: #c8c6c4 solid 1px;
+    width: 960px;
+    background-color: #ffffff;
+    color: #45505E;
+}
+
+main {
+    margin: auto;
+    text-align: center;
+    display: grid;
+}
+
+header {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+#logo {
+    width: 200px;
+}
+
+#menu {
+    margin: 1%;
+}
+
+
+#buttonClient, #buttonMissions, #buttonAjouterNouveauClient {
+    color: #45505E;
+    background-color: white;
+    border-color: #dbe2e8;
+    text-decoration: none;
+}
+
+#menu > a, #buttonAjouterNouveauClient {
+    font-size: medium;
+    padding: 10px;
+    border-radius: 3px;
+    border-style: solid;
+    font-weight: bold;
+    margin: auto 5px;
+    text-decoration: none;
+}
+
+#buttonAjouterNouveauClient {
+    width: 300px;
+    margin: 20px auto;
+}
+
+#buttonDevisFacture {
+    background-color: #38dd09;
+    color: white;
+    border-color: #45505E;
+}
+
+#tableClientsEnregistres {
+    margin: 10px auto 150px auto;
+    border: solid black 2px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 75%;
+    text-align: left;
+}
+
+th {
+    background-color: black;
+    color: white;
+}
+
+td {
+    background-color: #faf7f5;
+    color: #45505E;
+}
+
+#tableClientsEnregistres tr th:first-child {
+    width: 75px;
+}
+
+#tableClientsEnregistres tr th:nth-child(2) {
+    width: 200px;
+}
+
+#tableClientsEnregistres tr th:nth-child(3) {
+    width: 300px;
+}
+
+#tableClientsEnregistres tr th:last-child {
+    width: 100px;
+}
+
+.fa-edit {
+    color: #049c2a;
+}
+
+.fa-times {
+    color: #990000;
+}
+
+.fa-info-circle {
+    color: #45505E;
+}
+
+.fa-edit, .fa-times, .fa-info-circle, .fa-trash-alt, .fa-chevron-left, .fa-save {
+    margin: 0 10px;
+}
+
+.fa-trash-alt {
+    color: darkred;
+}
+
+.col-md-4 {
+    margin: auto;
+}
+
+
+btn-danger {
+    border: none;
+    background-color: white;
+}
+
+.entete {
+    width: 150px;
+    margin: 5px;
+}
+
+
+
+.fa-circle {
+    font-size: 40%;
+    vertical-align: middle;
+    color: #45505E;
+}
+
+footer {
+    margin-top: 10px;
+}
+
+#liensFooter {
+    text-align: center;
+    padding: 40px 0;
+    background-color: #ebeff2;
+}
+
+#liensFooter > a {
+    text-decoration: none;
+    color: #45505E;
+    font-weight: bold;
+}
+
+#copyright {
+    background-color: #45505E;
+    font-weight: bold;
+    color: white;
+    padding: 5px;
+    border-radius: 0 0 5px 5px;
+}

@@ -1,0 +1,46 @@
+﻿@model Freelancer.Models.Client
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+
+<h1>Details</h1>
+
+<div>
+    <p>
+        <span class="entete">
+            @Html.DisplayNameFor(model => model.Nom)
+            :
+        </span>
+        <span>
+            @Html.DisplayFor(model => model.Nom)
+
+        </span>
+    </p>
+    <p>
+        <span class="entete">
+            @Html.DisplayNameFor(model => model.Email)
+            :
+        </span>
+
+        @Html.DisplayFor(model => model.Email)
+    </p>
+    <p>
+        <span class="entete">
+            @Html.DisplayNameFor(model => model.CategorieClientId)
+            :
+        </span>
+
+        @Html.DisplayFor(model => model.CategorieClientId)
+    </p>
+</div>
+<div class="form-footer">
+    <a asp-action="Edit" asp-route-id="@Model.ClientId" class="action"><i class="fa fa-edit"></i>Editer</a>
+</div>
+
+<div>
+    <a asp-action="Index"><i class="fa fa-chevron-left"></i>Annuler</a>
+</div>

@@ -1,0 +1,54 @@
+﻿@model Freelancer.Models.Devis
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Devis</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Etat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Etat)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Montant)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Montant)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DevisDateFinale)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DevisDateFinale)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MontantFinal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MontantFinal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MissionId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MissionId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.DevisId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
