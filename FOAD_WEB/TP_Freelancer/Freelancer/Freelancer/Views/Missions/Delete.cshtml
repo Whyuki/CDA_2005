@@ -4,9 +4,9 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<h1>Supprimer une mission</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Êtes-vous sûr de vouloir supprimer cette mission?</h3>
 <div>
     <h4>Mission</h4>
     <hr />
@@ -51,7 +51,8 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="MissionId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <button type="submit" value="Delete" class="btn btn-danger"><i class="fa fa-trash-alt"></i>Supprimer</button>
+
         <a asp-action="Index">Back to List</a>
     </form>
 </div>

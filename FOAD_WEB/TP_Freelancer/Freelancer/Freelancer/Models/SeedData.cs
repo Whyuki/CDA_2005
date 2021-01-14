@@ -45,11 +45,52 @@ namespace Freelancer.Models
                      {
                          Nom = "Secteur public",
                          Description = "Principalement dirigé par l'État"
+                     }, 
+                     
+                     new CategorieClient
+                     {
+                         Nom = "Fripouilles",
+                         Description = "Les rois de la bidouille"
                      }
+
+
 
 
                 );
                 context.SaveChanges();
+
+                context.Clients.AddRange(
+                   new Client
+                   {
+                       Nom = "Meowstache",
+                       Email = "stashy@mail.com",
+                       CategorieClientId=4
+                   },
+
+                   new Client
+                   {
+                       Nom = "Nyupont",
+                       Email = "m.nyu@mail.com",
+                       CategorieClientId = 2
+                   },
+
+                   new Client
+                   {
+                       Nom = "Nyoe",
+                       Email = "john.nyoe@mail.com",
+                       CategorieClientId = 1
+                   },
+
+                   new Client
+                   {
+                       Nom = "Chatouillette",
+                       Email = "touillette@mail.com",
+                       CategorieClientId = 3
+                   }
+               );
+
+                context.SaveChanges();
+
             }
         }
     }

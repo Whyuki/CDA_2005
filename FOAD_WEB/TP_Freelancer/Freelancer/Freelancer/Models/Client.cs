@@ -15,16 +15,16 @@ namespace Freelancer.Models
         public int ClientId { get; set; }
 
         //[Index(IsUnique = true)]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Limite maximum de caractères : 100")]
         public string Nom { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Champ obligatoire : veuillez saisir une adresse e-mail")]
         //[Index(IsUnique = true)]
-        [MaxLength(255)]
+        [MaxLength(255, ErrorMessage = "Limite maximum de caractères : 255")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Champ obligatoire : veuillez selectionner une catégorie")]
         [ForeignKey("CategorieClient")]
         [Display(Name ="Catégorie")]
         public int CategorieClientId { get; set; }

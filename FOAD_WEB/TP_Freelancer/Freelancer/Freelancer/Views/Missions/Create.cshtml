@@ -43,14 +43,16 @@
                 <span asp-validation-for="ClientId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <button type="submit" value="Create" class="btn btn-primary">
+                    <i class="fa fa-save"></i>Créer
+                </button>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Retour</a>
 </div>
 
 @section Scripts {

@@ -14,12 +14,12 @@ namespace Freelancer.Models
         [Key]
         public int MissionId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Champ obligatoire : veuillez saisir un état")]
         //[Index(IsUnique = true)]
         [StringLength(10)]
         public string Etat { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Champ obligatoire : veuillez saisir un titre")]
         [MaxLength(100)]
         public string Titre { get; set; }
 
@@ -32,7 +32,7 @@ namespace Freelancer.Models
         [DataType(DataType.Text)]
         public string Description { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Champ obligatoire : veuillez renseigner un client")]
         [ForeignKey("Client")]
         public int ClientId { get; set; }
     }

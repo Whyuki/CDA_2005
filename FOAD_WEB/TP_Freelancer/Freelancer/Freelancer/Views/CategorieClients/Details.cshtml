@@ -7,24 +7,25 @@
 <h1>Details</h1>
 
 <div>
-    <h4>CategorieClient</h4>
+    <h4>Catégorie de client</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-6">
             @Html.DisplayNameFor(model => model.Nom)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-4">
             @Html.DisplayFor(model => model.Nom)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-6">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-4">
             @Html.DisplayFor(model => model.Description)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.CategorieId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.CategorieId">Modifier</a> |
+    <a asp-action="Index">Retour</a>
 </div>
+

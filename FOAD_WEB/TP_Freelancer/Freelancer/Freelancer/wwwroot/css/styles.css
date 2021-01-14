@@ -42,26 +42,25 @@ header {
 }
 
 
-#buttonClient, #buttonMissions, #buttonAjouterNouveauClient {
+#buttonClient, #buttonMissions, .btn-ajout {
     color: #45505E;
     background-color: white;
     border-color: #dbe2e8;
     text-decoration: none;
 }
 
-#menu > a, #buttonAjouterNouveauClient {
+#menu > a, .btn-ajout {
     font-size: medium;
     padding: 10px;
     border-radius: 3px;
     border-style: solid;
     font-weight: bold;
-    margin: auto 5px;
+    margin: 20px auto;
     text-decoration: none;
 }
 
-#buttonAjouterNouveauClient {
+.btn-ajout {
     width: 300px;
-    margin: 20px auto;
 }
 
 #buttonDevisFacture {
@@ -70,18 +69,24 @@ header {
     border-color: #45505E;
 }
 
-#tableClientsEnregistres {
-    margin: 10px auto 150px auto;
+.tableaux {
+    margin: 10px auto;
     border: solid black 2px;
     border-collapse: collapse;
     table-layout: fixed;
-    width: 75%;
     text-align: left;
+    width: 75%;
 }
+
+    .tableaux tr th:last-child {
+        width: 100px;
+    }
+
 
 th {
     background-color: black;
     color: white;
+    padding: 10px;
 }
 
 td {
@@ -89,21 +94,6 @@ td {
     color: #45505E;
 }
 
-#tableClientsEnregistres tr th:first-child {
-    width: 75px;
-}
-
-#tableClientsEnregistres tr th:nth-child(2) {
-    width: 200px;
-}
-
-#tableClientsEnregistres tr th:nth-child(3) {
-    width: 300px;
-}
-
-#tableClientsEnregistres tr th:last-child {
-    width: 100px;
-}
 
 .fa-edit {
     color: #049c2a;
@@ -158,11 +148,11 @@ footer {
     background-color: #ebeff2;
 }
 
-#liensFooter > a {
-    text-decoration: none;
-    color: #45505E;
-    font-weight: bold;
-}
+    #liensFooter > a {
+        text-decoration: none;
+        color: #45505E;
+        font-weight: bold;
+    }
 
 #copyright {
     background-color: #45505E;
@@ -171,3 +161,21 @@ footer {
     padding: 5px;
     border-radius: 0 0 5px 5px;
 }
+
+#logo-cat-egories {
+    width: 287px;
+}
+
+#gestion-cat-egories {
+    margin: auto;
+    width: 287px;
+    color: white;
+    background-color: #b64b6f;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+}
+
+    #gestion-cat-egories p {
+        margin: auto;
+    }

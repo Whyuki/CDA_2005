@@ -8,37 +8,34 @@
 <h1>Details</h1>
 
 <div>
-    <p>
-        <span class="entete">
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-6">
             @Html.DisplayNameFor(model => model.Nom)
-            :
-        </span>
-        <span>
+
+        </dt>
+        <dd class="col-sm-4">
             @Html.DisplayFor(model => model.Nom)
-
-        </span>
-    </p>
-    <p>
-        <span class="entete">
+        </dd>
+        <dt class="col-sm-6">
             @Html.DisplayNameFor(model => model.Email)
-            :
-        </span>
 
-        @Html.DisplayFor(model => model.Email)
-    </p>
-    <p>
-        <span class="entete">
+        </dt>
+        <dd class="col-sm-4">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-6">
             @Html.DisplayNameFor(model => model.CategorieClientId)
-            :
-        </span>
 
-        @Html.DisplayFor(model => model.Categorie.Nom)
-    </p>
-</div>
-<div class="form-footer">
-    <a asp-action="Edit" asp-route-id="@Model.ClientId" class="action"><i class="fa fa-edit"></i>Editer</a>
+
+        </dt>
+        <dd class="col-sm-4">
+            @Html.DisplayFor(model => model.Categorie.Nom)
+        </dd>
+    </dl>
 </div>
 
 <div>
-    <a asp-action="Index"><i class="fa fa-chevron-left"></i>Annuler</a>
+    <a asp-action="Edit" asp-route-id="@Model.ClientId">Modifier</a> |
+    <a asp-action="Index">Retour</a>
 </div>

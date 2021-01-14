@@ -4,12 +4,15 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Gestion des catégories client</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+
+    <a asp-action="Create" class="btn-ajout"><i class="fa fa-plus"></i> Ajouter une nouvelle catégorie de client</a>
+
+
+<h2>Catégories de client enregistrées</h2>
+
+<table class="table tableaux">
     <thead>
         <tr>
             <th>
@@ -18,24 +21,25 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CategorieId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CategorieId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CategorieId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nom)
+                    <a asp-action="Details" asp-route-id="@item.CategorieId"><i class="fa fa-info-circle"></i></a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CategorieId"><i class="fa fa-edit"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.CategorieId"><i class="fa fa-times"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

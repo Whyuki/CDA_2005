@@ -6,13 +6,11 @@
 
 <h1>Gestion des clients</h1>
 
-<a href="/CategorieClients">Gérer les catégories de clients</a>
-
 <p>Dernier client ajouté/modifié :</p>
-<a asp-action="Create" id="buttonAjouterNouveauClient"><i class="fa fa-plus"></i> Ajouter un nouveau client</a>
+<a asp-action="Create" class="btn-ajout"><i class="fa fa-plus"></i> Ajouter un nouveau client</a>
 
 <h2>Clients enregistrés</h2>
-<table id="tableClientsEnregistres">
+<table class="tableaux">
     <thead>
         <tr>
             <th>
@@ -30,6 +28,7 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Nom)
+                    <a asp-action="Details" asp-route-id="@item.ClientId"><i class="fa fa-info-circle"></i></a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
@@ -37,7 +36,6 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ClientId"><i class="fa fa-edit"></i></a>
                     <a asp-action="Delete" asp-route-id="@item.ClientId"><i class="fa fa-times"></i></a>
-                    <a asp-action="Details" asp-route-id="@item.ClientId"><i class="fa fa-info-circle"></i></a>
                 </td>
             </tr>
         }
@@ -45,6 +43,7 @@
     </tbody>
 </table>
 
+<a href="/CategorieClients" id="gestion-cat-egories"> <p>Gérer les catégories de clients</p><img id="logo-cat-egories" src="~/img/cat-egories_freelancer.png" alt="cat-egories" /></a>
 
 
 
