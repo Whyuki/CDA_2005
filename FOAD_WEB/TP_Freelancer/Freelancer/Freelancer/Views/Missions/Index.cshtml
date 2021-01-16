@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<Freelancer.Models.Mission>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Missions - index";
 }
 
 <h1>Gestion des missions</h1>
 
+<p>@ViewData["lastMissionCreateUpdate"]</p>
 
-    <a asp-action="Create" class="btn-ajout"><i class="fa fa-plus"></i> Ajouter une nouvelle mission</a>
+<a asp-action="Create" class="btn-ajout"><i class="fa fa-plus"></i> Ajouter une nouvelle mission</a>
 
 
 <h2>Missions enregistrées</h2>
@@ -28,8 +29,8 @@
                 @Html.DisplayNameFor(model => model.Fin)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.ClientId)
             </th>

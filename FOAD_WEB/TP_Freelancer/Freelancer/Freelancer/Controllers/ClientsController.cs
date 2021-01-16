@@ -24,9 +24,12 @@ namespace Freelancer.Controllers
         {
             //return View(await _context.Clients.ToListAsync());
             var clients = _context.Clients.Include(c => c.Categorie);
-            var clientsOrderByUpdated = clients.OrderBy(c => c.UpdatedAt);
-            Client lastClientUpdated = clientsOrderByUpdated.Last();
-            ViewData["lastClientCreateUpdate"] = lastClientUpdated.Nom;
+            if (clients.Any())
+            {
+                var clientsOrderByUpdated = clients.OrderBy(c => c.UpdatedAt);
+                Client lastClientUpdated = clientsOrderByUpdated.Last();
+                ViewData["lastClientCreateUpdate"] = "Dernier client ajouté/modifié : "+lastClientUpdated.Nom;
+            }
             return View(await clients.ToListAsync());
         }
 

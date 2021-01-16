@@ -23,8 +23,15 @@ namespace Freelancer.Controllers
         public async Task<IActionResult> Index()
         {
             var missions = _context.Missions.Include(c => c.Client);
+            if (missions.Any())
+            {
+            var missionsOrderByUpdated = missions.OrderBy(c => c.UpdatedAt);
+                Mission lastMissionUpdated = missionsOrderByUpdated.Last();
+                ViewData["lastMissionCreateUpdate"] = "Derniere mission ajoutée/modifiée : "+lastMissionUpdated.MissionId + " : " + lastMissionUpdated.Titre;
+            }
+            
             return View(await missions.ToListAsync());
-           
+
         }
 
         // GET: Missions/Details/5
@@ -36,7 +43,7 @@ namespace Freelancer.Controllers
             }
             var missions = _context.Missions.Include(c => c.Client);
             var mission = await missions.FirstOrDefaultAsync(m => m.MissionId == id);
-            
+
             if (mission == null)
             {
                 return NotFound();
@@ -66,7 +73,7 @@ namespace Freelancer.Controllers
                 Devis devis = new Devis(mission.Etat, DateTime.Now, mission.Montant, mission.MissionId);
                 DevisController devisController = new DevisController(_context);
                 await devisController.Create(devis);
-               
+
                 return RedirectToAction(nameof(Index));
             }
             return View(mission);

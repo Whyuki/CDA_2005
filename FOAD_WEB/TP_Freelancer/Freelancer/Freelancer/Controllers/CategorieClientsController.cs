@@ -22,7 +22,14 @@ namespace Freelancer.Controllers
         // GET: CategorieClients
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CategoriesClient.ToListAsync());
+            var catClient = _context.CategoriesClient;
+            if (catClient.Any())
+            {
+                var catClientOrderByUpdated = catClient.OrderBy(c => c.UpdatedAt);
+                CategorieClient lastCatClientUpdated = catClientOrderByUpdated.Last();
+                ViewData["lastCatClientCreateUpdate"] = "Derniere catégorie de client ajoutée/modifiée : "+lastCatClientUpdated.Nom;
+            }
+            return View(await catClient.ToListAsync());
         }
 
         // GET: CategorieClients/Details/5

@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<Freelancer.Models.CategorieClient>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Catégories de client - index";
 }
 
 <h1>Gestion des catégories client</h1>
 
+<p>@ViewData["lastCatClientCreateUpdate"]</p>
 
-    <a asp-action="Create" class="btn-ajout"><i class="fa fa-plus"></i> Ajouter une nouvelle catégorie de client</a>
+<a asp-action="Create" class="btn-ajout"><i class="fa fa-plus"></i> Ajouter une nouvelle catégorie de client</a>
 
 
 <h2>Catégories de client enregistrées</h2>

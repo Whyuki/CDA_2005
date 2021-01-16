@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<Freelancer.Models.Devis>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Devis et factures - index";
 }
-<a asp-action="Clients" class="btn-ajout">Factures par client</a>
 
-<h1>Gestion des devis</h1>
+<h1>Gestion des devis et factures</h1>
 
-
+<p>@ViewData["lastDevisCreateUpdate"]</p>
 @*<a asp-action="Create" class="btn-ajout"><i class="fa fa-plus"></i> Ajouter un nouveau devis</a>*@
+
+<a asp-action="Clients" class="btn-ajout">Factures par client</a>
 
 
 <h2>Devis enregistrés</h2>
@@ -68,3 +69,5 @@
         }
     </tbody>
 </table>
+
+

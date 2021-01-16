@@ -1,11 +1,17 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Freelancer";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcomeow</h1>
     <img src="~/img/cat-welcome.jpg" />
 
-    <a href="/CategorieClients" class="gestion-cat-egories"> <p>Gérer les catégories de clients</p><img id="logo-cat-egories" src="~/img/cat-egories_freelancer.png" alt="cat-egories" /></a>
+    <nav id="nav-home">
 
+    <a asp-controller="CategorieClients" asp-action="Index"> <img src="~/img/cat-egories_freelancer.png" alt="cat-egories" /></a>
+    <a asp-controller="Clients" asp-action="Index" > <img src="~/img/clients_freelancer.png" alt="clients" /></a>
+    <a asp-controller="Missions" asp-action="Index" > <img src="~/img/missions_freelancer.png" alt="missions" /></a>
+    <a asp-controller="Devis" asp-action="Index" ><img src="~/img/devis_freelancer.png" alt="devis et factures" /></a>
+        
+    </nav>
 </div>

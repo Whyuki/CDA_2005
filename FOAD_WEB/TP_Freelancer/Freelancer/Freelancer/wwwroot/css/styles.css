@@ -42,6 +42,15 @@ header {
     margin: 1%;
 }
 
+#nav-home {
+    display: inline-block;
+    margin:auto;
+}
+#nav-home img{
+    width:200px;
+    margin : 10px;
+}
+
 
 #buttonClient, #buttonMissions, .btn-ajout {
     color: #45505E;

@@ -23,7 +23,13 @@ namespace Freelancer.Controllers
         public async Task<IActionResult> Index()
         {
             var devis = _context.Devis.Include(c => c.Mission);
-            return View(await devis.ToListAsync());
+            if (devis.Any())
+            {
+                var devisOrderByUpdated = devis.OrderBy(c => c.UpdatedAt);
+                Devis lastDevisUpdated = devisOrderByUpdated.Last();
+                ViewData["lastDevisCreateUpdate"] = "Dernier devis ajouté/modifié : " + lastDevisUpdated.DevisId;
+            }
+                return View(await devis.ToListAsync());
         }
 
         // GET: Devis/Details/5

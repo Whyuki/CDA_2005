@@ -1,0 +1,13 @@
+to-do :
+
+date end > date start
+
+facture quand devis accepté
+date et montant fin en f° de l'état ?
+
+
+createdAT
+updatedAT
+
+questions ????
+supprimer mission : supprime devis liés ?
