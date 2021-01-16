@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Freelancer.Models
 {
-    public class Client
+    public class Client : BaseEntity
     {
         [Column("client_id")]
         [Key]

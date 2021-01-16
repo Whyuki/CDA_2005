@@ -27,7 +27,9 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="CategorieId" />
-        <button type="submit" value="Delete" class="btn btn-danger"><i class="fa fa-trash-alt"></i>Supprimer</button>
-        <a asp-action="Index">Retour</a>
+        <button type="submit" value="Delete" class="btn btn-danger"><i class="fa fa-trash-o"></i>Supprimer</button>
     </form>
+    <div>
+        <a asp-action="Index">Retour à la liste des catégories de client</a>
+    </div>
 </div>

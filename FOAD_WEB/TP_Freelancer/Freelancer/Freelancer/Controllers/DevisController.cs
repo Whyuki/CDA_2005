@@ -22,7 +22,8 @@ namespace Freelancer.Controllers
         // GET: Devis
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Devis.ToListAsync());
+            var devis = _context.Devis.Include(c => c.Mission);
+            return View(await devis.ToListAsync());
         }
 
         // GET: Devis/Details/5
@@ -32,9 +33,8 @@ namespace Freelancer.Controllers
             {
                 return NotFound();
             }
-
-            var devis = await _context.Devis
-                .FirstOrDefaultAsync(m => m.DevisId == id);
+            var listDevis = _context.Devis.Include(c => c.Mission).ThenInclude(c => c.Client).ThenInclude(c => c.Categorie);
+            var devis = await listDevis.FirstOrDefaultAsync(m => m.DevisId == id);
             if (devis == null)
             {
                 return NotFound();
@@ -46,6 +46,12 @@ namespace Freelancer.Controllers
         // GET: Devis/Create
         public IActionResult Create()
         {
+            var listMissions = _context.Missions.Select(s => new
+            {
+                Text = s.MissionId + " (" + s.Titre + ")",
+                Value = s.MissionId
+            }).ToList();
+            ViewData["listMissions"] = new SelectList(listMissions, "Value", "Text");
             return View();
         }
 
@@ -54,7 +60,7 @@ namespace Freelancer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DevisId,Etat,Date,Montant,DevisDateFinale,MontantFinal,MissionId")] Devis devis)
+        public async Task<IActionResult> Create([Bind("DevisId,EtatDevis,Date,Montant,DevisDateFinale,MontantFinal,MissionId")] Devis devis)
         {
             if (ModelState.IsValid)
             {
@@ -73,6 +79,13 @@ namespace Freelancer.Controllers
                 return NotFound();
             }
 
+            var listMissions = _context.Missions.Select(s => new
+            {
+                Text = s.MissionId + " (" + s.Titre+")",
+                Value = s.MissionId
+            }).ToList();
+            ViewData["listMissions"] = new SelectList(listMissions, "Value", "Text");
+
             var devis = await _context.Devis.FindAsync(id);
             if (devis == null)
             {
@@ -86,7 +99,7 @@ namespace Freelancer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DevisId,Etat,Date,Montant,DevisDateFinale,MontantFinal,MissionId")] Devis devis)
+        public async Task<IActionResult> Edit(int id, [Bind("DevisId,EtatDevis,Date,Montant,DevisDateFinale,MontantFinal,MissionId")] Devis devis)
         {
             if (id != devis.DevisId)
             {
@@ -123,9 +136,9 @@ namespace Freelancer.Controllers
             {
                 return NotFound();
             }
-
-            var devis = await _context.Devis
-                .FirstOrDefaultAsync(m => m.DevisId == id);
+            var listDevis = _context.Devis.Include(d => d.Mission).ThenInclude(d => d.Client).ThenInclude(d => d.Categorie);
+            var devis = await listDevis.FirstOrDefaultAsync(d => d.DevisId == id);
+            
             if (devis == null)
             {
                 return NotFound();
@@ -149,5 +162,39 @@ namespace Freelancer.Controllers
         {
             return _context.Devis.Any(e => e.DevisId == id);
         }
+
+
+
+
+        public async Task<IActionResult> Clients()
+        {
+            ViewData["listClientsFacture"] = new SelectList(_context.Clients, "ClientId", "Nom");
+
+            //var devis = _context.Devis.Include(c => c.Mission).ThenInclude(c => c.Client).ThenInclude(c => c.Categorie);
+
+            //return View(await devis.ToListAsync());
+            var clients = _context.Clients.Include(c => c.Categorie);
+            return View(await clients.ToListAsync());
+        }
+
+        public async Task<IActionResult> Facture(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var listDevis = _context.Devis.Include(d => d.Mission).ThenInclude(d => d.Client).ThenInclude(d => d.Categorie);
+            var devis = listDevis.Where(d => d.Mission.ClientId == id);
+
+            if (devis == null)
+            {
+                return NotFound();
+            }
+
+            return View(await devis.ToListAsync());
+        }
+
+
     }
 }

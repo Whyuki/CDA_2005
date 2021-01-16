@@ -6,7 +6,7 @@
 
 <h1>Gestion des clients</h1>
 
-<p>Dernier client ajouté/modifié :</p>
+<p>Dernier client ajouté/modifié : </p>@ViewData["lastClientCreateUpdate"]
 <a asp-action="Create" class="btn-ajout"><i class="fa fa-plus"></i> Ajouter un nouveau client</a>
 
 <h2>Clients enregistrés</h2>
@@ -43,7 +43,7 @@
     </tbody>
 </table>
 
-<a href="/CategorieClients" id="gestion-cat-egories"> <p>Gérer les catégories de clients</p><img id="logo-cat-egories" src="~/img/cat-egories_freelancer.png" alt="cat-egories" /></a>
+<a href="/CategorieClients" class="gestion-cat-egories"> <p>Gérer les catégories de clients</p><img id="logo-cat-egories" src="~/img/cat-egories_freelancer.png" alt="cat-egories" /></a>
 
 
 

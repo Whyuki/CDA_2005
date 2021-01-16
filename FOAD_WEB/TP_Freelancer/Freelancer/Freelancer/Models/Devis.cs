@@ -8,15 +8,30 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Freelancer.Models
 {
-    public class Devis
+    public class Devis : BaseEntity
     {
+        public Devis()
+        {
+        }
+
+        public Devis(string etatDevis, DateTime date, int montant, int missionId)
+        {
+            //DevisId = devisId;
+            EtatDevis = etatDevis;
+            Date = date;
+            Montant = montant;
+            MissionId = missionId;
+            //Mission = mission;
+        }
+
         [Key]
         [Column("devis_id")]
         public int DevisId { get; set; }
 
         [Required(ErrorMessage = "Champ obligatoire : veuillez saisir un état")]
         [StringLength(10, ErrorMessage = "Limite maximum de caractères : 10")]
-        public char Etat { get; set; }
+        [Display(Name = "État du devis")]
+        public string EtatDevis { get; set; }
 
         [Required(ErrorMessage = "Champ obligatoire : veuillez saisir une date")]
         [DataType(DataType.Date)]
@@ -27,14 +42,16 @@ namespace Freelancer.Models
 
         [DataType(DataType.Date)]
         [Display(Name = "Date finale")]
-        public DateTime DevisDateFinale { get; set; }
+        public DateTime? DevisDateFinale { get; set; }
 
         [Display(Name = "Montant final")]
-        public int MontantFinal { get; set; }
+        public int? MontantFinal { get; set; }
 
         [Required(ErrorMessage = "Champ obligatoire : veuillez renseigner une mission")]
         [ForeignKey("Mission")]
+        [Display(Name = "N° Mission")]
         public int MissionId { get; set; }
 
+        public virtual Mission Mission { get; set; }
     }
 }

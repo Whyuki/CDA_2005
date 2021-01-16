@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Freelancer.Models.Devis>
+@*mission ou devis ?*@
+
+@{
+    int total = 0;
+}
+<div class="facture">
+    <img id="logo" src="~/img/TP_Freelancer_logo.jpg" />
+    <div class="entete-facture">
+        <div class="cadre-adresse">
+            <p>Facturé à</p>
+            <p>
+                @Model.First().Mission.Client.Nom
+                @Model.First().Mission.Client.Email
+            </p>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.EtatDevis)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Mission)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Montant)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <!--<th>-->
+                @*@Html.DisplayNameFor(model => model.Date)*@
+                <!--</th>-->
+                <th>
+                    @Html.DisplayNameFor(model => model.MontantFinal)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.MontantFinal != null)
+                {
+                    total += (int)item.MontantFinal;
+                }
+                <tr>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.EtatDevis)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mission.Titre)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Montant)
+                        </td>*@
+                    <!--<td>-->
+                    @*@Html.DisplayFor(modelItem => item.Date)*@
+                    <!--</td>-->
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DevisDateFinale)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MontantFinal)
+                    </td>
+                </tr>
+            }
+
+            <tr>
+                <td></td>
+                <td>TOTAL =</td>
+                <td> @total €</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+

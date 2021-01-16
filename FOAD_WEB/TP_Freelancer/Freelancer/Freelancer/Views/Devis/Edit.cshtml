@@ -14,9 +14,9 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="DevisId" />
             <div class="form-group">
-                <label asp-for="Etat" class="control-label"></label>
-                <input asp-for="Etat" class="form-control" />
-                <span asp-validation-for="Etat" class="text-danger"></span>
+                <label asp-for="EtatDevis" class="control-label"></label>
+                <input asp-for="EtatDevis" class="form-control" />
+                <span asp-validation-for="EtatDevis" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
@@ -40,18 +40,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="MissionId" class="control-label"></label>
-                <input asp-for="MissionId" class="form-control" />
+                <select asp-for="MissionId" class="form-control" asp-items="@ViewBag.listMissions"></select>
                 <span asp-validation-for="MissionId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <button type="submit" value="Save" class="btn btn-primary"><i class="fa fa-save"></i>Modifier</button>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Retour à la liste des devis</a>
 </div>
 
 @section Scripts {

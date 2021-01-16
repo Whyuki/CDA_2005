@@ -1,0 +1,8 @@
+to-do :
+
+date end > date start
+
+facture quand devis accepté
+
+createdAT
+updatedAT

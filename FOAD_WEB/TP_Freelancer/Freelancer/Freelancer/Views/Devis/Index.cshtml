@@ -3,11 +3,12 @@
 @{
     ViewData["Title"] = "Index";
 }
+<a asp-action="Clients" class="btn-ajout">Factures par client</a>
 
 <h1>Gestion des devis</h1>
 
 
-    <a asp-action="Create" class="btn-ajout"><i class="fa fa-plus"></i> Ajouter un nouveau devis</a>
+@*<a asp-action="Create" class="btn-ajout"><i class="fa fa-plus"></i> Ajouter un nouveau devis</a>*@
 
 
 <h2>Devis enregistrés</h2>
@@ -16,7 +17,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Etat)
+                @Html.DisplayNameFor(model => model.EtatDevis)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
@@ -41,7 +42,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Etat)
+                    @Html.DisplayFor(modelItem => item.EtatDevis)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)

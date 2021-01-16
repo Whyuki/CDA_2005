@@ -22,7 +22,9 @@ namespace Freelancer.Controllers
         // GET: Missions
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Missions.ToListAsync());
+            var missions = _context.Missions.Include(c => c.Client);
+            return View(await missions.ToListAsync());
+           
         }
 
         // GET: Missions/Details/5
@@ -32,9 +34,9 @@ namespace Freelancer.Controllers
             {
                 return NotFound();
             }
-
-            var mission = await _context.Missions
-                .FirstOrDefaultAsync(m => m.MissionId == id);
+            var missions = _context.Missions.Include(c => c.Client);
+            var mission = await missions.FirstOrDefaultAsync(m => m.MissionId == id);
+            
             if (mission == null)
             {
                 return NotFound();
@@ -46,6 +48,7 @@ namespace Freelancer.Controllers
         // GET: Missions/Create
         public IActionResult Create()
         {
+            ViewData["listClients"] = new SelectList(_context.Clients, "ClientId", "Nom");
             return View();
         }
 
@@ -54,12 +57,16 @@ namespace Freelancer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MissionId,Etat,Titre,Debut,Fin,Description,ClientId")] Mission mission)
+        public async Task<IActionResult> Create([Bind("MissionId,Etat,Titre,Debut,Fin,Description,ClientId,Montant")] Mission mission)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(mission);
                 await _context.SaveChangesAsync();
+                Devis devis = new Devis(mission.Etat, DateTime.Now, mission.Montant, mission.MissionId);
+                DevisController devisController = new DevisController(_context);
+                await devisController.Create(devis);
+               
                 return RedirectToAction(nameof(Index));
             }
             return View(mission);
@@ -72,7 +79,7 @@ namespace Freelancer.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["listClients"] = new SelectList(_context.Clients, "ClientId", "Nom");
             var mission = await _context.Missions.FindAsync(id);
             if (mission == null)
             {
@@ -124,8 +131,8 @@ namespace Freelancer.Controllers
                 return NotFound();
             }
 
-            var mission = await _context.Missions
-                .FirstOrDefaultAsync(m => m.MissionId == id);
+            var missions = _context.Missions.Include(c => c.Client);
+            var mission = await missions.FirstOrDefaultAsync(m => m.MissionId == id);
             if (mission == null)
             {
                 return NotFound();

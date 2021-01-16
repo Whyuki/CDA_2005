@@ -27,7 +27,6 @@
         <dt class="col-sm-6">
             @Html.DisplayNameFor(model => model.CategorieClientId)
 
-
         </dt>
         <dd class="col-sm-4">
             @Html.DisplayFor(model => model.Categorie.Nom)
@@ -37,5 +36,8 @@
 
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ClientId">Modifier</a> |
-    <a asp-action="Index">Retour</a>
+    <a asp-action="Index">Retour à la liste des clients</a>
+</div>
+<div>
+    <a href="#" onclick="history.go(-1);">Retour</a>
 </div>

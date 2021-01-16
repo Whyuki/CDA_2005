@@ -24,6 +24,9 @@ namespace Freelancer.Controllers
         {
             //return View(await _context.Clients.ToListAsync());
             var clients = _context.Clients.Include(c => c.Categorie);
+            var clientsOrderByUpdated = clients.OrderBy(c => c.UpdatedAt);
+            Client lastClientUpdated = clientsOrderByUpdated.Last();
+            ViewData["lastClientCreateUpdate"] = lastClientUpdated.Nom;
             return View(await clients.ToListAsync());
         }
 
@@ -74,7 +77,7 @@ namespace Freelancer.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["listCats"] = new SelectList(_context.CategoriesClient, "CategorieId", "Nom");
             var client = await _context.Clients.FindAsync(id);
             if (client == null)
             {
@@ -126,8 +129,8 @@ namespace Freelancer.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Clients
-                .FirstOrDefaultAsync(m => m.ClientId == id);
+            var clients = _context.Clients.Include(c => c.Categorie);
+            var client = await clients.FirstOrDefaultAsync(m => m.ClientId == id);
             if (client == null)
             {
                 return NotFound();

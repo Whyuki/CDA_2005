@@ -8,15 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Freelancer.Models
 {
-    public class Mission
+    public class Mission : BaseEntity
     {
         [Column("mission_id")]
         [Key]
         public int MissionId { get; set; }
 
         [Required(ErrorMessage = "Champ obligatoire : veuillez saisir un état")]
-        //[Index(IsUnique = true)]
-        [StringLength(10)]
+        [StringLength(10, ErrorMessage = "Limite maximum de caractères : 10")]
         public string Etat { get; set; }
 
         [Required(ErrorMessage = "Champ obligatoire : veuillez saisir un titre")]
@@ -24,16 +23,22 @@ namespace Freelancer.Models
         public string Titre { get; set; }
 
         [DataType(DataType.Date)]
-        public string Debut { get; set; }
+        public DateTime? Debut { get; set; }
 
         [DataType(DataType.Date)]
-        public string Fin { get; set; }
+        public DateTime? Fin { get; set; }
 
         [DataType(DataType.Text)]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Champ obligatoire : veuillez renseigner un client")]
         [ForeignKey("Client")]
+        [Display(Name = "Client")]
         public int ClientId { get; set; }
+
+        public virtual Client Client { get; set; }
+
+        [NotMapped]
+        public int Montant { get; set; }
     }
 }

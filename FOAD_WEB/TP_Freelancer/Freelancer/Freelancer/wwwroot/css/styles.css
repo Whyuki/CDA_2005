@@ -15,9 +15,10 @@ body {
     border-radius: 5px;
     border: #c8c6c4 solid 1px;
     width: 960px;
-    background-color: #ffffff;
     color: #45505E;
+    background-color: #ffffff;
 }
+
 
 main {
     margin: auto;
@@ -83,13 +84,13 @@ header {
     }
 
 
-th {
+.tableaux th {
     background-color: black;
     color: white;
     padding: 10px;
 }
 
-td {
+.tableaux td {
     background-color: #faf7f5;
     color: #45505E;
 }
@@ -107,13 +108,11 @@ td {
     color: #45505E;
 }
 
-.fa-edit, .fa-times, .fa-info-circle, .fa-trash-alt, .fa-chevron-left, .fa-save {
+.fa-edit, .fa-times, .fa-info-circle, .fa-trash-o, .fa-chevron-left, .fa-save {
     margin: 0 10px;
 }
 
-.fa-trash-alt {
-    color: darkred;
-}
+
 
 .col-md-4 {
     margin: auto;
@@ -166,7 +165,7 @@ footer {
     width: 287px;
 }
 
-#gestion-cat-egories {
+.gestion-cat-egories{
     margin: auto;
     width: 287px;
     color: white;
@@ -176,6 +175,35 @@ footer {
     vertical-align: middle;
 }
 
-    #gestion-cat-egories p {
-        margin: auto;
-    }
+.gestion-cat-egories p {
+    margin: auto;
+}
+
+.facture {
+    padding: 50px;
+    width: 75%;
+    margin: 20px auto;
+    border-radius: 5px;
+    border: #c8c6c4 solid 1px;
+    color: #45505E;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.facture #logo {
+    text-align:left;
+}
+
+.entete-facture {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cadre-adresse {
+    width: 20%;
+}
+
+
+
+

@@ -43,12 +43,15 @@
         <dt class = "col-sm-6">
             @Html.DisplayNameFor(model => model.ClientId)
         </dt>
-        <dd class = "col-sm-4">
-            @Html.DisplayFor(model => model.ClientId)
+        <dd class="col-sm-4">
+            @Html.ActionLink(Model.Client.Nom, "Details", "Clients", new { id = Model.ClientId }, null)
         </dd>
     </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.MissionId">Modifier</a> |
-    <a asp-action="Index">Retour</a>
+    <a asp-action="Index">Retour à la liste des missions</a>
+</div>
+<div>
+    <a href="#" onclick="history.go(-1);">Retour</a>
 </div>

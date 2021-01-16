@@ -4,14 +4,16 @@ using Freelancer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Freelancer.Migrations
 {
     [DbContext(typeof(MvcFreelancerContext))]
-    partial class MvcFreelancerContextModelSnapshot : ModelSnapshot
+    [Migration("20210115105620_updateVirtualClientOnMissionRename")]
+    partial class updateVirtualClientOnMissionRename
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,9 +29,6 @@ namespace Freelancer.Migrations
                         .HasColumnName("categorie_id")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -37,9 +36,6 @@ namespace Freelancer.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("CategorieId");
 
@@ -57,9 +53,6 @@ namespace Freelancer.Migrations
                     b.Property<int>("CategorieClientId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -68,9 +61,6 @@ namespace Freelancer.Migrations
                     b.Property<string>("Nom")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("ClientId");
 
@@ -87,16 +77,13 @@ namespace Freelancer.Migrations
                         .HasColumnName("devis_id")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DevisDateFinale")
+                    b.Property<DateTime>("DevisDateFinale")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EtatDevis")
+                    b.Property<string>("Etat")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
@@ -107,15 +94,10 @@ namespace Freelancer.Migrations
                     b.Property<int>("Montant")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MontantFinal")
+                    b.Property<int>("MontantFinal")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("DevisId");
-
-                    b.HasIndex("MissionId");
 
                     b.ToTable("Devis");
                 });
@@ -131,11 +113,8 @@ namespace Freelancer.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("Debut")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Debut")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -145,16 +124,13 @@ namespace Freelancer.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<DateTime?>("Fin")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Fin")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Titre")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("MissionId");
 
@@ -172,17 +148,6 @@ namespace Freelancer.Migrations
                         .IsRequired();
 
                     b.Navigation("Categorie");
-                });
-
-            modelBuilder.Entity("Freelancer.Models.Devis", b =>
-                {
-                    b.HasOne("Freelancer.Models.Mission", "Mission")
-                        .WithMany()
-                        .HasForeignKey("MissionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Mission");
                 });
 
             modelBuilder.Entity("Freelancer.Models.Mission", b =>

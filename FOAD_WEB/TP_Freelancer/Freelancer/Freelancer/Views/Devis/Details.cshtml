@@ -1,5 +1,5 @@
 ﻿@model Freelancer.Models.Devis
-
+@*to-do : date et montant fin en f° de l'état ?'*@
 @{
     ViewData["Title"] = "Details";
 }
@@ -10,45 +10,99 @@
     <h4>Devis</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-6">
-            @Html.DisplayNameFor(model => model.Etat)
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => model.EtatDevis)
         </dt>
-        <dd class = "col-sm-4">
-            @Html.DisplayFor(model => model.Etat)
+        <dd class="col-sm-4">
+            @Html.DisplayFor(model => model.EtatDevis)
         </dd>
-        <dt class = "col-sm-6">
+        <dt class="col-sm-6">
             @Html.DisplayNameFor(model => model.Date)
         </dt>
-        <dd class = "col-sm-4">
+        <dd class="col-sm-4">
             @Html.DisplayFor(model => model.Date)
         </dd>
-        <dt class = "col-sm-6">
+        <dt class="col-sm-6">
             @Html.DisplayNameFor(model => model.Montant)
         </dt>
-        <dd class = "col-sm-4">
+        <dd class="col-sm-4">
             @Html.DisplayFor(model => model.Montant)
         </dd>
-        <dt class = "col-sm-6">
+        <dt class="col-sm-6">
             @Html.DisplayNameFor(model => model.DevisDateFinale)
         </dt>
-        <dd class = "col-sm-4">
-            @Html.DisplayFor(model => model.DevisDateFinale)
+        <dd class="col-sm-4">
+           
         </dd>
-        <dt class = "col-sm-6">
+        <dt class="col-sm-6">
             @Html.DisplayNameFor(model => model.MontantFinal)
         </dt>
-        <dd class = "col-sm-4">
+        <dd class="col-sm-4">
             @Html.DisplayFor(model => model.MontantFinal)
         </dd>
-        <dt class = "col-sm-6">
+    </dl>
+    <p>Mission :</p>
+    <dl class="row">
+        <dt class="col-sm-6">
             @Html.DisplayNameFor(model => model.MissionId)
         </dt>
-        <dd class = "col-sm-4">
-            @Html.DisplayFor(model => model.MissionId)
+        <dd class="col-sm-4">
+            @Html.ActionLink(Model.MissionId.ToString(), "Details", "Missions", new { id = Model.MissionId }, null)
+        </dd>
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => model.Mission.Titre)
+        </dt>
+        <dd class="col-sm-4">
+            @Html.ActionLink(Model.Mission.Titre, "Details", "Missions", new { id = Model.MissionId }, null)
+        </dd>
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => Model.Mission.Debut)
+        </dt>
+        <dd class="col-sm-4">
+            @Html.DisplayFor(model => Model.Mission.Debut)
+        </dd>
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => Model.Mission.Fin)
+        </dt>
+        <dd class="col-sm-4">
+            @Html.DisplayFor(model => Model.Mission.Fin)
+        </dd>
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => Model.Mission.Description)
+        </dt>
+        <dd class="col-sm-4">
+            @Html.DisplayFor(model => Model.Mission.Description)
+        </dd>
+    </dl>
+    <p>Client :</p>
+    <dl class="row">
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => Model.Mission.Client.Nom)
+
+        </dt>
+        <dd class="col-sm-4">
+            @Html.DisplayFor(model => Model.Mission.Client.Nom)
+        </dd>
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => Model.Mission.Client.Email)
+
+        </dt>
+        <dd class="col-sm-4">
+            @Html.DisplayFor(model => Model.Mission.Client.Email)
+        </dd>
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => Model.Mission.Client.CategorieClientId)
+
+        </dt>
+        <dd class="col-sm-4">
+            @Html.DisplayFor(model => Model.Mission.Client.Categorie.Nom)
         </dd>
     </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.DevisId">Modifier</a> |
-    <a asp-action="Index">Retour</a>
+    <a asp-action="Index">Retour à la liste des devis</a>
+</div>
+<div>
+    <a href="#" onclick="history.go(-1);">Retour</a>
 </div>

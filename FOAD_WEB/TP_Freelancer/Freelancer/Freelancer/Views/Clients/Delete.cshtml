@@ -33,17 +33,17 @@
             @Html.DisplayNameFor(model => model.CategorieClientId)
             :
         </span>
-        @Html.DisplayFor(model => model.CategorieClientId)
+        @Html.DisplayFor(model => model.Categorie.Nom)
     </p>
 
     <form asp-action="Delete" class="form-footer">
         <input type="hidden" asp-for="ClientId" />
 
-        <button type="submit" value="Delete" class="btn btn-danger"><i class="fa fa-trash-alt"></i>Supprimer</button>
+        <button type="submit" value="Delete" class="btn btn-danger"><i class="fa fa-trash-o"></i>Supprimer</button>
        
     </form>
     <div>
-        <a asp-action="Index">Retour</a>
+        <a asp-action="Index">Retour à la liste des clients</a>
     </div>
 
 </div>

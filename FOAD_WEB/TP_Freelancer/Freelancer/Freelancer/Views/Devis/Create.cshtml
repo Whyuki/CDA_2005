@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Créer un devis</h1>
+<h1>Ajouter un devis</h1>
 
 <h4>Devis</h4>
 <hr />
@@ -13,9 +13,9 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Etat" class="control-label"></label>
-                <input asp-for="Etat" class="form-control" />
-                <span asp-validation-for="Etat" class="text-danger"></span>
+                <label asp-for="EtatDevis" class="control-label"></label>
+                <input asp-for="EtatDevis" class="form-control" />
+                <span asp-validation-for="EtatDevis" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="MissionId" class="control-label"></label>
-                <input asp-for="MissionId" class="form-control" />
+                <select asp-for="MissionId" class="form-control" asp-items="@ViewBag.listMissions"></select>
                 <span asp-validation-for="MissionId" class="text-danger"></span>
             </div>
             <div class="form-group">

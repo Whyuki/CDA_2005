@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Freelancer.Models
 {
-    public static class SeedData
+    public class SeedData : BaseEntity
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
@@ -49,8 +49,8 @@ namespace Freelancer.Models
                      
                      new CategorieClient
                      {
-                         Nom = "Fripouilles",
-                         Description = "Les rois de la bidouille"
+                         Nom = "Fripouille",
+                         Description = "Roi de la bidouille"
                      }
 
 

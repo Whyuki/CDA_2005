@@ -55,10 +55,7 @@
                     @Html.DisplayFor(modelItem => item.Fin)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ClientId)
+                    @Html.DisplayFor(modelItem => item.Client.Nom)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.MissionId"><i class="fa fa-edit"></i></a>

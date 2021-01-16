@@ -9,44 +9,44 @@
     <link rel="stylesheet" href="~/css/styles.css" />
 
 </head>
-<body id="content">
+<body>
+    <div id="content">
+        <header>
+            <a href="/home">
+                <img id="logo" src="~/img/TP_Freelancer_logo.jpg" alt="logo_Freelancer">
+            </a>
+            <nav id="menu">
+                <a id="buttonClient" href="/clients"><i class="fa fa-users"></i> Clients</a>
+                <a id="buttonMissions" href="/missions"><i class="fa fa-coffee"></i> Missions</a>
+                <a id="buttonDevisFacture" href="/devis"><i class="fa fa-calculator"></i> Devis & Factures</a>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
 
-    <header>
-        <a href="/home">
-            <img id="logo" src="~/img/TP_Freelancer_logo.jpg" alt="logo_Freelancer">
-        </a>
-        <nav id="menu">
-            <a id="buttonClient" href="/clients"><i class="fa fa-users"></i> Clients</a>
-            <a id="buttonMissions" href="/missions"><i class="fa fa-coffee"></i> Missions</a>
-            <a id="buttonDevisFacture" href="/devis"><i class="fa fa-calculator"></i> Devis & Factures</a>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        <footer class="border-top footer text-muted">
+            <div id="liensFooter">
+                <a href="#">Nya</a>
+                <i class="fa fa-circle"></i>
+                <a href="#">Nyaa</a>
+                <i class="fa fa-circle"></i>
+                <a href="#">Nyaa</a>
+                <i class="fa fa-circle"></i>
+                <a href="#">Nyaaaaa</a>
+                <i class="fa fa-circle"></i>
+                <a href="#">Nya !!!</a>
+            </div>
+            <div id="copyright">
+                <p>© Copyright 2021 · SCHMITT JOANNA</p>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div id="liensFooter">
-            <a href="#">Nya</a>
-            <i class="fa fa-circle"></i>
-            <a href="#">Nyaa</a>
-            <i class="fa fa-circle"></i>
-            <a href="#">Nyaa</a>
-            <i class="fa fa-circle"></i>
-            <a href="#">Nyaaaaa</a>
-            <i class="fa fa-circle"></i>
-            <a href="#">Nya !!!</a>
-        </div>
-        <div id="copyright">
-            <p>© Copyright 2021 · SCHMITT JOANNA</p>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-
 </body>
 </html>
