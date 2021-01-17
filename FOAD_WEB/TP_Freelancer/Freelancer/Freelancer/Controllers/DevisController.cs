@@ -29,7 +29,7 @@ namespace Freelancer.Controllers
                 Devis lastDevisUpdated = devisOrderByUpdated.Last();
                 ViewData["lastDevisCreateUpdate"] = "Dernier devis ajouté/modifié : " + lastDevisUpdated.DevisId;
             }
-                return View(await devis.ToListAsync());
+            return View(await devis.ToListAsync());
         }
 
         // GET: Devis/Details/5
@@ -87,7 +87,7 @@ namespace Freelancer.Controllers
 
             var listMissions = _context.Missions.Select(s => new
             {
-                Text = s.MissionId + " (" + s.Titre+")",
+                Text = s.MissionId + " (" + s.Titre + ")",
                 Value = s.MissionId
             }).ToList();
             ViewData["listMissions"] = new SelectList(listMissions, "Value", "Text");
@@ -144,7 +144,7 @@ namespace Freelancer.Controllers
             }
             var listDevis = _context.Devis.Include(d => d.Mission).ThenInclude(d => d.Client).ThenInclude(d => d.Categorie);
             var devis = await listDevis.FirstOrDefaultAsync(d => d.DevisId == id);
-            
+
             if (devis == null)
             {
                 return NotFound();
@@ -170,17 +170,19 @@ namespace Freelancer.Controllers
         }
 
 
-
-
-        public async Task<IActionResult> Clients()
+        public IActionResult Clients()
         {
-            ViewData["listClientsFacture"] = new SelectList(_context.Clients, "ClientId", "Nom");
+            var clients = from d in _context.Devis
+                               join m in _context.Missions on d.MissionId equals m.MissionId into table1
+                               from m in table1.DefaultIfEmpty()
+                               join c in _context.Clients on m.ClientId equals c.ClientId into table2
+                               from c in table2
+                               select c;
 
-            //var devis = _context.Devis.Include(c => c.Mission).ThenInclude(c => c.Client).ThenInclude(c => c.Categorie);
+            var clientsFactureGlobale = clients.AsEnumerable().GroupBy(c => c.ClientId);
 
-            //return View(await devis.ToListAsync());
-            var clients = _context.Clients.Include(c => c.Categorie);
-            return View(await clients.ToListAsync());
+            return View(clientsFactureGlobale);
+
         }
 
         public async Task<IActionResult> Facture(int? id)
@@ -197,8 +199,13 @@ namespace Freelancer.Controllers
             {
                 return NotFound();
             }
+            if (devis.Any())
+            {
+                return View(await devis.ToListAsync());
+            }
+            return RedirectToAction(nameof(Index));
 
-            return View(await devis.ToListAsync());
+
         }
 
 

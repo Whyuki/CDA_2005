@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Freelancer.Models.Client>
+﻿@model IEnumerable<IGrouping<int, Freelancer.Models.Client>>
 
 @{
     ViewData["Title"] = "Facture par client";
@@ -8,10 +8,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nom)
+                @Html.DisplayNameFor(model => model.First().First().Nom)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.First().First().Email)
             </th>
             <th>Actions</th>
         </tr>
@@ -21,13 +21,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nom)
+                    @Html.DisplayFor(modelItem => item.First().Nom)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Email)
+                    @Html.DisplayFor(modelItem => item.First().Email)
                 </td>
                 <td>
-                    <a asp-action="Facture" asp-route-id="@item.ClientId">Facture Globale</a>
+                    <a asp-action="Facture" asp-route-id="@item.First().ClientId">Facture Globale</a>
                 </td>
             </tr>
         }
