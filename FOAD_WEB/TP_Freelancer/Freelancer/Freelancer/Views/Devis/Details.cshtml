@@ -3,6 +3,9 @@
     ViewData["Title"] = "Details du devis";
 }
 
+<a asp-action="Devis" asp-route-id="@Model.DevisId" class="btn-ajout">Génerer devis/facture</a>
+
+
 <h1>Details du devis</h1>
 
 <div>
@@ -31,7 +34,7 @@
             @Html.DisplayNameFor(model => model.DevisDateFinale)
         </dt>
         <dd class="col-sm-4">
-           
+
         </dd>
         <dt class="col-sm-6">
             @Html.DisplayNameFor(model => model.MontantFinal)
@@ -105,3 +108,4 @@
 <div>
     <a href="#" onclick="history.go(-1);">Retour</a>
 </div>
+

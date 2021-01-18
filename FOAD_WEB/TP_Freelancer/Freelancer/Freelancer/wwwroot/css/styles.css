@@ -88,10 +88,10 @@ header {
     width: 90%;
     table-layout:auto;
 }
-
+/*
     .tableaux tr th:last-child {
         width: 100px;
-    }
+    }*/
 
 
 .tableaux th {
@@ -189,9 +189,10 @@ footer {
     margin: auto;
 }
 
-.facture {
+.devis-facture {
     padding: 50px;
     width: 75%;
+    min-height : 750px;
     margin: 20px auto;
     border-radius: 5px;
     border: #c8c6c4 solid 1px;
@@ -201,7 +202,7 @@ footer {
     text-align: left;
 }
 
-.facture #logo {
+.devis-facture #logo {
     text-align:left;
 }
 
@@ -212,6 +213,7 @@ footer {
 
 .cadre-adresse {
     width: 20%;
+    margin:50px;
 }
 
 

@@ -208,6 +208,20 @@ namespace Freelancer.Controllers
 
         }
 
+        public async Task<IActionResult> Devis(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var listDevis = _context.Devis.Include(c => c.Mission).ThenInclude(c => c.Client).ThenInclude(c => c.Categorie);
+            var devis = await listDevis.FirstOrDefaultAsync(m => m.DevisId == id);
+            if (devis == null)
+            {
+                return NotFound();
+            }
 
+            return View(devis);
+        }
     }
 }

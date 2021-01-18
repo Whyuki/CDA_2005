@@ -1,0 +1,82 @@
+﻿@model Freelancer.Models.Devis
+@{
+    ViewData["Title"] = "Devis";
+}
+
+<a asp-action="Details" asp-route-id="@Model.DevisId" class="btn-ajout">Details du devis</a>
+
+
+<div class="devis-facture">
+    <img id="logo" src="~/img/TP_Freelancer_logo.jpg" />
+    <div class="entete-facture">
+        @if (Model.EtatDevis.Equals("accepté"))
+        {
+            <p>Facture</p>
+        }
+        else
+        {
+            <p>Devis</p>
+        }
+        <div class="cadre-adresse">
+            <p>
+                @Model.Mission.Client.Nom
+                @Model.Mission.Client.Email
+            </p>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mission)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => Model.Mission.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Montant)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.Date)
+                </td>
+                <td>
+                    @Html.ActionLink(Model.Mission.Titre, "Details", "Missions", new { id = Model.MissionId }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => Model.Mission.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Montant)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Montant à payer</td>
+                <td>
+                    @Html.DisplayFor(model => model.Montant)
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.DevisId">Modifier</a> |
+    <a asp-action="Index">Retour à la liste des devis</a>
+</div>
+<div>
+    <a href="#" onclick="history.go(-1);">Retour</a>
+</div>
+

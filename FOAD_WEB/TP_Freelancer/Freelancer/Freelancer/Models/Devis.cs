@@ -37,6 +37,7 @@ namespace Freelancer.Models
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
+        [Range(1, Int64.MaxValue, ErrorMessage = "Montant positif attendu")]
         [Required(ErrorMessage = "Champ obligatoire : veuillez saisir un montant")]
         public int Montant { get; set; }
 
@@ -44,6 +45,7 @@ namespace Freelancer.Models
         [Display(Name = "Date finale")]
         public DateTime? DevisDateFinale { get; set; }
 
+        [Range(1, Int64.MaxValue, ErrorMessage = "Montant positif attendu")]
         [Display(Name = "Montant final")]
         public int? MontantFinal { get; set; }
 

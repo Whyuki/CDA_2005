@@ -70,11 +70,12 @@ namespace Freelancer.Controllers
             {
                 _context.Add(mission);
                 await _context.SaveChangesAsync();
-                Devis devis = new Devis(mission.Etat, DateTime.Now, mission.Montant, mission.MissionId);
+                Devis devis = new Devis("proposé", DateTime.Now, mission.Montant, mission.MissionId);
                 DevisController devisController = new DevisController(_context);
                 await devisController.Create(devis);
 
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details","Devis", new {id = devis.DevisId });
             }
             return View(mission);
         }
@@ -100,7 +101,7 @@ namespace Freelancer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MissionId,Etat,Titre,Debut,Fin,Description,ClientId")] Mission mission)
+        public async Task<IActionResult> Edit(int id, [Bind("MissionId,Etat,Titre,Debut,Fin,Description,ClientId,Montant")] Mission mission)
         {
             if (id != mission.MissionId)
             {
