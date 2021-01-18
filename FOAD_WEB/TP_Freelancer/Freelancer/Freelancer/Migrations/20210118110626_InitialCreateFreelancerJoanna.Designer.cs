@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Freelancer.Migrations
 {
     [DbContext(typeof(MvcFreelancerContext))]
-    [Migration("20210116004818_InitialCreateB")]
-    partial class InitialCreateB
+    [Migration("20210118110626_InitialCreateFreelancerJoanna")]
+    partial class InitialCreateFreelancerJoanna
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

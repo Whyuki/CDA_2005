@@ -2,7 +2,7 @@
 
 namespace Freelancer.Migrations
 {
-    public partial class ReInitialCreate : Migration
+    public partial class InitialCreateFreelancerJoanna : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
