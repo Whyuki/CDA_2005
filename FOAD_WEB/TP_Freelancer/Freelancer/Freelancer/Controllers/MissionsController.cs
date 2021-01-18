@@ -64,7 +64,7 @@ namespace Freelancer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MissionId,Etat,Titre,Debut,Fin,Description,ClientId,Montant")] Mission mission)
+        public async Task<IActionResult> Create([Bind("MissionId,Etat,Titre,Debut,Fin,Description,ClientId,Montant")] MissionMontant mission)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +101,7 @@ namespace Freelancer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MissionId,Etat,Titre,Debut,Fin,Description,ClientId,Montant")] Mission mission)
+        public async Task<IActionResult> Edit(int id, [Bind("MissionId,Etat,Titre,Debut,Fin,Description,ClientId")] Mission mission)
         {
             if (id != mission.MissionId)
             {
