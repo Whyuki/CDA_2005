@@ -1,14 +1,12 @@
 to-do :
 
 date end > date start
-
 facture quand devis accepté
 date et montant fin en f° de l'état ?
+mise en forme
 
-
-createdAT
-updatedAT
+____________________________________
 
 questions ????
-etat mission/devis ? 
-supprimer mission : supprime devis liés ?
+etat mission/devis ? différence ? valeurs ? (accepté/refusé/attente ??...)
+supprimer mission = supprime devis liés ?
