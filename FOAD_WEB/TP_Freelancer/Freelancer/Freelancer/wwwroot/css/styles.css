@@ -85,7 +85,8 @@ header {
     border-collapse: collapse;
     table-layout: fixed;
     text-align: left;
-    width: 75%;
+    width: 90%;
+    table-layout:auto;
 }
 
     .tableaux tr th:last-child {

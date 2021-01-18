@@ -22,7 +22,7 @@ namespace Freelancer.Controllers
         // GET: Devis
         public async Task<IActionResult> Index()
         {
-            var devis = _context.Devis.Include(c => c.Mission);
+            var devis = _context.Devis.Include(c => c.Mission).ThenInclude(c => c.Client);
             if (devis.Any())
             {
                 var devisOrderByUpdated = devis.OrderBy(c => c.UpdatedAt);

@@ -23,17 +23,20 @@
             <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Montant)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.DevisDateFinale)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.MontantFinal)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.MissionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mission.Client)
             </th>
             <th>Actions</th>
         </tr>
@@ -47,21 +50,25 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
-                    <a asp-action="Details" asp-route-id="@item.DevisId"><i class="fa fa-info-circle"></i></a>
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Montant)
-                </td>
-                <td>
+                </td>*@
+                @*<td>
                     @Html.DisplayFor(modelItem => item.DevisDateFinale)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MontantFinal)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.MissionId)
+                </td> 
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mission.Client.Nom)
                 </td>
                 <td>
+                    <a asp-action="Details" asp-route-id="@item.DevisId">Devis/Facture</a>
+
                     <a asp-action="Edit" asp-route-id="@item.DevisId"><i class="fa fa-edit"></i></a>
                     <a asp-action="Delete" asp-route-id="@item.DevisId"><i class="fa fa-times"></i></a>
                 </td>
