@@ -74,6 +74,13 @@ namespace Freelancer.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            var listMissions = _context.Missions.Select(s => new
+            {
+                Text = s.MissionId + " (" + s.Titre + ")",
+                Value = s.MissionId
+            }).ToList();
+            ViewData["listMissions"] = new SelectList(listMissions, "Value", "Text", devis.DevisId);
+
             return View(devis);
         }
 
@@ -117,6 +124,8 @@ namespace Freelancer.Controllers
                 try
                 {
                     _context.Update(devis);
+                    _context.Entry(devis).Property(x => x.CreatedAt).IsModified = false;
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -132,6 +141,12 @@ namespace Freelancer.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            var listMissions = _context.Missions.Select(s => new
+            {
+                Text = s.MissionId + " (" + s.Titre + ")",
+                Value = s.MissionId
+            }).ToList();
+            ViewData["listMissions"] = new SelectList(listMissions, "Value", "Text", devis.DevisId);
             return View(devis);
         }
 

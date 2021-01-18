@@ -105,6 +105,8 @@ namespace Freelancer.Controllers
                 try
                 {
                     _context.Update(categorieClient);
+                    _context.Entry(categorieClient).Property(x => x.CreatedAt).IsModified = false;
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

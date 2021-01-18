@@ -77,6 +77,8 @@ namespace Freelancer.Controllers
                 //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Details","Devis", new {id = devis.DevisId });
             }
+            ViewData["listClients"] = new SelectList(_context.Clients, "ClientId", "Nom", mission.MissionId);
+
             return View(mission);
         }
 
@@ -113,6 +115,7 @@ namespace Freelancer.Controllers
                 try
                 {
                     _context.Update(mission);
+                    _context.Entry(mission).Property(x => x.CreatedAt).IsModified = false;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -128,6 +131,8 @@ namespace Freelancer.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["listClients"] = new SelectList(_context.Clients, "ClientId", "Nom", mission.MissionId);
+
             return View(mission);
         }
 

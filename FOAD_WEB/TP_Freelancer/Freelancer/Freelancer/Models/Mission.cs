@@ -38,7 +38,7 @@ namespace Freelancer.Models
 
         public virtual Client Client { get; set; }
 
-        //[Range (1, Int64.MaxValue, ErrorMessage = "Montant positif attendu")]
+        //[Range(1, Int64.MaxValue, ErrorMessage = "Montant positif attendu")]
         //[NotMapped]
         //public int Montant { get; set; }
     }
