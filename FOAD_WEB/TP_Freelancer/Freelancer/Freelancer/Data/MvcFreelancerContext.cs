@@ -19,6 +19,15 @@ namespace Freelancer.Data
         public DbSet<Mission> Missions { get; set; }
         public DbSet<Devis> Devis { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CategorieClient>().HasIndex(item => item.Nom).IsUnique();
+            modelBuilder.Entity<Client>().HasIndex(item => item.Nom).IsUnique();
+            modelBuilder.Entity<Client>().HasIndex(item => item.Email).IsUnique();
+        }
+
+
+
         public override int SaveChanges()
         {
             AddTimestamps();

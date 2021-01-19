@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Freelancer.Data;
 using Freelancer.Models;
+using Microsoft.Data.SqlClient;
 
 namespace Freelancer.Controllers
 {
@@ -28,7 +29,7 @@ namespace Freelancer.Controllers
             {
                 var clientsOrderByUpdated = clients.OrderBy(c => c.UpdatedAt);
                 Client lastClientUpdated = clientsOrderByUpdated.Last();
-                ViewData["lastClientCreateUpdate"] = "Dernier client ajouté/modifié : "+lastClientUpdated.Nom;
+                ViewData["lastClientCreateUpdate"] = "Dernier client ajouté/modifié : " + lastClientUpdated.Nom;
             }
             return View(await clients.ToListAsync());
         }
@@ -66,9 +67,18 @@ namespace Freelancer.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(client);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+
+                    _context.Add(client);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateException)
+                {
+                    ModelState.AddModelError("Email", "Cette adresse mail existe déjà");
+                    return View(client);
+                }
             }
             ViewData["listCats"] = new SelectList(_context.CategoriesClient, "CategorieId", "Nom", client.ClientId);
 
@@ -122,6 +132,21 @@ namespace Freelancer.Controllers
                     {
                         throw;
                     }
+                }
+                catch (DbUpdateException e)
+                {
+                    if (e.InnerException.Message.Contains("Nom"))
+                    {
+                        ModelState.AddModelError("Nom", "Un client portant ce nom existe déjà");
+
+                    }
+                    if (e.InnerException.Message.Contains("Email"))
+                    {
+                        ModelState.AddModelError("Email", "Cette adresse mail est déjà rattachée à un client");
+                    }
+
+                    ViewData["listCats"] = new SelectList(_context.CategoriesClient, "CategorieId", "Nom", client.ClientId);
+                    return View(client);
                 }
                 return RedirectToAction(nameof(Index));
             }

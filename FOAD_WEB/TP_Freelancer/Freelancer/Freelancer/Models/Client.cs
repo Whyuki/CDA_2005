@@ -14,13 +14,11 @@ namespace Freelancer.Models
         [Key]
         public int ClientId { get; set; }
 
-        //[Index(IsUnique = true)]
-        [MaxLength(100, ErrorMessage = "Limite maximum de caractères : 100")]
+        [StringLength(100, ErrorMessage = "Limite maximum de caractères : 100")]
         public string Nom { get; set; }
 
         [Required(ErrorMessage = "Champ obligatoire : veuillez saisir une adresse e-mail")]
-        //[Index(IsUnique = true)]
-        [MaxLength(255, ErrorMessage = "Limite maximum de caractères : 255")]
+        [StringLength(255, ErrorMessage = "Limite maximum de caractères : 255")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 

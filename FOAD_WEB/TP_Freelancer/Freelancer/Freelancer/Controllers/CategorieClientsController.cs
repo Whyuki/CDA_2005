@@ -27,7 +27,7 @@ namespace Freelancer.Controllers
             {
                 var catClientOrderByUpdated = catClient.OrderBy(c => c.UpdatedAt);
                 CategorieClient lastCatClientUpdated = catClientOrderByUpdated.Last();
-                ViewData["lastCatClientCreateUpdate"] = "Derniere catégorie de client ajoutée/modifiée : "+lastCatClientUpdated.Nom;
+                ViewData["lastCatClientCreateUpdate"] = "Derniere catégorie de client ajoutée/modifiée : " + lastCatClientUpdated.Nom;
             }
             return View(await catClient.ToListAsync());
         }
@@ -65,9 +65,18 @@ namespace Freelancer.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(categorieClient);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Add(categorieClient);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateException)
+                {
+                    ModelState.AddModelError("Nom", "Cette catégorie existe déjà");
+                    return View(categorieClient);
+
+                }
             }
             return View(categorieClient);
         }
@@ -106,8 +115,8 @@ namespace Freelancer.Controllers
                 {
                     _context.Update(categorieClient);
                     _context.Entry(categorieClient).Property(x => x.CreatedAt).IsModified = false;
-
                     await _context.SaveChangesAsync();
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -119,6 +128,12 @@ namespace Freelancer.Controllers
                     {
                         throw;
                     }
+                }
+                catch (DbUpdateException)
+                {
+                    ModelState.AddModelError("Nom", "Cette catégorie existe déjà");
+                    return View(categorieClient);
+
                 }
                 return RedirectToAction(nameof(Index));
             }

@@ -15,8 +15,7 @@ namespace Freelancer.Models
         public int CategorieId { get; set; }
 
         [Required(ErrorMessage = "Champ obligatoire : veuillez saisir un nom")]
-        //[Index(IsUnique = true)]
-        [MaxLength(50, ErrorMessage = "Limite maximum de caractères : 50")]
+        [StringLength(50, ErrorMessage = "Limite maximum de caractères : 50")]
         [Display(Name = "Nom de la catégorie")]
         public string Nom { get; set; }
 

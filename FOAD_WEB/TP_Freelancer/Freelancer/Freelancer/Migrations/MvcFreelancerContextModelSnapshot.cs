@@ -43,6 +43,9 @@ namespace Freelancer.Migrations
 
                     b.HasKey("CategorieId");
 
+                    b.HasIndex("Nom")
+                        .IsUnique();
+
                     b.ToTable("CategoriesClient");
                 });
 
@@ -75,6 +78,13 @@ namespace Freelancer.Migrations
                     b.HasKey("ClientId");
 
                     b.HasIndex("CategorieClientId");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Nom")
+                        .IsUnique()
+                        .HasFilter("[Nom] IS NOT NULL");
 
                     b.ToTable("Clients");
                 });

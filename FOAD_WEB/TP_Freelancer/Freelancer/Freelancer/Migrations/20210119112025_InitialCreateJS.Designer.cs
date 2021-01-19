@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Freelancer.Migrations
 {
     [DbContext(typeof(MvcFreelancerContext))]
-    [Migration("20210118210551_UpdateMissionMontant")]
-    partial class UpdateMissionMontant
+    [Migration("20210119112025_InitialCreateJS")]
+    partial class InitialCreateJS
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,6 +45,9 @@ namespace Freelancer.Migrations
 
                     b.HasKey("CategorieId");
 
+                    b.HasIndex("Nom")
+                        .IsUnique();
+
                     b.ToTable("CategoriesClient");
                 });
 
@@ -77,6 +80,13 @@ namespace Freelancer.Migrations
                     b.HasKey("ClientId");
 
                     b.HasIndex("CategorieClientId");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Nom")
+                        .IsUnique()
+                        .HasFilter("[Nom] IS NOT NULL");
 
                     b.ToTable("Clients");
                 });
