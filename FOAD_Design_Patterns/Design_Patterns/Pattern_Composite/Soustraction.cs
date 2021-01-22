@@ -15,7 +15,6 @@ namespace Pattern_Composite
         public override int Evalue()
         {
             return operante1.Evalue() - operante2.Evalue();
-
         }
 
         public override string Formate()
