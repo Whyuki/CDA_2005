@@ -43,7 +43,7 @@ namespace ConsoleAppTestComposite
             int resultat7 = exp7.Evalue();
             string strResult7 = exp7.Formate();
 
-            Expression exp8 = new Soustraction(new Soustraction(new Soustraction(new Nombre(3), new Nombre(6)), 
+            Expression exp8 = new Soustraction(new Soustraction(new Soustraction(new Nombre(65), new Nombre(13)), 
                 new Soustraction(new Nombre(3), new Nombre(6))), new Soustraction(new Nombre(74), new Nombre(22)));
             int resultat8 = exp8.Evalue();
             string strResult8 = exp8.Formate();
