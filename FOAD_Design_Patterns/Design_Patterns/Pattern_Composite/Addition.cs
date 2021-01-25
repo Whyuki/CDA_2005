@@ -14,7 +14,7 @@ namespace Pattern_Composite
 
         public override int Evalue()
         {
-            return operante1.Evalue() + operante2.Evalue();
+            return operande1.Evalue() + operande2.Evalue();
         }
 
         public override string Formate()
@@ -24,7 +24,7 @@ namespace Pattern_Composite
 
         public override string ToString()
         {
-            return operante1.ToString() + "+" + operante2.ToString();
+            return operande1.ToString() + "+" + operande2.ToString();
         }
     }
 }

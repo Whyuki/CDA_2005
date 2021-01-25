@@ -22,7 +22,7 @@ namespace Pattern_Composite
 
         public override string Formate()
         {
-            return valeur.ToString();
+            return valeur.ToString()+"="+ valeur.ToString();
         }
 
         public override string ToString()

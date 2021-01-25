@@ -11,6 +11,10 @@ namespace ConsoleAppTestComposite
     {
         static void Main(string[] args)
         {
+            Expression expNb = new Nombre(33);
+            int resultatNb = expNb.Evalue();
+            string strResultNb = expNb.Formate();
+
             Expression exp1 = new Addition(new Nombre(33), new Nombre(33));
             int resultat1 = exp1.Evalue();
             string strResult1 = exp1.Formate();
@@ -38,6 +42,11 @@ namespace ConsoleAppTestComposite
             Expression exp7 = new Soustraction(new Soustraction(new Nombre(3), new Nombre(9)), new Nombre(6));
             int resultat7 = exp7.Evalue();
             string strResult7 = exp7.Formate();
+
+            Expression exp8 = new Soustraction(new Soustraction(new Soustraction(new Nombre(3), new Nombre(6)), 
+                new Soustraction(new Nombre(3), new Nombre(6))), new Soustraction(new Nombre(74), new Nombre(22)));
+            int resultat8 = exp8.Evalue();
+            string strResult8 = exp8.Formate();
         }
     }
 }
