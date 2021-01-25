@@ -19,13 +19,19 @@ namespace Pattern_Composite
 
         public override string Formate()
         {
-            return operande1.ToString() + "-(" + operande2.ToString() + ")" + "=" + this.Evalue().ToString();
-
+            return this.ToString() + "=" + this.Evalue().ToString();
         }
 
         public override string ToString()
         {
-            return operande1.ToString() + "-(" + operande2.ToString() + ")";
+            if (operande2.Evalue().ToString().Equals(operande2.ToString()))
+            {
+                return operande1.ToString() + "-" + operande2.ToString();
+            }
+            else
+            {
+                return operande1.ToString() + "-(" + operande2.ToString() + ")"; ;
+            }
 
         }
     }
