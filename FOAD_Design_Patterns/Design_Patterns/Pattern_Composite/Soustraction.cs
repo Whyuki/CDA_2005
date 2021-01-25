@@ -25,7 +25,15 @@ namespace Pattern_Composite
 
         public override string ToString()
         {
-            return operante1.ToString() + "-" + operante2.ToString();
+            if (!operante2.GetType().Equals(typeof(Nombre)))
+            {
+                return operante1.ToString() + "-(" + operante2.ToString()+")";
+
+            }
+            else
+            {
+                return operante1.ToString() + "-" + operante2.ToString();
+            }
 
         }
     }
