@@ -20,9 +20,9 @@ namespace Pattern_Composite
             return valeur;
         }
 
-        public override string Formate()
+        public override string FormateGauche()
         {
-            return valeur.ToString()+"="+ valeur.ToString();
+            return valeur.ToString();
         }
 
         public override string ToString()

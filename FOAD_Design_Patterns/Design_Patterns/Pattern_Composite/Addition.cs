@@ -17,14 +17,10 @@ namespace Pattern_Composite
             return operande1.Evalue() + operande2.Evalue();
         }
 
-        public override string Formate()
+        public override string FormateGauche()
         {
-            return this.ToString()+"=" +this.Evalue().ToString();
+            return operande1.FormateGauche() + "+" + operande2.FormateGauche();
         }
-
-        public override string ToString()
-        {
-            return operande1.ToString() + "+" + operande2.ToString();
-        }
+      
     }
 }

@@ -9,11 +9,14 @@ namespace Pattern_Composite
     public abstract class Expression
     {
         protected Expression()
-        {
-        }
+        { }
 
         public abstract int Evalue();
-        public abstract string Formate();
-        
+        public abstract string FormateGauche();
+        public string Formate()
+        {
+            return this.FormateGauche() + "=" + this.Evalue().ToString();
+        }
+
     }
 }

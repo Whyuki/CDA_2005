@@ -17,22 +17,19 @@ namespace Pattern_Composite
             return operande1.Evalue() - operande2.Evalue();
         }
 
-        public override string Formate()
-        {
-            return this.ToString() + "=" + this.Evalue().ToString();
-        }
-
-        public override string ToString()
+        public override string FormateGauche()
         {
             if (operande2.Evalue().ToString().Equals(operande2.ToString()))
             {
-                return operande1.ToString() + "-" + operande2.ToString();
+                return operande1.FormateGauche() + "-" + operande2.FormateGauche();
             }
             else
             {
-                return operande1.ToString() + "-(" + operande2.ToString() + ")"; ;
+                return operande1.FormateGauche() + "-" + "(" + operande2.FormateGauche() + ")";
             }
 
         }
+
+
     }
 }
