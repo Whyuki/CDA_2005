@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pattern_Composite", "Patter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppTestComposite", "ConsoleAppTestComposite\ConsoleAppTestComposite.csproj", "{E5FFD1F3-FD66-48AA-B46B-E1F3955AD7BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryDesignPaternFigure", "ClassLibraryDesignPaternFigure\ClassLibraryDesignPaternFigure.csproj", "{D10B16C8-6F4D-40E9-9A04-0C3AF58D07F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppTestsFigure", "ConsoleAppTestsFigure\ConsoleAppTestsFigure.csproj", "{1B202EFC-2C75-40DA-B73A-15A56D789E4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{E5FFD1F3-FD66-48AA-B46B-E1F3955AD7BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5FFD1F3-FD66-48AA-B46B-E1F3955AD7BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5FFD1F3-FD66-48AA-B46B-E1F3955AD7BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D10B16C8-6F4D-40E9-9A04-0C3AF58D07F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D10B16C8-6F4D-40E9-9A04-0C3AF58D07F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D10B16C8-6F4D-40E9-9A04-0C3AF58D07F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D10B16C8-6F4D-40E9-9A04-0C3AF58D07F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B202EFC-2C75-40DA-B73A-15A56D789E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B202EFC-2C75-40DA-B73A-15A56D789E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B202EFC-2C75-40DA-B73A-15A56D789E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B202EFC-2C75-40DA-B73A-15A56D789E4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
