@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryDesignPaternFig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppTestsFigure", "ConsoleAppTestsFigure\ConsoleAppTestsFigure.csproj", "{1B202EFC-2C75-40DA-B73A-15A56D789E4B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FIGURES", "FIGURES", "{8A0BCDC0-C9C4-4A75-8EAF-CF99FE29F460}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EXPRESSIONS", "EXPRESSIONS", "{C93CA4B1-DC29-4CA8-BC26-A8DC0C84EBFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2AA1F965-E4C2-4865-AA72-514963FB7ED7} = {C93CA4B1-DC29-4CA8-BC26-A8DC0C84EBFF}
+		{E5FFD1F3-FD66-48AA-B46B-E1F3955AD7BC} = {C93CA4B1-DC29-4CA8-BC26-A8DC0C84EBFF}
+		{D10B16C8-6F4D-40E9-9A04-0C3AF58D07F7} = {8A0BCDC0-C9C4-4A75-8EAF-CF99FE29F460}
+		{1B202EFC-2C75-40DA-B73A-15A56D789E4B} = {8A0BCDC0-C9C4-4A75-8EAF-CF99FE29F460}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78ED7C5A-9CA2-4F0A-B9F7-AA4DBB77B75C}

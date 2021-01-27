@@ -19,7 +19,8 @@ namespace ClassLibraryDesignPaternFigure
 
         public override void SeDessiner()
         {
-            Console.WriteLine("Je suis un ensemble de figures, voici mes figures :");
+            Console.WriteLine("*************************************************************\n" +
+                "Je suis un ensemble de figures, voici mes figures :");
             foreach (Figure figure in sesFigures)
             {
                 figure.SeDessiner();
