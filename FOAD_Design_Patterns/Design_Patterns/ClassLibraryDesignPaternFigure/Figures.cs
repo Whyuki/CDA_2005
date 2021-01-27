@@ -20,6 +20,10 @@ namespace ClassLibraryDesignPaternFigure
         {
             this.sesFigures.Add(f);
         }
+        public void SupprimerFigure(Figure f)
+        {
+            this.sesFigures.Remove(f);
+        }
 
         public override void SeDessiner()
         {
