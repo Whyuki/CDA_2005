@@ -15,20 +15,20 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ClassLibraryDesignPaternFigure.Figures">
-    <Position X="7" Y="3.5" Width="3" />
+    <Position X="7" Y="3.5" Width="2.25" />
     <AssociationLine Name="sesFigures" Type="ClassLibraryDesignPaternFigure.Figure" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="8.5" Y="3.5" />
-        <Point X="8.5" Y="1.47" />
+        <Point X="8.125" Y="3.5" />
+        <Point X="8.125" Y="1.47" />
         <Point X="4.75" Y="1.47" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAACAAAAAACA=</HashCode>
       <FileName>Figures.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
-      <Property Name="sesFigures" />
+      <Field Name="sesFigures" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="ClassLibraryDesignPaternFigure.Rectangle">

@@ -27,8 +27,8 @@ namespace ConsoleAppTestsFigure
             Figures ensembleDeFigures = new Figures(4,3);
             Cercle c2 = new Cercle(5, 6, 7);
             Rectangle r2 = new Rectangle(8, 4, 3, 4);
-            ensembleDeFigures.sesFigures.Add(c2);
-            ensembleDeFigures.sesFigures.Add(r2);
+            ensembleDeFigures.AjouterFigure(c2);
+            ensembleDeFigures.AjouterFigure(r2);
             ensembleDeFigures.SeDessiner();
 
             Console.WriteLine("____________________________________________");
@@ -36,9 +36,9 @@ namespace ConsoleAppTestsFigure
             Figures ensembleDeFigures2 = new Figures(4, 3);
             Cercle c3 = new Cercle(2, 1, 5);
             Rectangle r3 = new Rectangle(3, 2, 7, 1);
-            ensembleDeFigures2.sesFigures.Add(c3);
-            ensembleDeFigures2.sesFigures.Add(r3);
-            ensembleDeFigures.sesFigures.Add(ensembleDeFigures2);
+            ensembleDeFigures2.AjouterFigure(c3);
+            ensembleDeFigures2.AjouterFigure(r3);
+            ensembleDeFigures.AjouterFigure(ensembleDeFigures2);
             ensembleDeFigures.SeDessiner();
 
             Console.ReadLine();

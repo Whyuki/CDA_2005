@@ -14,8 +14,12 @@ namespace ClassLibraryDesignPaternFigure
             sesFigures = new List<Figure>();
         }
 
-        public List<Figure> sesFigures { get; set; }
+        private List<Figure> sesFigures;
 
+        public void AjouterFigure(Figure f)
+        {
+            this.sesFigures.Add(f);
+        }
 
         public override void SeDessiner()
         {
