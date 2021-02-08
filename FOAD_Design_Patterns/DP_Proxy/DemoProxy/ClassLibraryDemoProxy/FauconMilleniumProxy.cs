@@ -11,31 +11,30 @@ namespace ClassLibraryDemoProxyEspace
     {
 
         private Pilote pilote;
-        private FauconMillenium reelFauconMillenium;
+        private FauconMillenium fauconMillenium;
 
         public FauconMilleniumProxy(Pilote pilote)
         {
             this.pilote = pilote;
-            this.reelFauconMillenium = new FauconMillenium();
+            this.fauconMillenium = new FauconMillenium();
+        }
+
+        private bool VerifierNomPilote()
+        {
+            return this.pilote.Nom.Equals("Han Solo");
         }
 
         public void Decoller()
         {
-            if (this.VerificationAcces())
+            if (this.VerifierNomPilote())
             {
                 Console.WriteLine($"Bienvenue, {pilote.Nom}.");
-                reelFauconMillenium.Decoller();
+                fauconMillenium.Decoller();
             }
             else
             {
-                Console.WriteLine($"Désolé {pilote.Nom}, seul Han Solo peut piloter le Faucon Millenium !");
+                Console.WriteLine($"Désolé {pilote.Nom}, seul Han Solo peut faire décoller le Faucon Millenium !");
             }
-
-        }
-
-        public bool VerificationAcces()
-        {
-            return pilote.Nom.Equals("Han Solo");
         }
     }
 }

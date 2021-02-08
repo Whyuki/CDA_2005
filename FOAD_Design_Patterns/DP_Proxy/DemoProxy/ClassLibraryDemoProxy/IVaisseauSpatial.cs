@@ -10,6 +10,5 @@ namespace ClassLibraryDemoProxyEspace
     public interface IVaisseauSpatial
     {
         void Decoller();
-
     }
 }

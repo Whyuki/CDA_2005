@@ -15,7 +15,6 @@ namespace ClassLibraryDemoProxyEspace
         {
             this.nom = nom;
         }
-        public string Nom { get => nom; set => nom = value; }
-
+        public string Nom { get => nom; private set => nom = value; }
     }
 }

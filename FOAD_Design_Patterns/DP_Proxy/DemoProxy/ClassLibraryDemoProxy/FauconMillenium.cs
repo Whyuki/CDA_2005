@@ -11,12 +11,7 @@ namespace ClassLibraryDemoProxyEspace
     {
         public void Decoller()
         {
-            Console.WriteLine("   +        .            .                     .\n"
-                + "  .                                       +         .         \n"
-                + "    Le Faucon Millenium décolle.... fiiiiouuuuu !!\n"
-                + "     .         .         .       .                                     .");
+            Console.WriteLine("Le Faucon Millenium décolle.... fiiiiouuuuu !!");
         }
-
-
     }
 }
