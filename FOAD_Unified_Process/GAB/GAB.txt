@@ -1,0 +1,24 @@
+Identifier les acteurs :
+
+Acteurs :
+
+*Acteur principaux :
+-Porteur de carte de crédit non client
+-Client porteur de carte de crédit
+-Dabiste (Approvisionneur de guichets automatiques de billets)
+
+*Acteur secondaire :
+-Banque
+
+
+Identifier les cas d’utilisation : 
+
+Un porteur de carte de crédit peut retirer de l'argent,
+
+Un client porteur de carte de crédit peut également retirer de l'argent, mais aussi :
+- deposer de l'argent
+- effectuer une virement
+- consulter ses comptes (solde, relevé partiel...)
+- imprimer un RIB
+
+Un dabiste peut approvisionner, entretenir et reparer le GAB
